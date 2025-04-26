@@ -1,0 +1,89 @@
+trigger:
+  branches:
+    include:
+      - stage 
+      - dev 
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: staging
+  condition: eq(variables['Build.SourceBranchName'], 'dev')
+  displayName: Deploy to staging
+  jobs:
+    - deployment: DeployToVM
+      displayName: frontend-stage
+      workspace:
+        clean: all
+      environment:
+        name: 'qa-stage' 
+        resourceType: VirtualMachine
+        resourceName: 'Health-help-stage-frontend' 
+      strategy:
+          runOnce:
+            deploy:
+              steps:
+              - checkout: self 
+                workspaceRepo:  true
+                submodules : true
+                path: repo/
+              - task: NodeTool@0
+                inputs:
+                    versionSpec: '18.x'
+                displayName: 'Install Node.js'
+              - script: |
+                  ls -lrth 
+                  cd ./health-care/
+                  npm install 
+                  npm run build 
+                displayName: 'Install dependencies and run tests'
+              - task: CopyFiles@2
+                inputs:
+                  SourceFolder: '$(Build.SourcesDirectory)/health-care/'
+                  Contents: '**/*'
+                  TargetFolder: '/home/azureuser/HealthHelp/health-care-frontend/health-care'
+                displayName: 'Copy site files to main directory'   
+              - script: |
+                  service nginx reload
+                displayName: 'run nginx services'
+
+- stage: production
+  condition: eq(variables['Build.SourceBranchName'], 'stage')
+  displayName: Deploy to Production
+  trigger: manual
+  jobs:
+  - deployment: DeployToVM
+    displayName: frontend 
+    workspace:
+      clean: all
+    environment:
+      name: 'staging' 
+      resourceType: VirtualMachine
+      resourceName: 'Healthcare-frontend' 
+    strategy:
+        runOnce:
+          deploy:
+            steps:
+            - checkout: self 
+              workspaceRepo:  true
+              submodules : true
+              path: repo/
+            - task: NodeTool@0
+              inputs:
+                  versionSpec: '18.x'
+              displayName: 'Install Node.js'
+            - script: |
+                ls -lrth 
+                cd ./health-care/
+                npm install 
+                npm run build 
+              displayName: 'Install dependencies and run tests'
+            - task: CopyFiles@2
+              inputs:
+                SourceFolder: '$(Build.SourcesDirectory)/health-care/'
+                Contents: '**/*'
+                TargetFolder: '/home/azureuser/HealthHelp/health-care-frontend/health-care'
+              displayName: 'Copy site files to main directory'   
+            - script: |
+                service nginx reload
+              displayName: 'run nginx services'
