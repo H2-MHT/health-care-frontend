@@ -1,0 +1,462 @@
+{
+  "login": {
+    "create_account": "Crear una cuenta",
+    "login_button": "Iniciar sesión",
+    "email_label": "Correo electrónico",
+    "password_label": "Contraseña",
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "welcome_message": "¡Bienvenido a la aplicación!",
+    "for_member": "Para miembro",
+    "for_specialist": "Para especialista",
+    "google_login": "Continuar con Google",
+    "Apple_login": "Continuar con Apple",
+    "For_clinic": "Para clínica",
+    "or_lable": "O",
+    "login": "Iniciar sesión"
+  },
+  "singup": {
+    "first_name": "Nombre",
+    "Last_name": "Apellido",
+    "Confirm_Password": "Confirmar contraseña",
+    "Password_text": "Usa 8 o más caracteres con una combinación de letras, números y símbolos",
+    "creating_account": "Al crear una cuenta, acepto nuestros",
+    "terms_use": "Términos de uso",
+    "and_lable": "y",
+    "Privacy_policy": "Política de privacidad",
+    "clinic_Register": "¿Eres una institución médica? Regístrate como clínica",
+    "here_lable": " aquí",
+    "Complete_Information": "Completa tu información",
+    "step": "Paso 1",
+    "step2": "Paso 2",
+    "place_residence": "Lugar de residencia",
+    "date_birth": "Fecha de nacimiento",
+    "Gender_lable": "Género",
+    "place_Work": "Lugar de trabajo",
+    "confirm_lable": "Confirmar",
+    "skip_lable": "Omitir",
+    "back_lable": "Atrás",
+    "upload_photo": "Sube tu foto",
+    "licenses_certifications": "Licencias y certificaciones",
+    "about_yourself": "Cuéntanos más sobre ti",
+    "languages_lable": "Idiomas",
+    "working_time": "Horario de trabajo"
+  },
+  "ui_header": {
+    "register_now": "Regístrate ahora",
+    "hn_lable": "Hn",
+    "home_lable": "Inicio",
+    "myApp_guest": "Invitado de MyApp",
+    "find_doctor": "Buscar doctor",
+    "clinics_lable": "Clínicas",
+    "about_us": "Sobre nosotros",
+    "contact_us": "Contáctanos"
+  },
+  "common": {
+    "save": "Save",
+    "add-media": "+ Add Media",
+    "save-changes": "Save Changes",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "subscribe-now": "Subscribe now",
+    "add": "Add"
+  },
+  "edit-profile": {
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "email-address": "Email Address",
+    "phone-number": "Phone Number",
+    "bio": "Bio",
+    "country": "Country",
+    "city": "City",
+    "languages": "Languages",
+    "english": "English",
+    "hindi": "Hindi",
+    "place-of-work": "Place of work",
+    "areas-of-expertise": "Areas of Expertise",
+    "professional-statistics": "Professional Statistics",
+    "years": "Years",
+    "add-to-profile": "Add to profile",
+    "licenses-certifications": "Licenses & Certifications",
+    "specializations": "Specializations",
+    "education": "Education",
+    "media-digest": "Media Digest",
+    "public-view": "Public view",
+    "allergies": "Allergies",
+    "medications-name": "medications name",
+    "attached-file": "Attached file",
+    "medical-history": "Medical history"
+  },
+  "add-education": {
+    "school": "School",
+    "degree": "Degree",
+    "field-of-study": "Filed of study",
+    "start-date": "Start Date",
+    "end-date": "End Date(or expected)",
+    "grade": "Grade",
+    "activites-societies": "Activitiese and Societies",
+    "description": "Description",
+    "add-education": "Add Education",
+    "edit-education": "Edit Education",
+    "skills": "Skills",
+    "skills-text": "We recommend adding your top 5 skills used in this experience.",
+    "media": "Media",
+    "media-text": "Add media like images, documents, sites, or presentations."
+  },
+  "clinic-edit-profile": {
+    "organisation-name": "Official Organisation Name",
+    "license-number": "License Number",
+    "clinic-type": "Clinic Type",
+    "website": "Website",
+    "clinic-public-name": "Clinic Public Name",
+    "email": "E-mail",
+    "working-time": "Working Time",
+    "clinic-types": {
+      "0": "Public",
+      "1": "Private",
+      "2": "Speciality"
+    },
+    "days": {
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday",
+      "7": "Sunday"
+    }
+  },
+
+  "drawer": {
+    "dashboard": "Dashboard",
+    "calendar": "Calendar",
+    "my-verification": "My Verification",
+    "consultations": "Consultations",
+    "prescription": "Prescription",
+    "wallet": "Wallet",
+    "active": "Active",
+    "member-account": "Member Account",
+    "edit-profile": "Edit Profile",
+    "doctors": "Doctors",
+    "chats": "Chats",
+    "reviews-rating": "Reviews & Rating",
+    "settings": "Settings",
+    "logout": "Log Out",
+    "health-data-center": "Health data center",
+    "doctor": "Doctor",
+    "clinic": "Clinic"
+  },
+
+  "footer": {
+    "links": "Links",
+    "add-head": "H2 Health Help",
+    "add-text": "A Registerd Brand of My Health Today LTD 85 Portland Street, London, UK W1W 7LT",
+    "add-text-cn": "Company Number : 00000000",
+    "get-app": "Get the App",
+    "subs-newsletter": "Subscribe to our newsletter",
+    "subs-check": "Yes, subscribe me to your newsletter",
+    "legal-notice": "Legal Notice",
+    "dmca": "DMCA",
+    "terms-of-service": "Terms of Service",
+    "cookie-policy": "Cookie Policy",
+    "footer-bottom-text": "My Health Today LTD All rights reserved"
+  },
+
+  "dashboard": {
+    "list": "List",
+    "treatment-plan": "Treatment Plan",
+    "requests": "Requests",
+    "archives": "Archives",
+    "my-trust-score": "My trust score",
+    "reviews": "Reviews",
+    "last-reports": "Last Reports",
+    "notes": "Notes",
+    "clients": "Clients",
+    "no-notes": "No notes available",
+    "no-appointments": "No appointments",
+    "no-reports": "No reports available",
+    "created": "Created"
+  },
+
+  "prescription": {
+    "patient": "Patient",
+    "add-prescription": "ADD PRESCRIPTION",
+    "diagnosis": "Diagnosis",
+    "medicine": "Medicine",
+    "time-of-the-day": "Time of the Day",
+    "times": "Times/Day",
+    "quantity": "Quantity",
+    "duration": "Duration",
+    "add-medicine": "+ Add Medicine",
+    "additional-instruction": "Additional Instructions",
+    "name": "Name"
+  },
+
+  "wallet": {
+    "transaction-history": "Transaction History",
+    "sender": "Sender",
+    "type": "Type",
+    "date": "Date",
+    "total": "Total",
+    "fee": "Fee",
+    "current-balance": "Current balance",
+    "last-week": "last week",
+    "get-payed": "Get Payed",
+    "payment-methods": "Payment Methods",
+    "add-payment-method": "Add Payment Method",
+    "payment-method-txt": "Secure money transfer using your bank account. Visa, MasterCard, Discover, American Express",
+    "details": "Details",
+    "payment-from": "Payment from:",
+    "service": "Service:",
+    "transaction-time": "Transaction time:",
+    "payment": "Payment:",
+    "clinic-earning": "Clinic earning",
+    "total-incomes": "Total incomes",
+    "status": "Status",
+    "invoice": "Invoice",
+    "support": "Support",
+    "payment-card-content": "Secure money transfer using your bank account. Visa, MasterCard, Discover, American Express",
+    "card-second": "cardSecond-row",
+    "resume": "Resume",
+    "category": "Category",
+    "hour": "Hour",
+    "sub-total": "SubTotal",
+    "discount": "Discount"
+  },
+  "membership": {
+    "basic-membership-plan": "Basic Membership Plan",
+    "premium-member": "Premium Member"
+  },
+
+  "referrals": {
+    "your-referrals": "Your Referrals",
+    "referrals-txt": "Share your unique referral code with friends, family, or colleagues and enjoy exclusive benefits together!",
+    "how-it-works": "How it works?",
+    "personal-code": "Personal code",
+    "registry-link": "registry link",
+    "users-invited": "Users invited",
+    "points-on-account": "Points on your account now",
+    "redeem-bonuses": "Redeem Bonuses",
+    "was-invited": "Was invited?",
+    "unique-ref-txt": "Enter unique referral code of your friends, family, or colleagues and enjoy exclusive benefits together",
+    "invitation-code": "Your invitation code",
+    "bonus-point-txt": "Bonus point will be add on your account as soon as your referal will complete first consultation on the platform"
+  },
+
+  "appointment-manage": {
+    "choose-appointment-types": "Choose acceptable appointment types:",
+    "planned-consultation": "Planned Consultation",
+    "urgent-call": "Urgent Call",
+    "select-days": "Select Days",
+    "add": "add",
+    "day-options": {
+      "Mon": "Monday",
+      "Tue": "Tuesday",
+      "Wed": "Wednesday",
+      "Thu": "Thursday",
+      "Fri": "Friday",
+      "Sat": "Saturday",
+      "Sun": "Sunday"
+    },
+    "no-available-slots": "No available slots",
+    "confirm-payment": "Confirm payment"
+  },
+
+  "session": {
+    "session-lengths": "Session Lengths",
+    "planned": "Planned",
+    "buffer-time": "Buffer Time",
+    "consultation-fees": "Consultation Fees"
+  },
+
+  "time-language": {
+    "time-language": "Time and Language",
+    "system-timezone": "Use system timezone",
+    "language-system": "Use language of system",
+    "preferred-language": "Preferred language",
+    "select-timezone": "Select Timezone",
+    "select-option": "Select Options"
+  },
+
+  "reschedule": {
+    "reschedule-policy": "Reschedule Policy",
+    "possibility-of-reschedule": "Possibility of reschedule",
+    "limit": "Limit the number of reschedules",
+    "reschedule-period": "Reschedule period"
+  },
+
+  "cancellation": {
+    "policy": "Cancellation Policy",
+    "no-fee": "No-Fee Cancellation Period",
+    "notice": "for cancellations made less than",
+    "time-before": "before the consultation"
+  },
+
+  "communication": {
+    "comms": "Communication and Notifications",
+    "notif-pref": "Notification Preferences",
+    "channel-pref": "Channel Preferences",
+    "appointment-reminders": "Appointment Reminders",
+    "patient-msgs": "Patient Messages",
+    "important-updates": "Other Important Updates",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "platform-messenger": "Platform Messenger"
+  },
+
+  "data-privacy": {
+    "two-factor": "Two-Factor Authentication",
+    "preferred": "Preferred method",
+    "verification": "verification"
+  },
+
+  "reset-password": {
+    "reset-password": "Reset the password",
+    "current-password": "Current Password",
+    "new-password": "New Password",
+    "confirm-password": "Confirm Your Password",
+    "password-requirements": "Use 8 or more characters with a mix of letters, numbers & symbols",
+    "change-password-btn": "Change Password"
+  },
+
+  "device-tracker": {
+    "access-history": "Access History",
+    "current": "Current session",
+    "recent": "Recent activity"
+  },
+
+  "log-out": {
+    "title": "Log out or delete account",
+    "logout": "Log Out",
+    "description": "Dont want to continue using platform for now? You can:",
+    "delete-account": "Delete account",
+    "deactivate": "Deactivate",
+    "deactivation-consequences-title": "What happens after deactivation:",
+    "deactivation-consequences1": "Your profile will be hidden and patients will not be able to book a consultation.",
+    "deactivation-consequences2": "All account settings and data will be saved and you will be able to restore access if you decide to return.",
+    "deactivation-consequences3": "Your saved patient records and consultation history will remain in the system for the data retention period specified in our privacy policy.",
+    "restore-access-instructions": "To restore access to your account, simply sign in using your username and password."
+  },
+
+  "reset-password-pop": {
+    "verification": "Verification Code",
+    "confirm-email": "Confirm your e-mail",
+    "sent-code": " We've sent a code to",
+    "send-again": "Send Again"
+  },
+
+  "profile-setting": {
+    "personal-profile-settings": "Personal profile settings",
+    "appointment-management": "Appointment Management",
+    "privacy-security": "Data Privacy and Security"
+  },
+
+  "calendar-view": {
+    "review-medical-history": " Review medical history ",
+    "no-appointments-found": "No Appointments found"
+  },
+
+  "header": {
+    "appointment-started": "Appointment Just STARTED",
+    "urgent": "Urgent"
+  },
+
+  "appointment-list": {
+    "coming-soon": "Coming soon",
+    "no-upcoming-appointments": "No upcoming appointments",
+    "upcoming": "Upcoming",
+    "reschedule": "Reschedule",
+    "reschedule-to": "Resheduled to",
+    "decline": "Decline",
+    "no-appointments-available": "No Appointments available",
+    "view-profile": "View profile",
+    "recent": "Recent",
+    "records": "RECORDS",
+    "consultation-report": "CONSULTATION REPORT",
+    "appointment-details": "Appointment Details",
+    "time": "Time",
+    "virtual-office-rem": "Remember to enter your virtual office 5 minutes before your consultation.",
+    "add-reminder": "Add the reminder?",
+    "set-the-time": "set the time",
+    "confirm-time": "Confirm the time",
+    "reschedule-appointment-with": "You want to reschedule the appointment with",
+    "for": "for",
+    "change": "Change",
+    "receive-notification": " You will receive a notification as soon as the patient confirms the rescheduling",
+    "ok": "OK"
+  },
+
+  "clinic-dashboard": {
+    "appointments": "Appointments",
+    "today": "Today",
+    "week": "Week",
+    "month": "Month",
+    "booked": "Booked",
+    "declined": "Declined",
+    "completed": "Completed",
+    "active-now": "Active now",
+    "no-doctors-active": "No Doctors active",
+    "activity": "Activity",
+    "day": "Day"
+  },
+
+  "clinic-reviews": {
+    "reply": "Reply",
+    "replies": "Replies",
+    "review-title": "Review title"
+  },
+
+  "user-dashboard": {
+    "allergy": "Allergy",
+    "reccomendations": "Reccomendations",
+    "add": "+ Add",
+    "you": "you",
+    "steps": "Steps",
+    "not-authenticated": "Not Authenticated",
+    "of-goal": "of goal",
+    "water": "Water",
+    "calories": "Calories",
+    "heart-rate": "Heart Rate"
+  },
+
+  "health-data-center": {
+    "blood": "Blood",
+    "height": "Height",
+    "weight": "Weight",
+    "pulse": "Pulse",
+    "steps-taken": "Steps taken",
+    "burned": "Burned",
+    "distance-covered": "Distance covered",
+    "fitness-activity": "Fitness Activity",
+    "monthly": "Monthly",
+    "days": "Days",
+    "hours-of-sleep": "Hours of sleep",
+    "health-reports": "Health Reports",
+    "weight-change": "Weight Change",
+    "general-health": "General health",
+    "increase": "Increase",
+    "water-taken": "Water taken",
+    "health": "Health",
+    "quest": "Quest"
+  },
+
+  "all-doctor-list": {
+    "generalist": "Generalist",
+    "more-info": "More Info",
+    "make-appointment": "Make Appointment",
+    "view-full-schedules": "View full schedules",
+    "no-doctors-found": "No Doctors Found",
+    "no-clinics-found": "No Clinics found"
+  },
+  "fav-clinic": {
+    "specialisties": "Specialisties",
+    "media-digests": "Media digests",
+    "info": "Info",
+    "prof-history": "Prof History",
+    "licenses": "Licenses",
+    "full-schedule": "Full Schedule",
+    "years-practice": "years practice",
+    "general-medicine": "General medicine",
+    "meet-our-doctors": "Meet our doctors"
+  }
+}

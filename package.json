@@ -1,0 +1,89 @@
+{
+  "name": "health-care",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.15",
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
+    "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
+    "@hookform/resolvers": "^3.9.1",
+    "@react-oauth/google": "^0.12.1",
+    "@reduxjs/toolkit": "^2.5.0",
+    "@stripe/react-stripe-js": "^3.1.1",
+    "@stripe/stripe-js": "^5.5.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "agora-rtc-sdk-ng": "^4.23.2",
+    "antd": "^5.23.2",
+    "axios": "^1.7.9",
+    "chart.js": "^4.4.7",
+    "country-state-city": "^3.2.1",
+    "currency-codes": "^2.2.0",
+    "date-fns": "^4.1.0",
+    "emoji-picker-react": "^4.12.0",
+    "firebase": "^11.5.0",
+    "i18next": "^23.0.0",
+    "i18next-browser-languagedetector": "^8.0.2",
+    "i18next-http-backend": "^3.0.1",
+    "jwt-decode": "^4.0.0",
+    "moment-timezone": "^0.5.48",
+    "multiselect-react-dropdown": "^2.0.25",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.1",
+    "react": "^18.2.0",
+    "react-apple-signin-auth": "^1.1.0",
+    "react-bootstrap": "^2.10.7",
+    "react-calendar": "^5.1.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-datepicker": "^8.0.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.54.0",
+    "react-i18next": "^11.0.0",
+    "react-icons": "^5.4.0",
+    "react-modal": "^3.16.3",
+    "react-multi-select-component": "^4.3.4",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.0.2",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.10.1",
+    "react-toastify": "^10.0.6",
+    "react-tooltip": "^5.28.1",
+    "react-world-flags": "^1.6.0",
+    "recharts": "^2.15.1",
+    "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
+    "simple-peer": "^9.11.1",
+    "socket.io-client": "^4.8.1",
+    "swiper": "^11.2.4",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "kill": "taskkill //F //IM node.exe"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

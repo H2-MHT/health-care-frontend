@@ -1,0 +1,1142 @@
+.userTagLeft{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 140px;
+    height: 150px;
+    overflow-y: auto;
+ }
+ 
+ .userTagLeft .tagging{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+ }
+ 
+ .darkGreenTag{
+    background: #026A78;
+ }
+ 
+ .darkYellowTag{
+    background: #E8AA00;
+ }
+ 
+ .tealTag{
+    background: #06CD98;
+ }
+ 
+ .lightGrayTag{
+    background: #D9D9D9;
+ }
+ 
+ .userTagRight{
+    display: flex;
+    gap: 15px;
+    min-height: 140px;
+    height: 150px;
+    overflow-y: auto;
+ }
+ 
+ .userTagRight .usersRound {
+    text-align: center;
+ }
+ 
+ .userTagRight .usersRound img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+ }
+ 
+ .userTagRight .usersRound p{
+    color: #00BBD3;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 5px;
+ }
+ 
+ .userTagRight .usersRound .addUserCir{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ 
+ .userTagRight .usersRound .addUserCir img{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: contain;
+ }
+ 
+ .stepCounts .stepsIcon{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+ }
+ 
+ .stepCounts .stepsIcon img{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+ }
+ 
+ .stepCounts .stepsIcon a{
+    color: #D9D9D9;
+    font-size: 16px;
+    font-weight: 500;
+ }
+ 
+ .stepCounts .stepsIcon{
+    border-radius: 20px 20px 0 0;
+ }
+ 
+ .progressBarArea progress{
+    width: 100%;    
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 10px;
+ }
+ 
+ .whiteBar progress::-webkit-progress-bar {
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 8px;
+ }
+ 
+ .whiteBar progress::-webkit-progress-value {
+    background-color: #fff;
+    border-radius: 8px;
+ }
+ 
+ .stepCounts .swch{
+    display: flex;
+ }
+ 
+ .stepCounts .swch .swchBox{
+    width: 25%;
+    border-radius: 0px 0px 20px 20px;
+    padding: 10px;
+    box-shadow: 0px 2px 10px #ccc;
+    text-align: center;
+    background-size: cover !important;
+    min-height: 170px;
+ }
+ 
+ .stepCounts .swch .swchBox .swchTop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+ }
+ 
+ .stepCounts .swch .swchBox h5{
+    color: #fff;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 10px;
+ }
+ 
+ .stepCounts .swch .swchBox h6{
+    color: #E9E9E9;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 15px;
+ }
+ 
+ .stepCounts .swch .steps{
+    background: url(../../../../public/images/user-dashboard/s-green.svg) no-repeat;
+ }
+ 
+ .stepCounts .swch .water{
+    background: url(../../../../public/images/user-dashboard/y-yellow.svg) no-repeat;
+ }
+ 
+ .stepCounts .swch .calories{
+    background: url(../../../../public/images/user-dashboard/b-blue.svg) no-repeat;
+ }
+ 
+ .stepCounts .swch .heartrate{
+    background: url(../../../../public/images/user-dashboard/p-purple.svg) no-repeat;
+ }
+ 
+ .healthQuest{
+    background: #026A78;
+    padding: 20px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0px 0px 12px #aaa;
+    height: 100%;
+ }
+ 
+ .healthQuest p{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+ }
+ 
+ .healthQuest p span{
+    font-size: 16px;
+    display: block;
+ }
+ 
+ .sixChart .userChart{
+    box-shadow: 0px 0px 10px #b4b4b4;
+    padding: 5px;
+    border-radius: 20px;
+ }
+ 
+ .userdashdata .treatmentData{
+    min-height: 250px !important;
+    height: 250px;
+ }
+ 
+ .favBox{
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #D9D9D9;
+ }
+ 
+ .favBox .favContent{
+    padding: 15px 20px 25px;
+    position: relative;
+ }
+ 
+ .favBox .favContent .bookmark{
+    position: absolute;
+    right: 20px;
+    top: -5px;
+ }
+ 
+ .favBox .favContent h4{
+    font-size: 20px;
+    font-weight: 500;
+ }
+ 
+ .favBox .favContent p{
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+ }
+ 
+ .favBox .favContent .bStar span{
+    font-size: 20px;
+    font-weight: 500;
+ }
+ 
+ .favBox .clinicImg{
+    border-radius: 20px 20px 0 0;
+ }
+ 
+ .blckLangs {
+    background: #2C2C2C;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    padding: 4px 4px;
+    color: #fff;
+    font-size: 10px;
+ }
+ 
+ .blckLangs img{
+    width: 20px;
+ }
+ 
+ .userPaymtModal .modal-dialog {
+    max-width: 850px;
+ }
+ 
+ 
+ .userPayment{
+    background: #2C2C2C;
+    border-radius: 20px;
+    padding: 20px;
+ }
+ 
+ .userPayment h5{
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 0;
+ }
+ 
+ .userPayment p{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+ }
+ 
+ .userPayment hr{
+    background: #fff;
+    width: 100%;
+    height: 2px !important;
+    margin: 20px 0;
+    opacity: 1;
+ }
+ 
+ .userPayment .userPaymentBox{
+    margin-top: 40px;
+ }
+ 
+ .userPayment .userPaymentBox .category{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+ }
+ 
+ .userPayment .userPaymentBox .category h4{
+    color: #F9F9FD;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0;
+ }
+ 
+ .userPayment .userPaymentBox .category h6{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0;
+ }
+ 
+ .dashDevider{
+    width: 100%;
+    border-top: 2px dashed #fff;
+    margin: 30px 0;
+ }
+ 
+ .userPayment .userPaymentBox .totalCost{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 8px;
+    margin-bottom: 20px;
+ }
+ 
+ .userPayment .userPaymentBox .totalCost span{
+    font-size: 13px;
+    font-weight: 500;
+ }
+ 
+ .userPayment .userPaymentBox button{
+    margin: 0 auto;
+ }
+ 
+ .reminderBox{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #ddd;
+    width: 80%;
+    margin: 40px auto 0;
+ }
+ 
+ .reminderBox .remindcontentPart{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+ }
+ 
+ .reminderBox .remindcontentPart .left h5{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #252525;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+ }
+ 
+ .reminderBox .verified{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: #00BBD3;
+    margin: 4px 0;
+ }
+ 
+ .reminderBox .blueLoca img{
+    width: 22px;
+ }
+ 
+ .remindBlueBox{
+    background: #00BBD3;
+    border-radius: 30px;
+    padding:40px 30px;
+    position: relative;
+    margin-top: 60px;
+ }
+ 
+ .remindBlueBox::before{
+    background: url(../../../../public/images/user-dashboard/blueTickCircle.svg) no-repeat;
+    width: 70px;
+    height: 70px;
+    background-size: 100% 100%;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    content: '';
+ }
+ 
+ .remindBlueBox ol{
+    padding-left: 0;
+    margin-bottom: 0;
+ }
+ 
+ .remindBlueBox ol li{
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 10px;
+ }
+ 
+ .pointer{
+    cursor: pointer;
+ }
+ 
+ .remindMeBox{
+    margin-top: 40px;
+ }
+ 
+ .remindMeBox .remindBoxField{
+    position: relative;
+    margin-bottom: 10px;
+ }
+ 
+ .remindMeBox .remindBoxField .fieldClosed{
+    position: absolute;
+    right: -30px;
+    top: 0;
+ }
+ 
+ .userAllDetail{
+    text-align: center;
+ }
+ 
+ .userAllDetail .userData img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+ }
+ 
+ .userAllDetail .userData h6{
+    font-size: 20px;
+    font-weight: 600;
+    color: #F4A79D;
+ }
+ 
+ .userAllDetail .userBodyData{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+ }
+ 
+ .userAllDetail .userBodyData .userBodyDetail{
+    padding: 15px 30px;
+ }
+ 
+ .userAllDetail .userBodyData .userBodyDetail:nth-child(2){
+    border-left:1px solid #D4E3F0;
+    border-right:1px solid #D4E3F0;
+ }
+ 
+ .userAllDetail .userBodyData .userBodyDetail p{
+    font-size: 12px;
+    font-weight: 500;
+    color: #3FBDF1;
+    margin-bottom: 6px;
+ }
+ 
+ .userAllDetail .userBodyData .userBodyDetail h5{
+    font-size: 16px;
+    font-weight: 700;
+    color: #3FBDF1;
+    margin-bottom: 0px;
+ }
+ 
+ .pulse .up{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+ }
+ 
+ .pulse p{
+    color: #5E5E5E;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 0;
+ }
+ 
+ .pulse .down{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 5px;
+ }
+ 
+ .pulse h6{
+    color: #C51918;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 0;
+    line-height: 40px;
+ }
+ 
+ .stepTaken .taken{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    height: 100%;
+ }
+ 
+ .stepTaken .taken h6{
+    color: #5E5E5E;
+    font-size: 24px;
+    font-weight: 700;
+ }
+ 
+ .stepTaken .taken h6 span{
+    color: #D9D9D9;
+    font-weight: 500;
+ }
+ 
+ .stepTaken .taken p{
+    color: #5E5E5E;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+ }
+ 
+ .burned .up{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+ }
+ 
+ .burned .up h6{
+    color: #E8AA00;
+    font-size: 40px;
+    line-height: 37px;
+    font-weight: 500;
+    margin-bottom: 0;
+ }
+ 
+ .burned .up p{
+    color: #5E5E5E;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+ }
+ 
+ .burned .down{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+ }
+ 
+ .burned .down p{
+    color: #5E5E5E;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+ }
+ 
+ .distanceCovered .covered{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    height: 100%;
+ }
+ 
+ .distanceCovered .covered h6{
+    color: #222222;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+ }
+ 
+ .distanceCovered .covered p{
+    color: #5E5E5E;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 0;
+ }
+ 
+ .fitnessActivity .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+ }
+ 
+ .fitnessActivity .top h5{
+    color: #455154;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0;
+ }
+ 
+ .fitnessActivity .top .fitnessDrp{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #edf2ff;
+    padding: 10px 10px;
+    border-radius: 12px;
+ }
+ 
+ .fitnessActivity .top .fitnessDrp select{
+    height: auto;
+    border: 0 !important;
+    padding: 0;
+    width: 100px;
+    color: #59748A;
+    font-size: 14px;
+    font-weight: 600;
+ }
+ 
+ .modes{
+    text-align: center;
+    height: 100%;
+ }
+ 
+ .modes a {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-bottom: 20px;
+ }
+ 
+ .modes a img{
+    width: 40px;
+    height: auto;
+ }
+ 
+ .modes .modeSection{
+    margin-bottom: 30px;
+ }
+ 
+ .modes h6{
+    color: #6E7191;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 5px;
+ }
+ 
+ .modes p{
+    color: #6E7191;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0px;
+ }
+ 
+ .healthReport{
+    position: relative;
+    background: url(../../../../public/images/user-dashboard/healthReportBg.svg) no-repeat;
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    min-height: 145px;
+ }
+ 
+ .healthReport h4{
+    color: #455154;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 20px;
+ }
+ 
+ .healthReport .bmi{
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+ }
+ 
+ .healthReport .bmi h5{
+    color: #026A78;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+ }
+ 
+ .healthReport .bmi p{
+    color: #5E5E5E;
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: 0px;
+ }
+ 
+ .healthReport .chrtIncrement{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 30px 20px;
+ }
+ 
+ .healthReport .chrtIncrement .chartPart{
+    width: 30%;
+    text-align: center;
+ }
+ 
+ .healthReport .chrtIncrement .chartPart img{
+    width: 35px;
+    height: 35px;
+ }
+ 
+ .healthReport .chrtIncrement .reportData{
+    width: 70%;
+    text-align: center;
+ }
+ 
+ .healthReport .chrtIncrement .reportData h6{
+    color: #026A78;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+ }
+ 
+ .healthReport .chrtIncrement .reportData p{
+    color: #71DDB1;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0px;
+ }
+ 
+ .text-graylight{
+    color: #5E5E5E !important;
+ }
+ 
+ .waterTaken{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+ }
+ 
+ .waterTaken h6{
+    color: #5E5E5E;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+ }
+ 
+ /* 
+ .sidebarClose.sidebarClose2{
+    width: 300px !important;
+ }
+ 
+ .sidebarClose.sidebarClose2 .sidebarcol {
+    margin-left: auto !important;
+    transform: rotate(0deg);
+    transition: 0.2s ease-in;
+ }
+ 
+ .sidebarClose.sidebarClose2 nav ul li a span {
+    display: block !important;
+ }
+ 
+ aside.sidebarClose.sidebarClose2 .profileName{
+    display: block !important;
+ } */
+
+
+
+ .doctor-list {
+   list-style-type: none;
+   padding: 0;
+ }
+ 
+ .doctor-list-item {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   padding: 10px;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   margin-bottom: 5px;
+   background-color: #f9f9f9;
+ }
+ 
+ .doctor-index {
+   font-weight: bold;
+   color: #007bff;
+ }
+ 
+ .imageUpload{
+   border: 1px dashed #00BBD3;
+   background: #f3feff;
+   padding: 40px;
+   border-radius: 20px;
+   text-align: center;
+   position: relative;
+ }
+
+ .imageUpload img{
+   width: 40px;
+ }
+
+ .imageUpload h4{
+   color: #00BBD3;
+   font-size: 24px;
+   font-weight: 700;
+   margin-top: 10px;
+ }
+
+ .imageUpload p{
+   color: #00BBD3;
+   font-size: 17px;
+   line-height: 24px;
+   font-weight: 500;
+   margin-bottom: 8px;
+ }
+
+ .imageUpload span{
+   color: #00BBD3;
+   font-size: 14px;
+   font-weight: 500;
+   margin-bottom: 0px;
+   display: block;
+ }
+
+ .imageUpload input[type="file"]{
+   display: block;
+   width: 100%;
+   height: 100%;
+   opacity: 0;
+   position: absolute;
+   top: 0;
+   left: 0;
+   cursor: pointer;
+ }
+
+ .paddingLeftt{
+   padding: 2% 0% 0% 5%;
+   position: relative;
+ }
+ .heartImg{
+   position: absolute;
+   left: 10px;
+   top: 1rem;
+ }
+ .filesViewUpload{
+   border-radius: 15px;
+   padding: 20px;
+   background: #ecf5ff;
+   display: flex;
+   align-items: start;
+   gap: 10px;
+   position: relative;
+   margin-bottom: 25px;
+ }
+
+ .filesViewUpload .detailsFiles h5{
+   color: #000;
+   font-size: 14px;
+   font-weight: 700;
+   margin-bottom: 4px;
+   line-height: normal;
+ }
+
+ .filesViewUpload .detailsFiles p{
+   color: #4d4d4d;
+   font-size: 12px;
+   font-weight: 500;
+   margin-bottom: 0px;
+ }
+
+ .filesViewUpload .fileSize{
+   position: absolute;
+   right: 10px;
+   bottom: 5px;
+ }
+
+ .filesViewUpload .fileSize span{
+   font-size: 10px;
+   font-weight: 500;
+   color: #4d4d4d;
+ }
+
+
+ 
+.familyProf{
+   display: flex;
+}
+
+.familyProf .familyProfSidebar{
+   background: rgba(255, 255, 255, .5);
+   /* border-radius: 10px 0px 0px 10px; */
+   width: 180px;
+   height: 100%;
+}
+
+.familyProf .familyProfSidebar .familyClick{
+   text-align: center;
+   padding: 20px 15px;
+   position: relative;
+   width: 180px;
+}
+
+.familyProf .familyProfSidebar .familyClick.active{
+   background: #fff;
+}
+
+.familyProf .familyProfSidebar .familyClick .userMain{
+   width: 55px;
+   height: 55px;
+   border-radius: 50%;
+}
+
+.familyProf .familyProfSidebar .familyClick .threedots{
+   position: absolute;
+   right: 10px;
+   top: 5px;
+}
+
+.familyProf .familyProfSidebar .familyClick .threedots img{
+   width: 24px;
+   height: 4px;
+   object-fit: contain;
+}
+
+.familyProf .familyProfSidebar .familyClick h5{
+   color: #000000;
+   font-size: 14px;
+   font-weight: 500;
+   margin-top: 8px;
+   margin-bottom: 0;
+}
+
+.familyProf .familyProfSidebar .familyClick a{
+   color: #06CD98;
+   font-size: 20px;
+   font-weight: 500;
+   margin-top: 12px;
+   display: block;
+   margin-bottom: 0;
+}
+
+.familyProf .familyProfSidebar .familyClick .lightGrayTag{
+   width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   margin: 0 auto;
+}
+
+.familyProf .familyProfSidebar .familyClick .lightGrayTag img{
+   width: 42px;
+   height: 42px;
+   border-radius: 50%;
+   object-fit: contain;
+}
+
+.familyProf .familyProfSidebar .familyClick h4{
+   color: #979797;
+   font-size: 14px;
+   font-weight: 500;
+   margin-top: 8px;
+   margin-bottom: 0;
+}
+
+.box-shadow-main{
+   box-shadow: 0px 8px 4px #e5e6f1;
+}
+
+.familymemb .profileImg{
+   width: 122px;
+   height: 122px;
+   border-radius: 50%;
+   margin: 0 auto 20px;
+   position: relative;
+}
+
+.familymemb .profileImg::before{
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   content: '';
+   background: rgba(0, 0, 0, .5);
+   border-radius: 50%;
+}
+
+.familymemb .profileImg img{
+   width: 122px;
+   height: 122px;
+   border-radius: 50%;
+}
+
+.familymemb .profileImg .editDelete{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   display: flex;
+   align-items: center;
+   gap: 20px;
+}
+
+.familymemb .profileImg .editDelete img{
+   width: 25px;
+   height: 30px;
+   object-fit: contain;
+   border-radius: 0;
+   cursor: pointer;
+}
+
+.backgroundImage{
+   background-image: url("../../../../public/images/bg.png");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+   min-width: 100vw;
+   min-height: 100vh;
+}
+ 
+ @media (min-width:992px) and (max-width:1199px){
+    .userAllDetail .userBodyData .userBodyDetail {
+       padding: 15px 15px;
+   }
+   .pulse h6 {
+       font-size: 20px;
+       line-height: 20px;
+    }
+    .pulse p {
+       font-size: 14px;
+    }
+    .stepTaken .taken{
+       flex-direction: column;
+    }
+    .stepTaken .taken h6 {
+       font-size: 14px;
+   }
+   .burned .up h6 {
+       font-size: 20px;
+       line-height: 20px;
+   }
+   .distanceCovered .covered{
+       flex-direction: column;
+   }
+   .fitnessActivity .top h5 {
+       font-size: 13px;
+   }
+   .fitnessActivity .top .fitnessDrp select {
+       width: 85px;
+       font-size: 12px;
+    }
+    .modes h6 {
+       font-size: 14px;
+    }
+    .modes p {
+       font-size: 12px;
+    }
+    .modes .modeSection {
+       margin-bottom: 20px;
+    }
+    .modes .modeSection img{
+       width: 70%;
+    }
+    .healthReport .chrtIncrement {
+       padding: 40px 0px 20px;
+       flex-direction: column;
+   }
+   .healthReport{
+       background: #fff;
+       border-radius: 20px;
+   }
+   .healthReport h4{
+       padding: 20px 10px;
+       text-align: left;
+   }
+   .healthReport .bmi{
+       box-shadow: 0px 0px 10px #dcdcdc;
+   }
+   .healthReport .chrtIncrement .reportData h6 {
+       font-size: 13px;
+   }
+   .healthReport .chrtIncrement .reportData p {
+       font-size: 12px;
+   }
+ }
+ 
+ @media(max-width:767px){
+    .stepCounts .swch .swchBox .swchTop{
+       flex-direction: column;
+    }
+    .userAllDetail .userBodyData{
+       flex-direction: column;
+    }
+    .userAllDetail .userBodyData .userBodyDetail:nth-child(2) {
+       border-left: 0;
+       border-right: 0;
+       border-top: 1px solid #D4E3F0;
+       border-bottom: 1px solid #D4E3F0;
+   }
+   .healthReport{
+    background: #fff;
+    border-radius: 20px;
+   }
+   .healthReport .bmi {
+       position: relative;
+       right: 0;
+       top: 0;
+       box-shadow: 0px 0px 10px #dcdcdc;
+       margin: 20px auto;
+    }
+ }

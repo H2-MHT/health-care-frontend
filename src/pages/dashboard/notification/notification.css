@@ -1,0 +1,46 @@
+.notification-read {
+    color: #999;
+  }
+  
+.notificationBox {
+    position: absolute;
+    top: 50px; 
+    right: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 700px;
+    width: 700px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .notificationBox h5 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  } 
+  .notificationInner {
+    margin-top: 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #f4f4f4;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  
+  
+
+  

@@ -1,0 +1,29 @@
+.unauthouized_container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.accessHeading {
+  color: #ff4d4d;
+  font-size: 2rem;
+}
+
+.permissionText {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.loginButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}

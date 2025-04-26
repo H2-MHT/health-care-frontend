@@ -1,0 +1,174 @@
+aside{
+    background: #2C2C2C;
+    padding:0 40px 40px 40px;
+    width: 300px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+aside .sidebarcol{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(68, 68, 68, 0.3);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 50px;
+    margin-left:auto;
+}
+
+aside .sidebarcol img{
+    width: 20px;
+}
+
+aside .profileName{
+    text-align: center;
+    padding: 0 40px;
+    transition: 0.2s;
+}
+
+aside .profileName .profImg{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #06CD98;
+    margin: 0 auto;
+}
+
+aside .profileName .profImg img{
+    width: 85px;
+    border-radius: 50%;
+}
+
+aside .profileName h5{
+    color: #00BBD3;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+aside nav{
+    margin-top: 40px;
+}
+
+aside nav ul li{
+    margin-bottom: 35px;
+}
+
+aside nav ul li a{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+aside nav ul li a span{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+aside nav ul li a svg{
+    width: 30px;
+    object-fit: contain;
+}
+
+aside nav ul li a.active svg path{
+    stroke: #00BBD3;
+}
+
+aside nav ul li a.active span{
+    color: #00BBD3;
+}
+
+aside nav ul li a:hover svg path{
+    stroke: #00BBD3;
+}
+
+aside nav ul li a:hover span{
+    color: #00BBD3;
+}
+
+aside nav ul hr{
+    background-color: #fff !important;
+    opacity: 1;
+    margin-bottom: 25px;
+}
+
+aside.sidebarClose{
+    width: 110px;
+}
+
+aside.sidebarClose .sidebarcol{
+    transform: rotate(-180deg);
+    transition: 0.2s ease-in;
+    margin-left: -15px;
+}
+
+aside.sidebarClose nav ul li a span{
+    display: none;
+}
+
+aside.sidebarClose .profileName{
+    display: none;
+    transition: 0.4s;
+}
+
+/* aside.sidebarClose nav ul li a .green-switch{
+    padding-left: 1.5rem;
+} */
+
+@media(min-width:992px) and (max-width:1199px){
+    aside{
+        width: 250px;
+        padding: 40px 20px;
+    }
+}
+
+@media(max-width:991px){
+    aside .sidebarcol{
+        display: none;
+    }
+    aside .profileName{
+        display: none;
+    }
+    aside{
+        position: absolute;
+        padding: 16px;
+        width: 265px;
+        border-radius: 0;
+        transform: translateX(-200%);
+        height: 90vh;
+        z-index: 222;
+    }
+    aside.sidebarsmall{
+        display: block;
+        transform: translateX(0);
+    }
+    aside{
+        overflow-y: scroll;
+    }
+    aside.sidebarClose{
+        transform: translateX(0%);
+        width: inherit;
+    }
+    aside.sidebarClose nav ul li a span {
+        display: block;
+    }
+}
+
+@media(max-width:767px){
+    aside{
+        overflow-y: scroll;
+    }
+    aside.sidebarClose{
+        transform: translateX(0%);
+        width: inherit;
+    }
+    aside.sidebarClose nav ul li a span {
+        display: block;
+    }
+}

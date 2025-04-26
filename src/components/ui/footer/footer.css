@@ -1,0 +1,238 @@
+
+
+footer{
+    background: #2C2C2C;
+    padding: 4rem 20px 0;
+    position: relative;
+}
+
+footer .footer_data{
+    display: flex;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+
+footer .footer_data .footer_logo{
+    width: 8%;
+}
+
+footer .footer_data .links{
+    width: 17%;
+    padding-left: 30px;
+}
+
+footer .footer_data .adress{
+    width: 25%;
+    padding: 0 30px;
+}
+
+footer .footer_data .getapp{
+    width: 15%;
+}
+
+footer .footer_data .newsLetter{
+    width: 35%;
+    padding-left: 30px;
+}
+
+footer p{
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+footer h4{
+    font-size: 24px;
+    color: #FFFFFF;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+footer .footer_data .links ul li{
+    margin-bottom: 15px;
+}
+
+footer .footer_data .links ul li a{
+    color: #00BBD3;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+footer .footer_data .getapp .download{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+footer .footer_data .newsLetter input[type="text"]{
+    height: 44px;
+    border: 1px solid #fff;
+    border-radius: 9px;   
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+footer .footer_data .newsLetter input::placeholder{
+    color: #fff;
+    opacity: .4;
+}
+
+footer .footer_data .newsLetter button{
+    width: 100%;
+}
+
+footer .footer_data .newsLetter .subscheck{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 15px;
+}
+
+footer .footer_bottom{
+    border-top: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+footer .footer_bottom .left ul{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+footer .footer_bottom .left ul li a{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+footer .footer_bottom .right p{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.social-media{
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.social-media a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: #00BBD3;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+@media(min-width:992px) and (max-width:1199px){
+    footer h4 {
+        font-size: 18px;
+    }
+    footer .footer_data {
+        gap: 10px;
+    }
+    aside.sidebarClose{
+        padding: 40px;
+    }
+}
+
+@media(min-width:768px) and (max-width:991px){
+    footer .footer_data {
+        display: grid;
+        grid-template-columns: 10% 20% 40% 20%;
+    }
+    footer .footer_data .footer_logo{
+        width: 100%;
+    }
+    footer .footer_data .links {
+        width: 100%;
+    }
+    footer .footer_data .adress {
+        width: 100%;
+    }
+    footer .footer_data .getapp {
+        width: 100%;
+    }
+    footer .footer_data .newsLetter {
+        width: 100%;
+        grid-column: span 4;
+        padding-left: 0;
+    }
+    footer .footer_bottom{
+        flex-direction: column;
+    }
+}
+
+@media(max-width:767px){
+    .black_btn{
+        width: 100%;
+    }
+    .signupTab{
+        width: 100%;
+    }
+    .signupTab .formArea form .social a{
+        width: 100%;
+        font-size: 16px;
+    }
+    .signupTab .tabPrt ul li a {
+        padding: 15px;
+        font-size: 16px;
+    }
+    footer{
+        padding: 4rem 0 0;
+    }
+    footer .footer_data{
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 30% 65%;
+    }
+    footer .footer_data .footer_logo {
+        width: 100%;
+    }
+    footer .footer_data .links{
+        display: none;
+        width: 100%;
+        padding-left: 0;
+    }
+    footer .footer_data .adress{
+        width: 100%;
+        padding: 0;
+    }
+    footer .footer_data .getapp{
+        width: 100%;
+        display: none;
+    }
+    footer .footer_data .newsLetter {
+        width: 100%;
+        padding-left: 0px;
+        grid-column: span 2;
+    }
+    footer .footer_bottom{
+        flex-direction: column;
+        gap: 10px;
+    }
+    footer .footer_bottom .left ul {
+        gap: 10px;
+    }
+    footer .footer_data .getapp .download{
+        flex-direction: row;
+    }
+    .social-media{
+        grid-column: span 2;
+        display: flex;
+    }
+}
