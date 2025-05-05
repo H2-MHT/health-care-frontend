@@ -2,13 +2,13 @@ trigger:
   branches:
     include:
       - stage 
-      - dev 
+      - prod 
 pool:
   vmImage: 'ubuntu-latest'
 
 stages:
 - stage: staging
-  condition: eq(variables['Build.SourceBranchName'], 'dev')
+  condition: eq(variables['Build.SourceBranchName'], 'stage')
   displayName: Deploy to staging
   jobs:
     - deployment: DeployToVM
@@ -48,7 +48,7 @@ stages:
                 displayName: 'run nginx services'
 
 - stage: production
-  condition: eq(variables['Build.SourceBranchName'], 'stage')
+  condition: eq(variables['Build.SourceBranchName'], 'prod')
   displayName: Deploy to Production
   trigger: manual
   jobs:
