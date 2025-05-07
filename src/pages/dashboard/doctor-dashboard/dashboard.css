@@ -1365,7 +1365,7 @@ main{
 }
 
 .recomend .recomendBox .left .docrecomdpart .drRdetail .blue_btn, .recomend .recomendBox .left .docrecomdpart .drRdetail .transparent_btn{
-    padding: 8px 15px;
+    padding: 8px 8px;
 }
 
 .recomend .recomendBox .right{
@@ -3396,7 +3396,12 @@ main{
     margin-bottom: 10px;
     min-height: 45px;
 }
-
+/* sakshi */
+.consult{
+    color: #00bbd3;
+    font-size: 14px;
+  font-weight: 500;
+}
 @media(min-width:1200px) and (max-width:1500px){
     .doc_public_view .docDetails .doctorsName .img-part img {
         width: 200px;

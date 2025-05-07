@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next) // Integrate with React
   .init({
     fallbackLng: "en", // Default language
-    supportedLngs: ["en", "fr", "es"], // Supported languages
+    supportedLngs: ["en", "fr", "es","ro","bg","lt","pl","uk","ru","hi","ar","pt-br","ur"], // Supported languages
     backend: {
       loadPath: "/locales/{{lng}}/translation.json", // Path to JSON translation files
     },

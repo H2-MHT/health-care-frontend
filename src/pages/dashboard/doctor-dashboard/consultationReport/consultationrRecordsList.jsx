@@ -20,8 +20,6 @@ function ConsultationRecordsList() {
     consultationList();
   }, []);
 
- 
-
   return (
     <>
       <div class="rightContent">
@@ -168,24 +166,5 @@ function ConsultationRecordsList() {
 }
 
 export default ConsultationRecordsList;
-
-
-
-// import React from 'react';
-
-// const ConsultationRecordsList = ({ }) => {
-
-//   let videoUrl = "https://healthcare4storage.blob.core.windows.net/healthcare/recordings/6cb7c644df40e3a764e8f8856784b0e3_chat_d5_yopmail_com_sakshi1_yopmail_com.m3u8?se=2025-04-24T13%3A31%3A26Z&sp=r&sv=2025-05-05&sr=b&sig=a5GlZEGOZLWnoB7wclLq42vaUSAKHoil3ztdQ5CyTwc%3D"
-//   return (
-//     <div className="flex justify-center items-center h-screen bg-gray-100">
-//       <video controls width="720">
-//         <source src={videoUrl} type="video/mp4" />
-//         Your browser does not support the video tag.
-//       </video>
-//     </div>
-//   );
-// };
-// export default ConsultationRecordsList;
-
 
 

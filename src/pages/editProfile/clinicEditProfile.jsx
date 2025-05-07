@@ -371,7 +371,7 @@ const translatedDays = days.map((day) => ({
                           />
                         </div>
                       </div>
-                      <div class="col-md-12">
+                      {/* <div class="col-md-12">
                         <div class="form-group">
                           <div class="d-flex gap-3">
                             <label>
@@ -399,7 +399,7 @@ const translatedDays = days.map((day) => ({
                             />
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                       <div class="col-md-12">
                         <div class="form-group">
                           <label>{t("edit-profile.languages")}</label>

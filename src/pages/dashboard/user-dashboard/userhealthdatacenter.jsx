@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import MyCalendar from "../doctor-dashboard/MyCalendar";
 import { getFitbitData } from "../../../fitbit/fitbitApi";
+import { redirectToFitbitAuth } from "../../../fitbit/fitbitAuth";
 import SmallLoader from "../../../components/ui/loader/SmallLoader";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { fetchData } from "../../../hooks/services/services";
+import { useNavigate } from "react-router-dom";
+import Accordion from "../../../components/form/Accordion";
 
 
 const UserHealthDataCenter = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [steps, setSteps] = useState(null);
   const [water, setWater] = useState(null);
   const [calories, setCalories] = useState(null);
@@ -103,6 +108,19 @@ const UserHealthDataCenter = () => {
       setSleep({ hours: 0, minutes: 0 }); 
     }
   };
+
+    const getHealthData = async (page=1) => {
+        try {
+          const response = await fetchData(`nhs/api/?category=${"medicines"}&resource=${"aciclovir"}`, navigate);
+          if (!response.ok) {
+            throw new Error("Failed to fetch data from the server.");
+          }
+          const responseData = await response.json();
+          // setReviewData(responseData);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
 
   const fetchWeightAndBMI = async (date) => {
     try {
@@ -415,8 +433,13 @@ const UserHealthDataCenter = () => {
             </div>
           </div>
           <div class="col-md-2">
+<<<<<<< Updated upstream
             <div class="healthQuest">
+              <img src="../dashboard-user/../images/user-dashboard/health-quest.webp" onClick={redirectToFitbitAuth}/>
+=======
+            <div class="healthQuest" onClick={getHealthData}>
               <img src="../dashboard-user/../images/user-dashboard/health-quest.webp" />
+>>>>>>> Stashed changes
               <p>
                 {t("health-data-center.health")}{" "}
                 <span>{t("health-data-center.quest")}</span>
@@ -424,7 +447,9 @@ const UserHealthDataCenter = () => {
             </div>
           </div>
           <div class="col-md-10">
-            <div class="bg-darkgreen padding-20 border-radius-20 h-100"></div>
+            <div class="bg-darkgreen padding-20 border-radius-20 h-100">
+              <Accordion />
+            </div>
           </div>
         </div>
       </div>

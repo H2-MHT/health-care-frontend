@@ -7,9 +7,8 @@ import { reviewRating } from "../../../utils/constants";
 import { Loader } from "../../../components/ui/loader/loader";
 import { useTranslation } from "react-i18next";
 
-
 const Reviews = () => {
-  const{t} = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [reviewData, setReviewData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,16 +19,15 @@ const Reviews = () => {
   const [openReview, setOpenReview] = useState(null);
   const [replylistId, setReplylistId] = useState(null);
   const [replyData, setReplyData] = useState();
-
-  const getReviewsData = async () => {
+  const itemsPerPage = 5;
+  const getReviewsData = async (page=1) => {
     // setLoading(true);
     try {
-      const response = await fetchData("clinics/clinic-reviews/", navigate);
+      const response = await fetchData(`clinics/clinic-reviews/?limit=${page}&page=${itemsPerPage}`, navigate);
       if (!response.ok) {
         throw new Error("Failed to fetch data from the server.");
       }
       const responseData = await response.json();
-      console.log(responseData,">>>>responseData")
       setReviewData(responseData);
       // setLoading(false);
     } catch (error) {
@@ -56,7 +54,7 @@ const Reviews = () => {
     }
   };
   const onSubmit = async () => {
-     if (Object.keys(replyTextMap).length === 0) {
+    if (Object.keys(replyTextMap).length === 0) {
       return;
     }
     try {
@@ -95,13 +93,27 @@ const Reviews = () => {
     setCurrentSelectedReviewId(reviewId);
   };
   useEffect(() => {
-    const totalSum = reviewData?.reduce((sum, item) => sum + item.rating, 0);
+    const totalSum = Array.isArray(reviewData)
+    ? reviewData.reduce((sum, item) => sum + (item?.rating || 0), 0)
+    : 0;
+  
     const counts = {
-      one: reviewData.filter((item) => item.rating === 1).length,
-      two: reviewData.filter((item) => item.rating === 2).length,
-      three: reviewData.filter((item) => item.rating === 3).length,
-      four: reviewData.filter((item) => item.rating === 4).length,
-      five: reviewData.filter((item) => item.rating === 5).length,
+       one: Array.isArray(reviewData)
+      ? reviewData.filter((item) => item?.rating === 1).length
+      : 0,
+    
+      two: Array.isArray(reviewData)
+      ? reviewData.filter((item) => item?.rating === 2).length
+      : 0,
+      three: Array.isArray(reviewData)
+      ? reviewData.filter((item) => item?.rating === 3).length
+      : 0,
+      four:Array.isArray(reviewData)
+      ? reviewData.filter((item) => item?.rating === 4).length
+      : 0,
+      five: Array.isArray(reviewData)
+      ? reviewData.filter((item) => item?.rating === 5).length
+      : 0,
     };
     setRatingCounts(counts);
     setTotalReviewSum(totalSum);
@@ -146,8 +158,9 @@ const Reviews = () => {
             <div className="row p-4">
               <div className="col-md-8 p-2">
                 <div className="card-scroll">
-                  {reviewData?.map((items) => (
-                    <div className="d-flex flex-column mt-4" key={items.id}>
+                  { reviewData?.length ?
+                    reviewData?.map((items) => (
+                    <div className="d-flex flex-column mt-4" key={items?.id}>
                       <div className="item">
                         <div className="reviewBox">
                           <div className="ratingstar">
@@ -250,7 +263,11 @@ const Reviews = () => {
                         </div>
                       </div>
                     </div>
-                  ))}
+                  )): <div className="treatmentContainer">
+                  <div className="no-appointments">
+                    No Reviews available
+                  </div>
+                </div>}
                 </div>
               </div>
 
@@ -265,7 +282,7 @@ const Reviews = () => {
                           className="img-fluid"
                         />
                         <div className="scoreData">
-                          {totalReviewSum / reviewData?.length}
+                          { totalReviewSum / reviewData?.length||0}
                         </div>
                       </div>
                     </div>

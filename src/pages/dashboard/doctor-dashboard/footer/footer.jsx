@@ -67,7 +67,7 @@ export const Footer = () => {
               <div class="getapp">
                 <h4>{t("footer.get-app")}</h4>
                 <div class="download">
-                  <a href="#" target="_blank">
+                  <a href="#" target="">
                     <img src="/images/applestore.png" class="img-fluid" />
                   </a>
                   <a href="#" target="">

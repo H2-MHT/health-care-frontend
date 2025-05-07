@@ -116,7 +116,6 @@ const ConfirmPaymentWithdrawPop = ({
       onHide={() => setModelOpen(false)}
       size="lg"
     >
-      {console.log(">>>>>>>>>>>>>", accountdetails)}
       <Modal.Header closeButton>
         <div className="modal-heading-alignment">
           <img src="images/doctor-dashboard/Info.svg" alt="Info" />
@@ -169,7 +168,6 @@ const ConfirmPaymentWithdrawPop = ({
             <div className="status payment-method-container mt-0">
               <div className="payment-method-card bg-white w-100">
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="generate_payment">
                     <div className="bg-white border-radius-20 padding-20">
                       <div className="row g-4">
                         <div className="col-md-12">
@@ -251,7 +249,6 @@ const ConfirmPaymentWithdrawPop = ({
 </div> */}
                         </div>
                       </div>
-                    </div>
                   </div>
                 </form>
               </div>

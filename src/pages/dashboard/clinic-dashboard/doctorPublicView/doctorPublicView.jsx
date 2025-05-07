@@ -6,6 +6,7 @@ import Image from "../../../../components/form/Image";
 const DoctorPublicView = () => {
   const [totalReviewSum, setTotalReviewSum] = useState(0);
   const [reviewData, setReviewData] = useState([]);
+  const [activeTab, setActiveTab] = useState("reviews");
   const location = useLocation();
   const { doctor = null } = location.state || {};
   return (
@@ -99,35 +100,66 @@ const DoctorPublicView = () => {
             </div>
             <div class="tabbing">
               <ul>
-                <li>
-                  <a href="#">Prof History</a>
+                <li className={activeTab === "history" ? "active" : ""}>
+                <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("history")}
+                  >
+                    Prof History
+                  </div>
+                  </li>
+                <li className={activeTab === "Licenses" ? "active" : ""}>
+                <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Licenses")}
+                  >
+                    Licenses
+                  </div>
                 </li>
-                <li>
-                  <a href="#">Licenses</a>
+                {/* <li className={activeTab === "Reviews" ? "active" : ""}>
+                <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Reviews")}
+                  >
+                    Reviews
+                  </div>
+                </li> */}
+                <li className={activeTab === "Media digests" ? "active" : ""}>
+                <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Media digests")}
+                  >
+                    Media digests
+                  </div>
                 </li>
-                <li class="active">
-                  <a href="#">Reviews</a>
+                <li className={activeTab === "Info" ? "active" : ""}>
+                <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Info")}
+                  >
+                   Info
+                  </div>
                 </li>
-                <li>
-                  <a href="#">Media digests</a>
-                </li>
-                <li>
-                  <a href="#">Info</a>
-                </li>
-                <li>
-                  <a href="#">Full Scedule</a>
+                <li className={activeTab === "Full Scedule" ? "active" : ""}>
+                <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Full Scedule")}
+                  >
+                   Full Scedule
+                  </div>
                 </li>
               </ul>
             </div>
           </div>
         </div>
+       
 
         <div class="reviews">
           <div class="tabbing">
             <ul>
               <li>
                 <a href="#">Prof History</a>
-              </li>
+              </li> 
               <li>
                 <a href="#">Licenses</a>
               </li>
@@ -145,9 +177,9 @@ const DoctorPublicView = () => {
               </li>
             </ul>
           </div>
-          <h3>Latest reviews</h3>
+          {/* <h3>Latest reviews</h3> */}
           <div class="reviewInner">
-            <div class="left">
+            {/* <div class="left">
               <div class="trustRight">
                 <div class="trustScore">
                   <h5>My trust score</h5>
@@ -163,7 +195,42 @@ const DoctorPublicView = () => {
                   reviews
                 </div>
               </div>
+            </div> */}
+             {activeTab == "history" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">coming soon...</div>
+              </div>
             </div>
+          )}
+             {activeTab == "Licenses" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">coming soon...</div>
+              </div>
+            </div>
+          )}
+             {activeTab == "Media digests" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">coming soon...</div>
+              </div>
+            </div>
+          )}
+               {activeTab == "Info" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">coming soon...</div>
+              </div>
+            </div>
+          )}
+              {activeTab == "Full Scedule" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">coming soon...</div>
+              </div>
+            </div>
+          )}
             <DoctorPublicReviews
               setTotalReviewSum={setTotalReviewSum}
               setReviewData={setReviewData}

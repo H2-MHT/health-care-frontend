@@ -4,6 +4,9 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./drawer.css";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { postData } from "../../../../hooks/services/services";
+import { showToast } from "../../../../utils/toast";
 export const ClinicDrawer = () => {
    const{t} = useTranslation("drawer");
   const location = useLocation();
@@ -12,7 +15,7 @@ export const ClinicDrawer = () => {
   const sidebarColRef = useRef(null);
   const sidebarmenuRef = useRef(null);
   const [selectedDrawerItem, setSelectedDrawerItem] = useState("/clinic-dashboard/dashboard")
-
+  const auth = useSelector((state) => state.auth);
 useEffect(() => {
     setSelectedDrawerItem(location.pathname);
   }, [location]);
@@ -46,11 +49,21 @@ useEffect(() => {
   //   };
   // }, []);
 
-  const logout = () => {
-    localStorage.removeItem("user_token");
-    localStorage.removeItem("user_data");
-    navigate("/login");
-  };
+   const logout = async () => {
+          try {
+            const payload = {
+              refresh: auth?.refreshToken
+              };
+            const response = await postData("auth/logout/",payload);
+            if (response?.status === 200) {
+              let responseData = await response.json();
+              navigate("/login");
+              showToast(responseData?.message, "success");
+            }
+          } catch (error) {
+            showToast(error.message, "error");
+          }
+        };
 
   return (
     <aside>
@@ -205,7 +218,7 @@ useEffect(() => {
               </span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/clinic/Reviews"
               className={
@@ -227,7 +240,7 @@ useEffect(() => {
               </svg>
               <span> {t("drawer.reviews-rating")}</span>
             </Link>
-          </li>
+          </li> */}
           <hr />
           <li>
             <Link

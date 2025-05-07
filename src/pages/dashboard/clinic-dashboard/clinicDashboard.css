@@ -150,8 +150,8 @@
 
 .clinic_doc_list .recomend{
   width: 100%;
-  height: 900px;
-  overflow-y: auto;
+  /* height: 900px; */
+  /* overflow-y: auto; */
 }
 
 .clinic_doc_list .recomend .clinicDocMain{

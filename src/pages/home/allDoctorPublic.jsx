@@ -8,14 +8,24 @@ import { Loader } from "../../components/ui/loader/loader";
 import Pagination from "../../components/pagination/pagination.js";
 import Header from "../../components/ui/header/header";
 import { Footer } from "../../components/ui/footer/footer.js";
+import Flag from "react-world-flags";
+import { Country } from "country-state-city";
+import { useTranslation } from "react-i18next";
+const countryCodeMap = Object.fromEntries(
+  Country.getAllCountries().map((country) => [
+    country.name.toLowerCase(),
+    country.isoCode,
+  ])
+);
 
 const AllDoctorPublic = () => {
+  const { t } = useTranslation();
   const [allDoctorList, setAllDoctorList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [query, setQuery] = useState("");
-  const itemsPerPage = 5;
+  const itemsPerPage = 6;
 
   const PaginatedDoctorList = async (page = 1, searchQuery = "") => {
     setLoading(true);
@@ -57,7 +67,6 @@ const AllDoctorPublic = () => {
   //     setShowFirstModal(true);
   //     setSelectedDoctorAppointement(item);
   //   };
-
   return (
     <>
       <Header />
@@ -95,99 +104,104 @@ const AllDoctorPublic = () => {
           </div>
 
           <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
-            <div className="recomend">
+            <div className="recomend row g-4">
               {allDoctorList.length > 0 ? (
-                allDoctorList.map((item) => (
-                  <div className="Docbox" key={item?.id}>
-                    <div className="recomendBox">
-                      <div className="clinicDocMain d-flex gap-3">
-                        <div className="left paddingLeftt">
-                          <div className="docrecomdpart">
-                            <div className="docImg">
-                              <img
-                                src="../images/flag.svg"
-                                className="docflag"
-                                alt="flag"
-                              />
-                              <Image src={item?.profile_picture} />
-                            </div>
-                            <div className="drRdetail">
-                              <div className="top">
-                                <div className="verified">
-                                  <img src="../images/batch.svg" alt="batch" />
-                                  Generalist 
-                                  <span className="main-blue-text">
-                                    {item?.expertise}
+                allDoctorList.map((item) => {
+                  const countryName = item?.country?.toLowerCase?.();
+                  const countryCode = countryCodeMap[countryName] || "fr";
+
+                  return (
+                    <div className="Docbox col-lg-4 col-md-6" key={item?.id}>
+                      <div className="recomendBox my-0">
+                        <div className="clinicDocMain d-flex gap-3">
+                          <div className="left paddingLeftt">
+                            <div className="docrecomdpart">
+                              <div className="docImg">
+                                <Flag code={countryCode} className="docflag" />
+                                <Image src={item?.profile_picture} />
+                              </div>
+
+                              <div className="drRdetail">
+                                <div className="recondName">
+                                  Dr. {item?.first_name} {item?.last_name}
+                                </div>
+                                <div className="top">
+                                  <div className="verified">
+                                    {item?.speciality || "Generalist"} |{" "}
+                                    {item?.experience_years} years of experience
+                                    <span className="main-blue-text">
+                                      {item?.expertise}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="clinicLoca d-flex align-items-center gap-2">
+                                  <img
+                                    src="../images/mappin.svg"
+                                    alt="map pin"
+                                  />
+                                  <span className="text-green">
+                                    {item?.country || "France"}
                                   </span>
                                 </div>
-                              </div>
-                              <div className="recondName">
-                                Dr. {item?.first_name} {item?.last_name}
-                              </div>
-                              <div className="clinicLoca d-flex align-items-center gap-2">
-                                <img src="../images/mappin.svg" alt="map pin" />
-                                <span className="text-green">
-                                  {item?.country}
-                                </span>
-                              </div>
-                              <div className="d-flex gap-2">
-                                {Array.isArray(item?.languages) &&
-                                  item.languages.map((lang, langIndex) => (
-                                    <div className="langSpeak" key={langIndex}>
-                                      <span>{lang.title}</span>
-                                    </div>
-                                  ))}
+
+                                <div className="d-flex gap-2">
+                                  {Array.isArray(item?.languages) &&
+                                    item.languages.map((lang, langIndex) => (
+                                      <div
+                                        className="langSpeak"
+                                        key={langIndex}
+                                      >
+                                        <span>{lang.title}</span>
+                                      </div>
+                                    ))}
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="right">
-                          <div className="greenimg">
-                            <img
-                              src="../images/general-medicine.svg"
-                              alt="medicine"
-                            />
-                            <span>{item?.specialty}</span>
-                          </div>
-                          <div className="bStar d-flex align-items-center gap-2">
-                            <img src="../images/black-star.svg" alt="star" />
-                            <span className="text-black">{item?.rating}</span>
+                          <div className="right">
+                            <div className="bStar d-flex align-items-center gap-2">
+                              <img src="../images/black-star.svg" alt="star" />
+                              <span className="text-black">{item?.rating}</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <p>{item?.bio}</p>
-                      {console.log(item,">>>item")}
-                      <div className="doclistBtn2 d-flex justify-content-end gap-3">
-                      <span className="transparent_btn">Urgent hourly rate : &nbsp; <span className ="fw-bold"> {item?.urgent_hourly_rate} </span></span>
-                      <span className="transparent_btn">Planned hourly rate : &nbsp; <span className ="fw-bold">{item?.planned_hourly_rate}</span></span>
-                        <Link
-                          to="/public-doctor-view"
-                          state={{ doctor: item }}
-                          className="transparent_btn"
-                        >
-                          More Info
-                        </Link>
-                        {/* <span
-                          className="blue_btn"
-                          onClick={() => makeAppointment(item)}
-                        >
-                          Make Appointment{" "}
-                        </span> */}
+
+                        <div className="d-flex justify-content-around ">
+                          <div className="mt-4 mb-2">
+                            <div className="consult mb-2">
+                              Urgent Consultation : {item?.urgent_hourly_rate}
+                            </div>
+                            <div className="consult">
+                              Planned Consultation : {item?.planned_hourly_rate}
+                            </div>
+                          </div>
+
+                          <div className="d-flex flex-column gap-2 align-items-center justify-content-center">
+                            <Link
+                              to="/public-doctor-view"
+                              state={{ doctor: item }}
+                              className="transparent_btn"
+                            >
+                              {t("all-doctor-list.more-info")}
+                            </Link>
+{console.log(item)}
+                            <Link
+                              to={"/login"}
+                              className="blue_btn text-center px-2"
+                            >
+                              {t("all-doctor-list.make-appointment")}
+                            </Link>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="viewFullSchdl">View full schedules</div>
-                  </div>
-                ))
+                  );
+                })
               ) : (
-                <div>No Doctors Found</div>
+                <div>{t("all-doctor-list.no-doctors-found")}</div>
               )}
             </div>
           </div>
-          {/* <AppointmentModal
-            setShowFirstModal={setShowFirstModal}
-            showFirstModal={showFirstModal}
-            selectedDoctorAppointement={selectedDoctorAppointement}
-          /> */}
 
           {allDoctorList.length > 0 && (
             <Pagination

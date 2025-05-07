@@ -594,7 +594,12 @@ textarea {
   height: 200px;
   overflow-y: auto;
 }
-
+.mediaDegestPart table thead tr th{
+  text-align: center;
+}
+.mediaDegestPart table tbody tr td{
+  text-align: center;
+}
 @media (max-width: 767px) {
   .black_btn {
     width: 100%;

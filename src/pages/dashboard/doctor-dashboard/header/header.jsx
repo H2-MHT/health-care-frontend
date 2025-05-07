@@ -148,6 +148,16 @@ export const Header = () => {
     { code: "en", label: "English" },
     { code: "fr", label: "French" },
     { code: "es", label: "Spanish" },
+    { code: "ro", label: "Romanian" },
+    { code: "bg", label: "Bulgarian" },
+    { code: "lt", label: "Lithuanian" },
+    { code: "pl", label: "Polish" },
+    { code: "uk", label: "Ukrainian" },
+    { code: "ru", label: "Russian" },
+    { code: "hi", label: "Hindi" },
+    { code: "pt-br", label: "Brazilian Portuguese" },
+    { code: "ar", label: "Arabic" },
+    { code: "ur", label: "Urdu" },
   ];
 
   const handleToggle = () => {

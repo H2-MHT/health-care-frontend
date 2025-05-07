@@ -3,7 +3,7 @@ import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { showToast } from "../utils/toast";
 import { useNavigate } from "react-router-dom";
 import { postRequest } from "../hooks/services/services";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {loginFailure, loginSuccess} from "../redux/actions/authActions"
 
 function LoginWithGoogle({member}) {
@@ -14,17 +14,19 @@ function LoginWithGoogle({member}) {
       const payload = {
         token: response?.credential,
       };
-      console.log('payload ', response);
-      
       const apiResponse = await postRequest("auth/login/google/", payload);
       if (apiResponse?.status === 200) {
         let responseData = await apiResponse.json();
         console.log(responseData);
-        
         localStorage.setItem("user_token", responseData?.token?.access);
-        dispatch(loginSuccess(member, responseData?.token?.access))
+        dispatch(loginSuccess(member, responseData?.token?.access, responseData?.token?.refresh))
         showToast(responseData?.message, "success");
         navigate(`/dashboard`);
+        if (member === "Doctor") {
+          navigate("/dashboard");
+        } else {
+          navigate("/patient/dashboard");
+        }
       }
     } catch (error) {
       showToast(error.message, "error");

@@ -8,6 +8,7 @@ import Image from "../../../components/form/Image";
 import { Loader } from "../../../components/ui/loader/loader";
 import { Modal } from "react-bootstrap";
 import Pagination from "../../../components/pagination/pagination";
+import { getFormattedDate } from "../../../utils/common";
 
 const Reviews = () => {
   const navigate = useNavigate();
@@ -26,12 +27,15 @@ const Reviews = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const [totalPages, setTotalPages] = useState(1);
+  const [query, setquery] = useState("");
 
-  const getPaginatedData = async (page = 1) => {
+  const getPaginatedData = async (page = 1, searchQuery = "") => {
     setLoading(true);
     try {
       const response = await fetchData(
-        `reviews/doctor/?page=${page}&limit=${itemsPerPage}`,
+        `reviews/doctor/?page=${page}&limit=${itemsPerPage}&search=${encodeURIComponent(
+      searchQuery
+    )}`,
         navigate
       );
       const totalPagesHeader = response.headers.get("Total-Pages");
@@ -51,8 +55,15 @@ const Reviews = () => {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      setCurrentPage(1); 
+      getPaginatedData(1, query); 
+    }
+  };
+
   useEffect(() => {
-    getPaginatedData(currentPage);
+    getPaginatedData(currentPage, query);
   }, [currentPage]);
 
   const handleReplyTextChange = (e, reviewId) => {
@@ -76,7 +87,7 @@ const Reviews = () => {
       if (response.status === 201) {
         const responseData = await response.json();
         showToast(responseData?.message, "success");
-        getPaginatedData(currentPage);
+        getPaginatedData(currentPage, query);
 
         setReplyTextMap((prevMap) => {
           const updatedMap = { ...prevMap };
@@ -158,7 +169,13 @@ const Reviews = () => {
 
           <div className="sortSearchArea">
             <div className="search">
-              <input type="search" placeholder="Search" />
+              <input
+                type="search"
+                placeholder="Search"
+                value={query}
+                onChange={(e) => setquery(e.target.value)}
+                onKeyDown={handleKeyPress}
+              />
               <a href="#">
                 <img src="images/search-dark.svg" />
               </a>
@@ -217,7 +234,7 @@ const Reviews = () => {
                             </div>
                           </div>
 
-                          <h5>Review title</h5>
+                          <h5>{items?.title}</h5>
                           <h6>{items?.content}</h6>
                           <div className="d-flex justify-content-between align-items-center mt-4">
                             <div className="reply-text">
@@ -280,21 +297,21 @@ const Reviews = () => {
                             />
                             <div>
                               <h4>{items?.reviewer_name}</h4>
-                              <p>Date</p>
+                              <p>{getFormattedDate(items?.created_at)}</p>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   ))}
-                  {reviewData.length > 0 && (
-                    <Pagination
-                      totalPages={totalPages}
-                      currentPage={currentPage}
-                      onPageChange={setCurrentPage}
-                    />
-                  )}
                 </div>
+                {reviewData.length > 0 && (
+                  <Pagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    onPageChange={setCurrentPage}
+                  />
+                )}
               </div>
 
               {/* Modal for Reporting */}
@@ -324,15 +341,13 @@ const Reviews = () => {
                       "Other",
                     ].map((option, idx) => (
                       <div className="status" key={idx}>
-                        <label>
-                          <input
-                            type="radio"
-                            value={option}
-                            checked={selectedReason === option}
-                            onChange={() => setSelectedReason(option)}
-                          />
-                          {option}
-                        </label>
+                        <input
+                          type="radio"
+                          value={option}
+                          checked={selectedReason === option}
+                          onChange={() => setSelectedReason(option)}
+                        />
+                        <label>{option}</label>
                         {option === "Other" && selectedReason === "Other" && (
                           <input
                             type="text"
@@ -366,7 +381,7 @@ const Reviews = () => {
                         />
                         <div className="scoreData">
                           {totalReviewSum > 0
-                            ? (totalReviewSum / reviewData?.length).toFixed(2)
+                            ? (totalReviewSum / reviewData?.length).toFixed(1)
                             : 0}
                         </div>
                       </div>

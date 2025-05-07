@@ -70,7 +70,6 @@ export const CalendarLayout = ({ children }) => {
       const getData = await response.json();
       setUserRole(getData?.data?.role);
       dispatch(getDoctorProfileSuccess(getData.data));
-      dispatch(loginSuccess(getData?.data?.role, token));
     } catch (error) {
       dispatch(getDoctorProfileFailure(error.message));
     } finally {

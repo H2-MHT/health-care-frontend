@@ -31,8 +31,6 @@ function MyVerification() {
     }
   };
 
-  console.log(licensesdetail,">>>>>>>licensesdetail")
-
   const removeVerification = async (item) => {
     try {
       const payload = {
@@ -123,7 +121,7 @@ function MyVerification() {
                           {item.status === "Pending" && (
                             <img
                               src="../images/delete.svg"
-                              width="25"
+                              width="17"
                               onClick={() => {
                                 removeVerification(item);
                               }}

@@ -363,7 +363,7 @@ const AppointmentModal = ({
         <Modal.Header closeButton>
           <div class="modal-header border-0">
             <div class="modal-heading-alignment">
-              <img src="../images/Info.svg" />
+              <img src="../../images/Info.svg" />
               <h5 class="modal-title text-left" id="exampleModalLabel">
                 Confirm payment
               </h5>
@@ -398,7 +398,7 @@ const AppointmentModal = ({
                           <div class="acc-img">
                             <div>
                               <img
-                                src="../images/payment-card.webp"
+                                src="../../images/payment-card.webp"
                                 width="120"
                                 alt="img"
                               />
@@ -434,7 +434,7 @@ const AppointmentModal = ({
                           <div class="acc-img">
                             <div>
                               <img
-                                src="../images/visa.webp"
+                                src="../../images/visa.webp"
                                 width="40"
                                 alt="img"
                               />

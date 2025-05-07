@@ -24,11 +24,12 @@ const schema = yup.object().shape({
 
 const ReviewModel = ({ setModelOpen, modelOpen, recentAppointmentId }) => {
   const { t } = useTranslation();
-
+ 
   const {
     register,
     handleSubmit,
     setValue, // 👈 Allows updating the rating in form data
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -48,6 +49,7 @@ const ReviewModel = ({ setModelOpen, modelOpen, recentAppointmentId }) => {
       if (response.status === 201) {
         const responseJson = await response.json();
         showToast(responseJson?.message, "success");
+        reset()
         setModelOpen(false);
       }
     } catch (error) {

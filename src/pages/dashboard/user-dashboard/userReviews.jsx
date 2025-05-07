@@ -26,11 +26,12 @@ const Reviews = () => {
     const itemsPerPage = 5;
     const [totalPages, setTotalPages] = useState(1);
 
-  const trustscore=(totalReviewSum / reviewData?.length).toFixed(2);
-
+  const trustscore = reviewData?.length
+  ? (totalReviewSum / reviewData.length).toFixed(1)
+  : 0;
   const toggleReply = (id) => {
-    setReplylistId(id); // Set the replylistId
-    setOpenReview(openReview === id ? null : id); // Toggle review visibility
+    setReplylistId(id); 
+    setOpenReview(openReview === id ? null : id); 
   };
 
  useEffect(() => {
@@ -67,21 +68,6 @@ const Reviews = () => {
 
 
 
-  const getReviewsData = async () => {
-    // setLoading(true);
-    try {
-      const response = await fetchData("reviews/review/", navigate);
-      if (!response.ok) {
-        throw new Error("Failed to fetch data from the server.");
-      }
-      const responseData = await response.json();
-      setReviewData(responseData?.data);
-      // setLoading(false);
-    } catch (error) {
-      // setLoading(false);
-      console.log(error.message);
-    }
-  };
   const getReviewsReplyData = async () => {
     // setLoading(true);
     try {
@@ -149,12 +135,16 @@ const Reviews = () => {
     }
   };
 
-
   const handleReviewdelete = async (id) => {
     try {
-      const response = await deleteData(`reviews/review/${id}/`);
+      const payload = {
+        review_id: id
+      };
+      const response = await deleteData(`reviews/review/`,payload);
+      console.log(response,">>>>>>payload")
       showToast("Notes deleted successfully", "success");
       await getReviewsReplyData()
+      await getPaginatedReviews()
     } catch (error) {
       showToast(error.message, "error");
     }
@@ -167,8 +157,6 @@ const Reviews = () => {
     }));
     setCurrentSelectedReviewId(reviewId);
   };
-
- 
 
   return (
     <>
@@ -225,7 +213,7 @@ const Reviews = () => {
                             <h5>{items?.title}</h5>
                             <h6>{items?.content}</h6>
                             <div class="maineditdelete editdelete d-flex align-items-center gap-2">
-                              <img src="../images/edit.svg" width="25" />
+                              {/* <img src="../images/edit.svg" width="25" /> */}
                               <img src="../images/delete.svg" width="25" onClick={()=>handleReviewdelete(items?.id,)} />
                             </div>
                             <div className="d-flex justify-content-between align-items-center mt-4">
@@ -249,12 +237,11 @@ const Reviews = () => {
                                       <div className="reply-msg">
                                         <p>{item?.content}</p>
                                       </div>
-
                                       <div class="editdelete d-flex align-items-center gap-2">
-                                        <img
+                                        {/* <img
                                           src="../images/edit.svg"
                                           width="25"
-                                        />
+                                        /> */}
                                         <img
                                           src="../images/delete.svg"
                                           width="25"

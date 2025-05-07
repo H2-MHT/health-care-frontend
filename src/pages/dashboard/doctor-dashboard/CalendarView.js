@@ -2,15 +2,22 @@ import React, { useEffect, useState } from "react";
 import MyCalendar from "./MyCalendar";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getAppointmentFormattedDate, getFormattedDate, getTime } from "../../../utils/common";
+import {
+  getAppointmentFormattedDate,
+  getFormattedDate,
+  getTime,
+} from "../../../utils/common";
 import { getAppointmentList } from "../../../utils/common";
 import Image from "../../../components/form/Image";
 import { useTranslation } from "react-i18next";
 
 import { fetchData } from "../../../hooks/services/services";
+import MeetVideoCall from "../doctorChat/MeetVideoCall";
+import { Modal } from "react-bootstrap";
+import CommonModal from "../../../components/form/Modal";
 
 function CalendarView() {
-   const{t} = useTranslation("calendar-view");
+  const { t } = useTranslation("calendar-view");
   const navigate = useNavigate();
   const [clickedDate, setClickedDate] = useState(null);
   const [appointmentList, setAppointmentList] = useState();
@@ -20,40 +27,81 @@ function CalendarView() {
   const [currentView, setCurrentView] = useState();
   const isProfileData = useSelector((state) => state?.userProfile?.userProfile);
   const [scheduledEvents, setScheduledEvents] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [videoModal, setVideoModal] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState();
 
-  useEffect(()=>{
-    if(currentView?.startDate)
-      getPatientAppointments();
-  },[currentView])
+  useEffect(() => {
+    if (currentView?.startDate) getPatientAppointments();
+  }, [currentView]);
 
   const getPatientAppointments = async () => {
-     const startDate = getAppointmentFormattedDate(currentView?.startDate);
-     const endDate = getAppointmentFormattedDate(currentView?.endDate);
-      try {
-        const response = await fetchData(
-          `doctors/doctor-booked-appointment/?doctor_user_id=${isProfileData?.id}&start_date=${startDate}&end_date=${endDate}`,
-          navigate
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch data from the server.");
-        }
-        const responseData = await response.json();
-        setAppointmentList(responseData?.data);
-        const events = responseData?.data?.map((item) => {
-          let a = `${item?.date}T${item?.slot?.split("-")[0]?.trim()}:00.000Z`
-          return {
-            title: item?.patient?.name,
-            date: a,
-          };
-        });
-        setScheduledEvents(events)
-      } catch (error) {
-        console.log("error", error?.message);
+    const startDate = getAppointmentFormattedDate(currentView?.startDate);
+    const endDate = getAppointmentFormattedDate(currentView?.endDate);
+    try {
+      const response = await fetchData(
+        `doctors/doctor-booked-appointment/?doctor_user_id=${isProfileData?.id}&start_date=${startDate}&end_date=${endDate}`,
+        navigate
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
       }
+      const responseData = await response.json();
+      setAppointmentList(responseData?.data);
+      const events = responseData?.data?.map((item) => {
+        let a = `${item?.date}T${item?.slot?.split("-")[0]?.trim()}:00.000Z`;
+        return {
+          title: item?.patient?.name,
+          date: a,
+          appointment_id: item?.id,
+          extendedProps: {
+            meetingLink: item?.meeting_link,
+          },
+        };
+      });
+      setScheduledEvents(events);
+    } catch (error) {
+      console.log("error", error?.message);
+    }
+  };
+
+  const handleEventClick = (clickInfo) => {
+    let appointment = clickInfo.event.extendedProps;
+    if (appointment) {
+      setSelectedAppointment(appointment);
+      setVideoModal(true);
+    }
   };
 
   const handleDateClick = (date) => {
     setClickedDate(date); // Update the clicked date in the parent
+  };
+
+  const getForm = () => {
+    return (
+      <div style={{ padding: "20px", textAlign: "center" }}>
+        <h3>You're invited to join a video consultation</h3>
+        <p>If you'd like to join the call, please click the button below.</p>
+        <button
+          onClick={() => {
+            setShowModal(true);
+            setVideoModal(false);
+          }}
+          style={{
+            marginTop: "15px",
+            padding: "10px 20px",
+            backgroundColor: "#28a745",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            fontSize: "16px",
+            cursor: "pointer",
+          }}
+        >
+          Join Video Call
+        </button>
+      </div>
+    );
   };
 
   return (
@@ -74,14 +122,34 @@ function CalendarView() {
                 <MyCalendar
                   events={true}
                   onDateClick={handleDateClick}
+                  onEventClick={handleEventClick}
                   isCalendarView={true}
                   setCurrentView={setCurrentView}
                   eventList={scheduledEvents}
                 />
+                <Modal
+                  show={showModal}
+                  centered
+                  className="videocallMain"
+                  backdrop="static"
+                >
+                  <MeetVideoCall
+                    selectedAppointment={selectedAppointment}
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                  />
+                </Modal>
+                <CommonModal
+                  size="lg"
+                  show={videoModal}
+                  title="Ready to join?"
+                  body={getForm()}
+                  onHide={() => setVideoModal(false)}
+                  className="prescriptionModal"
+                ></CommonModal>
               </div>
             </div>
           </div>
-          {console.log(">>>>>>>>>>>>appointmentList", appointmentList)}
           {appointmentList?.length > 0 ? (
             <div
               className={`appointmentCard ${

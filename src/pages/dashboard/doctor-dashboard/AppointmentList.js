@@ -230,7 +230,10 @@ const AppointmentList = () => {
     const endDate = getAppointmentFormattedDate(currentView?.endDate);
     getDoctorDasboardRequest();
     try {
-       const response = await fetchData(`dashboard/?start_date=${startDate}&end_date=${endDate}`, navigate);
+      const response = await fetchData(
+        `dashboard/?start_date=${startDate}&end_date=${endDate}`,
+        navigate
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch data from the server.");
       }
@@ -238,6 +241,19 @@ const AppointmentList = () => {
       dispatch(getDoctorDasboardSuccess(responseData));
     } catch (error) {
       dispatch(getDoctorDasboardFailure(error.message));
+    }
+  };
+
+  const generateMeetintLink = async (appointment) => {
+    try {
+      const payload = {
+        appointment_id: appointment?.id,
+        patient_user_id: appointment?.patient?.id,
+        doctor_user_id: appointment?.doctor?.id,
+      };
+      await postData(`video-call/meeting-link/`, payload);
+    } catch (error) {
+      showToast(error.message, "error");
     }
   };
 
@@ -259,6 +275,7 @@ const AppointmentList = () => {
         getPatientAppointments();
         setConfirmationModal(true);
         setSelectedTimeSlot("");
+        generateMeetintLink(appointment);
         setModelDeclineOpen(false);
         showToast(responseData?.message, "success");
       }

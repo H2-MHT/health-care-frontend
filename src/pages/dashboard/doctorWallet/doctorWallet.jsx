@@ -29,7 +29,7 @@ const DoctorWallet = () => {
   };
 
   let currency = walletDetails?.current_balance;
-  let formattedCurrency = currency?.toFixed(2);
+  let formattedCurrency = currency?.toFixed(1);
 
   const getDoctorWalletDetails = async () => {
     try {
@@ -319,7 +319,7 @@ const DoctorWallet = () => {
                   </div>
                   <div class="curr-bal-value">
                     <p>
-                      <span>$</span> {doctorTotalAmount?.balance}
+                      <span>$</span> {formattedCurrency}
                     </p>
                   </div>
                 </div>
