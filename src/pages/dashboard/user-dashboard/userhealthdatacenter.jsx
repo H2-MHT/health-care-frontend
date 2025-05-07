@@ -433,13 +433,8 @@ const UserHealthDataCenter = () => {
             </div>
           </div>
           <div class="col-md-2">
-<<<<<<< Updated upstream
-            <div class="healthQuest">
-              <img src="../dashboard-user/../images/user-dashboard/health-quest.webp" onClick={redirectToFitbitAuth}/>
-=======
             <div class="healthQuest" onClick={getHealthData}>
               <img src="../dashboard-user/../images/user-dashboard/health-quest.webp" />
->>>>>>> Stashed changes
               <p>
                 {t("health-data-center.health")}{" "}
                 <span>{t("health-data-center.quest")}</span>
