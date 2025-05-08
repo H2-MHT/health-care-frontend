@@ -1,0 +1,476 @@
+{
+  "login": {
+    "create_account": "Sukurti paskyrą",
+    "login_button": "Prisijungti",
+    "email_label": "El. paštas",
+    "password_label": "Slaptažodis",
+    "forgot_password": "Pamiršote slaptažodį?",
+    "welcome_message": "Sveiki atvykę į programą!",
+    "for_member": "Vartotojams",
+    "for_specialist": "Specialistams",
+    "google_login": "Prisijungti per Google",
+    "Apple_login": "Prisijungti per Apple",
+    "For_clinic": "Klinikoms",
+    "or_lable": "ARBA",
+    "login": "Prisijungti"
+  },
+  "singup": {
+    "first_name": "Vardas",
+    "Last_name": "Pavardė",
+    "Confirm_Password": "Patvirtinti slaptažodį",
+    "Password_text": "Naudokite bent 8 simbolius: raidės, skaičius ir specialius simbolius",
+    "creating_account": "Sukurdami paskyrą, Jūs sutinkate su mūsų",
+    "terms_use": "Naudojimo sąlygomis",
+    "and_lable": "ir",
+    "Privacy_policy": "Privatumo politika",
+    "clinic_Register": "Esate gydymo įstaiga? Užsiregistruokite kaip klinika",
+    "here": "čia",
+    "Complete_Information": "Užpildykite informaciją apie save",
+    "step": "1 žingsnis",
+    "step2": "2 žingsnis",
+    "place_residence": "Gyvenamoji vieta",
+    "date_birth": "Gimimo data",
+    "Gender_lable": "Lytis",
+    "place_Work": "Darbo vieta",
+    "confirm_lable": "Patvirtinti",
+    "skip_lable": "Praleisti",
+    "back_lable": "Atgal",
+    "upload_photo": "Įkelkite savo nuotrauką",
+    "licenses_certifications": "Licencijos ir sertifikatai",
+    "about_yourself": "Papasakokite apie save",
+    "languages_lable": "Kalbos",
+    "working_time": "Darbo laikas"
+  },
+  "ui_header": {
+    "register_now": "Registruokitės dabar",
+    "hn_lable": "Hn",
+    "home_lable": "Pagrindinis",
+    "myApp_guest": "MyApp svečias",
+    "find_doctor": "Rasti gydytoją",
+    "clinics_lable": "Klinikos",
+    "about_us": "Apie mus",
+    "contact_us": "Susisiekite su mumis"
+  },
+  "common": {
+    "save": "Išsaugoti",
+    "add-media": "+ Pridėti mediją",
+    "save-changes": "Išsaugoti pakeitimus",
+    "cancel": "Atšaukti",
+    "submit": "Pateikti",
+    "subscribe-now": "Prenumeruoti dabar",
+    "add": "Pridėti"
+  },
+
+  "edit-profile": {
+    "Male": "Vyras",
+    "Female": "Moteris",
+    "Other": "Kita",
+    "email-address": "El. pašto adresas",
+    "phone-number": "Telefono numeris",
+    "bio": "Aprašymas",
+    "country": "Šalis",
+    "city": "Miestas",
+    "languages": "Kalbos",
+    "english": "Anglų",
+    "hindi": "Hindi",
+    "place-of-work": "Darbo vieta",
+    "areas-of-expertise": "Specializacijos sritys",
+    "professional-statistics": "Profesinė statistika",
+    "years": "Metai",
+    "add-to-profile": "Pridėti prie profilio",
+    "licenses-certifications": "Licencijos ir sertifikatai",
+    "specializations": "Specializacijos",
+    "education": "Išsilavinimas",
+    "media-digest": "Medių santrauka",
+    "public-view": "Viešas rodymas",
+    "allergies": "Alergijos",
+    "medications-name": "Vaistų pavadinimai",
+    "attached-file": "Prisegtas failas",
+    "medical-history": "Medicininė istorija",
+    "show-profile": "rodyti profilyje",
+    "select_country": "Pasirinkite šalį",
+    "select_city": "Pasirinkite miestą"
+  },
+
+  "add-education": {
+    "school": "Mokymo įstaiga",
+    "degree": "Laipsnis",
+    "field-of-study": "Studijų sritis",
+    "start-date": "Pradžios data",
+    "end-date": "Pabaigos data (arba planuojama)",
+    "grade": "Pažymys",
+    "activites-societies": "Veikla ir organizacijos",
+    "description": "Aprašymas",
+    "add-education": "Pridėti išsilavinimą",
+    "edit-education": "Redaguoti išsilavinimą",
+    "skills": "Įgūdžiai",
+    "skills-text": "Rekomenduojame pridėti iki 5 svarbiausių įgūdžių, naudotų šioje patirtyje.",
+    "media": "Medija",
+    "media-text": "Pridėkite medijos failus, pvz., nuotraukas, dokumentus, svetaines ar pristatymus."
+  },
+
+  "clinic-edit-profile": {
+    "organisation-name": "Oficialus organizacijos pavadinimas",
+    "license-number": "Licencijos numeris",
+    "clinic-type": "Klinikos tipas",
+    "website": "Svetainė",
+    "clinic-public-name": "Viešas klinikos pavadinimas",
+    "email": "El. paštas",
+    "working-time": "Darbo laikas",
+    "clinic-types": {
+      "0": "Valstybinė",
+      "1": "Privati",
+      "2": "Specializuota"
+    },
+    "days": {
+      "1": "Pirmadienis",
+      "2": "Antradienis",
+      "3": "Trečiadienis",
+      "4": "Ketvirtadienis",
+      "5": "Penktadienis",
+      "6": "Šeštadienis",
+      "7": "Sekmadienis"
+    }
+  },
+
+  "drawer": {
+    "dashboard": "Prietaisų skydelis",
+    "calendar": "Kalendorius",
+    "my-verification": "Mano patvirtinimas",
+    "consultations": "Konsultacijos",
+    "prescription": "Receptai",
+    "wallet": "Piniginė",
+    "active": "Aktyvus",
+    "member-account": "Nario paskyra",
+    "edit-profile": "Redaguoti profilį",
+    "doctors": "Gydytojai",
+    "chats": "Pokalbiai",
+    "reviews-rating": "Atsiliepimai ir įvertinimai",
+    "settings": "Nustatymai",
+    "logout": "Atsijungti",
+    "health-data-center": "Sveikatos duomenų centras",
+    "doctor": "Gydytojas",
+    "clinic": "Klinika"
+  },
+
+  "footer": {
+    "links": "Nuorodos",
+    "add-head": "H2 Sveikatos Pagalba",
+    "add-text": "Registruotas prekių ženklas: My Health Today LTD, 7 Bell Yard, Londonas, Anglija, WC2A 2JR",
+    "add-text-cn": "Įmonės numeris: 16068507",
+    "get-app": "Atsisiųsti programėlę",
+    "subs-newsletter": "Prenumeruoti naujienlaiškį",
+    "subs-check": "Taip, noriu gauti naujienlaiškį",
+    "legal-notice": "Teisinis pranešimas",
+    "dmca": "DMCA",
+    "terms-of-service": "Paslaugų teikimo sąlygos",
+    "cookie-policy": "Slapukų politika",
+    "footer-bottom-text": "© My Health Today LTD. Visos teisės saugomos"
+  },
+
+  "dashboard": {
+    "list": "Sąrašas",
+    "treatment-plan": "Gydymo planas",
+
+    "requests": "Užklausos",
+    "archives": "Archyvai",
+    "my-trust-score": "Pasitikėjimo balas",
+    "reviews": "Atsiliepimai",
+    "last-reports": "Naujausios ataskaitos",
+    "notes": "Pastabos",
+    "clients": "Klientai",
+    "no-notes": "Nėra pastabų",
+    "no-appointments": "Nėra suplanuotų vizitų",
+    "no-reports": "Nėra ataskaitų",
+    "created": "Sukurta"
+  },
+  "prescription": {
+    "patient": "Pacientas",
+    "add-prescription": "PRIDĖTI RECEPTĄ",
+    "diagnosis": "Diagnozė",
+    "medicine": "Vaistas",
+    "time-of-the-day": "Paros laikas",
+    "times": "Kartų per dieną",
+    "quantity": "Kiekis",
+    "duration": "Trukmė",
+    "add-medicine": "+ Pridėti vaistą",
+    "additional-instruction": "Papildomos instrukcijos",
+    "name": "Pavadinimas"
+  },
+
+  "wallet": {
+    "transaction-history": "Prašymai dėl išmokėjimo",
+    "sender": "Siuntėjas",
+    "type": "Tipas",
+    "date": "Data",
+    "total": "Suma",
+    "fee": "Mokestis",
+    "current-balance": "Dabartinis balansas",
+    "last-week": "praėjusią savaitę",
+    "get-payed": "Gauti mokėjimą",
+    "payment-methods": "Apmokėjimo būdai",
+    "add-payment-method": "Pridėti apmokėjimo būdą",
+    "payment-method-txt": "Saugus pinigų pervedimas per jūsų banko sąskaitą. Palaikomi: Visa, MasterCard, Discover, American Express",
+    "details": "Informacija",
+    "payment-from": "Mokėtojas:",
+    "service": "Paslauga:",
+    "transaction-time": "Operacijos laikas:",
+    "payment": "Mokėjimas:",
+    "clinic-earning": "Klinikos pajamos",
+    "total-incomes": "Bendros pajamos",
+    "status": "Statusas",
+    "invoice": "Sąskaita",
+    "support": "Pagalba",
+    "payment-card-content": "Saugus pinigų pervedimas per jūsų banko sąskaitą. Palaikomi: Visa, MasterCard, Discover, American Express",
+    "card-second": "kortelė-antra-eilė",
+    "resume": "Santrauka",
+    "category": "Kategorija",
+    "hour": "Valanda",
+    "sub-total": "Tarpinė suma",
+    "discount": "Nuolaida"
+  },
+  "membership": {
+    "basic-membership-plan": "Pagrindinis narystės planas",
+    "premium-member": "Premium narys"
+  },
+  "referrals": {
+    "your-referrals": "Jūsų pakvietimai",
+    "referrals-txt": "Pasidalykite savo unikaliu kvietimo kodu su draugais, šeima ar kolegomis ir mėgaukitės išskirtinėmis privilegijomis kartu!",
+    "how-it-works": "Kaip tai veikia?",
+    "personal-code": "Asmeninis kodas",
+    "registry-link": "registracijos nuoroda",
+    "users-invited": "Pakviesti vartotojai",
+    "points-on-account": "Taškai jūsų paskyroje",
+    "redeem-bonuses": "Panaudoti bonusus",
+    "was-invited": "Buvo pakviestas?",
+    "unique-ref-txt": "Įveskite unikalų draugo, šeimos nario ar kolegos pakvietimo kodą ir mėgaukitės privilegijomis kartu",
+    "invitation-code": "Jūsų pakvietimo kodas",
+    "bonus-point-txt": "Bonus taškai bus pridėti prie jūsų paskyros, kai pakviestasis baigs pirmąją konsultaciją platformoje"
+  },
+  "appointment-manage": {
+    "choose-appointment-types": "Pasirinkite priimtinus konsultacijų tipus:",
+    "planned-consultation": "Planuota konsultacija",
+    "urgent-call": "Skubi konsultacija",
+    "select-days": "Pasirinkite dienas",
+    "add": "pridėti",
+    "day-options": {
+      "Mon": "Pirmadienis",
+      "Tue": "Antradienis",
+      "Wed": "Trečiadienis",
+      "Thu": "Ketvirtadienis",
+      "Fri": "Penktadienis",
+      "Sat": "Šeštadienis",
+      "Sun": "Sekmadienis"
+    },
+    "no-available-slots": "Nėra laisvų laikų",
+    "confirm-payment": "Patvirtinti mokėjimą"
+  },
+
+  "session": {
+    "session-lengths": "Sesijos trukmė",
+    "planned": "Suplanuota",
+    "buffer-time": "Laiko buferis",
+    "consultation-fees": "Konsultacijos mokestis"
+  },
+
+  "time-language": {
+    "time-language": "Laikas ir kalba",
+    "system-timezone": "Naudoti sistemos laiko juostą",
+    "language-system": "Naudoti sistemos kalbą",
+    "preferred-language": "Pageidaujama kalba",
+    "select-timezone": "Pasirinkti laiko juostą",
+    "select-option": "Pasirinkti parinktį"
+  },
+
+  "reschedule": {
+    "reschedule-policy": "Perplanavimo politika",
+    "possibility-of-reschedule": "Galimybė perplanuoti",
+    "limit": "Apriboti perplanavimų skaičių",
+    "reschedule-period": "Perplanavimo laikotarpis"
+  },
+  "cancellation": {
+    "policy": "Atšaukimo politika",
+    "no-fee": "Nemokamas atšaukimo laikotarpis",
+    "notice": "jei atšaukta likus mažiau nei",
+    "time-before": "iki konsultacijos pradžios"
+  },
+
+  "communication": {
+    "comms": "Komunikacija ir pranešimai",
+    "notif-pref": "Pranešimų nustatymai",
+    "channel-pref": "Kanalų nustatymai",
+    "appointment-reminders": "Primintukai apie konsultacijas",
+    "patient-msgs": "Pranešimai iš pacientų",
+    "important-updates": "Kiti svarbūs atnaujinimai",
+    "email": "El. paštas",
+    "whatsapp": "WhatsApp",
+    "platform-messenger": "Platformos žinutės"
+  },
+  "data-privacy": {
+    "two-factor": "Dviejų veiksnių autentifikavimas",
+    "preferred": "Pageidaujamas metodas",
+    "verification": "patvirtinimas"
+  },
+
+  "reset-password": {
+    "reset-password": "Atkurti slaptažodį",
+    "current-password": "Dabartinis slaptažodis",
+    "new-password": "Naujas slaptažodis",
+    "confirm-password": "Patvirtinkite slaptažodį",
+    "password-requirements": "Naudokite bent 8 simbolius – raidžių, skaičių ir simbolių derinį",
+    "change-password-btn": "Pakeisti slaptažodį"
+  },
+
+  "device-tracker": {
+    "access-history": "Prisijungimų istorija",
+    "current": "Dabartinė sesija",
+    "recent": "Paskutinė veikla"
+  },
+
+  "log-out": {
+    "title": "Atsijungti arba ištrinti paskyrą",
+    "logout": "Atsijungti",
+    "description": "Nenorite šiuo metu naudotis platforma? Galite:",
+    "delete-account": "Ištrinti paskyrą",
+    "deactivate": "Deaktyvuoti",
+    "deactivation-consequences-title": "Kas atsitiks po deaktyvavimo:",
+    "deactivation-consequences1": "Jūsų profilis bus paslėptas ir pacientai negalės registruotis konsultacijai.",
+    "deactivation-consequences2": "Visi paskyros nustatymai ir duomenys bus išsaugoti, ir jūs galėsite atnaujinti prieigą bet kada.",
+    "deactivation-consequences3": "Išsaugoti pacientų įrašai ir konsultacijų istorija liks sistemoje pagal mūsų privatumo politikos duomenų saugojimo laikotarpį.",
+    "restore-access-instructions": "Norėdami atkurti prieigą, tiesiog prisijunkite su savo vartotojo vardu ir slaptažodžiu."
+  },
+
+  "reset-password-pop": {
+    "verification": "Patvirtinimo kodas",
+    "confirm-email": "Patvirtinkite savo el. paštą",
+    "sent-code": " Išsiuntėme kodą adresu",
+    "send-again": "Siųsti dar kartą"
+  },
+  "profile-setting": {
+"personal-profile-settings": "Asmeninio profilio nustatymai",
+"appointment-management": "Konsultacijų valdymas",
+"privacy-security": "Duomenų privatumas ir saugumas"
+},
+
+"calendar-view": {
+"review-medical-history": " Peržiūrėti medicininę istoriją ",
+"no-appointments-found": "Konsultacijų nerasta"
+},
+
+"header": {
+"appointment-started": "Konsultacija ką tik prasidėjo",
+"urgent": "Skubu"
+},
+
+"appointment-list": {
+"coming-soon": "Netrukus pasirodys",
+"no-upcoming-appointments": "Nėra artėjančių vizitų",
+"upcoming": "Artėjantys",
+"reschedule": "Perplanuoti",
+"reschedule-to": "Perplanuota į",
+"decline": "Atmesti",
+
+"no-appointments-available": "Nėra galimų vizitų",
+"view-profile": "Peržiūrėti profilį",
+"recent": "Naujausi",
+"records": "ĮRAŠAI",
+"consultation-report": "KONSULTACIJOS ATASKAITA",
+"appointment-details": "Vizito informacija",
+"time": "Laikas",
+"virtual-office-rem": "Primename prisijungti prie virtualaus kabineto likus 5 minutėms iki konsultacijos.",
+"add-reminder": "Pridėti priminimą?",
+"set-the-time": "nustatyti laiką",
+"confirm-time": "Patvirtinti laiką",
+"reschedule-appointment-with": "Norite perplanuoti vizitą su",
+"for": "dėl",
+"change": "Keisti",
+"receive-notification": "Gausite pranešimą, kai pacientas patvirtins perplanavimą",
+"ok": "GERAI"
+},
+"clinic-dashboard": {
+"appointments": "Vizitai",
+"today": "Šiandien",
+"week": "Savaitė",
+"month": "Mėnuo",
+"booked": "Užsakyta",
+"declined": "Atmesta",
+"completed": "Įvykdyta",
+"active-now": "Aktyvūs dabar",
+"no-doctors-active": "Nėra aktyvių gydytojų",
+"activity": "Aktyvumas",
+"day": "Diena"
+},
+"clinic-reviews": {
+"reply": "Atsakyti",
+"replies": "Atsakymai",
+"review-title": "Atsiliepimo pavadinimas"
+},
+"user-dashboard": {
+"allergy": "Alergija",
+"reccomendations": "Rekomendacijos",
+"add": "+ Pridėti",
+"you": "jūs",
+"steps": "Žingsniai",
+"not-authenticated": "Neautentifikuota",
+"of-goal": "iš tikslo",
+"water": "Vanduo",
+"calories": "Kalorijos",
+"heart-rate": "Širdies ritmas"
+},
+"health-data-center": {
+"blood": "Kraujas",
+"height": "Ūgis",
+"weight": "Svoris",
+"pulse": "Pulsas",
+"steps-taken": "Nueiti žingsniai",
+"burned": "Sudeginta",
+"distance-covered": "Nueitas atstumas",
+"fitness-activity": "Fizinė veikla",
+"monthly": "Mėnesinis",
+"days": "Dienos",
+"hours-of-sleep": "Miego valandos",
+"health-reports": "Sveikatos ataskaitos",
+"weight-change": "Svorio pokytis",
+"general-health": "Bendra sveikata",
+"increase": "Padidėjimas",
+"water-taken": "Išgertas vanduo",
+"health": "Sveikata",
+"quest": "Užklausa"
+},
+"all-doctor-list": {
+"generalist": "Bendrosios praktikos gydytojas",
+"more-info": "Daugiau informacijos",
+"make-appointment": "Registruotis vizitui",
+"view-full-schedules": "Peržiūrėti visą grafiką",
+"no-doctors-found": "Gydytojų nerasta",
+"no-clinics-found": "Klinikų nerasta"
+},
+"fav-clinic": {
+"specialisties": "Specializacijos",
+"media-digests": "Medijos santraukos",
+"info": "Informacija",
+"prof-history": "Profesinė istorija",
+"licenses": "Licencijos",
+"full-schedule": "Visas tvarkaraštis",
+"years-practice": "metai praktikos",
+"general-medicine": "Bendroji medicina",
+"meet-our-doctors": "Susipažinkite su mūsų gydytojais"
+},
+"clinic-signup": {
+"clinic-registration": "Klinikos registracija",
+"clinic-name": "Klinikos pavadinimas",
+"registration-confirmation": "Registracijos patvirtinimas",
+"registration-notice": "Ačiū, kad užregistravote savo kliniką. Mūsų komanda peržiūrės jūsų informaciją ir praneš, kai profilis bus patvirtintas.",
+"return-homepage": "Grįžti į pagrindinį puslapį",
+"clinic-verified": "Jūsų klinikos profilis patvirtintas ir dabar aktyvus. Sveiki atvykę!",
+"continue": "Tęsti",
+"almost-there": "Jau beveik baigta!",
+"one-step-away": "Jums liko tik vienas žingsnis iki profilio užbaigimo. Užpildykite trūkstamą informaciją arba eikite į savo paskyrą ir pradėkite naudotis sistema.",
+"continue-profile": "Tęsti profilio pildymą",
+"go-to-dashboard": "Eiti į paskyrą",
+"clinic-address": "Klinikos adresas",
+"optional": "pasirinktinai",
+"contact-email": "Kontaktinis el. paštas",
+"back": "Atgal"
+}
+}

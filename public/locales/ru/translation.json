@@ -1,0 +1,472 @@
+{
+    "login": {
+"create_account": "Создать аккаунт",
+"login_button": "Войти",
+"email_label": "Электронная почта",
+"password_label": "Пароль",
+"forgot_password": "Забыли пароль?",
+"welcome_message": "Добро пожаловать в приложение!",
+"for_member": "Для пользователя",
+"for_specialist": "Для врача",
+"google_login": "Продолжить через Google",
+"Apple_login": "Продолжить через Apple",
+"For_clinic": "Для клиники",
+"or_lable": "ИЛИ",
+"login": "Вход"
+},
+"singup": {
+"first_name": "Имя",
+"Last_name": "Фамилия",
+"Confirm_Password": "Подтвердите пароль",
+"Password_text": "Используйте не менее 8 символов, включая буквы, цифры и специальные символы",
+"creating_account": "Создавая аккаунт, я соглашаюсь с",
+"terms_use": "Условиями использования",
+"and_lable": "и",
+"Privacy_policy": "Политикой конфиденциальности",
+"clinic_Register": "Вы медицинское учреждение? Зарегистрируйтесь как клиника",
+"here": "здесь",
+"Complete_Information": "Заполните информацию",
+"step": "Шаг 1",
+"step2": "Шаг 2",
+"place_residence": "Место проживания",
+"date_birth": "Дата рождения",
+"Gender_lable": "Пол",
+"place_Work": "Место работы",
+"confirm_lable": "Подтвердить",
+"skip_lable": "Пропустить",
+"back_lable": "Назад",
+"upload_photo": "Загрузите свою фотографию",
+"licenses_certifications": "Лицензии и сертификаты",
+"about_yourself": "Расскажите о себе",
+"languages_lable": "Языки",
+"working_time": "Время работы"
+},
+"ui_header": {
+"register_now": "Зарегистрироваться",
+"hn_lable": "Номер пациента (HN)",
+"home_lable": "Главная",
+"myApp_guest": "Гость MyApp",
+"find_doctor": "Найти врача",
+"clinics_lable": "Клиники",
+"about_us": "О нас",
+"contact_us": "Связаться с нами"
+},
+"common": {
+"save": "Сохранить",
+"add-media": "+ Добавить медиа",
+
+"save-changes": "Сохранить изменения",
+"cancel": "Отмена",
+"submit": "Отправить",
+"subscribe-now": "Подписаться сейчас",
+"add": "Добавить"
+},
+"edit-profile": {
+"Male": "Мужской",
+"Female": "Женский",
+"Other": "Другое",
+"email-address": "Адрес электронной почты",
+"phone-number": "Номер телефона",
+"bio": "Биография",
+"country": "Страна",
+"city": "Город",
+"languages": "Языки",
+"english": "Английский",
+"hindi": "Хинди",
+"place-of-work": "Место работы",
+"areas-of-expertise": "Области специализации",
+"professional-statistics": "Профессиональная статистика",
+"years": "Лет",
+"add-to-profile": "Добавить в профиль",
+"licenses-certifications": "Лицензии и сертификаты",
+"specializations": "Специализации",
+"education": "Образование",
+"media-digest": "Медиа-дайджест",
+"public-view": "Публичный просмотр",
+"allergies": "Аллергии",
+"medications-name": "Название лекарств",
+"attached-file": "Приложенный файл",
+"medical-history": "Медицинская история",
+"show-profile": "Показать в профиле",
+"select_country": "Выбрать страну",
+"select_city": "Выбрать город"
+},
+
+"add-education":{
+   "school": "Учебное заведение" ,
+   "degree": "Степень",
+"field-of-study": "Область обучения",
+"start-date": "Дата начала",
+"end-date": "Дата окончания (или ожидаемая)",
+"grade": "Оценка",
+"activites-societies": "Деятельность и участия в организациях",
+"description": "Описание",
+"add-education": "Добавить образование",
+"edit-education": "Редактировать образование",
+"skills": "Навыки",
+"skills-text": "Рекомендуем добавить 5 основных навыков, использованных в этом опыте.",
+"media": "Медиа",
+"media-text": "Добавьте медиафайлы, такие как изображения, документы, ссылки на сайты или презентации."
+},
+
+"clinic-edit-profile": {
+"organisation-name": "Официальное название организации",
+"license-number": "Номер лицензии",
+"clinic-type": "Тип клиники",
+"website": "Веб-сайт",
+"clinic-public-name": "Публичное название клиники",
+"email": "Электронная почта",
+"working-time": "Часы работы",
+"clinic-types": {
+"0": "Государственная",
+"1": "Частная",
+"2": "Специализированная"
+},
+"days": {
+"1": "Понедельник",
+"2": "Вторник",
+"3": "Среда",
+"4": "Четверг",
+"5": "Пятница",
+"6": "Суббота",
+"7": "Воскресенье"
+}
+},
+
+"drawer": {
+"dashboard": "Панель управления",
+"calendar": "Календарь",
+"my-verification": "Моя верификация",
+"consultations": "Консультации",
+"prescription": "Рецепты",
+"wallet": "Кошелек",
+"active": "Активно",
+"member-account": "Аккаунт пользователя",
+"edit-profile": "Редактировать профиль",
+"doctors": "Врачи",
+"chats": "Чаты",
+"reviews-rating": "Отзывы и рейтинг",
+"settings": "Настройки",
+"logout": "Выйти",
+"health-data-center": "Центр медицинских данных",
+"doctor": "Врач",
+"clinic": "Клиника"
+},
+
+"footer": {
+"links": "Ссылки",
+"add-head": "H2 Health Help",
+"add-text": "Зарегистрированный бренд My Health Today LTD, 7 Bell Yard, Лондон, Великобритания, WC2A 2JR",
+"add-text-cn": "Регистрационный номер компании: 16068507",
+"get-app": "Скачать приложение",
+"subs-newsletter": "Подписаться на нашу рассылку",
+"subs-check": "Да, я хочу подписаться на рассылку",
+"legal-notice": "Юридическое уведомление",
+"dmca": "DMCA",
+"terms-of-service": "Условия использования",
+"cookie-policy": "Политика использования файлов cookie",
+"footer-bottom-text": "My Health Today LTD. Все права защищены"
+},
+
+"dashboard": {
+"list": "Список",
+"treatment-plan": "План лечения",
+"requests": "Запросы",
+"archives": "Архив",
+"my-trust-score": "Мой уровень доверия",
+"reviews": "Отзывы",
+"last-reports": "Последние отчеты",
+"notes": "Заметки",
+"clients": "Клиенты",
+"no-notes": "Нет доступных заметок",
+"no-appointments": "Нет назначенных встреч",
+"no-reports": "Нет доступных отчетов",
+"created": "Создано"
+},
+"prescription": {
+"patient": "Пациент",
+"add-prescription": "ДОБАВИТЬ РЕЦЕПТ",
+"diagnosis": "Диагноз",
+"medicine": "Медикамент",
+"time-of-the-day": "Время приема",
+"times": "Приемов в день",
+"quantity": "Количество",
+"duration": "Длительность",
+"add-medicine": "+ Добавить медикамент",
+"additional-instruction": "Дополнительные инструкции",
+"name": "Название"
+},
+
+"wallet": {
+"transaction-history": "Запросы на вывод",
+"sender": "Отправитель",
+"type": "Тип",
+"date": "Дата",
+"total": "Сумма",
+"fee": "Комиссия",
+"current-balance": "Текущий баланс",
+"last-week": "на прошлой неделе",
+"get-payed": "Получить выплату",
+"payment-methods": "Способы оплаты",
+"add-payment-method": "Добавить способ оплаты",
+"payment-method-txt": "Безопасный перевод денег с использованием банковского счёта. Visa, MasterCard, Discover, American Express",
+"details": "Детали",
+"payment-from": "Платёж от:",
+"service": "Услуга:",
+"transaction-time": "Время транзакции:",
+"payment": "Платёж:",
+"clinic-earning": "Доход клиники",
+"total-incomes": "Общий доход",
+"status": "Статус",
+"invoice": "Счёт",
+"support": "Поддержка",
+"payment-card-content": "Безопасный перевод денег с использованием банковского счёта. Visa, MasterCard, Discover, American Express",
+"card-second": "cardSecond-row",
+"resume": "Резюме",
+"category": "Категория",
+"hour": "Час",
+"sub-total": "Промежуточный итог",
+"discount": "Скидка"
+},
+
+"membership": {
+"basic-membership-plan": "Базовый тарифный план",
+"premium-member": "Премиум-участник"
+},
+
+"referrals": {
+"your-referrals": "Ваши рекомендации",
+"referrals-txt": "Поделитесь своим уникальным реферальным кодом с друзьями, семьёй или коллегами и получите эксклюзивные преимущества вместе!",
+"how-it-works": "Как это работает?",
+"personal-code": "Личный код",
+"registry-link": "ссылка на регистрацию",
+"users-invited": "Приглашённые пользователи",
+"points-on-account": "Баллы на вашем счёте",
+"redeem-bonuses": "Использовать бонусы",
+"was-invited": "Вас пригласили?",
+"unique-ref-txt": "Введите уникальный реферальный код ваших друзей, семьи или коллег и получите эксклюзивные преимущества вместе",
+"invitation-code": "Ваш код приглашения",
+"bonus-point-txt": "Бонусные баллы будут зачислены на ваш счёт, как только ваш приглашённый пользователь завершит первую консультацию на платформе"
+},
+
+"appointment-manage": {
+"choose-appointment-types": "Выберите допустимые типы консультаций:",
+"planned-consultation": "Плановая консультация",
+"urgent-call": "Срочный звонок",
+"select-days": "Выберите дни",
+"add": "добавить",
+"day-options": {
+"Mon": "Понедельник",
+"Tue": "Вторник",
+"Wed": "Среда",
+"Thu": "Четверг",
+"Fri": "Пятница",
+"Sat": "Суббота",
+"Sun": "Воскресенье"
+},
+"no-available-slots": "Нет доступных временных интервалов",
+"confirm-payment": "Подтвердить оплату"
+},
+
+"session": {
+"session-lengths": "Длительность сеанса",
+"planned": "Запланировано",
+"buffer-time": "Буферное время",
+"consultation-fees": "Стоимость консультации"
+},
+
+"time-language": {
+"time-language": "Время и язык",
+"system-timezone": "Использовать часовой пояс системы",
+"language-system": "Использовать язык системы",
+"preferred-language": "Предпочтительный язык",
+"select-timezone": "Выберите часовой пояс",
+"select-option": "Выберите параметры"
+},
+
+"reschedule": {
+"reschedule-policy": "Изменения расписания",
+"possibility-of-reschedule": "Возможность изменения времени",
+"limit": "Ограничить количество изменений",
+"reschedule-period": "Допустимый период для изменения"
+},
+
+"cancellation": {
+"policy": "Политика отмены",
+"no-fee": "Период отмены без комиссии",
+"notice": "для отмен, сделанных менее чем за",
+"time-before": "до начала консультации"
+},
+"communication": {
+"comms": "Коммуникация и уведомления",
+"notif-pref": "Настройки уведомлений",
+"channel-pref": "Предпочитаемые каналы",
+"appointment-reminders": "Напоминания о консультациях",
+"patient-msgs": "Сообщения от пациентов",
+"important-updates": "Другие важные обновления",
+"email": "Электронная почта",
+"whatsapp": "WhatsApp",
+"platform-messenger": "Мессенджер платформы"
+},
+"data-privacy": {
+"two-factor": "Двухфакторная аутентификация",
+"preferred": "Предпочтительный способ",
+"verification": "проверка"
+},
+"reset-password": {
+"reset-password": "Сброс пароля",
+"current-password": "Текущий пароль",
+"new-password": "Новый пароль",
+"confirm-password": "Подтвердите новый пароль",
+"password-requirements": "Используйте не менее 8 символов, включая буквы, цифры и символы",
+"change-password-btn": "Изменить пароль"
+},
+"device-tracker": {
+"access-history": "История входов",
+"current": "Текущая сессия",
+"recent": "Недавняя активность"
+},
+"log-out": {
+"title": "Выход или удаление аккаунта",
+"logout": "Выйти",
+"description": "Не хотите пользоваться платформой сейчас? Вы можете:",
+"delete-account": "Удалить аккаунт",
+"deactivate": "Деактивировать",
+"deactivation-consequences-title": "Что произойдет после деактивации:",
+"deactivation-consequences1": "Ваш профиль будет скрыт, и пациенты не смогут записаться на консультацию.",
+"deactivation-consequences2": "Все настройки и данные аккаунта будут сохранены, и вы сможете восстановить доступ, если решите вернуться.",
+"deactivation-consequences3": "Ваши сохранённые записи пациентов и история консультаций останутся в системе на срок, указанный в нашей политике конфиденциальности.",
+"restore-access-instructions": "Чтобы восстановить доступ к своему аккаунту, просто войдите, используя имя пользователя и пароль."
+},
+
+"reset-password-pop": {
+"verification": "Код подтверждения",
+"confirm-email": "Подтвердите свой email",
+"sent-code": "Мы отправили код на",
+"send-again": "Отправить снова"
+},
+"profile-setting": {
+"personal-profile-settings": "Настройки личного профиля",
+"appointment-management": "Управление записями",
+"privacy-security": "Конфиденциальность и безопасность"
+},
+"calendar-view": {
+"review-medical-history": "Просмотреть медицинскую историю",
+"no-appointments-found": "Записи не найдены"
+},
+"header": {
+"appointment-started": "Консультация только что НАЧАЛАСЬ",
+"urgent": "Срочно"
+},
+"appointment-list": {
+"coming-soon": "Скоро будет",
+"no-upcoming-appointments": "Нет предстоящих записей",
+"upcoming": "Предстоящие",
+"reschedule": "Перенести",
+"reschedule-to": "Перенесено на",
+"decline": "Отклонить",
+"no-appointments-available": "Нет доступных записей",
+"view-profile": "Просмотреть профиль",
+"recent": "Недавние",
+"records": "ЗАПИСИ",
+"consultation-report": "ОТЧЁТ О КОНСУЛЬТАЦИИ",
+"appointment-details": "Детали записи",
+"time": "Время",
+"virtual-office-rem": "Не забудьте войти в виртуальный кабинет за 5 минут доконсультации.",
+"add-reminder": "Добавить напоминание?",
+"set-the-time": "установить время",
+"confirm-time": "Подтвердить время",
+"reschedule-appointment-with": "Вы хотите перенести запись с",
+"for": "на",
+"change": "Изменить",
+"receive-notification": "Вы получите уведомление, как только пациент подтвердит перенос",
+"ok": "ОК"
+},
+"clinic-dashboard": {
+"appointments": "Записи",
+"today": "Сегодня",
+"week": "Неделя",
+"month": "Месяц",
+"booked": "Запланировано",
+"declined": "Отклонено",
+"completed": "Завершено",
+"active-now": "Активно сейчас",
+"no-doctors-active": "Нет активных врачей",
+"activity": "Активность",
+"day": "День"
+},
+"clinic-reviews": {
+"reply": "Ответить",
+"replies": "Ответы",
+"review-title": "Заголовок отзыва"
+},
+"user-dashboard": {
+"allergy": "Аллергия",
+"reccomendations": "Рекомендации",
+"add": "+ Добавить",
+"you": "вы",
+"steps": "Шаги",
+"not-authenticated": "Не аутентифицирован",
+"of-goal": "от цели",
+"water": "Вода",
+"calories": "Калории",
+"heart-rate": "Пульс"
+},
+"health-data-center": {
+"blood": "Кровь",
+"height": "Рост",
+"weight": "Вес",
+"pulse": "Пульс",
+"steps-taken": "Пройдено шагов",
+"burned": "Сожжено калорий",
+"distance-covered": "Пройденное расстояние",
+"fitness-activity": "Физическая активность",
+"monthly": "Ежемесячно",
+"days": "Дни",
+"hours-of-sleep": "Часы сна",
+"health-reports": "Отчеты о здоровье",
+"weight-change": "Изменение веса",
+"general-health": "Общее состояние здоровья",
+"increase": "Увеличение",
+"water-taken": "Потребление воды",
+"health": "Здоровье",
+"quest": "Опрос"
+},
+"all-doctor-list": {
+"generalist": "Терапевт",
+"more-info": "Подробнее",
+"make-appointment": "Записаться на прием",
+"view-full-schedules": "Посмотреть полное расписание",
+"no-doctors-found": "Врачи не найдены",
+"no-clinics-found": "Клиники не найдены"
+},
+
+"fav-clinic": {
+"specialisties": "Специализации",
+"media-digests": "Публикации в СМИ",
+"info": "Информация",
+"prof-history": "Профессиональная история",
+"licenses": "Лицензии",
+"full-schedule": "Полное расписание",
+"years-practice": "лет практики",
+"general-medicine": "Общая медицина",
+"meet-our-doctors": "Познакомьтесь с нашими врачами"
+},
+"clinic-signup": {
+"clinic-registration": "Регистрация клиники",
+"clinic-name": "Название клиники",
+"registration-confirmation": "Подтверждение регистрации",
+"registration-notice": "Спасибо за регистрацию вашей клиники. Наша команда проверит информацию и сообщит вам, как только профиль будет подтвержден.",
+"return-homepage": "Вернуться на главную страницу",
+"clinic-verified": "Профиль вашей клиники подтвержден и теперь активен. Добро пожаловать!",
+"continue": "Продолжить",
+"almost-there": "Почти готово!",
+"one-step-away": "Вы в одном шаге от завершения профиля. Заполните оставшуюся информацию или перейдите в панель, чтобы начать использовать аккаунт.",
+"continue-profile": "Продолжить заполнение профиля",
+"go-to-dashboard": "Перейти в панель управления",
+"clinic-address": "Адрес клиники",
+"optional": "необязательно",
+"contact-email": "Контактный E-mail",
+"back": "Назад"
+}
+}

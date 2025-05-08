@@ -1,0 +1,476 @@
+{
+  "login": {
+    "create_account": "Създаване на профил",
+    "login_button": "Вход",
+    "email_label": "Имейл",
+    "password_label": "Парола",
+    "forgot_password": "Забравена парола?",
+    "welcome_message": "Добре дошли в приложението!",
+    "for_member": "За потребители",
+    "for_specialist": "За специалисти",
+    "google_login": "Продължи с Google",
+    "Apple_login": "Продължи с Apple",
+    "For_clinic": "За клиники",
+    "or_lable": "ИЛИ",
+    "login": "Вход"
+  },
+  "singup": {
+    "first_name": "Име",
+    "Last_name": "Фамилия",
+    "Confirm_Password": "Потвърди паролата",
+    "Password_text": "Използвайте поне 8 символа, комбинация от букви, цифри и знаци",
+    "creating_account": "Създавайки профил, приемам",
+    "terms_use": "Условията за ползване",
+    "and_lable": "и",
+    "Privacy_policy": "Политиката за поверителност",
+    "clinic_Register": "Вие сте медицинско заведение? Регистрирайте се като клиника",
+    "here": "тук",
+    "Complete_Information": "Попълнете информацията си",
+    "step": "Стъпка 1",
+    "step2": "Стъпка 2",
+    "place_residence": "Местоживеене",
+    "date_birth": "Дата на раждане",
+    "Gender_lable": "Пол",
+    "place_Work": "Място на работа",
+    "confirm_lable": "Потвърди",
+    "skip_lable": "Пропусни",
+    "back_lable": "Назад",
+    "upload_photo": "Качете своя снимка",
+    "licenses_certifications": "Лицензи и сертификати",
+    "about_yourself": "Разкажете повече за себе си",
+    "languages_lable": "Езици",
+    "working_time": "Работно време"
+  },
+  "ui_header": {
+    "register_now": "Регистрирай се сега",
+    "hn_lable": "Hn",
+    "home_lable": "Начало",
+    "myApp_guest": "Гост в MyApp",
+    "find_doctor": "Намери лекар",
+    "clinics_lable": "Клиники",
+    "about_us": "За нас",
+    "contact_us": "Свържете се с нас"
+  },
+  "common": {
+    "save": "Запази",
+    "add-media": "+ Добави медия",
+    "save-changes": "Запази промените",
+    "cancel": "Отказ",
+    "submit": "Изпрати",
+    "subscribe-now": "Абонирай се сега",
+    "add": "Добави"
+  },
+  "edit-profile": {
+    "Male": "Мъж",
+    "Female": "Жена",
+    "Other": "Друго",
+    "email-address": "Имейл адрес",
+    "phone-number": "Телефонен номер",
+    "bio": "Биография",
+    "country": "Държава",
+    "city": "Град",
+    "languages": "Езици",
+    "english": "Английски",
+    "hindi": "Хинди",
+    "place-of-work": "Място на работа",
+    "areas-of-expertise": "Области на експертиза",
+    "professional-statistics": "Професионална статистика",
+    "years": "Години",
+    "add-to-profile": "Добави към профила",
+    "licenses-certifications": "Лицензи и сертификати",
+    "specializations": "Специализации",
+    "education": "Образование",
+    "media-digest": "Медиен дайджест",
+    "public-view": "Публичен изглед",
+    "allergies": "Алергии",
+    "medications-name": "Имена на лекарства",
+    "attached-file": "Прикачен файл",
+    "medical-history": "Медицинска история",
+    "show-profile": "Показвай в профила",
+    "select_country": "Избери държава",
+    "select_city": "Избери град"
+  },
+  "add-education": {
+    "school": "Учебно заведение",
+    "degree": "Степен",
+    "field-of-study": "Област на обучение",
+    "start-date": "Начална дата",
+    "end-date": "Крайна дата (или очаквана)",
+    "grade": "Оценка",
+    "activites-societies": "Дейности и клубове",
+    "description": "Описание",
+    "add-education": "Добави образование",
+    "edit-education": "Редактирай образование",
+    "skills": "Умения",
+    "skills-text": "Препоръчваме да добавите вашите 5 най-силни умения, използвани в този опит.",
+    "media": "Медии",
+    "media-text": "Добавете медии като изображения, документи, сайтове или презентации."
+  },
+  "clinic-edit-profile": {
+    "organisation-name": "Официално наименование на организацията",
+    "license-number": "Номер на лиценз",
+    "clinic-type": "Тип клиника",
+    "website": "Уебсайт",
+    "clinic-public-name": "Обществено име на клиниката",
+    "email": "Електронна поща",
+    "working-time": "Работно време",
+    "clinic-types": {
+      "0": "Публична",
+      "1": "Частна",
+      "2": "Специализирана"
+    },
+    "days": {
+      "1": "Понеделник",
+      "2": "Вторник",
+      "3": "Сряда",
+      "4": "Четвъртък",
+      "5": "Петък",
+      "6": "Събота",
+      "7": "Неделя"
+    }
+  },
+  "drawer": {
+    "dashboard": "Табло",
+    "calendar": "Календар",
+    "my-verification": "Моята верификация",
+    "consultations": "Консултации",
+    "prescription": "Рецепти",
+    "wallet": "Портфейл",
+    "active": "Активен",
+    "member-account": "Акаунт на пациент",
+    "edit-profile": "Редактирай профил",
+    "doctors": "Лекари",
+    "chats": "Чатове",
+    "reviews-rating": "Отзиви и рейтинг",
+    "settings": "Настройки",
+    "logout": "Изход",
+    "health-data-center": "Център за здравни данни",
+    "doctor": "Лекар",
+    "clinic": "Клиника"
+  },
+
+  "footer": {
+    "links": "Връзки",
+    "add-head": "H2 Health Help",
+    "add-text": "Регистрирана марка на My Health Today LTD 7 Bell Yard, Лондон, Англия, WC2A 2JR",
+    "add-text-cn": "Регистрационен номер на компанията: 16068507",
+    "get-app": "Изтегли приложението",
+    "subs-newsletter": "Абонирай се за нашия бюлетин",
+    "subs-check": "Да, искам да получавам бюлетина ви",
+    "legal-notice": "Правно известие",
+    "dmca": "DMCA",
+    "terms-of-service": "Условия за ползване",
+    "cookie-policy": "Политика за бисквитки",
+    "footer-bottom-text": "My Health Today LTD. Всички права запазени."
+  },
+  "dashboard": {
+    "list": "Списък",
+    "treatment-plan": "План за лечение",
+    "requests": "Заявки",
+    "archives": "Архиви",
+    "my-trust-score": "Моят рейтинг на доверие",
+    "reviews": "Отзиви",
+    "last-reports": "Последни доклади",
+    "notes": "Бележки",
+    "clients": "Пациенти",
+    "no-notes": "Няма налични бележки",
+    "no-appointments": "Няма насрочени срещи",
+    "no-reports": "Няма налични доклади",
+    "created": "Създадено"
+  },
+  "prescription": {
+    "patient": "Пациент",
+    "add-prescription": "ДОБАВИ РЕЦЕПТА",
+    "diagnosis": "Диагноза",
+    "medicine": "Медикамент",
+    "time-of-the-day": "Час на деня",
+    "times": "Брой пъти на ден",
+    "quantity": "Количество",
+    "duration": "Продължителност",
+    "add-medicine": "+ Добави лекарство",
+    "additional-instruction": "Допълнителни инструкции",
+    "name": "Име"
+  },
+
+  "wallet": {
+    "transaction-history": "Заявки за теглене",
+    "sender": "Изпращач",
+    "type": "Тип",
+    "date": "Дата",
+    "total": "Общо",
+    "fee": "Такса",
+    "current-balance": "Текущ баланс",
+    "last-week": "миналата седмица",
+    "get-payed": "Получаване на плащане",
+    "payment-methods": "Методи за плащане",
+    "add-payment-method": "Добави метод за плащане",
+    "payment-method-txt": "Сигурен паричен превод чрез вашата банкова сметка. Visa, MasterCard, Discover, American Express",
+    "details": "Детайли",
+    "payment-from": "Плащане от:",
+    "service": "Услуга:",
+    "transaction-time": "Време на транзакцията:",
+    "payment": "Плащане:",
+    "clinic-earning": "Приходи на клиниката",
+    "total-incomes": "Общо приходи",
+    "status": "Статус",
+    "invoice": "Фактура",
+    "support": "Поддръжка",
+    "payment-card-content": "Сигурен паричен превод чрез вашата банкова сметка. Visa, MasterCard, Discover, American Express",
+    "card-second": "втори ред на картата",
+    "resume": "Обобщение",
+    "category": "Категория",
+    "hour": "Час",
+    "sub-total": "Междинна сума",
+    "discount": "Отстъпка"
+  },
+
+  "membership": {
+    "basic-membership-plan": "Основен членски план",
+    "premium-member": "Премиум член"
+  },
+  "referrals": {
+    "your-referrals": "Вашите препоръки",
+    "referrals-txt": "Споделете вашия уникален код за препоръка с приятели, семейство или колеги и се насладете на специални предимства заедно!",
+    "how-it-works": "Как работи?",
+    "personal-code": "Личен код",
+    "registry-link": "регистрационен линк",
+    "users-invited": "Поканени потребители",
+    "points-on-account": "Точки във вашия акаунт сега",
+    "redeem-bonuses": "Използвай бонусите",
+    "was-invited": "Получихте покана?",
+    "unique-ref-txt": "Въведете уникалния код за препоръка от приятел, член на семейството или колега и се насладете на специални предимства заедно",
+    "invitation-code": "Вашият код за покана",
+    "bonus-point-txt": "Бонус точките ще бъдат добавени към вашия акаунт веднага след като поканеният от вас потребител завърши първата си консултация в платформата"
+  },
+  "appointment-manage": {
+    "choose-appointment-types": "Изберете приемливи видове консултации:",
+    "planned-consultation": "Планирана консултация",
+    "urgent-call": "Спешно обаждане",
+    "select-days": "Изберете дни",
+    "add": "добави",
+    "day-options": {
+      "Mon": "Понеделник",
+      "Tue": "Вторник",
+      "Wed": "Сряда",
+      "Thu": "Четвъртък",
+      "Fri": "Петък",
+      "Sat": "Събота",
+      "Sun": "Неделя"
+    },
+    "no-available-slots": "Няма налични слотове",
+    "confirm-payment": "Потвърдете плащането"
+  },
+  "session": {
+    "session-lengths": "Продължителност на сесията",
+    "planned": "Планирана",
+    "buffer-time": "Буферен период",
+    "consultation-fees": "Такси за консултация"
+  },
+  "time-language": {
+    "time-language": "Време и език",
+    "system-timezone": "Използвай системната часова зона",
+    "language-system": "Използвай системния език",
+    "preferred-language": "Предпочитан език",
+    "select-timezone": "Избери часова зона",
+    "select-option": "Избери опция"
+  },
+  "reschedule": {
+    "reschedule-policy": "Политика за пренасрочване",
+    "possibility-of-reschedule": "Възможност за пренасрочване",
+    "limit": "Ограничи броя на пренасрочванията",
+    "reschedule-period": "Период за пренасрочване"
+  },
+  "cancellation": {
+    "policy": "Политика за анулиране",
+    "no-fee": "Период за безплатно анулиране",
+    "notice": "за анулирания, направени по-малко от",
+    "time-before": "преди консултацията"
+  },
+
+  "communication": {
+    "comms": "Комуникация и известия",
+    "notif-pref": "Предпочитания за известия",
+    "channel-pref": "Предпочитани канали",
+    "appointment-reminders": "Напомняния за консултации",
+    "patient-msgs": "Съобщения от пациенти",
+    "important-updates": "Други важни актуализации",
+    "email": "Имейл",
+    "whatsapp": "WhatsApp",
+    "platform-messenger": "Съобщения в платформата"
+  },
+
+  "data-privacy": {
+    "two-factor": "Двуфакторна автентикация",
+    "preferred": "Предпочитан метод",
+    "verification": "потвърждение"
+  },
+
+  "reset-password": {
+    "reset-password": "Нулирай паролата",
+    "current-password": "Текуща парола",
+    "new-password": "Нова парола",
+    "confirm-password": "Потвърди новата парола",
+    "password-requirements": "Използвайте поне 8 знака, включващи букви, цифри и символи",
+    "change-password-btn": "Промени паролата"
+  },
+
+  "device-tracker": {
+    "access-history": "История на достъпа",
+    "current": "Текуща сесия",
+    "recent": "Скорошна активност"
+  },
+
+  "log-out": {
+    "title": "Изход или изтриване на акаунта",
+    "logout": "Изход",
+    "description": "Не желаете да използвате платформата в момента? Можете:",
+    "delete-account": "Изтриване на акаунта",
+    "deactivate": "Деактивиране",
+    "deactivation-consequences-title": "Какво се случва след деактивация:",
+    "deactivation-consequences1": "Вашият профил ще бъде скрит и пациентите няма да могат да резервират консултация.",
+    "deactivation-consequences2": "Всички настройки и данни ще бъдат запазени и ще можете да възстановите достъпа, ако решите да се върнете.",
+    "deactivation-consequences3": "Записите за пациенти и историята на консултациите ще останат в системата за срока, указан в политиката ни за поверителност.",
+    "restore-access-instructions": "За да възстановите достъпа, просто влезте с потребителското си име и парола."
+  },
+
+  "reset-password-pop": {
+    "verification": "Код за потвърждение",
+    "confirm-email": "Потвърдете вашия имейл",
+    "sent-code": "Изпратихме код на",
+    "send-again": "Изпрати отново"
+  },
+
+  "profile-setting": {
+    "personal-profile-settings": "Настройки на личния профил",
+    "appointment-management": "Управление на консултациите",
+    "privacy-security": "Поверителност и сигурност"
+  },
+
+  "calendar-view": {
+    "review-medical-history": "Прегледай медицинската история",
+    "no-appointments-found": "Няма намерени консултации"
+  },
+
+  "header": {
+    "appointment-started": "Консултацията току-що започна",
+    "urgent": "Спешно"
+  },
+
+  "appointment-list": {
+    "coming-soon": "Очаквайте скоро",
+    "no-upcoming-appointments": "Няма предстоящи прегледи",
+    "upcoming": "Предстоящи",
+    "reschedule": "Пренасрочи",
+    "reschedule-to": "Пренасрочено за",
+    "decline": "Откажи",
+    "no-appointments-available": "Няма налични прегледи",
+    "view-profile": "Виж профила",
+    "recent": "Скорошни",
+    "records": "ЗАПИСИ",
+    "consultation-report": "ОТЧЕТ ОТ КОНСУЛТАЦИЯ",
+    "appointment-details": "Детайли за прегледа",
+    "time": "Час",
+    "virtual-office-rem": "Не забравяйте да влезете във виртуалния кабинет 5 минути преди прегледа.",
+    "add-reminder": "Да добавим напомняне?",
+    "set-the-time": "задай час",
+    "confirm-time": "Потвърди часа",
+    "reschedule-appointment-with": "Искате да пренасрочите преглед с",
+    "for": "за",
+    "change": "Промяна",
+    "receive-notification": " Ще получите известие веднага щом пациентът потвърди пренасрочването",
+    "ok": "ОК"
+  },
+
+  "clinic-dashboard": {
+    "appointments": "Прегледи",
+    "today": "Днес",
+    "week": "Седмица",
+    "month": "Месец",
+    "booked": "Запазени",
+    "declined": "Отказани",
+    "completed": "Завършени",
+    "active-now": "Активни в момента",
+    "no-doctors-active": "Няма активни лекари",
+    "activity": "Активност",
+    "day": "Ден"
+  },
+
+  "clinic-reviews": {
+    "reply": "Отговор",
+    "replies": "Отговори",
+    "review-title": "Заглавие на отзива"
+  },
+
+  "user-dashboard": {
+    "allergy": "Алергия",
+    "reccomendations": "Препоръки",
+    "add": "+ Добави",
+    "you": "вие",
+    "steps": "Стъпки",
+    "not-authenticated": "Невалидиран",
+    "of-goal": "от целта",
+    "water": "Вода",
+    "calories": "Калории",
+    "heart-rate": "Пулс"
+  },
+
+  "health-data-center": {
+    "blood": "Кръв",
+    "height": "Височина",
+    "weight": "Тегло",
+    "pulse": "Пулс",
+    "steps-taken": "Изминати стъпки",
+    "burned": "Изгорени калории",
+    "distance-covered": "Изминато разстояние",
+    "fitness-activity": "Физическа активност",
+    "monthly": "Месечно",
+    "days": "Дни",
+    "hours-of-sleep": "Часове сън",
+    "health-reports": "Здравни доклади",
+    "weight-change": "Промяна в теглото",
+    "general-health": "Общо здравословно състояние",
+    "increase": "Увеличение",
+    "water-taken": "Приетата вода",
+    "health": "Здраве",
+    "quest": "Задача"
+  },
+
+  "all-doctor-list": {
+    "generalist": "Общопрактикуващ лекар",
+    "more-info": "Повече информация",
+    "make-appointment": "Запази час",
+    "view-full-schedules": "Прегледай пълния график",
+    "no-doctors-found": "Няма открити лекари",
+    "no-clinics-found": "Няма открити клиники"
+  },
+
+  "fav-clinic": {
+    "specialisties": "Специалности",
+    "media-digests": "Медийни публикации",
+    "info": "Информация",
+    "prof-history": "Професионален опит",
+    "licenses": "Лицензи",
+    "full-schedule": "Пълен график",
+    "years-practice": "години практика",
+    "general-medicine": "Обща медицина",
+    "meet-our-doctors": "Запознайте се с нашите лекари"
+  },
+
+  "clinic-signup": {
+"clinic-registration": "Регистрация на клиника",
+"clinic-name": "Име на клиниката",
+"registration-confirmation": "Потвърждение на регистрацията",
+"registration-notice": "Благодарим ви за регистрацията на вашата клиника. Нашият екип ще прегледа информацията и ще ви уведоми, след като профилът бъде потвърден.",
+"return-homepage": "Върни се на началната страница",
+"clinic-verified": "Профилът на вашата клиника беше потвърден и вече е активен в системата!",
+"continue": "Продължи",
+"almost-there": "Почти готово!",
+"one-step-away": "Остава само една стъпка, за да завършите профила си. Попълнете останалата информация или отидете в таблото си, за да започнете.",
+"continue-profile": "Продължи попълването на профила",
+"go-to-dashboard": "Към таблото",
+"clinic-address": "Адрес на клиниката",
+"optional": "по избор",
+"contact-email": "Имейл за контакт",
+"back": "Назад"
+}
+}
