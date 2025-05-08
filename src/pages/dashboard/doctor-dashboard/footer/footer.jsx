@@ -1,10 +1,8 @@
-import React from 'react'
-import '../../../../components/ui/footer/footer.css';
-import { useTranslation
-
- } from 'react-i18next';
+import React from "react";
+import "../../../../components/ui/footer/footer.css";
+import { useTranslation } from "react-i18next";
 export const Footer = () => {
-   const{t} = useTranslation("footer");
+  const { t } = useTranslation("footer");
   return (
     <footer>
       <div class="chatting">
@@ -21,22 +19,38 @@ export const Footer = () => {
                 <h4> {t("footer.links")}</h4>
                 <ul>
                   <li>
-                    <a href="#"> {t("ui_header.home_lable")}</a>
+                    <a href="https://www.my-health.today/" target="_blank"> {t("ui_header.home_lable")}</a>
                   </li>
                   <li>
                     <a href="#">{t("ui_header.myApp_guest")}</a>
                   </li>
                   <li>
-                    <a href="#">{t("ui_header.find_doctor")}</a>
+                    <a href="allDoctorlist" target="_blank">
+                      {t("ui_header.find_doctor")}
+                    </a>
                   </li>
                   <li>
-                    <a href="#">{t("ui_header.clinics_lable")}</a>
+                    <a href="allcliniclist" target="_blank">
+                      {t("ui_header.clinics_lable")}
+                    </a>
                   </li>
                   <li>
-                    <a href="#">{t("ui_header.about_us")}</a>
+                    <a
+                      href="https://www.my-health.today/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t("ui_header.about_us")}
+                    </a>
                   </li>
                   <li>
-                    <a href="#">{t("ui_header.contact_us")}</a>
+                    <a
+                      href="https://www.my-health.today/contact"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t("ui_header.contact_us")}
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -114,4 +128,4 @@ export const Footer = () => {
       </div>
     </footer>
   );
-}
+};

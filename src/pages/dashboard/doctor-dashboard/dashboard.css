@@ -896,6 +896,12 @@ main{
 .reschedule{
     border: 2px solid red !important;
 }
+.reschedule_pendding{
+    border: 2px solid #E8AA00 !important;
+}
+.reschedule_done{
+    border: 2px solid green !important;
+}
 
 .red-text{
     color: red !important;
@@ -3366,6 +3372,22 @@ main{
     height: 350px;
     overflow-y: auto;
 }
+.presciption-view{
+    height: 900px !important; 
+}
+.presciption-view .mediaBox{
+    width: 23% !important;
+}
+.presciption-view h4{
+font-size: 14px !important;
+font-weight: 600 !important;
+margin-bottom: 10px !important;
+}
+.presciption-view h6{
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    margin-bottom: 0px !important;
+    }
 
 .mediadigestDetails .mediaBox {
     border: 1px solid #c6cbcc !important;

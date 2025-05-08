@@ -21,6 +21,7 @@ import ClinicCalendarView from "../pages/dashboard/clinic-dashboard/clinicCalend
 import AllDoctorList from "../pages/dashboard/user-dashboard/bookAppointmenet/allDoctorList"
 import AllFavDoctor from "../pages/dashboard/user-dashboard/bookAppointmenet/allFavDoctor"
 import FavClinicPublicView from "../pages/dashboard/user-dashboard/favClinicPublicView"
+import PrescriptionView from "../pages/patient/Prescription/prescriptionView"
 import ClinicProfileSetting from "../pages/dashboard/clinic-dashboard/clinicProfileSetting/profileSetting"
 import UserDashboard from "../pages/dashboard/user-dashboard/userDashboard";
 import AllClinic from "../pages/dashboard/user-dashboard/allClinic";
@@ -237,6 +238,14 @@ const AppRoutes = () => {
       layout: true,
       allowedRoles: ["Patient"],
     },
+    {
+      path: "/patient/prescription-view",
+      element: <PrescriptionView />,
+      exact: true,
+      layout: true,
+      allowedRoles: ["Patient"],
+    },
+
 
     {
         path: "/patient/appointment-list",
