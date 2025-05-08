@@ -105,7 +105,7 @@ function CalendarView() {
   };
 
   return (
-    <div className="rightContent">
+    <div className="rightContent rightsidefull">
       <div className="drCalender">
         <div className="tabPrt">
           <Link to="/calendar-view" class="bg-green">
