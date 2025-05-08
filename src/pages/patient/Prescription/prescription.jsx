@@ -65,7 +65,7 @@ const PatientPrescription = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div class="rightContent">
+        <div class="rightContent rightsidefull">
           <div class="profileMobile">
             <div class="nameMobile">{`Hello,  ${isProfiledata?.first_name} ${isProfiledata.last_name}!`}</div>
             <div class="profileImgMobile">
@@ -82,7 +82,7 @@ const PatientPrescription = () => {
               </div>
               <div class="preinscriptionsOuter">
                 <div class="treatmentData">
-                  {prescriptions && prescriptions?.length > 0 ? 
+                  {prescriptions && prescriptions?.length > 0 ? (
                     prescriptions?.map((prescription) => (
                       <div
                         className="patientDetail"
@@ -122,12 +122,14 @@ const PatientPrescription = () => {
                           </div>
                         </div>
                       </div>
-                    )) :  <div className="treatmentContainer">
-                    <div className="no-appointments">
-                      No Prescription found
+                    ))
+                  ) : (
+                    <div className="treatmentContainer">
+                      <div className="no-appointments">
+                        No Prescription found
+                      </div>
                     </div>
-                  </div>
-                  }
+                  )}
                 </div>
               </div>
             </div>

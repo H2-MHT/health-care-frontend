@@ -60,7 +60,7 @@ function MyVerification() {
 
   return (
     <>
-      <div className="rightContent">
+      <div className="rightContent rightsidefull">
         <div className="row h-100">
           <div class="col-md-12">
             <div class="padding-inner border-radius-20 bg-white h-100">

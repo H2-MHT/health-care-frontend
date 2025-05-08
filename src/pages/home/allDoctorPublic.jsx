@@ -73,7 +73,7 @@ const AllDoctorPublic = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="rightContent p-5 backgroundImage">
+        <div className="rightContent rightsidefull p-5 backgroundImage">
           <div className="profileMobile">
             <div className="nameMobile">Hello, Dr. Ava Williams!</div>
             <div className="profileImgMobile">
@@ -184,7 +184,7 @@ const AllDoctorPublic = () => {
                             >
                               {t("all-doctor-list.more-info")}
                             </Link>
-{console.log(item)}
+                            {console.log(item)}
                             <Link
                               to={"/login"}
                               className="blue_btn text-center px-2"
