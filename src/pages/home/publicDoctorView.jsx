@@ -348,7 +348,9 @@ const PublicDoctorView = () => {
                         class="img-fluid"
                       />
                       <div class="scoreData">
-                        {totalReviewSum / reviewData?.length}
+                        {totalReviewSum > 0
+                          ? totalReviewSum / reviewData?.length
+                          : totalReviewSum}
                       </div>
                     </div>
                   </div>

@@ -24,6 +24,7 @@ export const Drawer = () => {
   const sidebarColRef = useRef(null);
   const sidebarmenuRef = useRef(null);
   const [selectedDrawerItem, setSelectedDrawerItem] = useState(0);
+  const [insideDrawer, setInsideDrawer] = useState(false)
     const auth = useSelector((state) => state.auth);
   const userProfile = useSelector((state) => state.userProfile);
   useEffect(() => {
@@ -133,16 +134,14 @@ export const Drawer = () => {
 //     persistor.purge();
 //     navigate("/login");
 //  }
+
   return (
     <>
-      <aside>
-        {/* <a ref={sidebarColRef} className="sidebarcol" href="#">
-        <img
-          src="/images/doctor-dashboard/arrowLeft.png"
-          className="opening"
-          alt="Toggle Sidebar"
-        />
-      </a> */}
+      <aside
+        onMouseEnter={() => setInsideDrawer(true)}
+        onMouseLeave={() => setInsideDrawer(false)}
+        className={` ${insideDrawer ? "drawer" : "sidebarClose"}`}
+      >
         <nav>
           <ul>
             <li>
@@ -250,8 +249,14 @@ export const Drawer = () => {
             <li>
               <Link
                 to="/doctor/consultation-recordslist"
-                className={selectedDrawerItem === "/doctor/consultation-recordslist" ? "active" : ""}
-                onClick={() => setSelectedDrawerItem("/doctor/consultation-recordslist")}
+                className={
+                  selectedDrawerItem === "/doctor/consultation-recordslist"
+                    ? "active"
+                    : ""
+                }
+                onClick={() =>
+                  setSelectedDrawerItem("/doctor/consultation-recordslist")
+                }
               >
                 <svg
                   width="20"
@@ -501,7 +506,7 @@ export const Drawer = () => {
                   <div class="row g-4">
                     <div class="col-md-12">
                       <div class="form-group text-center">
-                       <h3> Are you sure you want to become a patient? </h3>
+                        <h3> Are you sure you want to become a patient? </h3>
                       </div>
                     </div>
                     <div class="gap-2 justify-content-center d-flex w-auto mx-auto">
@@ -521,7 +526,7 @@ export const Drawer = () => {
                       </button>
                     </div>
                   </div>
-                </form>  
+                </form>
               </div>
             </div>
           </section>

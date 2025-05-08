@@ -2,9 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import AgoraRTC from "agora-rtc-sdk-ng";
 import "../doctor-dashboard/Calls/IncomingCall.css"
 import { fetchData, postData } from "../../../hooks/services/services";
+import { MdMic, MdMicOff, MdVideocam, MdVideocamOff, MdCallEnd, MdOutlineMessage, MdIosShare } from "react-icons/md";
 import { showToast } from "../../../utils/toast";
 import { useNavigate } from "react-router-dom";
 import { WEB_SOCKET_URL } from "../../../hooks/services/apiUrl";
+import { Button } from "react-bootstrap";
+import ChatModal from "./Chat";
 
 const VideoCall2 = ({ selectedChat, showModal, setShowModal, senderUserId, receiverUserId }) => {
   const [joined, setJoined] = useState(false);
@@ -16,8 +19,12 @@ const VideoCall2 = ({ selectedChat, showModal, setShowModal, senderUserId, recei
   const [incomingCall, setIncomingCall] = useState(null);
   const [currentUserName, setCurrentUserName] = useState([]);
   const [remoteUserName, setRemoteUserName] = useState([]);
+  const [chatMessages, setChatMessages] = useState([]);
   const [agoraReceiverUserUid, setAgoraReceiverUserUid] = useState();
   const [isCallConnected, setIsCallConnected] = useState(false);
+  const [sendMessage, setSendMessage] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
   const navigate = useNavigate();
   const [transcript, setTranscript] = useState('');
   const ws = useRef(null);
@@ -285,6 +292,13 @@ const VideoCall2 = ({ selectedChat, showModal, setShowModal, senderUserId, recei
     }
   };
 
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+    if (!isModalVisible) {
+      setHasUnreadMessages(false);
+    }
+  };
+
   useEffect(() => {
 
     ws.current = new WebSocket(`${WEB_SOCKET_URL}/ws/transcribe/`);
@@ -331,6 +345,30 @@ const VideoCall2 = ({ selectedChat, showModal, setShowModal, senderUserId, recei
     };
   }, []);
 
+  const sendMessageFunc = (text) => {
+    const newMessage = {
+      message: text,
+      type: "sent",
+      timestamp: Date.now(),
+      // sender: name,
+    };
+
+    setChatMessages((prevMessages) => [...prevMessages, newMessage]);
+
+    // socket.emit("sendMessage", {
+    //   targetId: partnerUserId,
+    //   message: text,
+    //   senderName: name,
+    // });
+  };
+
+  const onSearch = (message) => {
+    if (message) {
+      sendMessageFunc(message);
+      setSendMessage("");
+    }
+  };
+
   return (
     <>
       <div className="videotrans">
@@ -351,20 +389,37 @@ const VideoCall2 = ({ selectedChat, showModal, setShowModal, senderUserId, recei
           </div>
           <div className="controls">
             <>
-              <button className="videobutton" onClick={toggleAudio}>
-                {/* {audioEnabled ? "Mute" : "Unmute"} */}
-                {audioEnabled ? <img src="/images/mic.webp" /> : <img src="/images/unmute.png" />}
-              </button>
-              <button className="videobutton" onClick={rejectCall}>
-                <img src="/images/callCut.webp" />
-              </button>
-              <button className="videobutton" onClick={toggleVideo}>
-                {videoEnabled ? <img src="/images/videoCall.webp" /> : <img src="/images/videoHide.png" />}
-
-              </button>
+               <Button className="video-control-btn" onClick={toggleModal}>
+                  <MdOutlineMessage size={22} />
+                  {hasUnreadMessages && <div className="notification-dot" />}
+                </Button>
+              
+              <Button onClick={toggleAudio} className="video-control-btn">
+                {audioEnabled ? <MdMic size={25} /> : <MdMicOff size={25} />}
+              </Button>
+              <Button className="decline-call-btn" onClick={rejectCall}>
+                <MdCallEnd size={22} />
+              </Button>
+              <Button onClick={toggleVideo} className="video-control-btn">
+              {videoEnabled ? (
+                <MdVideocam size={25} />
+              ) : (
+                <MdVideocamOff size={25} />
+              )}
+          </Button>
             </>
           </div>
+
         </div>
+        <ChatModal
+            isVisible={isModalVisible}
+            toggleModal={toggleModal}
+            chatMessages={chatMessages}
+            sendMessage={sendMessage}
+            setSendMessage={setSendMessage}
+            onSearch={onSearch}
+            // receivedMessage={receivedMessage}
+          />
       </div>
     </>
   );
