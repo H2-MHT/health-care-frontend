@@ -30,39 +30,35 @@ const PrescriptionView = () => {
       setLoading(false);
     }
   };
+  console.log(prescriptions,">>>.prescriptions")
   return (
     <>
+   <div className="rightContent" >
+    <div className="row">
       <div class="col-md-12 mt-3">
-        <div class="padding-inner border-radius-20 bg-white">
-          <div class="d-flex align-items-center justify-content-between mb-4"></div>
+        <div class="padding-inner border-radius-20 bg-white h-100">
           <div
             className={`${
-              prescriptions?.length != 0 ? "mediadigestDetails" : ""
+              prescriptions?.length != 0 ? "mediadigestDetails presciption-view" : ""
             }`}
           >
             {prescriptions?.length > 0 ? (
               prescriptions
-                ?.slice(0, showMediaDigest ? prescriptions.length : 3)
+                ?.slice(0, showMediaDigest ? prescriptions.length : 4)
                 .map((item) => (
                   <div className="mediaBox" key={item.id}>
+                      <h4 className=" d-flex">Doctor Name: {item?.doctor?.name}</h4>
+                      <h4 className=" d-flex">Patient Name: {item?.patient?.name}</h4>
+                      <h6 className=" d-flex">Create Date: {item?.created_date}</h6>
+                      <hr/>
                     <iframe
                       src={item?.pdf_url}
                       width="100%"
-                      height="600px"
+                      height="300px"
                       title="PDF Preview"
                     />
 
-                    {/* <h5 className="description">{item?.title}</h5>
-                    <div className="description">{item?.description}</div> */}
-                    {/* <button
-                      type="button"
-                      className="blue_btn"
-                      data-bs-toggle="modal"
-                      data-bs-target="#mediaDigestPop"
-                      onClick={() => setMediadiItemDetails(item)}
-                    >
-                      Read More
-                    </button> */}
+                  
                   </div>
                 ))
             ) : (
@@ -71,7 +67,7 @@ const PrescriptionView = () => {
               </div>
             )}
           </div>
-          {prescriptions?.length > 2 && (
+          {/* {prescriptions?.length > 2 && (
             <a
               className="downopen"
               onClick={() => setShowMediaDigest(!showMediaDigest)}
@@ -88,8 +84,10 @@ const PrescriptionView = () => {
                 }}
               />
             </a>
-          )}
+          )} */}
         </div>
+      </div>
+      </div>
       </div>
     </>
   );
