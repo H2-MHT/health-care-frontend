@@ -1,0 +1,468 @@
+{
+  "login": {
+    "create_account": "Створити обліковий запис",
+    "login_button": "Увійти",
+    "email_label": "Електронна пошта",
+    "password_label": "Пароль",
+    "forgot_password": "Забули пароль?",
+    "welcome_message": "Ласкаво просимо до застосунку!",
+    "for_member": "Для пацієнта",
+    "for_specialist": "Для лікаря",
+    "google_login": "Продовжити через Google",
+    "Apple_login": "Продовжити через Apple",
+    "For_clinic": "Для клініки",
+    "or_lable": "АБО",
+    "login": "Вхід"
+  },
+  "singup": {
+    "first_name": "Ім'я",
+    "Last_name": "Прізвище",
+    "Confirm_Password": "Підтвердіть пароль",
+    "Password_text": "Використовуйте 8 або більше символів із комбінацією літер, цифр і символів",
+    "creating_account": "Створюючи обліковий запис, я погоджуюсь з",
+    "terms_use": "Умовами використання",
+    "and_lable": "та",
+    "Privacy_policy": "Політикою конфіденційності",
+    "clinic_Register": "Ви медична установа? Зареєструйтеся як клініка",
+    "here": "тут",
+    "Complete_Information": "Заповніть ваші дані",
+    "step": "Крок 1",
+    "step2": "Крок 2",
+    "place_residence": "Місце проживання",
+    "date_birth": "Дата народження",
+    "Gender_lable": "Стать",
+    "place_Work": "Місце роботи",
+    "confirm_lable": "Підтвердити",
+    "skip_lable": "Пропустити",
+    "back_lable": "Назад",
+    "upload_photo": "Завантажте ваше фото",
+    "licenses_certifications": "Ліцензії та сертифікати",
+    "about_yourself": "Розкажіть більше про себе",
+    "languages_lable": "Мови",
+    "working_time": "Графік роботи"
+  },
+  "ui_header": {
+    "register_now": "Зареєструватися зараз",
+    "hn_lable": "Номер медкарти",
+    "home_lable": "Головна",
+    "myApp_guest": "Гість MyApp",
+    "find_doctor": "Знайти лікаря",
+    "clinics_lable": "Клініки",
+    "about_us": "Про нас",
+    "contact_us": "Зв’язатися з нами"
+  },
+
+  "common": {
+    "save": "Зберегти",
+    "add-media": "+ Додати медіа",
+    "save-changes": "Зберегти зміни",
+    "cancel": "Скасувати",
+    "submit": "Надіслати",
+    "subscribe-now": "Підписатися зараз",
+    "add": "Додати"
+  },
+
+  "edit-profile": {
+    "Male": "Чоловік",
+    "Female": "Жінка",
+    "Other": "Інше",
+    "email-address": "Електронна адреса",
+    "phone-number": "Номер телефону",
+    "bio": "Про себе",
+    "country": "Країна",
+    "city": "Місто",
+    "languages": "Мови",
+    "english": "Англійська",
+    "hindi": "Хінді",
+    "place-of-work": "Місце роботи",
+    "areas-of-expertise": "Сфери експертизи",
+    "professional-statistics": "Професійна статистика",
+    "years": "Роки",
+    "add-to-profile": "Додати до профілю",
+    "licenses-certifications": "Ліцензії та сертифікати",
+    "specializations": "Спеціалізації",
+    "education": "Освіта",
+    "media-digest": "Медіа-дайджест",
+    "public-view": "Публічний перегляд",
+    "allergies": "Алергії",
+    "medications-name": "Назви ліків",
+    "attached-file": "Прикріплений файл",
+    "medical-history": "Медична історія",
+    "show-profile": "показати у профілі",
+    "select_country": "Виберіть країну",
+    "select_city": "Виберіть місто"
+  },
+
+  "add-education": {
+    "school": "Навчальний заклад",
+    "degree": "Ступінь",
+    "field-of-study": "Спеціальність",
+    "start-date": "Дата початку",
+    "end-date": "Дата завершення (або очікувана)",
+    "grade": "Оцінка",
+    "activites-societies": "Активності та спільноти",
+    "description": "Опис",
+    "add-education": "Додати освіту",
+    "edit-education": "Редагувати освіту",
+    "skills": "Навички",
+    "skills-text": "Рекомендуємо додати 5 ключових навичок, які ви використовували під час цієї діяльності.",
+    "media": "Медіа",
+    "media-text": "Додайте медіа, наприклад зображення, документи, сайти або презентації."
+  },
+
+  "clinic-edit-profile": {
+    "organisation-name": "Офіційна назва організації",
+    "license-number": "Номер ліцензії",
+    "clinic-type": "Тип клініки",
+    "website": "Вебсайт",
+    "clinic-public-name": "Публічна назва клініки",
+    "email": "Електронна пошта",
+    "working-time": "Години роботи",
+    "clinic-types": {
+      "0": "Державна",
+      "1": "Приватна",
+      "2": "Спеціалізована"
+    },
+    "days": {
+      "1": "Понеділок",
+      "2": "Вівторок",
+      "3": "Середа",
+      "4": "Четвер",
+      "5": "П’ятниця",
+      "6": "Субота",
+      "7": "Неділя"
+    }
+  },
+
+  "drawer": {
+    "dashboard": "Панель керування",
+    "calendar": "Календар",
+    "my-verification": "Моя верифікація",
+    "consultations": "Консультації",
+    "prescription": "Рецепти",
+    "wallet": "Гаманець",
+    "active": "Активний",
+    "member-account": "Обліковий запис пацієнта",
+    "edit-profile": "Редагувати профіль",
+    "doctors": "Лікарі",
+    "chats": "Чати",
+    "reviews-rating": "Відгуки та рейтинг",
+    "settings": "Налаштування",
+    "logout": "Вийти",
+    "health-data-center": "Центр медичних даних",
+    "doctor": "Лікар",
+    "clinic": "Клініка"
+  },
+  "footer": {
+    "links": "Посилання",
+    "add-head": "H2 Health Help",
+    "add-text": "Зареєстрований бренд компанії My Health Today LTD, 7 Bell Yard, London, England, WC2A 2JR",
+    "add-text-cn": "Реєстраційний номер компанії: 16068507",
+    "get-app": "Завантажити додаток",
+    "subs-newsletter": "Підписатися на нашу розсилку",
+    "subs-check": "Так, підписатися на розсилку",
+    "legal-notice": "Правова інформація",
+    "dmca": "DMCA",
+    "terms-of-service": "Умови користування",
+    "cookie-policy": "Політика використання файлів cookie",
+
+    "footer-bottom-text": "My Health Today LTD. Усі права захищено"
+  },
+  "dashboard": {
+    "list": "Список",
+    "treatment-plan": "План лікування",
+    "requests": "Запити",
+    "archives": "Архіви",
+    "my-trust-score": "Мій рейтинг довіри",
+    "reviews": "Відгуки",
+    "last-reports": "Останні звіти",
+    "notes": "Нотатки",
+    "clients": "Клієнти",
+    "no-notes": "Нотатки відсутні",
+    "no-appointments": "Немає записів",
+    "no-reports": "Немає звітів",
+    "created": "Створено"
+  },
+  "prescription": {
+    "patient": "Пацієнт",
+    "add-prescription": "Додати рецепт",
+    "diagnosis": "Діагноз",
+    "medicine": "Медикаменти",
+    "time-of-the-day": "Час прийому",
+    "times": "Разів на день",
+    "quantity": "Кількість",
+    "duration": "Тривалість",
+    "add-medicine": "+ Додати медикамент",
+    "additional-instruction": "Додаткові інструкції",
+    "name": "Назва"
+  },
+  "wallet": {
+    "transaction-history": "Запити на виведення",
+    "sender": "Відправник",
+    "type": "Тип",
+    "date": "Дата",
+    "total": "Сума",
+    "fee": "Комісія",
+    "current-balance": "Поточний баланс",
+    "last-week": "Минулого тижня",
+    "get-payed": "Отримати виплату",
+    "payment-methods": "Методи оплати",
+    "add-payment-method": "Додати метод оплати",
+    "payment-method-txt": "Безпечний грошовий переказ з вашого банківського рахунку. Visa, MasterCard, Discover, American Express",
+    "details": "Деталі",
+    "payment-from": "Оплата від:",
+    "service": "Послуга:",
+    "transaction-time": "Час транзакції:",
+    "payment": "Оплата:",
+    "clinic-earning": "Заробіток клініки",
+    "total-incomes": "Загальні доходи",
+    "status": "Статус",
+    "invoice": "Рахунок",
+    "support": "Підтримка",
+
+    "payment-card-content": "Безпечний грошовий переказ з вашого банківського рахунку. Visa, MasterCard, Discover, American Express",
+    "card-second": "cardSecond-row",
+    "resume": "Підсумок",
+    "category": "Категорія",
+    "hour": "Година",
+    "sub-total": "Проміжна сума",
+    "discount": "Знижка"
+  },
+  "membership": {
+    "basic-membership-plan": "Базовий план підписки",
+    "premium-member": "Преміум-підписка"
+  },
+  "referrals": {
+    "your-referrals": "Ваші реферали",
+    "referrals-txt": "Поділіться своїм унікальним реферальним кодом із друзями, родичами або колегами й отримайте спільні вигоди!",
+    "how-it-works": "Як це працює?",
+    "personal-code": "Особистий код",
+    "registry-link": "посилання для реєстрації",
+    "users-invited": "Запрошені користувачі",
+    "points-on-account": "Балів на вашому рахунку зараз",
+    "redeem-bonuses": "Отримати бонуси",
+    "was-invited": "Вас запросили?",
+    "unique-ref-txt": "Введіть унікальний реферальний код ваших друзів, родичів або колег і отримайте спільні переваги",
+    "invitation-code": "Ваш код запрошення",
+    "bonus-point-txt": "Бонусні бали будуть нараховані на ваш рахунок, щойно ваш реферал завершить першу консультацію на платформі"
+  },
+  "appointment-manage": {
+    "choose-appointment-types": "Оберіть прийнятні типи консультацій:",
+    "planned-consultation": "Запланована консультація",
+    "urgent-call": "Терміновий дзвінок",
+    "select-days": "Оберіть дні",
+    "add": "додати",
+    "day-options": {
+      "Mon": "Понеділок",
+      "Tue": "Вівторок",
+      "Wed": "Середа",
+      "Thu": "Четвер",
+      "Fri": "П’ятниця",
+      "Sat": "Субота",
+      "Sun": "Неділя"
+    },
+    "no-available-slots": "Немає доступних часових слотів",
+    "confirm-payment": "Підтвердити оплату"
+  },
+  "session": {
+    "session-lengths": "Тривалість сесії",
+    "planned": "Заплановано",
+    "buffer-time": "Буферний час",
+
+    "consultation-fees": "Вартість консультації"
+  },
+  
+  "time-language": {
+    "time-language": "Час і мова",
+    "system-timezone": "Використовувати часовий пояс системи",
+    "language-system": "Використовувати мову системи",
+    "preferred-language": "Бажана мова",
+    "select-timezone": "Оберіть часовий пояс",
+    "select-option": "Оберіть опцію"
+  },
+  "reschedule": {
+    "reschedule-policy": "Політика перенесення",
+    "possibility-of-reschedule": "Можливість перенесення",
+    "limit": "Обмежити кількість перенесень",
+    "reschedule-period": "Період перенесення"
+  },
+  "cancellation": {
+"policy": "Політика скасування",
+"no-fee": "Період безкоштовного скасування",
+"notice": "для скасувань, зроблених менше ніж",
+"time-before": "до початку консультації"
+},
+"communication": {
+"comms": "Комунікація та сповіщення",
+"notif-pref": "Налаштування сповіщень",
+"channel-pref": "Переваги каналу зв’язку",
+"appointment-reminders": "Нагадування про консультації",
+"patient-msgs": "Повідомлення від пацієнтів",
+"important-updates": "Інші важливі оновлення",
+"email": "Електронна пошта",
+"whatsapp": "WhatsApp",
+"platform-messenger": "Месенджер платформи"
+},
+"data-privacy": {
+"two-factor": "Двофакторна автентифікація",
+"preferred": "Бажаний метод",
+"verification": "перевірка"
+},
+"reset-password": {
+"reset-password": "Скинути пароль",
+"current-password": "Поточний пароль",
+"new-password": "Новий пароль",
+"confirm-password": "Підтвердити новий пароль",
+"password-requirements": "Використовуйте щонайменше 8 символів, включаючи літери, цифри та символи",
+"change-password-btn": "Змінити пароль"
+},
+"device-tracker": {
+"access-history": "Історія доступу",
+"current": "Поточна сесія",
+
+"recent": "Остання активність"
+},
+"log-out": {
+"title": "Вийти або видалити обліковий запис",
+"logout": "Вийти",
+"description": "Більше не бажаєте користуватись платформою? Ви можете:",
+"delete-account": "Видалити обліковий запис",
+"deactivate": "Деактивувати",
+"deactivation-consequences-title": "Що відбувається після деактивації:",
+"deactivation-consequences1": "Ваш профіль буде приховано, і пацієнти не зможуть забронювати консультацію.",
+"deactivation-consequences2": "Усі налаштування облікового запису та дані буде збережено, і ви зможете відновити доступ, якщо вирішите повернутися.",
+"deactivation-consequences3": "Ваші збережені медичні записи пацієнтів та історія консультацій залишаться в системі протягом періоду зберігання даних, зазначеного в нашій політиці конфіденційності.",
+"restore-access-instructions": "Щоб відновити доступ до облікового запису, просто увійдіть, використовуючи своє ім’я користувача та пароль."
+},
+
+"reset-password-pop": {
+"verification": "Код підтвердження",
+"confirm-email": "Підтвердіть свою електронну пошту",
+"sent-code": "Ми надіслали код на",
+"send-again": "Надіслати ще раз"
+},
+"profile-setting": {
+"personal-profile-settings": "Налаштування особистого профілю",
+"appointment-management": "Керування записами",
+"privacy-security": "Конфіденційність і безпека даних"
+},
+"calendar-view": {
+"review-medical-history": "Переглянути медичну історію",
+"no-appointments-found": "Записів не знайдено"
+},
+"header": {
+"appointment-started": "Консультація щойно розпочалася",
+"urgent": "Терміново"
+},
+"appointment-list": {
+"coming-soon": "Незабаром",
+"no-upcoming-appointments": "Немає майбутніх записів",
+"upcoming": "Наближаються",
+"reschedule": "Перепланувати",
+"reschedule-to": "Перенесено на",
+"decline": "Відхилити",
+"no-appointments-available": "Немає доступних записів",
+"view-profile": "Переглянути профіль",
+"recent": "Нещодавні",
+"records": "ЗАПИСИ",
+"consultation-report": "ЗВІТ ПРО КОНСУЛЬТАЦІЮ",
+"appointment-details": "Деталі консультації",
+"time": "Час",
+"virtual-office-rem": "Не забудьте зайти до віртуального кабінету за 5 хвилин до консультації.",
+"add-reminder": "Додати нагадування?",
+"set-the-time": "встановити час",
+"confirm-time": "Підтвердити час",
+"reschedule-appointment-with": "Ви хочете перенести консультацію з",
+"for": "на",
+"change": "Змінити",
+"receive-notification": "Ви отримаєте сповіщення, щойно пацієнт підтвердить перенесення",
+"ok": "ОК"
+},
+"clinic-dashboard": {
+"appointments": "Записи",
+"today": "Сьогодні",
+"week": "Тиждень",
+"month": "Місяць",
+"booked": "Заброньовано",
+"declined": "Відхилено",
+"completed": "Завершено",
+"active-now": "Зараз активні",
+"no-doctors-active": "Немає активних лікарів",
+"activity": "Активність",
+"day": "День"
+},
+"clinic-reviews": {
+"reply": "Відповісти",
+"replies": "Відповіді",
+"review-title": "Заголовок відгуку"
+},
+"user-dashboard": {
+"allergy": "Алергія",
+"reccomendations": "Рекомендації",
+"add": "+ Додати",
+"you": "ви",
+"steps": "Кроки",
+"not-authenticated": "Не автентифіковано",
+"of-goal": "від мети",
+"water": "Вода",
+"calories": "Калорії",
+"heart-rate": "Пульс"
+},
+"health-data-center": {
+"blood": "Кров",
+"height": "Зріст",
+"weight": "Вага",
+"pulse": "Пульс",
+"steps-taken": "Пройдено кроків",
+"burned": "Спалено калорій",
+"distance-covered": "Пройдена відстань",
+"fitness-activity": "Фізична активність",
+
+"monthly": "Щомісячно",
+"days": "Дні",
+"hours-of-sleep": "Години сну",
+"health-reports": "Звіти про здоров’я",
+"weight-change": "Зміна ваги",
+"general-health": "Загальний стан здоров’я",
+"increase": "Збільшення",
+"water-taken": "Випито води",
+"health": "Здоров’я",
+"quest": "Оцінка"
+},
+"all-doctor-list": {
+"generalist": "Терапевт",
+"more-info": "Детальніше",
+"make-appointment": "Записатися на консультацію",
+"view-full-schedules": "Переглянути повний розклад",
+"no-doctors-found": "Лікарів не знайдено",
+"no-clinics-found": "Клінік не знайдено"
+},
+"fav-clinic": {
+"specialisties": "Спеціалізації",
+"media-digests": "Медіа матеріали",
+"info": "Інформація",
+"prof-history": "Професійна історія",
+"licenses": "Ліцензії",
+"full-schedule": "Повний розклад",
+"years-practice": "років практики",
+"general-medicine": "Загальна медицина",
+"meet-our-doctors": "Познайомтесь з нашими лікарями"
+},
+"clinic-signup": {
+"clinic-registration": "Реєстрація клініки",
+"clinic-name": "Назва клініки",
+"registration-confirmation": "Підтвердження реєстрації",
+"registration-notice": "Дякуємо за реєстрацію клініки. Наша команда перевірить інформацію та повідомить вас, як тільки профіль буде підтверджено",
+"return-homepage": "Повернутися на головну сторінку",
+"clinic-verified": "Ваш профіль клініки підтверджено та активовано. Вітаємо!",
+"continue": "Продовжити",
+"almost-there": "Вже майже готово!",
+"one-step-away": "Залишився лише один крок до завершення профілю. Заповніть решту інформації або перейдіть до кабінету, щоб почати користування",
+"continue-profile": "Продовжити заповнення профілю",
+"go-to-dashboard": "Перейти до кабінету",
+"clinic-address": "Адреса клініки",
+"optional": "необов’язково",
+"contact-email": "Контактна електронна пошта",
+"back": "Назад"
+}
+}
