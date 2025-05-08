@@ -100,7 +100,7 @@ function UserCalendarView() {
   };
 
   return (
-    <div className="rightContent">
+    <div className="rightContent rightsidefull">
       <div className="drCalender">
         <div className="tabPrt">
           <Link to="/patient/calender-view" className="bg-green">
@@ -170,9 +170,7 @@ function UserCalendarView() {
                       </div>
                     </div>
                     <div className="cardBottom mw-100">
-                      <a href="#">
-                        Review medical history
-                      </a>
+                      <a href="#">Review medical history</a>
                       <div className="clockCalenderPrts">
                         <img src="/images/doctor-dashboard/dark-calender.svg" />
                         <span>{getFormattedDate(item?.date)}</span>

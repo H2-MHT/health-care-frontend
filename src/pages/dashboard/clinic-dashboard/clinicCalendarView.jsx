@@ -55,7 +55,7 @@ function ClinicCalendarView() {
   };
 
   return (
-    <div className="rightContent">
+    <div className="rightContent rightsidefull">
       <div className="drCalender">
         <div className="calenderInner gap-0">
           <div className="calenderPart">

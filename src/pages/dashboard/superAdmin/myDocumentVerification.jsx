@@ -84,7 +84,7 @@ const handleChange = async (event,item) => {
 
   return (
     <>
-      <div className="rightContent">
+      <div className="rightContent rightsidefull">
         <div className="row h-100">
           <div class="col-md-12">
             <div class="padding-inner border-radius-20 bg-white h-100">
@@ -110,11 +110,10 @@ const handleChange = async (event,item) => {
                         <td>
                           <select
                             value={statusMap[item?.id] || item?.status}
-                            onChange={(event) => handleChange(event,item)}
+                            onChange={(event) => handleChange(event, item)}
                             className="border p-2 rounded"
-                            name='status'
+                            name="status"
                           >
-
                             <option value="Pending">Pending</option>
                             <option value="Verified">Verified</option>
                             <option value="Rejected">Rejected</option>
@@ -140,9 +139,19 @@ const handleChange = async (event,item) => {
             </div>
           </div>
         </div>
-      </div> 
-      <ViewVerificationDocument setViewDocument={setViewDocument} viewDocument={viewDocument} viewItem={viewItem}/>
-      <ShowModelRejected setShowModal={setShowModal} showModal={showModal} documentDeatils={documentDeatils} statusMap={statusMap} getDoctorDocumentList={getDoctorDocumentList}/>
+      </div>
+      <ViewVerificationDocument
+        setViewDocument={setViewDocument}
+        viewDocument={viewDocument}
+        viewItem={viewItem}
+      />
+      <ShowModelRejected
+        setShowModal={setShowModal}
+        showModal={showModal}
+        documentDeatils={documentDeatils}
+        statusMap={statusMap}
+        getDoctorDocumentList={getDoctorDocumentList}
+      />
     </>
   );
 }

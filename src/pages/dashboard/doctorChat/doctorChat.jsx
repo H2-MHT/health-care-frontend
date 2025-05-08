@@ -262,7 +262,7 @@ const DoctorChat = () => {
   };
 
   return (
-    <div className="rightContent">
+    <div className="rightContent rightsidefull">
       {/* Chat List */}
       <div className="chatGroup">
         <div className="chatLeft">

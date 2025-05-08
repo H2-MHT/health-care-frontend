@@ -135,7 +135,7 @@ const Reviews = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="rightContent">
+        <div className="rightContent rightsidefull">
           <div className="profileMobile">
             <div className="nameMobile">Hello, Dr. Ava Williams!</div>
             <div className="profileImgMobile">
@@ -158,116 +158,119 @@ const Reviews = () => {
             <div className="row p-4">
               <div className="col-md-8 p-2">
                 <div className="card-scroll">
-                  { reviewData?.length ?
+                  {reviewData?.length ? (
                     reviewData?.map((items) => (
-                    <div className="d-flex flex-column mt-4" key={items?.id}>
-                      <div className="item">
-                        <div className="reviewBox">
-                          <div className="ratingstar">
-                            <a href="#">
-                              <img
-                                src={
-                                  items?.rating === 5
-                                    ? "../images/doctor-dashboard/greenstarGrp.webp"
-                                    : items?.rating === 4
-                                    ? "../images/doctor-dashboard/yellowstarGrp.webp"
-                                    : items?.rating === 3
-                                    ? "../images/doctor-dashboard/orangestarGrp.webp"
-                                    : items?.rating === 2
-                                    ? "../images/doctor-dashboard/darkorangestarGrp.webp"
-                                    : "../images/doctor-dashboard/redstarGrp.webp"
-                                }
-                                alt={`star-${items?.rating}`}
-                                style={{ width: "150px" }}
-                              />
-                            </a>
-                          </div>
-                          <h5>{t("clinic-reviews.review-title")}</h5>
-                          <h6>{items?.content}</h6>
-                          <div className="d-flex justify-content-between align-items-center mt-4">
-                            <div
-                              className="reply-text"
-                              onClick={() => toggleReply(items.id)}
-                            >
-                              {items?.replies?.length}{" "}
-                              {t("clinic-reviews.replies")}
-                            </div>
-                            <div className="reply-text">
-                              {t("clinic-reviews.reply")}
-                            </div>
-                          </div>
-                          {openReview === items.id && (
-                            <>
-                              {replyData?.map((item, index) => (
-                                <div className="reviewName" key={index}>
-                                  <img
-                                    src="../images/doctor-dashboard/sample-doc.svg"
-                                    alt="Reviewer"
-                                  />
-                                  <div className="reply-msg">
-                                    <p>{item?.content}</p>
-                                  </div>
-                                  <div>
-                                    <p>...</p>
-                                  </div>
-                                </div>
-                              ))}
-                            </>
-                          )}
-                          <div className="row p-2">
-                            <div className="col-md-10">
-                              <InputField
-                                type="text"
-                                id="text"
-                                name="content"
-                                className="reply-input"
-                                placeholder="Type your text here..."
-                                value={replyTextMap[items.id] || ""}
-                                onChange={(e) =>
-                                  handleReplyTextChange(e, items.id)
-                                }
-                              />
-                            </div>
-                            <div className="col-md-2 d-flex align-items-center justify-content-end">
-                              <button
-                                onClick={onSubmit}
-                                style={{
-                                  background: "transparent",
-                                  border: "none",
-                                }}
-                              >
+                      <div className="d-flex flex-column mt-4" key={items?.id}>
+                        <div className="item">
+                          <div className="reviewBox">
+                            <div className="ratingstar">
+                              <a href="#">
                                 <img
-                                  src="../images/doctor-dashboard/reviewSubmitBtn.webp"
-                                  className=""
-                                  alt="Down Arrow"
-                                  style={{
-                                    cursor: "pointer",
-                                    width: "20px",
-                                    height: "35px",
-                                  }}
+                                  src={
+                                    items?.rating === 5
+                                      ? "../images/doctor-dashboard/greenstarGrp.webp"
+                                      : items?.rating === 4
+                                      ? "../images/doctor-dashboard/yellowstarGrp.webp"
+                                      : items?.rating === 3
+                                      ? "../images/doctor-dashboard/orangestarGrp.webp"
+                                      : items?.rating === 2
+                                      ? "../images/doctor-dashboard/darkorangestarGrp.webp"
+                                      : "../images/doctor-dashboard/redstarGrp.webp"
+                                  }
+                                  alt={`star-${items?.rating}`}
+                                  style={{ width: "150px" }}
                                 />
-                              </button>
+                              </a>
                             </div>
-                          </div>
+                            <h5>{t("clinic-reviews.review-title")}</h5>
+                            <h6>{items?.content}</h6>
+                            <div className="d-flex justify-content-between align-items-center mt-4">
+                              <div
+                                className="reply-text"
+                                onClick={() => toggleReply(items.id)}
+                              >
+                                {items?.replies?.length}{" "}
+                                {t("clinic-reviews.replies")}
+                              </div>
+                              <div className="reply-text">
+                                {t("clinic-reviews.reply")}
+                              </div>
+                            </div>
+                            {openReview === items.id && (
+                              <>
+                                {replyData?.map((item, index) => (
+                                  <div className="reviewName" key={index}>
+                                    <img
+                                      src="../images/doctor-dashboard/sample-doc.svg"
+                                      alt="Reviewer"
+                                    />
+                                    <div className="reply-msg">
+                                      <p>{item?.content}</p>
+                                    </div>
+                                    <div>
+                                      <p>...</p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </>
+                            )}
+                            <div className="row p-2">
+                              <div className="col-md-10">
+                                <InputField
+                                  type="text"
+                                  id="text"
+                                  name="content"
+                                  className="reply-input"
+                                  placeholder="Type your text here..."
+                                  value={replyTextMap[items.id] || ""}
+                                  onChange={(e) =>
+                                    handleReplyTextChange(e, items.id)
+                                  }
+                                />
+                              </div>
+                              <div className="col-md-2 d-flex align-items-center justify-content-end">
+                                <button
+                                  onClick={onSubmit}
+                                  style={{
+                                    background: "transparent",
+                                    border: "none",
+                                  }}
+                                >
+                                  <img
+                                    src="../images/doctor-dashboard/reviewSubmitBtn.webp"
+                                    className=""
+                                    alt="Down Arrow"
+                                    style={{
+                                      cursor: "pointer",
+                                      width: "20px",
+                                      height: "35px",
+                                    }}
+                                  />
+                                </button>
+                              </div>
+                            </div>
 
-                          <div className="reviewName">
-                            <img
-                              src="../images/doctor-dashboard/sample-doc.svg"
-                              alt="Reviewer"
-                            />
-                            <div>
-                              <h4>{items?.reviewer_name}</h4>
-                              <p>{t("wallet.date")}</p>
+                            <div className="reviewName">
+                              <img
+                                src="../images/doctor-dashboard/sample-doc.svg"
+                                alt="Reviewer"
+                              />
+                              <div>
+                                <h4>{items?.reviewer_name}</h4>
+                                <p>{t("wallet.date")}</p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                    ))
+                  ) : (
+                    <div className="treatmentContainer">
+                      <div className="no-appointments">
+                        No Reviews available
+                      </div>
                     </div>
-                  )): <div className="treatmentContainer">
-                  <div className="no-appointments">
-                    No Reviews available
-                  </div>
-                </div>}
+                  )}
                 </div>
               </div>
 
@@ -282,7 +285,7 @@ const Reviews = () => {
                           className="img-fluid"
                         />
                         <div className="scoreData">
-                          { totalReviewSum / reviewData?.length||0}
+                          {totalReviewSum / reviewData?.length || 0}
                         </div>
                       </div>
                     </div>
