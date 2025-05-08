@@ -101,6 +101,12 @@ li {
   color: #06cd98 !important;
 }
 
+.acc-height {
+  height: 270px;
+  max-height: 270px;
+  overflow-x: auto;
+}
+
 .text-light-black {
   color: #333333 !important;
 }
@@ -594,7 +600,12 @@ textarea {
   height: 200px;
   overflow-y: auto;
 }
-
+.mediaDegestPart table thead tr th{
+  text-align: center;
+}
+.mediaDegestPart table tbody tr td{
+  text-align: center;
+}
 @media (max-width: 767px) {
   .black_btn {
     width: 100%;

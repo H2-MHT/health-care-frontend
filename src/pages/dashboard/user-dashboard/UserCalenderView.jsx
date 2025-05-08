@@ -7,6 +7,9 @@ import { getAppointmentList } from "../../../utils/common";
 import Image from "../../../components/form/Image";
 import { Link } from "react-router-dom";
 import { fetchData } from "../../../hooks/services/services";
+import { Modal } from "react-bootstrap";
+import CommonModal from "../../../components/form/Modal";
+import MeetVideoCall from "../doctorChat/MeetVideoCall";
 
 function UserCalendarView() {
   const navigate = useNavigate();
@@ -16,6 +19,9 @@ function UserCalendarView() {
   const doctorDashboard = useSelector((state) => state.doctorDashboard);
   const [currentView, setCurrentView] = useState();
   const [scheduledEvents, setScheduledEvents] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [videoModal, setVideoModal] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState();
   const isProfileData = useSelector((state) => state?.userProfile?.userProfile);
 
   const getPatientAppointments = async () => {
@@ -36,6 +42,10 @@ function UserCalendarView() {
           return {
             title: item?.doctor?.name,
             date: a,
+            appointment_id: item?.id,
+            extendedProps: {
+              meetingLink: item?.meeting_link,
+            },
           };
         });
 
@@ -54,8 +64,43 @@ function UserCalendarView() {
     setClickedDate(date); // Update the clicked date in the parent
   };
 
+  const handleEventClick = (clickInfo) => {
+    let appointment = clickInfo.event.extendedProps;
+    if (appointment) {
+      setSelectedAppointment(appointment);
+      setVideoModal(true);
+    }
+  };
+
+  const getForm = () => {
+    return (
+      <div style={{ padding: "20px", textAlign: "center" }}>
+        <h3>You're invited to join a video consultation</h3>
+        <p>If you'd like to join the call, please click the button below.</p>
+        <button
+          onClick={() => {
+            setShowModal(true);
+            setVideoModal(false);
+          }}
+          style={{
+            marginTop: "15px",
+            padding: "10px 20px",
+            backgroundColor: "#28a745",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            fontSize: "16px",
+            cursor: "pointer",
+          }}
+        >
+          Join Video Call
+        </button>
+      </div>
+    );
+  };
+
   return (
-    <div className="rightContent">
+    <div className="rightContent rightsidefull">
       <div className="drCalender">
         <div className="tabPrt">
           <Link to="/patient/calender-view" className="bg-green">
@@ -72,10 +117,31 @@ function UserCalendarView() {
                 <MyCalendar
                   events={true}
                   onDateClick={handleDateClick}
+                  onEventClick={handleEventClick}
                   isCalendarView={true}
                   setCurrentView={setCurrentView}
                   eventList={scheduledEvents}
                 />
+                <Modal
+                  show={showModal}
+                  centered
+                  className="videocallMain"
+                  backdrop="static"
+                >
+                  <MeetVideoCall
+                    selectedAppointment={selectedAppointment}
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                  />
+                </Modal>
+                <CommonModal
+                  size="lg"
+                  show={videoModal}
+                  title="Ready to join?"
+                  body={getForm()}
+                  onHide={() => setVideoModal(false)}
+                  className="prescriptionModal"
+                ></CommonModal>
               </div>
             </div>
           </div>
@@ -104,9 +170,7 @@ function UserCalendarView() {
                       </div>
                     </div>
                     <div className="cardBottom mw-100">
-                      <a href="#">
-                        Review medical history
-                      </a>
+                      <a href="#">Review medical history</a>
                       <div className="clockCalenderPrts">
                         <img src="/images/doctor-dashboard/dark-calender.svg" />
                         <span>{getFormattedDate(item?.date)}</span>

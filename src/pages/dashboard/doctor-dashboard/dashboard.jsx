@@ -24,7 +24,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Link, useNavigate } from "react-router-dom";
-import { getAppointmentFormattedDate, getFormattedDate, getTime } from "../../../utils/common";
+import {
+  getAppointmentFormattedDate,
+  getFormattedDate,
+  getTime,
+} from "../../../utils/common";
 import ProgressCircle from "./ProgressCircle";
 import { Modal } from "react-bootstrap";
 import { showToast } from "../../../utils/toast";
@@ -35,7 +39,7 @@ import { requestForToken } from "../doctorChat/firebase";
 // Register chart.js elements
 ChartJS.register(ArcElement, Tooltip, Legend);
 const Dashboard = () => {
-   const { t } = useTranslation("dashboard");
+  const { t } = useTranslation("dashboard");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [clickedDate, setClickedDate] = useState(null);
@@ -44,7 +48,7 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("treatment");
   const [editNotesData, setEditNotesData] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [currentView , setCurrentView] = useState({startDate: "", endDate: ""});
+  const [currentView, setCurrentView] = useState();
   const [notesData, setNotesData] = useState({
     title: "",
     text: "",
@@ -54,32 +58,34 @@ const Dashboard = () => {
 
   useEffect(() => {
     getProfile();
-    storeDeviceToken()
+    storeDeviceToken();
   }, []);
 
   useEffect(() => {
-    if(currentView?.startDate){
+    if (currentView?.startDate) {
       getDoctorDashboardCalendar();
     }
-    
-  }, [currentView?.startDate, currentView?.endDate]);
+  }, [currentView]);
 
   const storeDeviceToken = async () => {
     try {
-      let selectedUser = localStorage.getItem("user_data")
-      selectedUser = JSON.parse(selectedUser)
+      let selectedUser = localStorage.getItem("user_data");
+      selectedUser = JSON.parse(selectedUser);
       // if (!doctorDashboard?.dashboard?.doctor_id) {
-        const deviceToken = await requestForToken();
-        let deviceTokenPayload = {
-          "user_id": selectedUser?.id,
-          "device_token": deviceToken
-        }
-        await putData("auth/firebase-device-token/", JSON.stringify(deviceTokenPayload));
+      const deviceToken = await requestForToken();
+      let deviceTokenPayload = {
+        user_id: selectedUser?.id,
+        device_token: deviceToken,
+      };
+      await putData(
+        "auth/firebase-device-token/",
+        JSON.stringify(deviceTokenPayload)
+      );
       // }
     } catch (error) {
-      console.log("error :", error)
+      console.log("error :", error);
     }
-  }
+  };
 
   useEffect(() => {
     let user_id = JSON.parse(localStorage.getItem("user_data"))?.id;
@@ -87,27 +93,21 @@ const Dashboard = () => {
   }, []);
 
   const getDoctorDashboardCalendar = async () => {
-    if (!currentView?.startDate) {
-      return;
-    }
     const startDate = getAppointmentFormattedDate(currentView?.startDate);
     const endDate = getAppointmentFormattedDate(currentView?.endDate);
-    setIsLoading(true);
     getDoctorDasboardRequest();
     try {
-      const response = await fetchData(`dashboard/?start_date=${startDate}&end_date=${endDate}`, navigate);
+      const response = await fetchData(
+        `dashboard/?start_date=${startDate}&end_date=${endDate}`,
+        navigate
+      );
       if (!response.ok) {
-        setIsLoading(false);
         throw new Error("Failed to fetch data from the server.");
       }
-      setIsLoading(false);
       const getData = await response.json();
       dispatch(getDoctorDasboardSuccess(getData));
     } catch (error) {
-      setIsLoading(false);
       dispatch(getDoctorDasboardFailure(error.message));
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -116,22 +116,17 @@ const Dashboard = () => {
   };
 
   const getProfile = async () => {
-    setIsLoading(true);
     getDoctorProfileRequest();
     try {
       const response = await fetchDataAuth("auth/view-profile/", navigate);
       if (!response.ok) {
-        setIsLoading(false);
         throw new Error("Failed to fetch data from the server.");
       }
       const getData = await response.json();
-      console.log(getData);
-
       dispatch(getDoctorProfileSuccess(getData.data));
-      setIsLoading(false);
     } catch (error) {
       dispatch(getDoctorProfileFailure(error.message));
-      setIsLoading(false);
+    } finally {
     }
   };
 
@@ -192,9 +187,8 @@ const Dashboard = () => {
       showToast("Please fill the fields first", "error");
       return;
     }
-    
-    if (isLoading) return;
-    setIsLoading(true)
+
+    if (isLoading) setIsLoading(true);
     try {
       const payload = {
         title: notesData?.title,
@@ -211,15 +205,14 @@ const Dashboard = () => {
     } catch (error) {
       showToast(error.message, "error");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-
   };
 
   const updateNotes = async (event) => {
     event.preventDefault();
     if (isLoading) return;
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       const payload = {
         title: editNotesData?.title,
@@ -239,7 +232,7 @@ const Dashboard = () => {
     } catch (error) {
       showToast(error.message, "error");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -248,12 +241,12 @@ const Dashboard = () => {
     setEditOpenNotesModal(true);
   };
 
- const deleteNotes = async (event) => {
+  const deleteNotes = async (event) => {
     event.preventDefault();
     try {
       const response = await deleteData(`user/notes/${editNotesData?.id}`);
       showToast("Notes deleted successfully", "success");
-     await getDoctorDashboardCalendar();
+      await getDoctorDashboardCalendar();
       setEditOpenNotesModal(false);
     } catch (error) {
       showToast(error.message, "error");
@@ -264,16 +257,12 @@ const Dashboard = () => {
   const averageRating =
     total?.count > 0 ? (total?.sum / total?.count).toFixed(1) : 0;
 
-  const callData = (date) => {
-    setCurrentView(date)
-  }
-
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <div class="rightContent">
+        <div class="rightContent rightsidefull">
           <div class="rightContentPart">
             <div class="left">
               <div class="calenderPart">
@@ -287,7 +276,11 @@ const Dashboard = () => {
                 </div>
                 <div class="calenderDetail">
                   <div class="responsive-iframe-container large-container">
-                    <MyCalendar events={false} onDateClick={handleDateClick} setCurrentView={setCurrentView}/>
+                    <MyCalendar
+                      events={false}
+                      onDateClick={handleDateClick}
+                      setCurrentView={setCurrentView}
+                    />
                   </div>
                 </div>
               </div>
@@ -300,7 +293,7 @@ const Dashboard = () => {
                 </div>
                 <div className="notesFix">
                   {doctorDashboard?.dashboard?.doctor_notes &&
-                    doctorDashboard.dashboard.doctor_notes.length > 0 ? (
+                  doctorDashboard.dashboard.doctor_notes.length > 0 ? (
                     doctorDashboard.dashboard.doctor_notes.map((item) => (
                       <div className="notes" key={item?.id}>
                         <h5>{item?.title}</h5>
@@ -357,22 +350,25 @@ const Dashboard = () => {
               <div class="pateintData">
                 <div className="tabPrt">
                   <a
-                    className={`tab-link ${activeTab === "treatment" ? "active" : ""
-                      } bg-pink`}
+                    className={`tab-link ${
+                      activeTab === "treatment" ? "active" : ""
+                    } bg-pink`}
                     onClick={() => handleTabClick("treatment")}
                   >
                     {t("dashboard.treatment-plan")}
                   </a>
                   <a
-                    className={`tab-link ${activeTab === "requests" ? "active" : ""
-                      } bg-blue`}
+                    className={`tab-link ${
+                      activeTab === "requests" ? "active" : ""
+                    } bg-blue`}
                     onClick={() => handleTabClick("requests")}
                   >
                     {t("dashboard.requests")}
                   </a>
                   <a
-                    className={`tab-link ${activeTab === "archives" ? "active" : ""
-                      } bg-darkgreen`}
+                    className={`tab-link ${
+                      activeTab === "archives" ? "active" : ""
+                    } bg-darkgreen`}
                     onClick={() => handleTabClick("archives")}
                   >
                     {t("dashboard.archives")}
@@ -384,7 +380,7 @@ const Dashboard = () => {
                   {activeTab === "treatment" && (
                     <div className="treatmentData">
                       {doctorDashboard?.dashboard?.patient_diagnoses &&
-                        doctorDashboard.dashboard.patient_diagnoses.length > 0 ? (
+                      doctorDashboard.dashboard.patient_diagnoses.length > 0 ? (
                         doctorDashboard.dashboard.patient_diagnoses.map(
                           (item) => (
                             <div className="treatmentDeatil" key={item?.id}>
@@ -396,13 +392,6 @@ const Dashboard = () => {
                               <div>
                                 {getFormattedDate(item?.diagnosis_date)}
                               </div>
-                              {/* <div className="file">
-                                <img
-                                  src="/images/doctor-dashboard/verification.svg"
-                                  className="img-fluid"
-                                  alt="Verification"
-                                />
-                              </div> */}
                             </div>
                           )
                         )
@@ -419,7 +408,7 @@ const Dashboard = () => {
                   {activeTab === "requests" && (
                     <div className="treatmentData">
                       {doctorDashboard?.dashboard?.upcoming_requests?.length >
-                        0 ? (
+                      0 ? (
                         doctorDashboard.dashboard.upcoming_requests.map(
                           (item) => (
                             <div className="treatmentDeatil" key={item?.id}>

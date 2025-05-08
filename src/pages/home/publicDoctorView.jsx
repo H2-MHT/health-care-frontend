@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Image from "../../components/form/Image";
 import Header from "../../components/ui/header/header";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const PublicDoctorView = () => {
+   const { t } = useTranslation();
   const location = useLocation();
   const [totalReviewSum, setTotalReviewSum] = useState(0);
   const [reviewData, setReviewData] = useState([]);
-  const { doctor = null } = location.state || {};
-  // console.log(doctor,">>>>>>>>>>doctor")
+  const { doctor } = location.state || {};
+  console.log(doctor,">>>>>>>>>>doctor")
   return (
     <>
       <Header />
@@ -30,7 +33,10 @@ const PublicDoctorView = () => {
                 <div class="right">
                   <div class="para">
                     Maternal-Fetal Medicine{" "}
-                    <span class="text-mainblue"> 16 years of practice</span>
+                    <span class="text-mainblue">
+                      {" "}
+                      {doctor?.experience_years} years of practice
+                    </span>
                   </div>
                   <div class="dcNm">
                     <div class="Nm">
@@ -42,7 +48,10 @@ const PublicDoctorView = () => {
                     <div class="dcSpecialist">
                       <div class="d-flex justify-content-center align-items-center flex-column gap-1 spclt">
                         <img src="../images/user-dashboard/gyne.svg" />
-                        <span class="text-red">Gynecology</span>
+                        <span class="text-red">
+                          {" "}
+                          {doctor?.speciality || "Generalist"}
+                        </span>
                       </div>
                       <div class="bStar d-flex align-items-center gap-2">
                         <img src="../images/user-dashboard/black-star.svg" />
@@ -55,7 +64,9 @@ const PublicDoctorView = () => {
                     <div class="loc">
                       <div class="d-flex align-items-center gap-2">
                         <img src="../images/user-dashboard/mappin.svg" />
-                        <span class="text-green">{doctor?.clinic_name}</span>
+                        <span class="text-green">
+                          {doctor?.country || "France"}
+                        </span>
                       </div>
                       {/* <div class="d-flex align-items-center gap-3">
                           <img src="../images/user-dashboard/flag.svg"/>
@@ -77,8 +88,12 @@ const PublicDoctorView = () => {
                   </div>
 
                   <div class="doctor_call mt-5">
-                  <span className="transparent_btn">Urgent hourly rate : {doctor?.urgent_hourly_rate}</span>
-                  <span className="transparent_btn">Planned hourly rate : {doctor?.planned_hourly_rate}</span>
+                    <span className="transparent_btn">
+                      Urgent hourly rate : {doctor?.urgent_hourly_rate}
+                    </span>
+                    <span className="transparent_btn">
+                      Planned hourly rate : {doctor?.planned_hourly_rate}
+                    </span>
                     <a
                       href="#"
                       class="light_black_btn d-flex align-items-center gap-3"
@@ -86,13 +101,19 @@ const PublicDoctorView = () => {
                       <img src="../images/user-dashboard/askQ.png" /> ask a
                       question
                     </a>
-                    <a
+                    {/* <a
                       href="#"
                       class="blue_btn d-flex align-items-center gap-3"
                     >
-                      Make Appointment {" "}
+                      Make Appointment{" "}
                       <img src="../images/user-dashboard/calendar.svg" />{" "}
-                    </a>
+                    </a> */}
+                    <Link
+                      to={"/login"}
+                      className="blue_btn d-flex align-items-center gap-3"
+                    >
+                      {t("all-doctor-list.make-appointment")}
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -327,7 +348,9 @@ const PublicDoctorView = () => {
                         class="img-fluid"
                       />
                       <div class="scoreData">
-                        {totalReviewSum / reviewData?.length}
+                        {totalReviewSum > 0
+                          ? totalReviewSum / reviewData?.length
+                          : totalReviewSum}
                       </div>
                     </div>
                   </div>

@@ -598,6 +598,9 @@ main{
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .redC{
@@ -895,6 +898,12 @@ main{
 
 .reschedule{
     border: 2px solid red !important;
+}
+.reschedule_pendding{
+    border: 2px solid #E8AA00 !important;
+}
+.reschedule_done{
+    border: 2px solid green !important;
 }
 
 .red-text{
@@ -1365,7 +1374,7 @@ main{
 }
 
 .recomend .recomendBox .left .docrecomdpart .drRdetail .blue_btn, .recomend .recomendBox .left .docrecomdpart .drRdetail .transparent_btn{
-    padding: 8px 15px;
+    padding: 8px 8px;
 }
 
 .recomend .recomendBox .right{
@@ -3366,6 +3375,22 @@ main{
     height: 350px;
     overflow-y: auto;
 }
+.presciption-view{
+    height: 900px !important; 
+}
+.presciption-view .mediaBox{
+    width: 23% !important;
+}
+.presciption-view h4{
+font-size: 14px !important;
+font-weight: 600 !important;
+margin-bottom: 10px !important;
+}
+.presciption-view h6{
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    margin-bottom: 0px !important;
+    }
 
 .mediadigestDetails .mediaBox {
     border: 1px solid #c6cbcc !important;
@@ -3396,7 +3421,12 @@ main{
     margin-bottom: 10px;
     min-height: 45px;
 }
-
+/* sakshi */
+.consult{
+    color: #00bbd3;
+    font-size: 14px;
+  font-weight: 500;
+}
 @media(min-width:1200px) and (max-width:1500px){
     .doc_public_view .docDetails .doctorsName .img-part img {
         width: 200px;

@@ -63,25 +63,25 @@ try {
               </div>
               <div class="right">
                 <div class="para">
-                  Maternal-Fetal Medicine{" "}
+                  Maternal-Fetal Medicine
                   <span class="text-mainblue"> 16 years of practice</span>
                 </div>
                 <div class="dcNm">
                   <div class="Nm">
-                    <img src="../images/batch.svg" />
+                    <img src="../../images/batch.svg" />
                     <span class="text-mainblue">
                       Dr.{doctor?.first_name} {doctor?.last_name}
                     </span>
                   </div>
                   <div class="dcSpecialist">
                     <div class="d-flex justify-content-center align-items-center flex-column gap-1 spclt">
-                      <img src="../images/user-dashboard/gyne.svg" />
+                      <img src="../../images/user-dashboard/gyne.svg" />
                       <span class="text-red">
                         {doctor?.speciality || "Gynecology"}
                       </span>
                     </div>
                     <div class="bStar d-flex align-items-center gap-2">
-                      <img src="../images/black-star.svg" />
+                      <img src="../../images/black-star.svg" />
                       <span class="text-black ">{doctor?.rating || 0}</span>
                     </div>
                   </div>
@@ -90,7 +90,7 @@ try {
                 <div class="locations-call">
                   <div class="loc">
                     <div class="d-flex align-items-center gap-2">
-                      <img src="../images/mappin.svg" />
+                      <img src="/images/mappin.svg" />
                       <span class="text-green">
                         {doctor?.city}, {doctor?.country}
                       </span>
@@ -106,11 +106,11 @@ try {
                   <div class="toggle" onclick="toggleActive(this)">
                     <div class="circle">
                       <img
-                        src="../images/doctor-dashboard/phone.png"
+                        src="../../images/doctor-dashboard/phone.png"
                         class="img-fluid"
                       />
                     </div>
-                    <span class="label">Urgent call</span>
+                    <span class="label">Urgent call </span>
                   </div>
                 </div>
 
@@ -122,10 +122,9 @@ try {
                     planned fee: {doctor?.planned_hourly_rate}
                   </sapn>
                   <a
-                    href="#"
                     class="light_black_btn d-flex align-items-center gap-3"
                   >
-                    <img src="../images/user-dashboard/askQ.png" /> ask a
+                    <img src="../../images/user-dashboard/askQ.png" /> ask a
                     question
                   </a>
                   <a
@@ -133,7 +132,7 @@ try {
                     onClick={() => makeAppointment(doctor)}
                   >
                     Make Appointment{" "}
-                    <img src="../images/user-dashboard/calendar.svg" />{" "}
+                    <img src="../../images/user-dashboard/calendar.svg" />{" "}
                   </a>
                 </div>
               </div>
@@ -150,30 +149,56 @@ try {
               </div>
             </div>
             <div class="tabbing">
-            <ul>
-              <li className={activeTab === "history" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("history")}>Prof History</div>
-              </li>
-              <li className={activeTab === "licenses" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("licenses")}>Licenses</div>
-              </li>
-              <li className={activeTab === "reviews" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("reviews")}>Reviews</div>
-              </li>
-              <li className={activeTab === "Media digests" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("Media digests")}>
-                  Media digests
-                </div>
-              </li>
-              <li className={activeTab === "Info" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("Info")}>Info</div>
-              </li>
-              <li className={activeTab === "schedule" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("schedule")}>
-                  Full Schedule
-                </div>
-              </li>
-            </ul>
+              <ul>
+                <li className={activeTab === "history" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("history")}
+                  >
+                    Prof History
+                  </div>
+                </li>
+                <li className={activeTab === "licenses" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("licenses")}
+                  >
+                    Licenses
+                  </div>
+                </li>
+                <li className={activeTab === "reviews" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("reviews")}
+                  >
+                    Reviews
+                  </div>
+                </li>
+                <li className={activeTab === "Media digests" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Media digests")}
+                  >
+                    Media digests
+                  </div>
+                </li>
+                <li className={activeTab === "Info" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Info")}
+                  >
+                    Info
+                  </div>
+                </li>
+                <li className={activeTab === "schedule" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("schedule")}
+                  >
+                    Full Schedule
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -340,26 +365,49 @@ try {
 
         <div class="reviews reviewsInfo">
           <div class="tabbing">
-          <ul>
+            <ul>
               <li className={activeTab === "history" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("history")}>Prof History</div>
+                <div
+                  className="userInfo"
+                  onClick={() => setActiveTab("history")}
+                >
+                  Prof History
+                </div>
               </li>
               <li className={activeTab === "licenses" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("licenses")}>Licenses</div>
+                <div
+                  className="userInfo"
+                  onClick={() => setActiveTab("licenses")}
+                >
+                  Licenses
+                </div>
               </li>
               <li className={activeTab === "reviews" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("reviews")}>Reviews</div>
+                <div
+                  className="userInfo"
+                  onClick={() => setActiveTab("reviews")}
+                >
+                  Reviews
+                </div>
               </li>
               <li className={activeTab === "Media digests" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("Media digests")}>
+                <div
+                  className="userInfo"
+                  onClick={() => setActiveTab("Media digests")}
+                >
                   Media digests
                 </div>
               </li>
               <li className={activeTab === "Info" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("Info")}>Info</div>
+                <div className="userInfo" onClick={() => setActiveTab("Info")}>
+                  Info
+                </div>
               </li>
               <li className={activeTab === "schedule" ? "active" : ""}>
-                <div className="userInfo" onClick={() => setActiveTab("schedule")}>
+                <div
+                  className="userInfo"
+                  onClick={() => setActiveTab("schedule")}
+                >
                   Full Schedule
                 </div>
               </li>
@@ -375,7 +423,7 @@ try {
                       <h5>My trust score</h5>
                       <div class="score">
                         <img
-                          src="../images/user-dashboard/star.png"
+                          src="../../images/user-dashboard/star.png"
                           class="img-fluid"
                         />
                         <div class="scoreData">
@@ -402,47 +450,37 @@ try {
           {activeTab == "history" && (
             <div>
               <div class="reviewInner">
-                <div class="left">
-                      coming soon...
-                </div>
+                <div class="left">coming soon...</div>
               </div>
-              </div>
+            </div>
           )}
           {activeTab == "schedule" && (
             <div>
               <div class="reviewInner">
-                <div class="left">
-                      coming soon...
-                </div>
+                <div class="left">coming soon...</div>
               </div>
-              </div>
+            </div>
           )}
           {activeTab == "Media digests" && (
             <div>
               <div class="reviewInner">
-                <div class="left">
-                Media digests
-                </div>
+                <div class="left">Media digests</div>
               </div>
-              </div>
+            </div>
           )}
           {activeTab == "licenses" && (
             <div>
               <div class="reviewInner">
-                <div class="left">
-                licenses
-                </div>
+                <div class="left">licenses</div>
               </div>
-              </div>
+            </div>
           )}
           {activeTab == "Info" && (
             <div>
               <div class="reviewInner">
-                <div class="left">
-                Info
-                </div>
+                <div class="left">Info</div>
               </div>
-              </div>
+            </div>
           )}
         </div>
         <AppointmentModal

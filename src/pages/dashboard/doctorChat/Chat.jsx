@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+// import notification from "../../assets/notification.mp3";
 import { Modal, FormControl } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import { AiOutlineMessage } from "react-icons/ai";
 import { BsSendFill, BsEmojiSmile } from "react-icons/bs";
 import Picker from "emoji-picker-react";
 import "./Chat.css";
-import { useTranslation } from "react-i18next";
 
 const ChatModal = ({
   isVisible,
@@ -16,7 +16,6 @@ const ChatModal = ({
   onSearch,
   receivedMessage,
 }) => {
-  const { t } = useTranslation();
   const messagesEndRef = useRef(null);
   const notificationSound = useRef(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -38,7 +37,7 @@ const ChatModal = ({
 
     if (receivedMessage?.text && !isVisible) {
       if (notificationSound.current) {
-        // notificationSound.current.play();
+        notificationSound.current.play();
       }
 
       toast.info(`${receivedMessage.text}`, {
@@ -79,7 +78,7 @@ const ChatModal = ({
         draggable
         toastClassName="custom-toast"
       />
-      <audio src="/images/notification.mp3" ref={notificationSound} />
+      {/* <audio src={notification} ref={notificationSound} /> */}
       <Modal
         className="chat-modal-main"
         show={isVisible}
@@ -115,7 +114,7 @@ const ChatModal = ({
             </div>
           ) : (
             <div className="no-message">
-              <span>{t("doctor-chat.no-active-chats")}</span>
+              <span>No messages here</span>
             </div>
           )}
         </Modal.Body>

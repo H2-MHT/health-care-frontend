@@ -4,6 +4,7 @@ import {
   deleteEntry,
   fetchData,
   fetchDataAuth,
+  postData,
   updateFormData,
 } from "../../hooks/services/services";
 import { Country, City } from "country-state-city";
@@ -30,22 +31,17 @@ import AutoSelect from "../../components/form/AutoSelect";
 import CreateSelect from "../../components/form/CreateSelect";
 import { getProfileClass } from "../../utils/common";
 
-let SpecialitResponse = [
-  { label: "Cardiology", value: "Cardiology" },
-  { label: "Neurology", value: "Neurology" },
-];
-
 const EditProfile = () => {
   const { t } = useTranslation("edit-profile");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [placeData, setPlaceData] = useState();
   const [loading, setLoading] = useState(false);
-  const [isEdited, setIsEdited] = useState(false);
+  const [isEdited, setIsEdited] = useState(null);
   const [languageOptions, setLanguageOptions] = useState([]);
   const [languageData, setLanguageData] = useState();
   const [modelOpen, setModelOpen] = useState(false);
-  const [profileStatus, setProfileStatus] = useState('Rejected')
+  const [profileStatus, setProfileStatus] = useState("Rejected");
   const [showModelLicenses, setShowModelLicenses] = useState(false);
   const [showLicensesDetails, setShowLicensesDetails] = useState(false);
   const [licensesdetail, setLicensesdetail] = useState();
@@ -59,9 +55,11 @@ const EditProfile = () => {
   const [selectedEducation, setSelectedEducation] = useState(null);
   const [isEducation, setIsEducation] = useState(false);
   const [showAll, setShowAll] = useState(false);
-  const [Speciality, setSpeciality] = useState(SpecialitResponse);
+  const [Speciality, setSpeciality] = useState([]);
   const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
-  const documentVerification = useSelector((state) => state?.documentVerification?.documentVerification);
+  const documentVerification = useSelector(
+    (state) => state?.documentVerification?.documentVerification
+  );
 
   const years = [
     { label: "1", value: "1" },
@@ -89,6 +87,7 @@ const EditProfile = () => {
       experience_years: isProfiledata?.experience_years
         ? isProfiledata?.experience_years
         : "",
+      professional_stat: parseInt(isProfiledata?.professional_stat),
     },
   });
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -134,9 +133,9 @@ const EditProfile = () => {
     }
     if (isProfiledata?.professional_stat) {
       const sp = Speciality?.find(
-        (c) => c.value === isProfiledata.professional_stat
+        (c) => c.value == isProfiledata.professional_stat
       );
-
+      setIsEdited(sp);
       if (!sp) {
         setSpeciality((prev) => [
           ...prev,
@@ -147,7 +146,7 @@ const EditProfile = () => {
         ]);
       }
     }
-  }, [isProfiledata]);
+  }, [isProfiledata, Speciality]);
 
   const getPlaceWork = async () => {
     try {
@@ -165,26 +164,47 @@ const EditProfile = () => {
     }
   };
 
+  const getSpecialization = async () => {
+    try {
+      const response = await fetchDataAuth("MasterPanel/merge-specialization/");
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
+      const getData = await response.json();
+      setSpeciality([
+        ...getData?.specializations?.map((item) => ({
+          label: item.name,
+          value: item.id,
+        })),
+      ]);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   useEffect(() => {
-    getPlaceWork(); // Fetch data on component mount
+    getPlaceWork();
     getLanguageData();
     getMediaDigest();
+    getSpecialization();
   }, []);
 
-    useEffect(() => {
-      if(documentVerification.length){
+  useEffect(() => {
+    if (documentVerification.length) {
       const determineStatus = () => {
-        if (documentVerification.some(doc => doc.status === "Rejected")) {
+        if (documentVerification.some((doc) => doc.status === "Rejected")) {
           setProfileStatus("Rejected");
-        } else if (documentVerification.some(doc => doc.status === "Pending")) {
+        } else if (
+          documentVerification.some((doc) => doc.status === "Pending")
+        ) {
           setProfileStatus("Pending");
         } else {
           setProfileStatus("Verified");
         }
       };
       determineStatus();
-      }
-    }, [documentVerification]);
+    }
+  }, [documentVerification]);
 
   useEffect(() => {
     setSelectedGender(isProfiledata?.gender);
@@ -299,7 +319,17 @@ const EditProfile = () => {
     event.preventDefault();
     setModelOpen(true);
     setSelectedEducation(null);
-    setIsEdited(false);
+  };
+
+  const addSpeclization = async (specialization) => {
+    try {
+      const payload = {
+        specialization: specialization,
+      };
+      await postData("doctors/add-specialization/", payload);
+    } catch (error) {
+      showToast(error.message, "error");
+    }
   };
 
   const onSubmit = async () => {
@@ -349,20 +379,25 @@ const EditProfile = () => {
         dispatch(getDoctorProfileSuccess(responseData?.data));
         showToast(responseData?.message, "success");
         setLoading(false);
+        const sp = Speciality?.find(
+          (c) => c.value == updatedFields.professional_stat
+        );
+        if (!sp) {
+          addSpeclization(updatedFields.professional_stat);
+        }
       }
     } catch (error) {
       setLoading(false);
       showToast(error.message, "error");
     }
   };
-  console.log(mediadigestDetails, ">>>>>>>>mediadigestDetails");
+
   const openUpdateEducationModal = async (event, education) => {
     event.preventDefault();
-    setIsEdited(true);
     setSelectedEducation(education);
     setModelOpen(true);
-    // If this function does something, you can keep it
   };
+
   return (
     <div class="rightContent">
       <div class="doc_info">
@@ -531,7 +566,11 @@ const EditProfile = () => {
                 <div class="profileViewPrt">
                   <div class="profileViewTop">
                     <a href="#">{t("edit-profile.public-view")}</a>
-                    <div class={`profileviewImg grrenC ${getProfileClass(profileStatus)}`} >
+                    <div
+                      class={`profileviewImg grrenC ${getProfileClass(
+                        profileStatus
+                      )}`}
+                    >
                       <FileUpload
                         src={
                           isProfiledata?.profile_picture
@@ -696,30 +735,20 @@ const EditProfile = () => {
                             <Controller
                               name="professional_stat"
                               control={control}
-                              defaultValue={
-                                isProfiledata?.professional_stat
-                                  ? {
-                                      label: isProfiledata.professional_stat,
-                                      value: isProfiledata.professional_stat,
-                                    }
-                                  : null
-                              }
                               render={({ field }) => {
-                                const selectedValue = field?.value?.value
-                                  ? field?.value
-                                  : {
-                                      label: field?.value,
-                                      value: field?.value,
-                                    };
                                 return (
                                   <CreateSelect
                                     options={Speciality}
                                     name="professional_stat"
                                     isSearchable={true}
                                     onChange={(option) => {
+                                      const sp = Speciality?.find(
+                                        (c) => c.value == option?.value
+                                      );
                                       field.onChange(option?.value); // sends value to form
+                                      setIsEdited(sp);
                                     }}
-                                    value={selectedValue} // show selected item in UI
+                                    value={isEdited} // show selected item in UI
                                   />
                                 );
                               }}

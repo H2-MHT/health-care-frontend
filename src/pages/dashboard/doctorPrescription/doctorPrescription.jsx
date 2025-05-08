@@ -43,7 +43,7 @@ const DoctorPrescription = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div class="rightContent">
+        <div class="rightContent rightsidefull">
           <div class="profileMobile">
             <div class="nameMobile">{`Hello, Dr ${isProfiledata?.first_name} ${isProfiledata?.last_name}!`}</div>
             <div class="profileImgMobile">

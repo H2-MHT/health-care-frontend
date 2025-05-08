@@ -62,6 +62,7 @@ export default function AmountPopUp({
             <form>
               <div className="row g-2">
                 <div className="col-md-12 mb-2">
+                  <p>Processing may take up to 5 business days.</p>
                   <div className="form-group">
                     <InputComponent
                       type="text"

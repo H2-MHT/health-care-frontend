@@ -26,11 +26,12 @@ const Reviews = () => {
     const itemsPerPage = 5;
     const [totalPages, setTotalPages] = useState(1);
 
-  const trustscore=(totalReviewSum / reviewData?.length).toFixed(2);
-
+  const trustscore = reviewData?.length
+  ? (totalReviewSum / reviewData.length).toFixed(1)
+  : 0;
   const toggleReply = (id) => {
-    setReplylistId(id); // Set the replylistId
-    setOpenReview(openReview === id ? null : id); // Toggle review visibility
+    setReplylistId(id); 
+    setOpenReview(openReview === id ? null : id); 
   };
 
  useEffect(() => {
@@ -67,21 +68,6 @@ const Reviews = () => {
 
 
 
-  const getReviewsData = async () => {
-    // setLoading(true);
-    try {
-      const response = await fetchData("reviews/review/", navigate);
-      if (!response.ok) {
-        throw new Error("Failed to fetch data from the server.");
-      }
-      const responseData = await response.json();
-      setReviewData(responseData?.data);
-      // setLoading(false);
-    } catch (error) {
-      // setLoading(false);
-      console.log(error.message);
-    }
-  };
   const getReviewsReplyData = async () => {
     // setLoading(true);
     try {
@@ -149,12 +135,16 @@ const Reviews = () => {
     }
   };
 
-
   const handleReviewdelete = async (id) => {
     try {
-      const response = await deleteData(`reviews/review/${id}/`);
+      const payload = {
+        review_id: id
+      };
+      const response = await deleteData(`reviews/review/`,payload);
+      console.log(response,">>>>>>payload")
       showToast("Notes deleted successfully", "success");
       await getReviewsReplyData()
+      await getPaginatedReviews()
     } catch (error) {
       showToast(error.message, "error");
     }
@@ -168,14 +158,12 @@ const Reviews = () => {
     setCurrentSelectedReviewId(reviewId);
   };
 
- 
-
   return (
     <>
       {loading ? (
         <Loader />
       ) : (
-        <div className="rightContent">
+        <div className="rightContent rightsidefull">
           <div className="profileMobile">
             <div className="nameMobile">Hello, Dr. Ava Williams!</div>
             <div className="profileImgMobile">
@@ -198,7 +186,7 @@ const Reviews = () => {
             <div className="row p-4">
               <div className="col-md-8 p-2">
                 <div className="card-scroll">
-                  {reviewData?.length ?
+                  {reviewData?.length ? (
                     reviewData?.map((items) => (
                       <div className="d-flex flex-column mt-4" key={items.id}>
                         <div className="item">
@@ -225,8 +213,12 @@ const Reviews = () => {
                             <h5>{items?.title}</h5>
                             <h6>{items?.content}</h6>
                             <div class="maineditdelete editdelete d-flex align-items-center gap-2">
-                              <img src="../images/edit.svg" width="25" />
-                              <img src="../images/delete.svg" width="25" onClick={()=>handleReviewdelete(items?.id,)} />
+                              {/* <img src="../images/edit.svg" width="25" /> */}
+                              <img
+                                src="../images/delete.svg"
+                                width="25"
+                                onClick={() => handleReviewdelete(items?.id)}
+                              />
                             </div>
                             <div className="d-flex justify-content-between align-items-center mt-4">
                               <div
@@ -249,16 +241,17 @@ const Reviews = () => {
                                       <div className="reply-msg">
                                         <p>{item?.content}</p>
                                       </div>
-
                                       <div class="editdelete d-flex align-items-center gap-2">
-                                        <img
+                                        {/* <img
                                           src="../images/edit.svg"
                                           width="25"
-                                        />
+                                        /> */}
                                         <img
                                           src="../images/delete.svg"
                                           width="25"
-                                          onClick={()=>handleReplydelete(item?.id,)}
+                                          onClick={() =>
+                                            handleReplydelete(item?.id)
+                                          }
                                         />
                                       </div>
                                     </div>
@@ -314,18 +307,22 @@ const Reviews = () => {
                           </div>
                         </div>
                       </div>
-                    )):  <div className="treatmentContainer">
-                    <div className="no-appointments">
-                      No Reviews available
+                    ))
+                  ) : (
+                    <div className="treatmentContainer">
+                      <div className="no-appointments">
+                        No Reviews available
+                      </div>
                     </div>
-                  </div>}
+                  )}
                 </div>
                 {reviewData.length > 0 && (
-            <Pagination
-              totalPages={totalPages}
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-            />)}
+                  <Pagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    onPageChange={setCurrentPage}
+                  />
+                )}
               </div>
 
               <div className="col-md-4 p-2">
@@ -339,7 +336,9 @@ const Reviews = () => {
                           className="img-fluid"
                         />
                         <div className="scoreData">
-                          {trustscore}
+                          {totalReviewSum > 0
+                            ? totalReviewSum / reviewData?.length
+                            : totalReviewSum}
                         </div>
                       </div>
                     </div>

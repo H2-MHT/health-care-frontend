@@ -230,7 +230,10 @@ const AppointmentList = () => {
     const endDate = getAppointmentFormattedDate(currentView?.endDate);
     getDoctorDasboardRequest();
     try {
-       const response = await fetchData(`dashboard/?start_date=${startDate}&end_date=${endDate}`, navigate);
+      const response = await fetchData(
+        `dashboard/?start_date=${startDate}&end_date=${endDate}`,
+        navigate
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch data from the server.");
       }
@@ -238,6 +241,19 @@ const AppointmentList = () => {
       dispatch(getDoctorDasboardSuccess(responseData));
     } catch (error) {
       dispatch(getDoctorDasboardFailure(error.message));
+    }
+  };
+
+  const generateMeetintLink = async (appointment) => {
+    try {
+      const payload = {
+        appointment_id: appointment?.id,
+        patient_user_id: appointment?.patient?.id,
+        doctor_user_id: appointment?.doctor?.id,
+      };
+      await postData(`video-call/meeting-link/`, payload);
+    } catch (error) {
+      showToast(error.message, "error");
     }
   };
 
@@ -259,6 +275,7 @@ const AppointmentList = () => {
         getPatientAppointments();
         setConfirmationModal(true);
         setSelectedTimeSlot("");
+        generateMeetintLink(appointment);
         setModelDeclineOpen(false);
         showToast(responseData?.message, "success");
       }
@@ -307,7 +324,7 @@ const AppointmentList = () => {
                           (item?.status === "Rescheduled" &&
                             item?.rescheduled_by === "Doctor") ? (
                             <div
-                              className="appointmentBox"
+                              className="appointmentBox  reschedule_pendding"
                               style={{ backgroundColor: "honeydew" }}
                             >
                               <div className="first">
@@ -356,7 +373,7 @@ const AppointmentList = () => {
                               </div>
                             </div>
                           ) : (
-                            <div className="appointmentBox reschedule">
+                            <div className="appointmentBox reschedule " style={{ backgroundColor: "honeydew" }}>
                               <div className="first">
                                 <div className="imgPrts">
                                   <img
@@ -400,12 +417,12 @@ const AppointmentList = () => {
                                 </button>
                               </div>
                               <div className="third">
-                                <div className="clockCalenderPrts red-text w-100">
-                                  <img src="/images/doctor-dashboard/red-clock.svg" />
+                                <div className="clockCalenderPrts w-100">
+                                  <img src="/images/doctor-dashboard/dark-clock.svg" />
                                   <span>{item?.slot}</span>
                                 </div>
-                                <div className="clockCalenderPrts red-text w-100">
-                                  <img src="/images/doctor-dashboard/red-calender.svg" />
+                                <div className="clockCalenderPrts w-100">
+                                  <img src="/images/doctor-dashboard/dark-calender.svg" />
                                   <span>{getFormattedDate(item.date)}</span>
                                 </div>
                               </div>
@@ -434,7 +451,7 @@ const AppointmentList = () => {
                 {pastAppointments?.length > 0 ? (
                   pastAppointments?.map((appointment) => {
                     return (
-                      <div class="appointmentBox">
+                      <div class="appointmentBox reschedule_done">
                         <div class="first">
                           <div class="imgPrts">
                             <img

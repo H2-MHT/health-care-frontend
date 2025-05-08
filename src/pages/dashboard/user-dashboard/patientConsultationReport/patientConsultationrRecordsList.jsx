@@ -55,12 +55,10 @@ const PatientConsultationRecordsList=()=> {
                     return (
                       <div className="reportDetail" key={item.id}>
                         <div className="img-prt">
-                          {/* <img
-                            src={item?.patient?.}
-                            className="img-fluid"
-                            alt="Patient"
-                          /> */}
+                          <Link to="/patient/consultationreport"
+                          state={{ item: item?.appointment_id }}>
                           {item?.patient?.name} {item?.patient?.last_name}
+                          </Link>
                         </div>
                         <div className="red-green">
                           {item.status === "Completed" ? (

@@ -8,9 +8,9 @@ import { useTranslation } from "react-i18next";
 const FavClinicPublicView=()=> {
   const { t } = useTranslation();
   const location = useLocation()
-  const { doctor = null } = location.state || {};
+  const { clinic = null } = location.state || {};
   const [clinicDoctorList,setClinicDoctorList]=useState()
-
+    const [activeTab, setActiveTab] = useState("Specialisties");
 
   const getClinicList = async () => {
     // setLoading(true);
@@ -44,7 +44,7 @@ const FavClinicPublicView=()=> {
           <div class="doc_public_view ">
             <div class="docDetails">
               <div class="clinicpublic_headMain">
-                <h3>{doctor?.name}</h3>
+                <h3>{clinic?.name}</h3>
                 <div class="locationShare">
                   <div class="clinic_headPublic d-flex justify-content-between gap-2">
                     <div class="loc d-flex gap-3">
@@ -53,10 +53,9 @@ const FavClinicPublicView=()=> {
                       </div>
                       <div class="d-flex align-items-center gap-2">
                         <img src="../images/user-dashboard/mappin.svg" />
-                        <span class="text-green">{doctor?.address}</span>
+                        <span class="text-green">{clinic?.address}</span>
                       </div>
                     </div>
-                    <img src="../images/user-dashboard/bookmark.svg" />
                   </div>
                 </div>
               </div>
@@ -94,24 +93,84 @@ const FavClinicPublicView=()=> {
               </div>
               <div class="tabbing">
                 <ul>
-                  <li>
-                    <a href="#">Specialisties</a>
+                  <li  className={activeTab === "Specialisties" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Specialisties")}
+                  >
+                    Specialisties
+                  </div>
                   </li>
-                  <li class="active">
-                    <a href="#">Doctors</a>
+                  <li  className={activeTab === "Doctors" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Doctors")}
+                  >
+                    Doctors
+                  </div>
                   </li>
-                  <li>
-                    <a href="#">Reviews</a>
+                  <li className={activeTab === "Reviews" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Reviews")}
+                  >
+                    Reviews
+                  </div>
                   </li>
-                  <li>
-                    <a href="#">Media digests</a>
+                  <li className={activeTab === "Media digests" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Media digests")}
+                  >
+                  Media digests
+                  </div>
                   </li>
-                  <li>
-                    <a href="#">Info</a>
+                  <li className={activeTab === "Info" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Info")}
+                  >
+                Info
+                  </div>
                   </li>
                 </ul>
               </div>
+              {activeTab == "Specialisties" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">coming soon...</div>
+              </div>
             </div>
+          )}
+                  {activeTab == "Doctors" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">coming soon...</div>
+              </div>
+            </div>
+          )}
+              {activeTab == "Reviews" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">Reviews...</div>
+              </div>
+            </div>
+          )}
+             {activeTab == "Media digests" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">Media digests...</div>
+              </div>
+            </div>
+          )}
+             {activeTab == "Info" && (
+            <div>
+              <div class="reviewInner">
+                <div class="left">Info...</div>
+              </div>
+            </div>
+          )}
+                  </div>
 
             <div class="trustRight">
               <div class="trustScore">
@@ -135,7 +194,7 @@ const FavClinicPublicView=()=> {
             <div class="tabbing">
               <ul>
                 <li>
-                  <a href="#">Prof History</a>
+                  <a href="#">Prof History </a>
                 </li>
                 <li>
                   <a href="#">Licenses</a>

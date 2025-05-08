@@ -1,6 +1,7 @@
 
 import React from 'react'
 import "./footer.css"
+import { Link } from 'react-router-dom'
 
 export const Footer = () => {
   return (
@@ -16,22 +17,22 @@ export const Footer = () => {
               <h4>Links</h4>
               <ul>
                 <li>
-                  <a href="#">Home</a>
+                  <Link to="https://www.my-health.today/">Home</Link>
                 </li>
                 <li>
                   <a href="#">MyApp Guest</a>
                 </li>
                 <li>
-                  <a href="#">Find Doctor</a>
+                  <Link to="/alldoctors">Find Doctor</Link>
                 </li>
                 <li>
-                  <a href="#">Clinics</a>
+                  <Link to="/allclinics">Clinics</Link>
                 </li>
                 <li>
-                  <a href="#">About Us</a>
+                  <Link to="https://www.my-health.today/">About Us</Link>
                 </li>
                 <li>
-                  <a href="#">Contact Us</a>
+                  <Link to="https://www.my-health.today/contact">Contact Us</Link>
                 </li>
               </ul>
             </div>

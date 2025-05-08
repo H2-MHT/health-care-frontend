@@ -4,16 +4,16 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useSelector } from "react-redux";
 import "./dashboard.css";
-import { getAppointmentFormatDate, getAppointmentFormattedDate } from "../../../utils/common";
+import { getAppointmentFormatDate } from "../../../utils/common";
 const MyCalendar = ({
   events,
   onDateClick,
+  onEventClick,
   isCalendarView = false,
   setCurrentView = () => {},
   eventList,
-  minDate
+  minDate,
 }) => {
-  console.log(">>>>>>>>>>>>>eventList", eventList)
   const [currentDateRange, setCurrentDateRange] = useState(null);
 
   const doctorDashboard = useSelector((state) => state.doctorDashboard);
@@ -25,7 +25,7 @@ const MyCalendar = ({
   });
 
   const handleEventClick = (clickInfo) => {
-    console.log("handleEventClick>>>>", clickInfo);
+    onEventClick(clickInfo);
   };
 
   const handleEvents = (events) => {
@@ -39,8 +39,8 @@ const MyCalendar = ({
   const getCalendarDates = (date) => {
     const startDate = getAppointmentFormatDate(date?.startStr);
     const endDate = getAppointmentFormatDate(date?.endStr);
-    if(startDate || endDate)
-    setCurrentView({ startDate: startDate, endDate: endDate });
+    if (startDate || endDate)
+      setCurrentView({ startDate: startDate, endDate: endDate });
   };
 
   return (
@@ -64,9 +64,9 @@ const MyCalendar = ({
         events={eventList ? eventList : events ? resp : []}
         locales="allLocales"
         eventTimeFormat={{
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false // Ensures AM/PM is shown
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false, // Ensures AM/PM is shown
         }}
         locale="en"
         firstDay={1}
