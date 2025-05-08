@@ -155,7 +155,7 @@ const AllFavClinic = () => {
   // };
 
   return (
-    <div className="rightContent">
+    <div className="rightContent rightsidefull">
       <div className="profileMobile">
         <div className="nameMobile">Hello, Dr. Ava Williams!</div>
         <div className="profileImgMobile">
@@ -190,62 +190,67 @@ const AllFavClinic = () => {
 
       <div className="favClinic">
         <div className="row g-4">
-          {clinicDetails.length > 0 ? clinicDetails?.map((item, index) => (
-            <div className="col-lg-4 col-md-6" key={index}>
-              <div className="favBox">
-                <img
-                  src="../images/user-dashboard/favclinic.svg"
-                  className="img-fluid w-100 clinicImg"
-                  alt="Clinic"
-                />
-                <div className="favContent">
-                  <a className="bookmark">
-                    <img
-                      src={
-                        favoriteClinics[item.id]
-                          ? "../images/user-dashboard/bookmark2.webp"
-                          : "/images/bookmark.svg"
-                      }
-                      alt="Favorite Toggle"
-                      onClick={() => handleToggle(item.id)}
-                    />
-                  </a>
-                  <div className="bStar d-flex align-items-center gap-2 mb-3">
-                    <img
-                      src="../images/user-dashboard/black-star.svg"
-                      alt="Star"
-                    />
-                    <span className="text-black ">4.6</span>
-                  </div>
-                  <h4 className="main-blue-text">{item?.name}</h4>
-                  <div className="d-flex align-items-center justify-content-between mt-3">
-                    <div className="clinicLoca d-flex align-items-center gap-2">
+          {clinicDetails.length > 0 ? (
+            clinicDetails?.map((item, index) => (
+              <div className="col-lg-4 col-md-6" key={index}>
+                <div className="favBox">
+                  <img
+                    src="../images/user-dashboard/favclinic.svg"
+                    className="img-fluid w-100 clinicImg"
+                    alt="Clinic"
+                  />
+                  <div className="favContent">
+                    <a className="bookmark">
                       <img
-                        src="../images/user-dashboard/mappin.svg"
-                        alt="Map Pin"
+                        src={
+                          favoriteClinics[item.id]
+                            ? "../images/user-dashboard/bookmark2.webp"
+                            : "/images/bookmark.svg"
+                        }
+                        alt="Favorite Toggle"
+                        onClick={() => handleToggle(item.id)}
                       />
-                      <span className="text-green">{item?.address}</span>
+                    </a>
+                    <div className="bStar d-flex align-items-center gap-2 mb-3">
+                      <img
+                        src="../images/user-dashboard/black-star.svg"
+                        alt="Star"
+                      />
+                      <span className="text-black ">4.6</span>
                     </div>
-                    <img src="../images/user-dashboard/flag.svg" alt="Flag" />
-                  </div>
-                  <p>{item?.public_name}</p>
-                  <div className="d-flex align-items-center justify-content-between">
-                    <div className="blckLangs">
-                      En{" "}
+                    <h4 className="main-blue-text">{item?.name}</h4>
+                    <div className="d-flex align-items-center justify-content-between mt-3">
+                      <div className="clinicLoca d-flex align-items-center gap-2">
+                        <img
+                          src="../images/user-dashboard/mappin.svg"
+                          alt="Map Pin"
+                        />
+                        <span className="text-green">{item?.address}</span>
+                      </div>
                       <img src="../images/user-dashboard/flag.svg" alt="Flag" />
                     </div>
-                    <Link
-                      className="transparent_btn"
-                      to="/patient/FavClinicPublicView"
-                      state={{ doctor: item }}
-                    >
-                      {t("all-doctor-list.more-info")}
-                    </Link>
+                    <p>{item?.public_name}</p>
+                    <div className="d-flex align-items-center justify-content-between">
+                      <div className="blckLangs">
+                        En{" "}
+                        <img
+                          src="../images/user-dashboard/flag.svg"
+                          alt="Flag"
+                        />
+                      </div>
+                      <Link
+                        className="transparent_btn"
+                        to="/patient/FavClinicPublicView"
+                        state={{ doctor: item }}
+                      >
+                        {t("all-doctor-list.more-info")}
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )): (
+            ))
+          ) : (
             <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
               <div className="recomend">
                 <div> {t("all-doctor-list.no-clinics-found")}</div>

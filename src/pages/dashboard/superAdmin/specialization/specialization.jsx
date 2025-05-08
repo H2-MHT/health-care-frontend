@@ -149,7 +149,7 @@ function Specialization() {
 
   return (
     <>
-      <div className="rightContent">
+      <div className="rightContent rightsidefull">
         <div className="row h-100">
           <div className="col-md-12">
             <div className="padding-inner border-radius-20 bg-white h-100">
@@ -282,7 +282,10 @@ function Specialization() {
           <div className="p-4 bg-white shadow-md rounded-lg w-80 text-left">
             <p>A doctor has submitted a new specialization</p>
             <p>Specialization Name: {specializationName?.name}</p>
-            <p>Interventional Pulmonology Doctor Name :{specializationName?.doctor_name}</p>
+            <p>
+              Interventional Pulmonology Doctor Name :
+              {specializationName?.doctor_name}
+            </p>
             <div className="gap-2 justify-content-center d-flex w-auto mx-auto">
               <button
                 type="submit"
@@ -315,7 +318,10 @@ function Specialization() {
             <div className="d-flex flex-column gap-2 text-left">
               <p>A doctor has submitted a new specialization</p>
               <p>Specialization Name:{targetSpecialzation?.name}</p>
-              <p>Interventional Pulmonology Doctor Name :{targetSpecialzation?.doctor_name}</p>
+              <p>
+                Interventional Pulmonology Doctor Name :
+                {targetSpecialzation?.doctor_name}
+              </p>
             </div>
             <div className="d-flex gap-2 align-items-center mb-4">
               <label htmlFor="specialization">Source Specialization</label>

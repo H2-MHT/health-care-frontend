@@ -156,7 +156,7 @@ const Reviews = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="rightContent">
+        <div className="rightContent rightsidefull">
           <div className="profileMobile">
             <div className="nameMobile">Hello, Dr. Ava Williams!</div>
             <div className="profileImgMobile">

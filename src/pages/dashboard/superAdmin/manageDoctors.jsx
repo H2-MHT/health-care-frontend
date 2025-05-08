@@ -88,7 +88,7 @@ const ManageDoctors = () => {
   return loading ? (
     <Loader />
   ) : (
-    <div class="rightContent">
+    <div class="rightContent rightsidefull">
       <div class="sortSearchArea">
         <div class="search">
           <input
@@ -142,7 +142,10 @@ const ManageDoctors = () => {
                       </div>
                     </td>
                     <td>
-                      <Link to="/superadmin/document/verification" state={{ doctor: doctor }}>
+                      <Link
+                        to="/superadmin/document/verification"
+                        state={{ doctor: doctor }}
+                      >
                         {doctor.first_name} {doctor.last_name}
                       </Link>
                     </td>

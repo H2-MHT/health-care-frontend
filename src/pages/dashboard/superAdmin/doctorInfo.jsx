@@ -36,7 +36,7 @@ const DoctorInfo = () => {
   return loading ? (
     <Loader />
   ) : (
-    <div class="rightContent">
+    <div class="rightContent rightsidefull">
       <div class="profileMobile">
         <div class="nameMobile">
           Hello, dr. {userInfo?.first_name} {userInfo?.last_name}!

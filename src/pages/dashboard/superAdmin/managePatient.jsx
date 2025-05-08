@@ -92,7 +92,7 @@ const ManagePatient = () => {
   return loading ? (
     <Loader />
   ) : (
-    <div class="rightContent">
+    <div class="rightContent rightsidefull">
       <div class="sortSearchArea">
         <div class="search">
           <input
