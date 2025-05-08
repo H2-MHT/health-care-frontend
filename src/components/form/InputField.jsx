@@ -16,6 +16,7 @@ export const InputField = forwardRef(({
     isFieldDisabled,
     onChange,
     defaultValue,
+    className
 }, ref) => {
   const inputClassNames = `
     ${error ? 'required form-check-input' : ''} 
@@ -23,7 +24,7 @@ export const InputField = forwardRef(({
   `.trim();
 
   return (
-    <div className="input-field">
+    <div className={`${className} input-field`}>
       <input
         ref={ref}  
         type={type}

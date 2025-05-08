@@ -5,7 +5,9 @@ import { fetchData, postData } from "../../../hooks/services/services";
 import { showToast } from "../../../utils/toast";
 import { useNavigate } from "react-router-dom";
 import { WEB_SOCKET_URL } from "../../../hooks/services/apiUrl";
+import { MdMic, MdMicOff, MdVideocam, MdVideocamOff, MdCallEnd, MdOutlineMessage, MdIosShare } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
 
 const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
   const [joined, setJoined] = useState(false);
@@ -84,7 +86,7 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
   const addConsultationReport = async () => {
     try {
       const payload = {
-        appointment_id: meetingData?.appointment_id,
+        appointment_id: selectedAppointment?.appointment_id,
         translated_text: transcript,
       };
 
@@ -109,7 +111,6 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
       });
 
       await client.leave();
-      addConsultationReport();
       setJoined(false);
       localStorage.setItem("isVideoActive", false);
     } catch (error) {
@@ -117,10 +118,11 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
     }
   };
 
-  const rejectCall = () => {
+  const rejectCall = async () => {
     console.log("Call Rejected");
-    handleClose();
-    leaveChannel();
+    await handleClose();
+    await addConsultationReport();
+    await leaveChannel();
   };
 
   const toggleAudio = () => {
@@ -230,23 +232,19 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
           </div>
         </div>
         <div className="controls">
-          <button className="videobutton" onClick={toggleAudio}>
-            {audioEnabled ? (
-              <img src="/images/mic.webp" alt="Mic On" />
-            ) : (
-              <img src="/images/unmute.png" alt="Mic Off" />
-            )}
-          </button>
-          <button className="videobutton" onClick={rejectCall}>
-            <img src="/images/callCut.webp" alt="End Call" />
-          </button>
-          <button className="videobutton" onClick={toggleVideo}>
+          <Button onClick={toggleAudio} className="video-control-btn">
+            {audioEnabled ? <MdMic size={25} /> : <MdMicOff size={25} />}
+          </Button>
+          <Button className="decline-call-btn" onClick={rejectCall}>
+            <MdCallEnd size={22} />
+          </Button>
+          <Button onClick={toggleVideo} className="video-control-btn">
             {videoEnabled ? (
-              <img src="/images/videoCall.webp" alt="Video On" />
+              <MdVideocam size={25} />
             ) : (
-              <img src="/images/videoHide.png" alt="Video Off" />
+              <MdVideocamOff size={25} />
             )}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -8,6 +8,9 @@ import { useSelector } from "react-redux";
 import { fetchData } from "../../../hooks/services/services";
 import { useNavigate } from "react-router-dom";
 import Accordion from "../../../components/form/Accordion";
+import InputField from "../../../components/form/InputField";
+import CommonModal from "../../../components/form/Modal";
+import { showToast } from "../../../utils/toast";
 
 
 const UserHealthDataCenter = () => {
@@ -18,15 +21,17 @@ const UserHealthDataCenter = () => {
   const [calories, setCalories] = useState(null);
   const [heartRate, setHeartRate] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [open, setOpen] = useState(false)
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0]
   );
   const [totalDistance, settotalDistance] = useState(null);
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile]=useState(null);
+  const [userProfile, setUserProfile] = useState({category:"", resource:""});
   const [weight, setWeight] = useState(null);
   const [bmi, setBmi] = useState(null);
   const [sleep, setSleep] = useState({ hours: 0, minutes: 0 });
-
+  const [list, setList] = useState([]);
   const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
 
   const sampleImage = "../images/sample.png";
@@ -109,19 +114,6 @@ const UserHealthDataCenter = () => {
     }
   };
 
-    const getHealthData = async (page=1) => {
-        try {
-          const response = await fetchData(`nhs/api/?category=${"medicines"}&resource=${"aciclovir"}`, navigate);
-          if (!response.ok) {
-            throw new Error("Failed to fetch data from the server.");
-          }
-          const responseData = await response.json();
-          // setReviewData(responseData);
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
-
   const fetchWeightAndBMI = async (date) => {
     try {
       const data = await getFitbitData(`body/log/weight/date/${date}.json`);
@@ -179,6 +171,38 @@ const UserHealthDataCenter = () => {
     fetchUserProfile()
   },[])
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserProfile({ ...userProfile, [name]: value });
+  }
+
+  const closeModal = () => {
+    setOpen(false);
+  }
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetchData(`nhs/api/?category=${userProfile?.category}&resource=${userProfile?.resource}`, navigate);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
+      const responseData = await response.json();
+      setList(responseData?.hasPart)
+      setOpen(false);
+    } catch (error) {
+      showToast(error?.message, "error")
+    }
+  }
+
+  const getForm = () => {
+    return (
+      <div>
+        <InputField type="text" placeholder="Enter category" name="category" onChange={handleChange} className="mb-3 mr-2 ml-2"/>
+        <InputField type="text" placeholder="Enter resource" name="resource" onChange={handleChange} className="mb-3 mr-2 ml-2"/>
+      </div>
+    );
+  };
+
   return (
     <div class="rightContent ">
       <div class=" userDashboard">
@@ -201,11 +225,7 @@ const UserHealthDataCenter = () => {
               <div class="col-md-12">
                 <div class="userAllDetail bg-white padding-20 border-radius-20">
                   <div class="userData">
-                    <img
-                      src={
-                        profile?.avatar || sampleImage
-                      }
-                    />
+                    <img src={profile?.avatar || sampleImage} />
                     {profile ? (
                       <h6>{profile.fullName}</h6>
                     ) : (
@@ -279,6 +299,7 @@ const UserHealthDataCenter = () => {
                   </div>
                 </div>
               </div>
+              {console.log(">>>>>>>>>>>>>>>userProfile", userProfile)}
               <div class="col-md-3">
                 <div class="burned bg-white padding-20 border-radius-20 h-100">
                   <div class="up">
@@ -433,7 +454,7 @@ const UserHealthDataCenter = () => {
             </div>
           </div>
           <div class="col-md-2">
-            <div class="healthQuest" onClick={getHealthData}>
+            <div class="healthQuest" onClick={() => setOpen(true)}>
               <img src="../dashboard-user/../images/user-dashboard/health-quest.webp" />
               <p>
                 {t("health-data-center.health")}{" "}
@@ -441,11 +462,23 @@ const UserHealthDataCenter = () => {
               </p>
             </div>
           </div>
-          <div class="col-md-10">
+          <div class={`col-md-10 ${list?.length > 0 ? "acc-height": ""}`}>
             <div class="bg-darkgreen padding-20 border-radius-20 h-100">
-              <Accordion />
+              {list?.length > 0 && <Accordion list={list}/>}
             </div>
           </div>
+          <CommonModal
+            show={open}
+            // title={t("prescription.add-prescription")}
+            body={getForm()}
+            size="md"
+            onHide={() => setOpen(false)}
+            className=""
+            footerButtons={[
+              { label: "Save", onClick: handleSubmit, className: "transparent_btn" },
+              { label: "Cancel", onClick: closeModal, className: "blue_btn" },
+            ]}
+          ></CommonModal>
         </div>
       </div>
     </div>

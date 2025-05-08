@@ -204,6 +204,7 @@ const DoctorChat = () => {
       const getData = await response.json();
       if (getData) {
         getChatMessages(getData[0]?.receiver);
+        setSelectedChat(getData[0]);
         setContactList(getData);
       }
     } catch (error) {
@@ -222,7 +223,7 @@ const DoctorChat = () => {
       const response = await postData("chat/chat-room/", payload);
       if (response?.status === 200) {
         let data = await response.json();
-        setSelectedChat(data[0]);
+        // setSelectedChat(data[0]);
       }
     } catch (error) {
       showToast(error.message, "error");
