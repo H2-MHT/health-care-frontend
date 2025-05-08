@@ -101,6 +101,12 @@ li {
   color: #06cd98 !important;
 }
 
+.acc-height {
+  height: 270px;
+  max-height: 270px;
+  overflow-x: auto;
+}
+
 .text-light-black {
   color: #333333 !important;
 }
