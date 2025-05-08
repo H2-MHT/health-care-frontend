@@ -186,7 +186,7 @@ const Reviews = () => {
             <div className="row p-4">
               <div className="col-md-8 p-2">
                 <div className="card-scroll">
-                  {reviewData?.length ?
+                  {reviewData?.length ? (
                     reviewData?.map((items) => (
                       <div className="d-flex flex-column mt-4" key={items.id}>
                         <div className="item">
@@ -214,7 +214,11 @@ const Reviews = () => {
                             <h6>{items?.content}</h6>
                             <div class="maineditdelete editdelete d-flex align-items-center gap-2">
                               {/* <img src="../images/edit.svg" width="25" /> */}
-                              <img src="../images/delete.svg" width="25" onClick={()=>handleReviewdelete(items?.id,)} />
+                              <img
+                                src="../images/delete.svg"
+                                width="25"
+                                onClick={() => handleReviewdelete(items?.id)}
+                              />
                             </div>
                             <div className="d-flex justify-content-between align-items-center mt-4">
                               <div
@@ -245,7 +249,9 @@ const Reviews = () => {
                                         <img
                                           src="../images/delete.svg"
                                           width="25"
-                                          onClick={()=>handleReplydelete(item?.id,)}
+                                          onClick={() =>
+                                            handleReplydelete(item?.id)
+                                          }
                                         />
                                       </div>
                                     </div>
@@ -301,18 +307,22 @@ const Reviews = () => {
                           </div>
                         </div>
                       </div>
-                    )):  <div className="treatmentContainer">
-                    <div className="no-appointments">
-                      No Reviews available
+                    ))
+                  ) : (
+                    <div className="treatmentContainer">
+                      <div className="no-appointments">
+                        No Reviews available
+                      </div>
                     </div>
-                  </div>}
+                  )}
                 </div>
                 {reviewData.length > 0 && (
-            <Pagination
-              totalPages={totalPages}
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-            />)}
+                  <Pagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    onPageChange={setCurrentPage}
+                  />
+                )}
               </div>
 
               <div className="col-md-4 p-2">
@@ -326,7 +336,9 @@ const Reviews = () => {
                           className="img-fluid"
                         />
                         <div className="scoreData">
-                          {trustscore}
+                          {totalReviewSum > 0
+                            ? totalReviewSum / reviewData?.length
+                            : totalReviewSum}
                         </div>
                       </div>
                     </div>

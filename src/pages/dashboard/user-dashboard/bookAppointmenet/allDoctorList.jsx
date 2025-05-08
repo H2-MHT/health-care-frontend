@@ -16,6 +16,15 @@ import Pagination from "../../../../components/pagination/pagination.js";
 import { constrainPoint } from "@fullcalendar/core/internal";
 import { quartersInYear } from "date-fns/constants";
 import { useTranslation } from "react-i18next";
+import { Country } from "country-state-city";
+import Flag from "react-world-flags";
+
+const countryCodeMap = Object.fromEntries(
+  Country.getAllCountries().map((country) => [
+    country.name.toLowerCase(),
+    country.isoCode,
+  ])
+);
 
 const AllDoctorList = () => {
   const { t } = useTranslation();
@@ -187,100 +196,120 @@ const AllDoctorList = () => {
           <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
             <div className="recomend">
               {allDoctorList.length > 0 ? (
-                allDoctorList.map((item) => (
-                  <div className="Docbox" key={item?.id}>
-                    <div className="recomendBox">
-                      <div className="clinicDocMain d-flex gap-3">
-                        <div className="left paddingLeftt">
-                          <img
-                            src={
-                              favoriteDoctors[item.id] || item.favourite
-                                ? "/images/purple.svg"
-                                : "/images/wishlist.svg"
-                            }
-                            alt="Favorite Toggle"
-                            onClick={() => handleToggleFavorite(item.id)}
-                            style={{ cursor: "pointer" }}
-                            className="heartImg img-fluid"
-                          />
-                          <div className="docrecomdpart">
-                            <div className="docImg">
-                              <img
-                                src="../images/flag.svg"
-                                className="docflag"
-                                alt="flag"
-                              />
-                              <Image src={item?.profile_picture} />
-                            </div>
-                           
-                            <div className="drRdetail">
-                              <div className="top">
-                                <div className="verified">
-                                  <img src="../images/batch.svg" alt="batch" />
-                                  {t("all-doctor-list.generalist")}
-                                  <span className="main-blue-text">
-                                    {item?.expertise}
+                allDoctorList.map((item) => {
+                  const countryName = item?.country?.toLowerCase?.();
+                  const countryCode = countryCodeMap[countryName] || "FR";
+                  return (
+                    <div className="Docbox" key={item?.id}>
+                      <div className="recomendBox">
+                        <div className="clinicDocMain d-flex gap-3">
+                          <div className="left paddingLeftt">
+                            <img
+                              src={
+                                favoriteDoctors[item.id] || item.favourite
+                                  ? "/images/purple.svg"
+                                  : "/images/wishlist.svg"
+                              }
+                              alt="Favorite Toggle"
+                              onClick={() => handleToggleFavorite(item.id)}
+                              style={{ cursor: "pointer" }}
+                              className="heartImg img-fluid"
+                            />
+                            <div className="docrecomdpart">
+                              <div className="docImg">
+                                <Flag code={countryCode} className="docflag" />
+                                <Image src={item?.profile_picture} />
+                              </div>
+
+                              <div className="drRdetail">
+                                <div className="top">
+                                  <div className="verified">
+                                    <img
+                                      src="../images/batch.svg"
+                                      alt="batch"
+                                    />
+                                    {t("all-doctor-list.generalist")}
+                                    <span className="main-blue-text">
+                                      {item?.expertise}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="recondName">
+                                  Dr. {item?.first_name} {item?.last_name}
+                                </div>
+                                <div className="clinicLoca d-flex align-items-center gap-2">
+                                  <img
+                                    src="../images/mappin.svg"
+                                    alt="map pin"
+                                  />
+                                  <span className="text-green">
+                                    {item?.country}
                                   </span>
                                 </div>
-                              </div>
-                              <div className="recondName">
-                                Dr. {item?.first_name} {item?.last_name}
-                              </div>
-                              <div className="clinicLoca d-flex align-items-center gap-2">
-                                <img src="../images/mappin.svg" alt="map pin" />
-                                <span className="text-green">
-                                  {item?.country}
-                                </span>
-                              </div>
-                              <div className="d-flex gap-2">
-                                {Array.isArray(item?.languages) &&
-                                  item.languages.map((lang, langIndex) => (
-                                    <div className="langSpeak" key={langIndex}>
-                                      <span>{lang.title}</span>
-                                    </div>
-                                  ))}
+                                <div className="d-flex gap-2">
+                                  {Array.isArray(item?.languages) &&
+                                    item.languages.map((lang, langIndex) => (
+                                      <div
+                                        className="langSpeak"
+                                        key={langIndex}
+                                      >
+                                        <span>{lang.title}</span>
+                                      </div>
+                                    ))}
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="right">
-                          <div className="greenimg">
-                            <img
-                              src="../images/general-medicine.svg"
-                              alt="medicine"
-                            />
-                            <span>{item?.specialty}</span>
+                          <div className="right">
+                            <div className="greenimg">
+                              <img
+                                src="../images/general-medicine.svg"
+                                alt="medicine"
+                              />
+                              <span>{item?.specialty}</span>
+                            </div>
+                            <div className="bStar d-flex align-items-center gap-2">
+                              <img src="../images/black-star.svg" alt="star" />
+                              <span className="text-black">{item?.rating}</span>
+                            </div>
                           </div>
-                          <div className="bStar d-flex align-items-center gap-2">
-                            <img src="../images/black-star.svg" alt="star" />
-                            <span className="text-black">{item?.rating}</span>
-                          </div>
                         </div>
-                      </div>
-                      <p>{item?.bio}</p>
-                      <div className="doclistBtn2 d-flex justify-content-end gap-3">
-                      <span className="transparent_btn">Urgent hourly rate : &nbsp; <span className ="fw-bold"> {item?.urgent_hourly_rate} </span></span>
-                      <span className="transparent_btn">Planned hourly rate : &nbsp; <span className ="fw-bold">{item?.planned_hourly_rate}</span></span>
-                        <Link
-                          to={`/patient/userview/${item?.id}`}
-                          state={{ doctor: item }}
-                          className="transparent_btn"
-                        >
-                          {t("all-doctor-list.more-info")}
-                        </Link>
+                        <p>{item?.bio}</p>
+                        <div className="doclistBtn2 d-flex justify-content-end gap-3">
+                          <span className="transparent_btn">
+                            Urgent hourly rate : &nbsp;{" "}
+                            <span className="fw-bold">
+                              {" "}
+                              {item?.urgent_hourly_rate}{" "}
+                            </span>
+                          </span>
+                          <span className="transparent_btn">
+                            Planned hourly rate : &nbsp;{" "}
+                            <span className="fw-bold">
+                              {item?.planned_hourly_rate}
+                            </span>
+                          </span>
+                          <Link
+                            to={`/patient/userview/${item?.id}`}
+                            state={{ doctor: item }}
+                            className="transparent_btn"
+                          >
+                            {t("all-doctor-list.more-info")}
+                          </Link>
                           <span
-                          className="blue_btn"
-                          onClick={() => makeAppointment(item)}
-                        >
-                          {t("all-doctor-list.make-appointment")}{" "}
-                        </span>
+                            className="blue_btn"
+                            onClick={() => makeAppointment(item)}
+                          >
+                            {t("all-doctor-list.make-appointment")}{" "}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="viewFullSchdl">
+                        {t("all-doctor-list.view-full-schedules")}
                       </div>
                     </div>
-                    <div className="viewFullSchdl">
-                      {t("all-doctor-list.view-full-schedules")}
-                    </div>
-                  </div>
-                ))
+                  );
+                })
               ) : (
                 <div>{t("all-doctor-list.no-doctors-found")}</div>
               )}

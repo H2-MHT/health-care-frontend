@@ -140,7 +140,7 @@ export const Drawer = () => {
       <aside
         onMouseEnter={() => setInsideDrawer(true)}
         onMouseLeave={() => setInsideDrawer(false)}
-        className={`${insideDrawer ? "drawer" : ""}`}
+        className={` ${insideDrawer ? "drawer" : "sidebarClose"}`}
       >
         <nav>
           <ul>

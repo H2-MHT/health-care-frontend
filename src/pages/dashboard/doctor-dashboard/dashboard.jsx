@@ -262,7 +262,7 @@ const Dashboard = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div class="rightContent">
+        <div class="rightContent rightsidefull">
           <div class="rightContentPart">
             <div class="left">
               <div class="calenderPart">
