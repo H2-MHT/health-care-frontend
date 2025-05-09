@@ -25,12 +25,12 @@ export const Footer = () => {
                     <a href="#">{t("ui_header.myApp_guest")}</a>
                   </li>
                   <li>
-                    <a href="allDoctorlist" target="_blank">
+                    <a href="/alldoctors" target="_blank">
                       {t("ui_header.find_doctor")}
                     </a>
                   </li>
                   <li>
-                    <a href="allcliniclist" target="_blank">
+                    <a href="/allclinics" target="_blank">
                       {t("ui_header.clinics_lable")}
                     </a>
                   </li>

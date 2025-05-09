@@ -3381,6 +3381,7 @@ main{
 }
 .presciption-view .mediaBox{
     width: 23% !important;
+    height: 450px;
 }
 .presciption-view h4{
 font-size: 14px !important;
