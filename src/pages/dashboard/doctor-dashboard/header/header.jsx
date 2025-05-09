@@ -204,7 +204,6 @@ export const Header = () => {
       <div className="dashHead">
         <a href="#" className="logo">
           <img src="/images/logo.png" className="img-fluid" alt="Logo" />
-          {console.log(">>>>>>>>.documentVerification", documentVerification, profileStatus)}
           <a ref={sidebarColRef} className="sidebarcol" href="#">
             <img
               src="/images/sidebar-menu.svg"
@@ -290,25 +289,27 @@ export const Header = () => {
               </div>
             </div>
 
-            <div
-              className="toggle"
-              onClick={(event) => {
-                event.currentTarget.classList.toggle("active");
-                setIsActive(!isActive);
-              }}
-            >
-              <div className="circle">
-                <img
-                  src="/images/doctor-dashboard/phone.png"
-                  alt="Phone"
-                  className="img-fluid"
-                />
+            {auth.user === "Doctor" && (
+              <div
+                className="toggle"
+                onClick={(event) => {
+                  event.currentTarget.classList.toggle("active");
+                  setIsActive(!isActive);
+                }}
+              >
+                <div className="circle">
+                  <img
+                    src="/images/doctor-dashboard/phone.png"
+                    alt="Phone"
+                    className="img-fluid"
+                  />
+                </div>
+                <span className="label">
+                  {t("header.urgent")} <br />
+                  {isActive ? "Call ON" : "Call OFF"}
+                </span>
               </div>
-              <span className="label">
-                {t("header.urgent")} <br />
-                {isActive ? "Call ON" : "Call OFF"}
-              </span>
-            </div>
+            )}
 
             {/* Language Dropdown */}
             <div className="language">

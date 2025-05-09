@@ -173,7 +173,7 @@ const AppRoutes = () => {
       allowedRoles: ["Doctor"],
     },
     {
-      path: "/doctor/consultation-report",
+      path: "/doctor/consultation-report/:id",
       element: <ConsultationReport />,
       exact: true,
       layout: true,

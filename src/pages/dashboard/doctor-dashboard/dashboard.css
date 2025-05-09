@@ -1622,7 +1622,8 @@ main{
 
 .drAppointmentReport .drAppointmentReportInner .left{
     border-radius: 0px 0px 0px 20px;
-    width: 70%;
+    /* width: 70%; */
+    width: 100%;
 }
 
 .drAppointmentReport .drAppointmentReportInner .left .reportContent{

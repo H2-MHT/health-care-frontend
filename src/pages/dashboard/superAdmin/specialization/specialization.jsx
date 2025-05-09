@@ -12,7 +12,7 @@ import { Modal } from "react-bootstrap";
 
 function Specialization() {
   const [specializationDetail, setSpecializationDetail] = useState();
-  const [activeTab, setActiveTab] = useState("Exciting Specialization");
+  const [activeTab, setActiveTab] = useState("Exisiting Specialization");
   const [penddingSpecializationDetail, setPenddingSpecializationDetail] =
     useState([]);
   const [modelApproved, setModelApproved] = useState(false);
@@ -20,7 +20,6 @@ function Specialization() {
   const [sourceSpecialization, setSourceSpecialization] = useState();
   const [specializationName, setSpecializationName] = useState();
   const [modelMerge, setModelMerge] = useState(false);
-  const [selectedSpecs, setSelectedSpecs] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [editDetails, setEditDetails] = useState();
   const [showEditModal, setShowEditModal] = useState(false);
@@ -29,13 +28,13 @@ function Specialization() {
   const getspecializationList = async () => {
     try {
       const response = await fetchDataAuth(
-        `MasterPanel/specialization/`,
+        `MasterPanel/merge-specialization/`,
         navigate
       );
       if (!response.ok)
         throw new Error("Failed to fetch data from the server.");
       const getData = await response.json();
-      setSpecializationDetail(getData?.data);
+      setSpecializationDetail(getData?.specializations);
     } catch (error) {
       console.log(error.message);
     }
@@ -54,7 +53,6 @@ function Specialization() {
       setPenddingSpecializationDetail(pendingList);
     } catch (error) {
       console.log(error.message);
-      setPenddingSpecializationDetail([]); // Ensure it stays an array
     }
   };
 
@@ -74,6 +72,7 @@ function Specialization() {
       showToast(error.message, "error");
     }
   };
+
   const onSubmitApprove = async () => {
     if (!specializationName?.name) {
       return;
@@ -89,8 +88,8 @@ function Specialization() {
       if (response.status == 201) {
         let responseData = await response.json();
         showToast(responseData?.message, "success");
-        await getPenddingSpecializationList();
         setModelApproved(false);
+        getPenddingSpecializationList();
       }
     } catch (error) {
       showToast(error.message, "error");
@@ -101,7 +100,6 @@ function Specialization() {
     const pendingItem = penddingSpecializationDetail.find(
       (item) => item.id === pendingItemId
     );
-    const selectedSpecId = selectedSpecs[pendingItemId];
     setSpecializationName(pendingItem);
     setModelApproved(true);
   };
@@ -110,19 +108,14 @@ function Specialization() {
     const pendingItem = penddingSpecializationDetail.find(
       (item) => item.id === pendingItemId
     );
-    const selectedSpecId = selectedSpecs[pendingItemId];
-    // const selectedSpec = specializationDetail.find(
-    //   (spec) => spec.id === parseInt(selectedSpecId)
-    // );
     setTargetSpecialzation(pendingItem);
-    // setSourceSpecialization(selectedSpec)
     setModelMerge(true);
   };
+
   const onSubmitMerge = async () => {
     if (sourceSpecialization?.name && !targetSpecialzation?.name) {
       return;
     }
-
     try {
       const payload = {
         source_specialization: sourceSpecialization?.name,
@@ -135,17 +128,20 @@ function Specialization() {
       if (response.status == 201) {
         let responseData = await response.json();
         showToast(responseData?.message, "success");
-        await getPenddingSpecializationList();
         setModelMerge(false);
+        getPenddingSpecializationList();
       }
     } catch (error) {
       showToast(error.message, "error");
     }
   };
   useEffect(() => {
-    getspecializationList();
-    getPenddingSpecializationList();
-  }, []);
+    if(activeTab == "Exisiting Specialization"){
+      getspecializationList();
+    }else if("Pending Specialization"){
+      getPenddingSpecializationList();
+    }
+  }, [activeTab]);
 
   return (
     <>
@@ -156,9 +152,9 @@ function Specialization() {
               <div className="d-flex align-items-center justify-content-end gap-5 mb-4">
                 <a
                   href="#"
-                  onClick={() => setActiveTab("Exciting Specialization")}
+                  onClick={() => setActiveTab("Exisiting Specialization")}
                 >
-                  Exciting Specialization
+                  Exisiting Specialization
                 </a>
                 <a
                   href="#"
@@ -174,7 +170,7 @@ function Specialization() {
                 </a>
               </div>
 
-              {activeTab === "Exciting Specialization" && (
+              {activeTab === "Exisiting Specialization" && (
                 <div className="mediaDegestPart">
                   <table border="1">
                     <thead>
@@ -249,7 +245,7 @@ function Specialization() {
                                   className="blue_btn"
                                   onClick={() => handleApprove(item?.id)}
                                 >
-                                  Approved
+                                  Approve
                                 </button>
                                 <button
                                   className="blue_btn"
@@ -280,7 +276,7 @@ function Specialization() {
         <Modal.Header closeButton>Approve New Specialization</Modal.Header>
         <Modal.Body>
           <div className="p-4 bg-white shadow-md rounded-lg w-80 text-left">
-            <p>A doctor has submitted a new specialization</p>
+            <p><b>A doctor has submitted a new specialization</b></p>
             <p>Specialization Name: {specializationName?.name}</p>
             <p>
               Interventional Pulmonology Doctor Name :
@@ -316,7 +312,7 @@ function Specialization() {
         <Modal.Body>
           <div className="p-4 bg-white shadow-md rounded-lg w-80">
             <div className="d-flex flex-column gap-2 text-left">
-              <p>A doctor has submitted a new specialization</p>
+              <p><b>A doctor has submitted a new specialization</b></p>
               <p>Specialization Name:{targetSpecialzation?.name}</p>
               <p>
                 Interventional Pulmonology Doctor Name :

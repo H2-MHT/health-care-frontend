@@ -16,6 +16,7 @@ export const PatientDrawer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
   const location = useLocation();
   const sidebarColRef = useRef(null);
   const sidebarmenuRef = useRef(null);
@@ -55,6 +56,11 @@ export const PatientDrawer = () => {
   //     sidebarmenu?.removeEventListener("click", handleSidebarMenuClick);
   //   };
   // }, []);
+
+
+  const handleToggle = () => {
+    setIsChecked(prev => !prev);
+  };
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -454,14 +460,15 @@ export const PatientDrawer = () => {
               onClick={() => setSelectedDrawerItem(12)}
             >
               <div class="form-check form-switch green-switch">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="mySwitch"
-                  name="darkmode"
-                  value="yes"
-                  checked
-                />
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="mySwitch"
+                name="darkmode"
+                value="yes"
+                checked={isChecked}
+                onChange={handleToggle}
+              />
               </div>
               <span>{t("drawer.active")}</span>
             </Link>
