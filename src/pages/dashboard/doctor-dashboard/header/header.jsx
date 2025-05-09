@@ -18,11 +18,13 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
-  const documentVerification = useSelector((state) => state?.documentVerification?.documentVerification);
+  const documentVerification = useSelector(
+    (state) => state?.documentVerification?.documentVerification
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [profileStatus, setProfileStatus] = useState('Rejected')
+  const [profileStatus, setProfileStatus] = useState("Rejected");
   const [isDoctorFavorite, setIsDoctorFavorite] = useState(false);
   const [currentLang, setCurrentLang] = useState(i18n.language.toUpperCase());
   const sidebarColRef = useRef(null);
@@ -223,16 +225,18 @@ export const Header = () => {
           </div>
 
           <div className="profileArea">
-            <div className="wallet">
-              <div className="img-wallet">
-                <img
-                  src="/images/doctor-dashboard/wallet.svg"
-                  className="img-fluid"
-                  alt="Wallet"
-                />
+            {auth.user === "Doctor" && (
+              <div className="wallet">
+                <div className="img-wallet">
+                  <img
+                    src="/images/doctor-dashboard/wallet.svg"
+                    className="img-fluid"
+                    alt="Wallet"
+                  />
+                </div>
+                <div className="paid">0$</div>
               </div>
-              <div className="paid">0$</div>
-            </div>
+            )}
             {auth.user === "Patient" && (
               <>
                 <div onClick={handleToggle}>
