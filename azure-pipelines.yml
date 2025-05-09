@@ -33,7 +33,6 @@ stages:
                 displayName: 'Install Node.js'
               - script: |
                   ls -lrth 
-                  cd ./health-care/
                   npm install 
                   npm run build 
                 displayName: 'Install dependencies and run tests'
