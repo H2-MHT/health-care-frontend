@@ -4,13 +4,16 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./drawer.css";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import storage from "redux-persist/lib/storage";
+import { persistor } from "../../../../redux/store";
 import { postData } from "../../../../hooks/services/services";
 import { showToast } from "../../../../utils/toast";
 export const ClinicDrawer = () => {
    const{t} = useTranslation("drawer");
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isReview = location.pathname === "/review";
   const sidebarColRef = useRef(null);
   const sidebarmenuRef = useRef(null);
@@ -20,60 +23,27 @@ useEffect(() => {
     setSelectedDrawerItem(location.pathname);
   }, [location]);
 
-  // useEffect(() => {
-  //   const sidebarCol = sidebarColRef.current;
-  //   const handleSidebarColClick = () => {
-  //     const aside = document.querySelector("aside");
-  //     const rightContent = document.querySelector(".rightContent");
-  //     aside?.classList.toggle("sidebarClose");
-  //     rightContent?.classList.toggle("rightsidefull");
-  //   };
-  //   sidebarCol?.addEventListener("click", handleSidebarColClick);
-
-  //   // Second block: .sidebarmenu click event
-  //   const sidebarmenu = sidebarmenuRef.current;
-  //   const handleSidebarMenuClick = () => {
-  //     const aside = document.querySelector("aside");
-  //     const rightContent = document.querySelector(".rightContent");
-  //     const body = document.querySelector("body");
-  //     aside?.classList.toggle("sidebarsmall");
-  //     rightContent?.classList.toggle("rightsidefullmobile");
-  //     body?.classList.toggle("bodyopen");
-  //   };
-  //   sidebarmenu?.addEventListener("click", handleSidebarMenuClick);
-
-  //   // Cleanup event listeners when the component is unmounted
-  //   return () => {
-  //     sidebarCol?.removeEventListener("click", handleSidebarColClick);
-  //     sidebarmenu?.removeEventListener("click", handleSidebarMenuClick);
-  //   };
-  // }, []);
-
    const logout = async () => {
-          try {
-            const payload = {
-              refresh: auth?.refreshToken
-              };
-            const response = await postData("auth/logout/",payload);
-            if (response?.status === 200) {
-              let responseData = await response.json();
-              navigate("/login");
-              showToast(responseData?.message, "success");
-            }
-          } catch (error) {
-            showToast(error.message, "error");
-          }
-        };
+     try {
+       const payload = {
+         refresh: auth?.refreshToken,
+       };
+       const response = await postData("auth/logout/", payload);
+       if (response?.status === 200) {
+         localStorage.removeItem("user_token");
+         localStorage.removeItem("user_data");
+         dispatch(logout());
+         storage.removeItem("persist:root");
+         persistor.purge();
+         navigate("/login");
+       }
+     } catch (error) {
+       showToast(error.message, "error");
+     }
+   };
 
   return (
     <aside>
-      {/* <a ref={sidebarColRef} className="sidebarcol" href="#">
-        <img
-          src="/images/doctor-dashboard/arrowLeft.png"
-          className="opening"
-          alt="Toggle Sidebar"
-        />
-      </a> */}
       <nav>
         <ul>
           <li>
