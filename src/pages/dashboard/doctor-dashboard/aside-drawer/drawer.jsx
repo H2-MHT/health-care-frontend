@@ -19,12 +19,17 @@ export const Drawer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
   // const isReview = location.pathname === "/review";
   const [selectedDrawerItem, setSelectedDrawerItem] = useState(0);
   const [insideDrawer, setInsideDrawer] = useState(false);
   const auth = useSelector((state) => state.auth);
   const userProfile = useSelector((state) => state.userProfile);
-  
+
+  const handleToggle = () => {
+    setIsChecked((prev) => !prev);
+  };
+
   useEffect(() => {
     setSelectedDrawerItem(location.pathname);
   }, [location.pathname]);
@@ -385,17 +390,18 @@ export const Drawer = () => {
             <li>
               <Link
                 to=""
-                className={selectedDrawerItem === 10 ? "active" : ""}
-                onClick={() => setSelectedDrawerItem(10)}
+                className={selectedDrawerItem === 12 ? "active" : ""}
+                onClick={() => setSelectedDrawerItem(12)}
               >
                 <div class="form-check form-switch green-switch">
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="checkbox"
                     id="mySwitch"
                     name="darkmode"
                     value="yes"
-                    checked
+                    checked={isChecked}
+                    onChange={handleToggle}
                   />
                 </div>
                 <span>{t("drawer.active")}</span>
