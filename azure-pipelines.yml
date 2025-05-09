@@ -39,9 +39,9 @@ stages:
                 displayName: 'Install dependencies and run tests'
               - task: CopyFiles@2
                 inputs:
-                  SourceFolder: '$(Build.SourcesDirectory)/health-care/'
+                  SourceFolder: '$(Build.SourcesDirectory)'
                   Contents: '**/*'
-                  TargetFolder: '/home/azureuser/HealthHelp/health-care-frontend/health-care'
+                  TargetFolder: '/home/azureuser/HealthHelp/health-care-frontend'
                 displayName: 'Copy site files to main directory'   
               - script: |
                   service nginx reload
