@@ -1,7 +1,7 @@
 import { API_URL } from "../hooks/services/apiUrl";
 import { generateCodeVerifier, generateCodeChallenge } from "./pkceUtils";
 const CLIENT_ID = "23QB7R";
-const REDIRECT_URI = "https://stage.h2.doctor/callback";
+const REDIRECT_URI = "https://h2.doctor/callback";
 const SCOPES = "activity heartrate sleep weight profile nutrition";
 const TOKEN_URL = "https://api.fitbit.com/oauth2/token";
 export async function redirectToFitbitAuth() {
