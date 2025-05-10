@@ -9,8 +9,10 @@ import { showToast } from "../../../../utils/toast";
 import AddSpecializationModel from "./addSpecializationModel";
 import EditSpecializationModel from "./editSpecializationModel";
 import { Modal } from "react-bootstrap";
+import { useTranslation } from "react-i18next";  
 
 function Specialization() {
+  const {t} = useTranslation();
   const [specializationDetail, setSpecializationDetail] = useState();
   const [activeTab, setActiveTab] = useState("Exciting Specialization");
   const [penddingSpecializationDetail, setPenddingSpecializationDetail] =
@@ -158,13 +160,13 @@ function Specialization() {
                   href="#"
                   onClick={() => setActiveTab("Exciting Specialization")}
                 >
-                  Exciting Specialization
+                  {t("superadmin.existing-specialization")}
                 </a>
                 <a
                   href="#"
                   onClick={() => setActiveTab("Pending Specialization")}
                 >
-                  All Pending Specialization
+                  {t("superadmin.all-pending-specialization")}
                 </a>
                 <a>
                   <img
@@ -179,10 +181,10 @@ function Specialization() {
                   <table border="1">
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Created Date</th>
-                        <th>Action</th>
+                        <th>{t("prescription.name")}</th>
+                        <th>{t("add-education.description")}</th>
+                        <th>{t("superadmin.created-date")}</th>
+                        <th>{t("superadmin.action")}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -224,17 +226,17 @@ function Specialization() {
                   <table border="1">
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Doctor Name</th>
-                        <th>Created Date</th>
-                        <th>Action</th>
+                        <th>{t("prescription.name")}</th>
+                        <th>{t("superadmin.doctor-name")}</th>
+                        <th>{t("superadmin.created-date")}</th>
+                        <th>{t("superadmin.action")}</th>
                       </tr>
                     </thead>
                     <tbody>
                       {penddingSpecializationDetail?.length === 0 ? (
                         <tr>
                           <td colSpan="5" style={{ textAlign: "center" }}>
-                            No pending specialization found
+                            {t("superadmin.no-pending-specialization")}
                           </td>
                         </tr>
                       ) : (
@@ -249,13 +251,13 @@ function Specialization() {
                                   className="blue_btn"
                                   onClick={() => handleApprove(item?.id)}
                                 >
-                                  Approved
+                                  {t("superadmin.approved")}
                                 </button>
                                 <button
                                   className="blue_btn"
                                   onClick={() => handleMerge(item?.id)}
                                 >
-                                  Merge
+                                  {t("superadmin.merge")}
                                 </button>
                               </div>
                             </td>
@@ -277,13 +279,17 @@ function Specialization() {
         onHide={() => setModelApproved(false)}
         size="lg"
       >
-        <Modal.Header closeButton>Approve New Specialization</Modal.Header>
+        <Modal.Header closeButton>
+          {t("superadmin.approve-new-specialization")}
+        </Modal.Header>
         <Modal.Body>
           <div className="p-4 bg-white shadow-md rounded-lg w-80 text-left">
-            <p>A doctor has submitted a new specialization</p>
-            <p>Specialization Name: {specializationName?.name}</p>
+            <p> {t("superadmin.new-specialization")}</p>
             <p>
-              Interventional Pulmonology Doctor Name :
+              {t("superadmin.specialization-name")} : {specializationName?.name}
+            </p>
+            <p>
+              {t("superadmin.interventional-name")} :
               {specializationName?.doctor_name}
             </p>
             <div className="gap-2 justify-content-center d-flex w-auto mx-auto">
@@ -292,14 +298,14 @@ function Specialization() {
                 className="blue_btn "
                 onClick={onSubmitApprove}
               >
-                save
+                {t("common.save")}
               </button>
               <button
                 type="button"
                 className="blue_btn"
                 onClick={() => setModelApproved(false)}
               >
-                cancel
+                {t("common.cancel")}
               </button>
             </div>
           </div>
@@ -312,19 +318,26 @@ function Specialization() {
         onHide={() => setModelMerge(false)}
         size="lg"
       >
-        <Modal.Header closeButton>Merge New Specialization</Modal.Header>
+        <Modal.Header closeButton>
+          {t("superadmin.merge-new-specialization")}
+        </Modal.Header>
         <Modal.Body>
           <div className="p-4 bg-white shadow-md rounded-lg w-80">
             <div className="d-flex flex-column gap-2 text-left">
-              <p>A doctor has submitted a new specialization</p>
-              <p>Specialization Name:{targetSpecialzation?.name}</p>
+              <p>{t("superadmin.new-specialization")}</p>
               <p>
-                Interventional Pulmonology Doctor Name :
+                {t("superadmin.specialization-name")}:
+                {targetSpecialzation?.name}
+              </p>
+              <p>
+                {t("superadmin.interventional-name")} :
                 {targetSpecialzation?.doctor_name}
               </p>
             </div>
             <div className="d-flex gap-2 align-items-center mb-4">
-              <label htmlFor="specialization">Source Specialization</label>
+              <label htmlFor="specialization">
+                {t("superadmin.source-specialization")}
+              </label>
               <select
                 id="specialization"
                 value={sourceSpecialization?.id || ""}
@@ -336,7 +349,9 @@ function Specialization() {
                   setSourceSpecialization(selectedSpec);
                 }}
               >
-                <option value="">Select specialization</option>
+                <option value="">
+                  {t("superadmin.select-specialization")}
+                </option>
                 {specializationDetail?.map((spec) => (
                   <option key={spec.id} value={spec.id}>
                     {spec.name}
@@ -351,14 +366,14 @@ function Specialization() {
                 className="blue_btn "
                 onClick={onSubmitMerge}
               >
-                save
+                {t("common.save")}
               </button>
               <button
                 type="button"
                 className="blue_btn"
                 onClick={() => setModelMerge(false)}
               >
-                cancel
+                {t("common.cancel")}
               </button>
             </div>
           </div>

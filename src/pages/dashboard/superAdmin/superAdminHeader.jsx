@@ -44,6 +44,16 @@ export const SuperAdminHeader = () => {
     { code: "en", label: "English" },
     { code: "fr", label: "French" },
     { code: "es", label: "Spanish" },
+    { code: "ro", label: "Romanian" },
+    { code: "bg", label: "Bulgarian" },
+    { code: "lt", label: "Lithuanian" },
+    { code: "pl", label: "Polish" },
+    { code: "uk", label: "Ukrainian" },
+    { code: "ru", label: "Russian" },
+    { code: "hi", label: "Hindi" },
+    { code: "pt-br", label: "Brazilian Portuguese" },
+    { code: "ur", label: "Urdu" },
+    { code: "ar", label: "Arabic" },
   ];
 
   // Load saved language from localStorage on mount

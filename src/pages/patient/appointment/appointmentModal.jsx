@@ -120,7 +120,12 @@ const AppointmentModal = ({
     setShowSecondModal(false);
   };
 
-  const appoinmentSubmit = async (data) => {
+  const appoinmentSubmit = async () => {
+    if (!selectedTimeSlot) {
+      showToast("Please select a time slot first", "error");
+      return;
+    }
+
     try {
       const payload = {
         doctor_user_id: selectedDoctorAppointement?.id,
@@ -252,7 +257,7 @@ const AppointmentModal = ({
                       <div
                         key={index}
                         className={`calendarInnerTime ${
-                          selectedTimeSlot === slot ? "active" : ""
+                          selectedTimeSlot === slot.slot ? "active" : ""
                         } ${!slot?.booked ? "" : "enabled-slot"}`}
                         title={`${!slot?.booked ? "Not available" : ""}`}
                       >
@@ -614,7 +619,7 @@ const AppointmentModal = ({
             <div class="remindBlueBox">
               <ol>
                 <li>
-                  The “Join appointment” button will be enabled 5 minutes before
+                  The "Join appointment" button will be enabled 5 minutes before
                   your appointment.
                 </li>
                 <li>

@@ -51,7 +51,7 @@ const{t} = useTranslation();
   };
 
   return (
-    <div class="rightContent">
+    <div class="rightContent rightsidefull">
       <form>
         <div class="profileMobile">
           <div class="nameMobile">Hello, dr,Ava Williams!</div>

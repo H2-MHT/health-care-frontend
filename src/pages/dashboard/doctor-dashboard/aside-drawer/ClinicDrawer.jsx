@@ -14,7 +14,8 @@ export const ClinicDrawer = () => {
   const isReview = location.pathname === "/review";
   const sidebarColRef = useRef(null);
   const sidebarmenuRef = useRef(null);
-  const [selectedDrawerItem, setSelectedDrawerItem] = useState("/clinic-dashboard/dashboard")
+  const [selectedDrawerItem, setSelectedDrawerItem] = useState("/clinic-dashboard/dashboard");
+   const [insideDrawer, setInsideDrawer] = useState(false);
   const auth = useSelector((state) => state.auth);
 useEffect(() => {
     setSelectedDrawerItem(location.pathname);
@@ -66,7 +67,11 @@ useEffect(() => {
         };
 
   return (
-    <aside>
+    <aside
+      onMouseEnter={() => setInsideDrawer(true)}
+      onMouseLeave={() => setInsideDrawer(false)}
+      className={` ${insideDrawer ? "drawer" : "sidebarClose"}`}
+    >
       {/* <a ref={sidebarColRef} className="sidebarcol" href="#">
         <img
           src="/images/doctor-dashboard/arrowLeft.png"

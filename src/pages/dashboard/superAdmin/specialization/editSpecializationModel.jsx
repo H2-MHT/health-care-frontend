@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { putData } from "../../../../hooks/services/services";
 import { showToast } from "../../../../utils/toast";
 import InputField from "../../../../components/form/InputField";
+import { useTranslation } from "react-i18next";
 
 function EditSpecializationModel({
   setShowEditModal,
@@ -13,6 +14,7 @@ function EditSpecializationModel({
   getspecializationList,
   editDetails,
 }) {
+  const {t} = useTranslation();
   const schema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
     description: Yup.string().required("Description is required"),
@@ -73,7 +75,7 @@ function EditSpecializationModel({
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row g-4">
               <div className="form-group">
-                <label>Name</label>
+                <label>{t("prescription.name")}</label>
                 <InputField
                   type="text"
                   {...register("name")}
@@ -82,7 +84,7 @@ function EditSpecializationModel({
                 <p className="text-danger">{errors.name?.message}</p>
               </div>
               <div className="form-group">
-                <label>Description</label>
+                <label>{t("add-education.description")}</label>
                 <InputField
                   type="text"
                   {...register("description")}
@@ -93,14 +95,14 @@ function EditSpecializationModel({
             </div>
             <div className="gap-2 justify-content-center d-flex w-auto mx-auto">
               <button type="submit" className="blue_btn">
-                Save
+                {t("common.save")}
               </button>
               <button
                 type="button"
                 className="blue_btn"
                 onClick={() => setShowEditModal(false)}
               >
-                Cancel
+                {t("common.cancel")}
               </button>
             </div>
           </form>

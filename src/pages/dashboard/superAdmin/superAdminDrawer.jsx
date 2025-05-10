@@ -3,11 +3,15 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import "../doctor-dashboard/aside-drawer/drawer.css";
 import { logout } from "../../../redux/actions/authActions";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";  
+
 export const SuperAdminDrawer = () => {
+  const {t} = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sidebarColRef = useRef(null);
   const sidebarmenuRef = useRef(null);
+  const [insideDrawer, setInsideDrawer] = useState(false);
   const [selectedDrawerItem, setSelectedDrawerItem] = useState(
     "/superadmin/dashboard"
   );
@@ -49,7 +53,11 @@ export const SuperAdminDrawer = () => {
   };
 
   return (
-    <aside>
+    <aside
+      onMouseEnter={() => setInsideDrawer(true)}
+      onMouseLeave={() => setInsideDrawer(false)}
+      className={` ${insideDrawer ? "drawer" : "sidebarClose"}`}
+    >
       {/* <a ref={sidebarColRef} className="sidebarcol" href="#">
         <img
           src="/images/doctor-dashboard/arrowLeft.png"
@@ -79,7 +87,7 @@ export const SuperAdminDrawer = () => {
                   fill="white"
                 />
               </svg>
-              <span>Dashboard</span>
+              <span>{t("drawer.dashboard")}</span>
             </Link>
           </li>
           <li>
@@ -106,7 +114,7 @@ export const SuperAdminDrawer = () => {
                   fill="white"
                 />
               </svg>
-              <span>Manage Patient</span>
+              <span>{t("superadmin.manage-patient")}</span>
             </Link>
           </li>
           <li>
@@ -133,7 +141,7 @@ export const SuperAdminDrawer = () => {
                   fill="white"
                 />
               </svg>
-              <span>Manage Doctor</span>
+              <span>{t("superadmin.manage-doctor")}</span>
             </Link>
           </li>
           <li>
@@ -160,7 +168,7 @@ export const SuperAdminDrawer = () => {
                   fill="white"
                 />
               </svg>
-              <span>Manage Clinic</span>
+              <span>{t("superadmin.manage-clinic")}</span>
             </Link>
           </li>
           <li>
@@ -187,7 +195,7 @@ export const SuperAdminDrawer = () => {
                   fill="white"
                 />
               </svg>
-              <span>Specialization</span>
+              <span>{t("superadmin.specialization")}</span>
             </Link>
           </li>
           <li>
@@ -214,7 +222,7 @@ export const SuperAdminDrawer = () => {
                   fill="white"
                 />
               </svg>
-              <span>Manage Payment</span>
+              <span>{t("superadmin.manage-paymentt")}</span>
             </Link>
           </li>
           <li>
@@ -241,7 +249,7 @@ export const SuperAdminDrawer = () => {
                   fill="white"
                 />
               </svg>
-              <span>Reported Reviews</span>
+              <span>{t("superadmin.reported-reviews")}</span>
             </Link>
           </li>
         </ul>
@@ -296,7 +304,7 @@ export const SuperAdminDrawer = () => {
                   setSelectedDrawerItem(12);
                 }}
               >
-                Log Out
+                {t("drawer.logout")}
               </span>
             </a>
           </li>
