@@ -239,14 +239,11 @@ const AppRoutes = () => {
       allowedRoles: ["Patient"],
     },
     {
-      path: "/patient/prescription-view",
+      path: "/prescription-view",
       element: <PrescriptionView />,
       exact: true,
-      layout: true,
-      allowedRoles: ["Patient"],
+      layout: false,
     },
-
-
     {
         path: "/patient/appointment-list",
         element: <UserAppointmentList/>,
