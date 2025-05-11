@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { fetchData, fetchDataPublic } from "../../../hooks/services/services";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { showToast } from "../../../utils/toast";
+import Header from "../../../components/ui/header/header";
 
 const PrescriptionView = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
-  const { search } = useLocation();
   const [showMediaDigest, setShowMediaDigest] = useState(false);
   const [prescriptions, setPrescriptions] = useState([]);
 
   useEffect(() => {
-    fetchPrescriptions();
-  }, [search]);
+    const id = searchParams.get("id");
+    if(id){
+      fetchPrescriptions(id);
+    }
+  }, [searchParams]);
 
-  const fetchPrescriptions = async () => {
+  const fetchPrescriptions = async (id) => {
     try {
       setLoading(true);
       const response = await fetchDataPublic(
-        `consultation/prescription-list${search}`
+        `consultation/prescription-view/?uid=${id}`
       );
       const data = await response.json();
       if (response.ok) {
@@ -33,6 +37,7 @@ const PrescriptionView = () => {
 
   return (
     <>
+      <Header />
       <div className="rightContent">
         <div className="row">
           <div class="col-md-12 mt-3">
