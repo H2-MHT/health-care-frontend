@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { Loader } from "../../../components/ui/loader/loader";
-import { fetchAdminData } from "../../../hooks/services/services";
+import { fetchAdminData, fetchDataAuth } from "../../../hooks/services/services";
 import { useNavigate } from "react-router-dom";
 import PaymentPopUp from "./paymentPopUp";
 import { useTranslation } from "react-i18next";
+import Pagination from "../../../components/pagination/pagination";
 
 const ManagePayment = () => {
   const { t } = useTranslation();
@@ -12,8 +13,11 @@ const ManagePayment = () => {
   const [loading, setLoading] = useState(false);
   const [paymentList, setPaymentList] = useState([]);
   const [paymentPopUp, setPaymentPopUp] = useState(false);
+  const [query, setQuery] = useState("");
+   const [currentPage, setCurrentPage] = useState(1);
   const [functionType, setFunctionType] = useState("");
   const [paymentObject, setPaymentObject] = useState({});
+    const [totalPages, setTotalPages] = useState(1);
   
   const [selectedActions, setSelectedActions] = useState({});
 
@@ -22,26 +26,33 @@ const ManagePayment = () => {
     success: "success",
     failed: "danger",
   };
+    useEffect(() => {
+      fetchPaymentRequestList(currentPage, query);
+      }, [currentPage]);
 
-  const fetchPaymentRequestList = async () => {
-    setLoading(true);
-    try {
-      const response = await fetchAdminData(
-        "MasterPanel/get-accounts/",
-        navigate
-      );
-      if (response.status === 200) {
+      const itemsPerPage = 5;
+
+  const fetchPaymentRequestList = async (page = 1, searchQuery = "") => {
+      setLoading(true);
+      const fetchUrl = `MasterPanel/get-accounts/?page=${page}&limit=${itemsPerPage}&search_key=${encodeURIComponent(
+        searchQuery
+      )}`;
+      try {
+        const response = await fetchDataAuth(fetchUrl);
+  
+        if (!response.ok) throw new Error("Fetching Doctor List Failed");
+        const totalPagesHeader = response.headers.get("Total-Pages");
+        const totalPages = totalPagesHeader ? parseInt(totalPagesHeader, 10) : 1;
         const getData = await response.json();
-        setPaymentList(getData.transactions);
-      } else {
-        console.error("Cannot fetch the Payment List");
+        setPaymentList(getData?.data);
+        setTotalPages(totalPages);
+      } catch (error) {
+        console.error("Fetch Doctor List Error: ", error);
+        throw error;
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
   const handleActionSelect = (selectedOption, payment) => {
     if (!selectedOption) return;
@@ -54,10 +65,6 @@ const ManagePayment = () => {
       setSelectedActions((prev) => ({ ...prev, [payment.id]: null }));
     }, 300);
   };
-
-  useEffect(() => {
-    fetchPaymentRequestList();
-  }, []);
 
   return loading ? (
     <Loader />
@@ -122,6 +129,13 @@ const ManagePayment = () => {
           </table>
         </div>
       </div>
+   
+   
+         <Pagination
+           totalPages={totalPages}
+           currentPage={currentPage}
+           onPageChange={setCurrentPage}
+         />
 
       {paymentPopUp && (
         <PaymentPopUp

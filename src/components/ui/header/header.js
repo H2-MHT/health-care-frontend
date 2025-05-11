@@ -127,7 +127,7 @@ const Header = () => {
         <div className="top_bar">
           <a href="#" className="logo-link">
             <div className="logo">
-              <Image src="/images/logo.svg" alt="logo" className="img-fluid" />
+              <Image src="/images/logo.svg"  alt="logo" className="img-fluid" />
             </div>
           </a>
 

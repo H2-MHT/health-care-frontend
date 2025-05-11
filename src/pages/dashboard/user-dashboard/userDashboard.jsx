@@ -394,16 +394,16 @@ const UserDashboard = () => {
                 <div class="col-md-12">
                   <div class="stepCounts">
                     <div class="bg-white stepsIcon padding-20">
-                      <img src="../images/user-dashboard/u-1.svg" />
-                      <img src="../images/user-dashboard/u-2.svg" />
+                      {/* <img src="../images/user-dashboard/u-1.svg" />
+                      <img src="../images/user-dashboard/u-2.svg" /> */}
                       <img
                         src="../images/user-dashboard/u-3.svg"
                         class="Fitbit-login-icon"
                         onClick={redirectToFitbitAuth}
                         style={{ cursor: "pointer" }}
                       />
-                      <img src="../images/user-dashboard/u-4.svg" />
-                      <a href="#"> {t("user-dashboard.add")}</a>
+                      {/* <img src="../images/user-dashboard/u-4.svg" />
+                      <a href="#"> {t("user-dashboard.add")}</a> */}
                     </div>
                     <div class="swch">
                       <div class="swchBox steps">

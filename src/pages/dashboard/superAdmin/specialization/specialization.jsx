@@ -89,7 +89,7 @@ function Specialization() {
         let responseData = await response.json();
         showToast(responseData?.message, "success");
         setModelApproved(false);
-        getPenddingSpecializationList();
+       await getPenddingSpecializationList();
       }
     } catch (error) {
       showToast(error.message, "error");
