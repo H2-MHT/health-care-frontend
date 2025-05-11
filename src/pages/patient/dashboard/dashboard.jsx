@@ -104,7 +104,7 @@ export const PatientDashboard = () => {
     setSelectedDate(date);
   };
   return (
-    <div class="rightContent ">
+    <div class="rightContent rightsidefull">
       <div class=" userDashboard">
         <div class="profileMobile">
           <div class="nameMobile">Hello, dr,Ava Williams!</div>
@@ -244,7 +244,11 @@ export const PatientDashboard = () => {
                           fontSize="18px"
                           fill="#000"
                         >
-                          <span style={{ fontSize: "0.4em", fontWeight:"bold"}}>{formattedWater}</span>
+                          <span
+                            style={{ fontSize: "0.4em", fontWeight: "bold" }}
+                          >
+                            {formattedWater}
+                          </span>
                         </text>
                       </svg>
                       <h5>
@@ -337,10 +341,7 @@ export const PatientDashboard = () => {
                         data-bs-toggle="modal"
                         data-bs-target="#NotesModal"
                       >
-                        <img
-                          src="../images/threeDots.webp"
-                          width="30"
-                        />
+                        <img src="../images/threeDots.webp" width="30" />
                       </a>
                     </div>
                     <div class="notes">

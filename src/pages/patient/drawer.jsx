@@ -95,7 +95,18 @@ export const PatientDrawer = () => {
 
   return (
     <>
-      <aside>
+      <aside
+        onMouseEnter={() => setInsideDrawer(true)}
+        onMouseLeave={() => setInsideDrawer(false)}
+        className={` ${insideDrawer ? "drawer" : "sidebarClose"}`}
+      >
+        {/* <a ref={sidebarColRef} className="sidebarcol" href="#">
+        <img
+          src="/images/doctor-dashboard/arrowLeft.png"
+          className="opening"
+          alt="Toggle Sidebar"
+        />
+      </a> */}
         <nav>
           <ul>
             <li>

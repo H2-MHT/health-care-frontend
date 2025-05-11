@@ -33,7 +33,7 @@ const SuperAdminDashboard = () => {
   },[]);
 
   return (
-    <div className='rightContent'>
+    <div className='rightContent rightsidefull'>
       <div class="sortSearchArea">
         <div class="search">
           <input type="search" placeholder="search"/>
