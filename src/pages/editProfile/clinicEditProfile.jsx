@@ -162,7 +162,7 @@ const translatedDays = days.map((day) => ({
   };
 
   return (
-    <div class="rightContent">
+    <div class="rightContent rightsidefull">
       <div class="doc_info">
         <div class="">
           <form className="row g-4" onSubmit={handleSubmit(onSubmit)}>

@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { getFormattedDate } from "../../../utils/common";
 import { showToast } from "../../../utils/toast";
 import Pagination from "../../../components/pagination/pagination";
+import { useTranslation } from "react-i18next";  
 
 const ManageReview = () => {
+  const {t} = useTranslation();
   const navigate = useNavigate();
   const [reviewList, setReviewList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -87,11 +89,11 @@ const ManageReview = () => {
           <table className="table table-hover table-striped">
             <thead className="table-dark">
               <tr>
-                <th>Reported Date</th>
-                <th>Reported By</th>
-                <th>Review Content</th>
-                <th>Reported Reason</th>
-                <th>Status</th>
+                <th>{t("superadmin.reported-date")}</th>
+                <th>{t("superadmin.reported-by")}</th>
+                <th>{t("superadmin.review-content")}</th>
+                <th>{t("superadmin.reported-reason")}</th>
+                <th>{t("wallet.status")}</th>
               </tr>
             </thead>
             <tbody>
@@ -146,7 +148,7 @@ const ManageReview = () => {
               {reviewList.length === 0 && (
                 <tr>
                   <td colSpan="6" className="text-center text-muted py-4">
-                    No reviews found.
+                    {t("superadmin.no-reviews")}
                   </td>
                 </tr>
               )}

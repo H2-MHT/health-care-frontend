@@ -399,7 +399,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div class="rightContent">
+    <div class="rightContent rightsidefull">
       <div class="doc_info">
         <div class="row g-4">
           <form onSubmit={handleSubmit(onSubmit)}>

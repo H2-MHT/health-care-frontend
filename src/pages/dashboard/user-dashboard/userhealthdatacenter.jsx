@@ -204,7 +204,7 @@ const UserHealthDataCenter = () => {
   };
 
   return (
-    <div class="rightContent ">
+    <div class="rightContent rightsidefull ">
       <div class=" userDashboard">
         <div class="profileMobile">
           <div class="nameMobile">Hello, dr,Ava Williams!</div>
@@ -462,9 +462,9 @@ const UserHealthDataCenter = () => {
               </p>
             </div>
           </div>
-          <div class={`col-md-10 ${list?.length > 0 ? "acc-height": ""}`}>
+          <div class={`col-md-10 ${list?.length > 0 ? "acc-height" : ""}`}>
             <div class="bg-darkgreen padding-20 border-radius-20 h-100">
-              {list?.length > 0 && <Accordion list={list}/>}
+              {list?.length > 0 && <Accordion list={list} />}
             </div>
           </div>
           <CommonModal
@@ -475,7 +475,11 @@ const UserHealthDataCenter = () => {
             onHide={() => setOpen(false)}
             className=""
             footerButtons={[
-              { label: "Save", onClick: handleSubmit, className: "transparent_btn" },
+              {
+                label: "Save",
+                onClick: handleSubmit,
+                className: "transparent_btn",
+              },
               { label: "Cancel", onClick: closeModal, className: "blue_btn" },
             ]}
           ></CommonModal>

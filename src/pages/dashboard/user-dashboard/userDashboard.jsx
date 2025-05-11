@@ -262,7 +262,7 @@ const UserDashboard = () => {
         let responseData = await response.json();
         showToast(responseData?.message, "success");
         setOpenNotesModal(false);
-        setNotesData("")
+        setNotesData("");
         getNotesData();
       }
     } catch (error) {
@@ -326,7 +326,7 @@ const UserDashboard = () => {
 
   return (
     <>
-      <div class="rightContent ">
+      <div class="rightContent rightsidefull">
         <div class=" userDashboard">
           <div class="profileMobile">
             <div class="nameMobile">Hello, dr,Ava Williams!</div>
@@ -382,7 +382,9 @@ const UserDashboard = () => {
                   <div class="userTagRight bg-white border-radius-20 padding-20">
                     <div class="usersRound">
                       <img src={isProfiledata?.profile_picture} />
-                      <p>{isProfiledata?.first_name} ( {t("user-dashboard.you")})</p>
+                      <p>
+                        {isProfiledata?.first_name} ( {t("user-dashboard.you")})
+                      </p>
                     </div>
                     <div class="usersRound">
                       <div class="addUserCir lightGrayTag">
@@ -576,7 +578,10 @@ const UserDashboard = () => {
                   <div class="notePart">
                     <div class="noteTop">
                       <h4>{t("dashboard.notes")}</h4>
-                      <div onClick={() => setOpenNotesModal(true)} className="cursor-pointer">
+                      <div
+                        onClick={() => setOpenNotesModal(true)}
+                        className="cursor-pointer"
+                      >
                         +
                       </div>
                     </div>
