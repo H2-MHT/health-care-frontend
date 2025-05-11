@@ -7,11 +7,12 @@ import { logout } from "../../../../redux/actions/authActions";
 import storage from "redux-persist/lib/storage";
 import { persistor } from "../../../../redux/store";
 import { useTranslation } from "react-i18next";
-import { postData, putData } from "../../../../hooks/services/services";
+import { postData, putData, updateFormData } from "../../../../hooks/services/services";
 import { useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { loginSuccess } from "../../../../redux/actions/authActions";
 import { showToast } from "../../../../utils/toast";
+import { getDoctorProfileSuccess } from "../../../../redux/actions/doctor/getDoctorProfileAction";
 
 export const Drawer = () => {
   const { t } = useTranslation("drawer");
@@ -33,6 +34,20 @@ export const Drawer = () => {
   useEffect(() => {
     setSelectedDrawerItem(location.pathname);
   }, [location.pathname]);
+
+   useEffect(()=>{
+      onSubmit();
+    },[isChecked])
+  
+  const onSubmit = async () => {
+    const formData = new FormData();
+    formData.append("is_online", isChecked)
+    const response = await updateFormData("auth/update-profile/", formData);
+    if (response.status === 200) {
+      const responseData = await response.json();
+      dispatch(getDoctorProfileSuccess(responseData?.data));
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

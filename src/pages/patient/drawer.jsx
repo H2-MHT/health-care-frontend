@@ -18,11 +18,11 @@ export const PatientDrawer = () => {
   const dispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
+  const [insideDrawer, setInsideDrawer] = useState(false)
   const location = useLocation();
   const auth = useSelector((state) => state.auth);
   const [selectedDrawerItem, setSelectedDrawerItem] =
     useState("/patient/dashboard");
-  const userProfile = useSelector((state) => state.userProfile);
   useEffect(() => {
     setSelectedDrawerItem(location.pathname);
   }, [location.pathname]);
