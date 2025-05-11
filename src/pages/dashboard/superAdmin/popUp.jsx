@@ -1,6 +1,8 @@
 import CommonModal from "../../../components/form/Modal";
 import { putData } from "../../../hooks/services/services";
 import { showToast } from "../../../utils/toast";
+import { useTranslation } from "react-i18next";
+
 
 export default function PopUp({
   open,
@@ -10,7 +12,7 @@ export default function PopUp({
   userObject,
   callFetch,
 }) {
-
+const { t } = useTranslation();
   let url = "MasterPanel/user_";
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +58,8 @@ export default function PopUp({
           <div className="row g-2">
             <div className="col-md-12 mb-2">
               <div className="form-group">
-                Are you sure you want to {functionType.toLowerCase()} {userType}{" "}
+                {t("superadmin.are-you-sure")}
+                {functionType.toLowerCase()} {userType}{" "}
                 {userObject?.first_name
                   ? `${userObject.first_name} ${userObject.last_name}`
                   : userObject?.name}

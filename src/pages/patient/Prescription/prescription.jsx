@@ -18,16 +18,19 @@ const PatientPrescription = () => {
 
   const fetchPrescriptions = async () => {
     try {
-      setLoading(true);
-      const response = await fetchData("consultation/prescription-list/", navigate);
+      // setLoading(true);
+      const response = await fetchData(
+        "consultation/prescription-list/",
+        navigate
+      );
       const data = await response.json();
       if (response.ok) {
         setPrescriptions(data.prescriptions);
-      } 
+      }
     } catch (error) {
-      showToast(error.message, "error")
+      showToast(error.message, "error");
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
@@ -61,11 +64,11 @@ const PatientPrescription = () => {
     }
   };
   return (
-    <>
+    <div class="rightContent rightsidefull">
       {loading ? (
         <Loader />
       ) : (
-        <div class="rightContent rightsidefull">
+        <>
           <div class="profileMobile">
             <div class="nameMobile">{`Hello,  ${isProfiledata?.first_name} ${isProfiledata.last_name}!`}</div>
             <div class="profileImgMobile">
@@ -134,9 +137,9 @@ const PatientPrescription = () => {
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
 

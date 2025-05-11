@@ -5,7 +5,8 @@ import { Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { postData } from "../../../../hooks/services/services";
 import { showToast } from "../../../../utils/toast";
-import InputField from "../../../../components/form/InputField"
+import InputField from "../../../../components/form/InputField";
+import { useTranslation } from "react-i18next";  
 
 
 function AddSpecializationModel({
@@ -13,7 +14,7 @@ function AddSpecializationModel({
   showModal,
   getspecializationList
 }) {
-
+const {t} = useTranslation();
   const today = new Date().toISOString().split("T")[0];
 
   const schema = Yup.object().shape({
@@ -69,32 +70,36 @@ function AddSpecializationModel({
               <div className="row g-4">
                 <div className="form-group">
                   <label className="block text-sm font-medium mb-1">
-                     Name
+                    {t("prescription.name")}
                   </label>
                   <InputField
                     type="text"
                     {...register("name")}
-                    className="w-full p-2 border rounded-md mb-4"
+                    className="w-full rounded-md mb-4"
                   />
                   <p className="text-danger">{errors.name?.message}</p>
                 </div>
                 <div>
-                  <label>Description</label>
+                  <label>{t("add-education.description")}</label>
                   <InputField
                     type="text"
                     {...register("description")}
-                    className="w-full p-2 border rounded-md mb-4"
+                    className="w-full rounded-md mb-4"
                   />
                   <p className="text-danger">{errors.description?.message}</p>
                 </div>
               </div>
-               <div className="gap-2 justify-content-center d-flex w-auto mx-auto">
-              <button type="submit" className="blue_btn ">
-                Save
-              </button>
-              <button type="button" className="blue_btn"  onClick={() => setShowModal(false)}>
-              Cancel
-              </button>
+              <div className="gap-2 justify-content-center d-flex w-auto mx-auto">
+                <button type="submit" className="blue_btn ">
+                  {t("common.save")}
+                </button>
+                <button
+                  type="button"
+                  className="blue_btn"
+                  onClick={() => setShowModal(false)}
+                >
+                  {t("common.cancel")}
+                </button>
               </div>
             </form>
           </div>

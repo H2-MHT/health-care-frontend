@@ -372,10 +372,10 @@ const VideoCall2 = ({ selectedChat, showModal, setShowModal, senderUserId, recei
   return (
     <>
       <div className="videotrans">
-        <div className="translation">
+        {/* <div className="translation">
           <h3>Transcription</h3>
           <div className="details">{transcript}  </div>
-        </div>
+        </div> */}
         <div className="videoMainTrans">
           <div className="mainVideocallSec">
             <div className="localVideo">

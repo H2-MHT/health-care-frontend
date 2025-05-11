@@ -18,11 +18,13 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
-  const documentVerification = useSelector((state) => state?.documentVerification?.documentVerification);
+  const documentVerification = useSelector(
+    (state) => state?.documentVerification?.documentVerification
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [profileStatus, setProfileStatus] = useState('Rejected')
+  const [profileStatus, setProfileStatus] = useState("Rejected");
   const [isDoctorFavorite, setIsDoctorFavorite] = useState(false);
   const [currentLang, setCurrentLang] = useState(i18n.language.toUpperCase());
   const sidebarColRef = useRef(null);
@@ -204,7 +206,6 @@ export const Header = () => {
       <div className="dashHead">
         <a href="#" className="logo">
           <img src="/images/logo.png" className="img-fluid" alt="Logo" />
-          {console.log(">>>>>>>>.documentVerification", documentVerification, profileStatus)}
           <a ref={sidebarColRef} className="sidebarcol" href="#">
             <img
               src="/images/sidebar-menu.svg"
@@ -224,16 +225,18 @@ export const Header = () => {
           </div>
 
           <div className="profileArea">
-            <div className="wallet">
-              <div className="img-wallet">
-                <img
-                  src="/images/doctor-dashboard/wallet.svg"
-                  className="img-fluid"
-                  alt="Wallet"
-                />
+            {auth.user === "Doctor" && (
+              <div className="wallet">
+                <div className="img-wallet">
+                  <img
+                    src="/images/doctor-dashboard/wallet.svg"
+                    className="img-fluid"
+                    alt="Wallet"
+                  />
+                </div>
+                <div className="paid">0$</div>
               </div>
-              <div className="paid">0$</div>
-            </div>
+            )}
             {auth.user === "Patient" && (
               <>
                 <div onClick={handleToggle}>
@@ -269,7 +272,7 @@ export const Header = () => {
                   alt="Bell"
                   onClick={toggleNotification}
                 />
-                {hasUnreadNotifications && (
+                {isProfiledata?.is_online && (
                   <div className="notificationDot"></div>
                 )}
                 {isNotificationOpen && (
@@ -290,25 +293,27 @@ export const Header = () => {
               </div>
             </div>
 
-            <div
-              className="toggle"
-              onClick={(event) => {
-                event.currentTarget.classList.toggle("active");
-                setIsActive(!isActive);
-              }}
-            >
-              <div className="circle">
-                <img
-                  src="/images/doctor-dashboard/phone.png"
-                  alt="Phone"
-                  className="img-fluid"
-                />
+            {auth.user === "Doctor" && (
+              <div
+                className="toggle"
+                onClick={(event) => {
+                  event.currentTarget.classList.toggle("active");
+                  setIsActive(!isActive);
+                }}
+              >
+                <div className="circle">
+                  <img
+                    src="/images/doctor-dashboard/phone.png"
+                    alt="Phone"
+                    className="img-fluid"
+                  />
+                </div>
+                <span className="label">
+                  {t("header.urgent")} <br />
+                  {isActive ? "Call ON" : "Call OFF"}
+                </span>
               </div>
-              <span className="label">
-                {t("header.urgent")} <br />
-                {isActive ? "Call ON" : "Call OFF"}
-              </span>
-            </div>
+            )}
 
             {/* Language Dropdown */}
             <div className="language">
