@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { postData } from "../../../hooks/services/services";
+import { Link } from "react-router-dom";
+import {
+  fetchData,
+  fetchDataAuth,
+  postData,
+} from "../../../hooks/services/services";
 import PopUp from "./popUp";
 import Pagination from "../../../components/pagination/pagination";
 import { Loader } from "../../../components/ui/loader/loader";
@@ -15,28 +19,30 @@ const ManageClinic = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
-  const [totalPages,setTotalPages]=useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    fetchClinicList();
-  }, []);
+    fetchClinicList(currentPage, query);
+  }, [currentPage]);
 
   const itemsPerPage = 5;
 
-  const fetchClinicList = async () => {
+  const fetchClinicList = async (page = 1, searchQuery = "") => {
     setLoading(true);
-    const fetchUrl = `MasterPanel/user_list/?page=${currentPage}&limit=${itemsPerPage}&search_key=${encodeURIComponent(
-      query
-    )}`;
+    const fetchUrl = `MasterPanel/user_list/?page=${page}&limit=${itemsPerPage}&search_key=${encodeURIComponent(
+      searchQuery
+    )}&role=Clinic`;
     try {
-      const response = await postData(fetchUrl, { role: "Clinic" });
+      const response = await fetchDataAuth(fetchUrl);
 
-      if (!response.ok) throw new Error("Fetching Clinic List Failed");
+      if (!response.ok) throw new Error("Fetching Doctor List Failed");
+      const totalPagesHeader = response.headers.get("Total-Pages");
+      const totalPages = totalPagesHeader ? parseInt(totalPagesHeader, 10) : 1;
       const getData = await response.json();
-      console.log("clinic data", getData);
-      setClinicList(getData);
+      setClinicList(Array.isArray(getData?.data) ? getData.data : []);
+      setTotalPages(totalPages);
     } catch (error) {
-      console.error("Fetch Clinic List Error: ", error);
+      console.error("Fetch Doctor List Error: ", error);
       throw error;
     } finally {
       setLoading(false);
@@ -112,10 +118,10 @@ const ManageClinic = () => {
       </div>
 
       <div className="adminDetails padding-20 bg-white border-radius-20">
-        <table>
+        <table className="doctoradmintable">
           <thead>
             <tr>
-              <th>{t("superadmin.clinic-logo")}</th>
+              {/* <th>{t("superadmin.clinic-logo")}</th> */}
               <th>{t("clinic-signup.clinic-name")}</th>
               <th>{t("edit-profile.phone-number")}</th>
               <th>{t("superadmin.website-link")}</th>
@@ -128,19 +134,23 @@ const ManageClinic = () => {
                 return (
                   <tr key={clinic.id}>
                     <td>
-                      <div class="profile-photo">
-                        <img
-                          src={
-                            clinic?.profile_picture
-                              ? clinic.profile_picture
-                              : "../images/sample.png"
-                          }
-                          alt="profile_photo"
-                        />
+                      <div className="d-flex align-items-center gap-3">
+                        <div class="profile-photo">
+                          <img
+                            src={
+                              clinic?.profile_picture
+                                ? clinic.profile_picture
+                                : "../images/sample.png"
+                            }
+                            alt="profile_photo"
+                          />
+                        </div>
+                        <td>{clinic.name}</td>
                       </div>
                     </td>
-                    <td>{clinic.first_name}</td>
-                    <td>{clinic.contact_phone}</td>
+
+                    <td>{clinic.phone_number
+                    }</td>
                     <td>{clinic.website}</td>
                     <td>
                       <div className="actions">

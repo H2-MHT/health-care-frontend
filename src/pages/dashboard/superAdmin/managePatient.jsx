@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { postData } from "../../../hooks/services/services";
+import {
+  fetchData,
+  fetchDataAuth,
+  postData,
+} from "../../../hooks/services/services";
 // import AddPatient from "./addPatient";
 import PopUp from "./popUp";
 import Pagination from "../../../components/pagination/pagination";
 import { Loader } from "../../../components/ui/loader/loader";
 import { useTranslation } from "react-i18next";
 
-
 const ManagePatient = () => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [patientList, setPatientList] = useState(null);
   const [openPatientForm, setOpenPatientForm] = useState(false);
@@ -20,45 +23,35 @@ const ManagePatient = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
-  const [totalPages,setTotalPages]=useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const itemsPerPage = 5;
 
-  const fetchPatientList = async () => {
-    setLoading(true);
-    const fetchUrl = `MasterPanel/user_list/?page=${currentPage}&limit=${itemsPerPage}&search_key=${encodeURIComponent(
-      query
-    )}`;
-    try {
-      const response = await postData(fetchUrl, { role: "Patient" });
+  useEffect(() => {
+    fetchPatientList(currentPage, query);
+  }, [currentPage]);
 
-      if (!response.ok) throw new Error("Fetching Patient List Failed");
+  const fetchPatientList = async (page = 1, searchQuery = "") => {
+    setLoading(true);
+    const fetchUrl = `MasterPanel/user_list/?page=${page}&limit=${itemsPerPage}&search_key=${encodeURIComponent(
+      searchQuery
+    )}&role=Patient`;
+    try {
+      const response = await fetchDataAuth(fetchUrl);
+
+      if (!response.ok) throw new Error("Fetching Doctor List Failed");
+      const totalPagesHeader = response.headers.get("Total-Pages");
+      const totalPages = totalPagesHeader ? parseInt(totalPagesHeader, 10) : 1;
       const getData = await response.json();
-      console.log("data", getData);
-      setPatientList(getData);
+      setPatientList(Array.isArray(getData?.data) ? getData.data : []);
+      setTotalPages(totalPages);
     } catch (error) {
-      console.error("Fetch Patient List Error: ", error);
+      console.error("Fetch Doctor List Error: ", error);
       throw error;
     } finally {
       setLoading(false);
     }
   };
-
-  // const viewPatientDetail = async (id) => {
-  //   navigate('/superadmin/patient-info');
-  //   const viewUrl = `${url}detail/${id}/`;
-
-  //   try {
-  //     const response = await postData(viewUrl, { role: "Patient" });
-  //     if (!response.ok) throw new Error("Fetching Patient Details Failed");
-
-  //     const getData = await response.json();
-  //     console.log(getData);
-  //   } catch (error) {
-  //     console.error("Fetching Patient Details Error: ", error);
-  //     throw error;
-  //   }
-  // };
 
   const blockPatient = (patient) => {
     if (patient.is_active === true) setFunctionType("Block");
@@ -106,27 +99,13 @@ const ManagePatient = () => {
             <img src="../images/search-dark.svg" />
           </a>
         </div>
-        {/* <div class="sorting">
-          <select>
-            <option>{t("superadmin.sort-by")}</option>
-            <option>{t("superadmin.sort-by")}</option>
-          </select>
-        </div> */}
-        {/* <a
-          href="#"
-          className="blue_btn"
-          style={{ height: "56px" }}
-          onClick={() => setOpenPatientForm(true)}
-        >
-          Add +
-        </a> */}
       </div>
 
       <div className="adminDetails padding-20 bg-white border-radius-20">
-        <table>
+        <table className="doctoradmintable">
           <thead>
             <tr>
-              <th>{t("superadmin.profile-photo")}</th>
+              {/* <th>{t("superadmin.profile-photo")}</th> */}
               <th>{t("superadmin.patient-name")}</th>
               <th>{t("edit-profile.phone-number")}</th>
               <th>{t("edit-profile.country")}</th>
@@ -139,20 +118,24 @@ const ManagePatient = () => {
                 return (
                   <tr key={patient.id}>
                     <td>
-                      <div class="profile-photo">
-                        <img
-                          src={
-                            patient?.profile_picture
-                              ? patient.profile_picture
-                              : "../images/sample.png"
-                          }
-                          alt="profile_photo"
-                        />
+                      <div className="d-flex align-items-center gap-3">
+                        <div class="profile-photo">
+                          <img
+                            src={
+                              patient?.profile_picture
+                                ? patient.profile_picture
+                                : "../images/sample.png"
+                            }
+                            alt="profile_photo"
+                          />
+                        </div>
+
+                        <td>
+                          {patient.name}
+                        </td>
                       </div>
                     </td>
-                    <td>
-                      {patient.first_name} {patient.last_name}
-                    </td>
+
                     <td>{patient.phone_number}</td>
                     <td>{patient.country}</td>
                     <td>
