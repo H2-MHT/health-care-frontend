@@ -1,26 +1,44 @@
 import React, { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MembershipPlan from "./membershipPlan";
-import DataPrivacy from "./dataPrivacy"
-import ResetPassword from "./resetPassword"
-import CommunicationNotifications from "./communicationNotifications"
+import DataPrivacy from "./dataPrivacy";
+import ResetPassword from "./resetPassword";
+import CommunicationNotifications from "./communicationNotifications";
 import { useTranslation } from "react-i18next";
-import TimeLanguage from "./timeLanguage"
+import TimeLanguage from "./timeLanguage";
 import { showToast } from "../../../../utils/toast";
 import { deleteData, postData } from "../../../../hooks/services/services";
+import storage from "redux-persist/lib/storage"; // If using redux-persist
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../../redux/actions/authActions";
+import { persistor } from "../../../../redux/store";
 
 const PatinentProfileSetting = () => {
-const{t} = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const isProfileData = useSelector((state) => state?.userProfile?.userProfile);
+  const sampleImage = "../images/sample.png";
 
-  const logout = () => {
-    localStorage.removeItem("user_token");
-    localStorage.removeItem("user_data");
-    navigate("/login");
+  const logoutUser = async () => {
+    try {
+      const payload = {
+        refresh: auth?.refreshToken,
+      };
+      const response = await postData("auth/logout/", payload);
+      if (response?.status === 200) {
+        localStorage.removeItem("user_token");
+        localStorage.removeItem("user_data");
+        dispatch(logout());
+        storage.removeItem("persist:root");
+        persistor.purge();
+        navigate("/login");
+      }
+    } catch (error) {
+      showToast(error.message, "error");
+    }
   };
-  const userType = useMemo(() => {
-    return JSON.parse(localStorage.getItem("user_data"))?.role || null;
-  }, []);
 
   const accountDelete = async () => {
     try {
@@ -70,7 +88,7 @@ const{t} = useTranslation();
                 <div class="settingName border-radius-20 bg-white py-3">
                   <div class="img-parallel">
                     <img
-                      src="../images/doctor-dashboard/profile-sample.png"
+                      src={isProfileData?.profile_picture || sampleImage}
                       class="img-fluid"
                     />
                     <Link class="text-darkgreen" to="/patient/editprofile">
@@ -92,7 +110,7 @@ const{t} = useTranslation();
             </div>
             <MembershipPlan />
             <CommunicationNotifications />
-           <TimeLanguage/>
+            <TimeLanguage />
             <div class="col-md-12">
               <div class="settingBox bg-white border-radius-20 padding-20">
                 <h3 class="text-darkgreen mb-5">
@@ -115,7 +133,7 @@ const{t} = useTranslation();
                       <a
                         href="#"
                         class="border-radius-20 bg-mainblue py-3 px-4 text-white"
-                        onClick={logout}
+                        onClick={logoutUser}
                       >
                         <img
                           src="../images/doctor-dashboard/logout.svg"

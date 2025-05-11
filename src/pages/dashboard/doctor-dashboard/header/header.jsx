@@ -272,7 +272,7 @@ export const Header = () => {
                   alt="Bell"
                   onClick={toggleNotification}
                 />
-                {hasUnreadNotifications && (
+                {isProfiledata?.is_online && (
                   <div className="notificationDot"></div>
                 )}
                 {isNotificationOpen && (

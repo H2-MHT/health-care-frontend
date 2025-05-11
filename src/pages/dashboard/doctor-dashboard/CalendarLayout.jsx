@@ -23,8 +23,6 @@ import { onMessageListener } from "../doctorChat/firebase";
 import { getDocumentVerificationSuccess } from "../../../redux/actions/doctor/documentVerificationAction";
 export const CalendarLayout = ({ children }) => {
   let { user, token } = useSelector((state) => state.auth);
-  const [userRole, setUserRole] = useState(user);
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isVideoActive = localStorage.getItem("isVideoActive")
@@ -34,8 +32,6 @@ export const CalendarLayout = ({ children }) => {
   useEffect(() => {
     if (!user) {
       getProfile();
-    } else {
-      setUserRole(user);
     }
     getLicensesData();
   }, []);
@@ -46,7 +42,6 @@ export const CalendarLayout = ({ children }) => {
     onMessageListener()
       .then((payload) => {
         console.log("New Notification Received:", payload);
-        console.log("payload.data?.type:", payload.data?.type);
         if (payload.data?.type === "incoming_call") {
           setIncomingCall({
             caller: payload.data.caller,
@@ -60,7 +55,6 @@ export const CalendarLayout = ({ children }) => {
   });
 
   const getProfile = async () => {
-    setLoading(true);
     await getDoctorProfileRequest();
     try {
       const response = await fetchDataAuth("auth/view-profile/", navigate);
@@ -68,13 +62,10 @@ export const CalendarLayout = ({ children }) => {
         throw new Error("Failed to fetch data from the server.");
       }
       const getData = await response.json();
-      setUserRole(getData?.data?.role);
       dispatch(getDoctorProfileSuccess(getData.data));
     } catch (error) {
       dispatch(getDoctorProfileFailure(error.message));
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   const getLicensesData = async () => {
@@ -109,14 +100,10 @@ export const CalendarLayout = ({ children }) => {
         {user === "SuperAdmin" ? <SuperAdminHeader /> : <Header />}
         <section class="main-content">
           <div class="dash-content">
-            {loading ? (
-              <Loader />
-            ) : (
               <>
                 {getDrawer()}
                 {children}
               </>
-            )}
           </div>
         </section>
       </main>

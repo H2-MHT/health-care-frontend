@@ -9,7 +9,8 @@ import { useTranslation } from "react-i18next";
 import { Modal } from "react-bootstrap";
 import { showToast } from "../../utils/toast";
 import { loginSuccess } from "../../redux/actions/authActions";
-import { postData } from "../../hooks/services/services";
+import { postData, updateFormData } from "../../hooks/services/services";
+import { getDoctorProfileSuccess } from "../../redux/actions/doctor/getDoctorProfileAction";
 
 export const PatientDrawer = () => {
   const { t } = useTranslation();
@@ -29,6 +30,20 @@ export const PatientDrawer = () => {
   const handleToggle = () => {
     setIsChecked((prev) => !prev);
   };
+
+  useEffect(()=>{
+    onSubmit();
+  },[isChecked])
+
+  const onSubmit = async () => {
+    const formData = new FormData();
+    formData.append("is_online", isChecked)
+    const response = await updateFormData("auth/update-profile/", formData);
+    if (response.status === 200) {
+      const responseData = await response.json();
+      dispatch(getDoctorProfileSuccess(responseData?.data));
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -418,13 +433,13 @@ export const PatientDrawer = () => {
             </li>
             <li>
               <Link
-                to="/Patient/profileSetting"
+                to="/patient/profileSetting"
                 className={
-                  selectedDrawerItem === "/Patient/profileSetting"
+                  selectedDrawerItem === "/patient/profileSetting"
                     ? "active"
                     : ""
                 }
-                onClick={() => setSelectedDrawerItem("/Patient/profileSetting")}
+                onClick={() => setSelectedDrawerItem("/patient/profileSetting")}
               >
                 <svg
                   width="22"
