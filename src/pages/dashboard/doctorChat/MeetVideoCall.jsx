@@ -38,7 +38,7 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
     try {
       const payload = {
         uid: isProfileData?.id,
-        appointment_id: selectedAppointment.appointment_id,
+        appointment_id: selectedAppointment?.id,
       };
 
       const response = await postData(
@@ -58,24 +58,44 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
     }
   };
 
+    useEffect(() => {
+      const handleUserPublished = async (user, mediaType) => {
+        console.log("[Agora] Remote user published:", user.uid, mediaType);
+        await client.subscribe(user, mediaType);
+        if (mediaType === "video" && remoteVideoRef.current) {
+          user.videoTrack?.play(remoteVideoRef.current);
+        }
+    
+        if (mediaType === "audio") {
+          user.audioTrack?.play();
+        }
+      };
+    
+      const handleUserLeft = (user) => {
+        console.log("[Agora] User left:", user.uid);
+      };
+    
+      client.on("user-published", handleUserPublished);
+      client.on("user-unpublished", handleUserLeft);
+      client.on("user-left", handleUserLeft);
+    
+      return () => {
+        client.off("user-published", handleUserPublished);
+        client.off("user-unpublished", handleUserLeft);
+        client.off("user-left", handleUserLeft);
+      };
+    }, []);
+
   const joinChannel = async (data) => {
     try {
       const [micTrack, camTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();
       setLocalTracks([micTrack, camTrack]);
-  
       const callerUid = data.current_user_id; // Your unique Agora UID
       const token = data?.token;
       const channelName = data?.channel_name;
       const appId = data?.app_id;
-  
-      console.log("Joining as caller:", { callerUid, channelName, token });
-  
       await client.join(appId, channelName, token, callerUid);
-      console.log("Caller joined channel");
-  
       await client.publish([micTrack, camTrack]);
-      console.log("Caller published local tracks");
-  
       camTrack.play(localVideoRef.current);
       micTrack.setEnabled(true);
       setJoined(true);
@@ -83,18 +103,17 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
       console.error("Caller error joining channel:", error);
     }
   };
+
   const addConsultationReport = async () => {
     try {
       const payload = {
         appointment_id: selectedAppointment?.appointment_id,
         translated_text: transcript,
       };
-
       const response = await postData(
         "consultation/consultation-report/",
         payload
       );
-      console.log(">>>>>>>>>>>ggggggg", response);
       if (response?.status === 200) {
         const data = await response.json();
       }
@@ -119,7 +138,6 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
   };
 
   const rejectCall = async () => {
-    console.log("Call Rejected");
     await handleClose();
     await addConsultationReport();
     await leaveChannel();

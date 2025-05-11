@@ -75,7 +75,7 @@ const {t} = useTranslation();
                   <InputField
                     type="text"
                     {...register("name")}
-                    className="w-full p-2 border rounded-md mb-4"
+                    className="w-full rounded-md mb-4"
                   />
                   <p className="text-danger">{errors.name?.message}</p>
                 </div>
@@ -84,7 +84,7 @@ const {t} = useTranslation();
                   <InputField
                     type="text"
                     {...register("description")}
-                    className="w-full p-2 border rounded-md mb-4"
+                    className="w-full rounded-md mb-4"
                   />
                   <p className="text-danger">{errors.description?.message}</p>
                 </div>

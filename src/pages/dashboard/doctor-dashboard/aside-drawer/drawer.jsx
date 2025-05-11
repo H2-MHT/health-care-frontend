@@ -1,16 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./drawer.css";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../redux/actions/authActions";
-import storage from "redux-persist/lib/storage"; // If using redux-persist
+import storage from "redux-persist/lib/storage";
 import { persistor } from "../../../../redux/store";
 import { useTranslation } from "react-i18next";
 import { postData, putData } from "../../../../hooks/services/services";
 import { useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
-import {loginSuccess,loginFailure } from "../../../../redux/actions/authActions"
+import { loginSuccess } from "../../../../redux/actions/authActions";
 import { showToast } from "../../../../utils/toast";
 
 export const Drawer = () => {
@@ -19,45 +19,20 @@ export const Drawer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
-  const [userTokens,setuserTokens]=useState()
-  const isReview = location.pathname === "/review";
-  const sidebarColRef = useRef(null);
-  const sidebarmenuRef = useRef(null);
+  const [isChecked, setIsChecked] = useState(true);
+  // const isReview = location.pathname === "/review";
   const [selectedDrawerItem, setSelectedDrawerItem] = useState(0);
-  const [insideDrawer, setInsideDrawer] = useState(false)
-    const auth = useSelector((state) => state.auth);
+  const [insideDrawer, setInsideDrawer] = useState(false);
+  const auth = useSelector((state) => state.auth);
   const userProfile = useSelector((state) => state.userProfile);
+
+  const handleToggle = () => {
+    setIsChecked((prev) => !prev);
+  };
+
   useEffect(() => {
     setSelectedDrawerItem(location.pathname);
   }, [location.pathname]);
-  // useEffect(() => {
-  //   const sidebarCol = sidebarColRef.current;
-  //   const handleSidebarColClick = () => {
-  //     const aside = document.querySelector("aside");
-  //     const rightContent = document.querySelector(".rightContent");
-  //     aside?.classList.toggle("sidebarClose");
-  //     rightContent?.classList.toggle("rightsidefull");
-  //   };
-  //   sidebarCol?.addEventListener("click", handleSidebarColClick);
-
-  //   // Second block: .sidebarmenu click event
-  //   const sidebarmenu = sidebarmenuRef.current;
-  //   const handleSidebarMenuClick = () => {
-  //     const aside = document.querySelector("aside");
-  //     const rightContent = document.querySelector(".rightContent");
-  //     const body = document.querySelector("body");
-  //     aside?.classList.toggle("sidebarsmall");
-  //     rightContent?.classList.toggle("rightsidefullmobile");
-  //     body?.classList.toggle("bodyopen");
-  //   };
-  //   sidebarmenu?.addEventListener("click", handleSidebarMenuClick);
-
-  //   // Cleanup event listeners when the component is unmounted
-  //   return () => {
-  //     sidebarCol?.removeEventListener("click", handleSidebarColClick);
-  //     sidebarmenu?.removeEventListener("click", handleSidebarMenuClick);
-  //   };
-  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,9 +42,12 @@ export const Drawer = () => {
         let responseData = await response.json();
         localStorage.setItem("user_token", responseData?.tokens?.access);
         showToast(responseData?.detail, "success");
-        setuserTokens(responseData)
         dispatch(
-          loginSuccess(responseData?.user?.role, responseData?.tokens?.access, responseData?.tokens?.refresh )
+          loginSuccess(
+            responseData?.user?.role,
+            responseData?.tokens?.access,
+            responseData?.tokens?.refresh
+          )
         );
         if (responseData?.user?.role == "Doctor") {
           navigate("/dashboard");
@@ -78,8 +56,6 @@ export const Drawer = () => {
         } else {
           navigate("/clinic-dashboard/dashboard");
         }
-
-      
         setModelOpen(false);
       }
     } catch (error) {
@@ -102,7 +78,6 @@ export const Drawer = () => {
         throw new Error(`Failed to update session: ${response.status}`);
       }
       const responseData = await response.json();
-      console.log("Session updated successfully:", responseData);
       return true;
     } catch (error) {
       console.error("Error updating session:", error);
@@ -110,30 +85,24 @@ export const Drawer = () => {
     }
   };
 
- const logoutUser = async () => {
-        try {
-          const payload = {
-            refresh: auth?.refreshToken
-            };
-          const response = await postData("auth/logout/",payload);
-          if (response?.status === 200) {
-            let responseData = await response.json();
-            navigate("/login");
-            showToast(responseData?.message, "success");
-          }
-        } catch (error) {
-          showToast(error.message, "error");
-        }
+  const logoutUser = async () => {
+    try {
+      const payload = {
+        refresh: auth?.refreshToken,
       };
-
-//  const logoutUser = () => {
-//     localStorage.removeItem("user_token");
-//     localStorage.removeItem("user_data");
-//     dispatch(logout());
-//     storage.removeItem("persist:root");
-//     persistor.purge();
-//     navigate("/login");
-//  }
+      const response = await postData("auth/logout/", payload);
+      if (response?.status === 200) {
+        localStorage.removeItem("user_token");
+        localStorage.removeItem("user_data");
+        dispatch(logout());
+        storage.removeItem("persist:root");
+        persistor.purge();
+        navigate("/login");
+      }
+    } catch (error) {
+      showToast(error.message, "error");
+    }
+  };
 
   return (
     <>
@@ -421,17 +390,18 @@ export const Drawer = () => {
             <li>
               <Link
                 to=""
-                className={selectedDrawerItem === 10 ? "active" : ""}
-                onClick={() => setSelectedDrawerItem(10)}
+                className={selectedDrawerItem === 12 ? "active" : ""}
+                onClick={() => setSelectedDrawerItem(12)}
               >
                 <div class="form-check form-switch green-switch">
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="checkbox"
                     id="mySwitch"
                     name="darkmode"
                     value="yes"
-                    checked
+                    checked={isChecked}
+                    onChange={handleToggle}
                   />
                 </div>
                 <span>{t("drawer.active")}</span>

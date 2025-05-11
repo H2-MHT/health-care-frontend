@@ -1622,7 +1622,8 @@ main{
 
 .drAppointmentReport .drAppointmentReportInner .left{
     border-radius: 0px 0px 0px 20px;
-    width: 70%;
+    /* width: 70%; */
+    width: 100%;
 }
 
 .drAppointmentReport .drAppointmentReportInner .left .reportContent{
@@ -3380,6 +3381,7 @@ main{
 }
 .presciption-view .mediaBox{
     width: 23% !important;
+    height: 450px;
 }
 .presciption-view h4{
 font-size: 14px !important;

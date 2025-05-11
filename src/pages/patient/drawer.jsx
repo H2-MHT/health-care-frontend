@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../dashboard/doctor-dashboard/aside-drawer/drawer.css";
 import storage from "redux-persist/lib/storage"; // If using redux-persist
@@ -16,10 +16,8 @@ export const PatientDrawer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
   const location = useLocation();
-  const sidebarColRef = useRef(null);
-  const sidebarmenuRef = useRef(null);
-  const [insideDrawer, setInsideDrawer] = useState(false);
   const auth = useSelector((state) => state.auth);
   const [selectedDrawerItem, setSelectedDrawerItem] =
     useState("/patient/dashboard");
@@ -28,34 +26,9 @@ export const PatientDrawer = () => {
     setSelectedDrawerItem(location.pathname);
   }, [location.pathname]);
 
-  // useEffect(() => {
-  //   const sidebarCol = sidebarColRef.current;
-  //   const handleSidebarColClick = () => {
-  //     const aside = document.querySelector("aside");
-  //     const rightContent = document.querySelector(".rightContent");
-  //     aside?.classList.toggle("sidebarClose");
-  //     rightContent?.classList.toggle("rightsidefull");
-  //   };
-  //   sidebarCol?.addEventListener("click", handleSidebarColClick);
-
-  //   // Second block: .sidebarmenu click event
-  //   const sidebarmenu = sidebarmenuRef.current;
-  //   const handleSidebarMenuClick = () => {
-  //     const aside = document.querySelector("aside");
-  //     const rightContent = document.querySelector(".rightContent");
-  //     const body = document.querySelector("body");
-  //     aside?.classList.toggle("sidebarsmall");
-  //     rightContent?.classList.toggle("rightsidefullmobile");
-  //     body?.classList.toggle("bodyopen");
-  //   };
-  //   sidebarmenu?.addEventListener("click", handleSidebarMenuClick);
-
-  //   // Cleanup event listeners when the component is unmounted
-  //   return () => {
-  //     sidebarCol?.removeEventListener("click", handleSidebarColClick);
-  //     sidebarmenu?.removeEventListener("click", handleSidebarMenuClick);
-  //   };
-  // }, []);
+  const handleToggle = () => {
+    setIsChecked((prev) => !prev);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,13 +52,13 @@ export const PatientDrawer = () => {
         } else {
           navigate("/clinic-dashboard/dashboard");
         }
-
         setModelOpen(false);
       }
     } catch (error) {
       showToast(error.message, "error");
     }
   };
+
   const logoutPatient = async () => {
     try {
       const payload = {
@@ -93,9 +66,12 @@ export const PatientDrawer = () => {
       };
       const response = await postData("auth/logout/", payload);
       if (response?.status === 200) {
-        let responseData = await response.json();
+        localStorage.removeItem("user_token");
+        localStorage.removeItem("user_data");
+        dispatch(logout());
+        storage.removeItem("persist:root");
+        persistor.purge();
         navigate("/login");
-        showToast(responseData?.message, "success");
       }
     } catch (error) {
       showToast(error.message, "error");
@@ -484,12 +460,13 @@ export const PatientDrawer = () => {
               >
                 <div class="form-check form-switch green-switch">
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="checkbox"
                     id="mySwitch"
                     name="darkmode"
                     value="yes"
-                    checked
+                    checked={isChecked}
+                    onChange={handleToggle}
                   />
                 </div>
                 <span>{t("drawer.active")}</span>
