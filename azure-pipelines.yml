@@ -40,7 +40,7 @@ stages:
                 inputs:
                   SourceFolder: '$(Build.SourcesDirectory)'
                   Contents: '**/*'
-                  TargetFolder: '/home/azureuser/HealthHelp/health-care-frontend/'
+                  TargetFolder: '/home/azureuser/HealthHelp/health-care-frontend'
                 displayName: 'Copy site files to main directory'   
               - script: |
                   service nginx reload
