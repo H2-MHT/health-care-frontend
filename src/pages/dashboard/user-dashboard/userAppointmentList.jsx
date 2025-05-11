@@ -275,7 +275,7 @@ const UserAppointmentList = () => {
                           (item?.status == "Rescheduled" &&
                             item?.rescheduled_by == "Patient")) && (
                           <div
-                            class="appointmentBox"
+                            class="appointmentBox reschedule_pendding"
                             style={{ backgroundColor: "honeydew" }}
                           >
                             <div class="first">
@@ -327,7 +327,7 @@ const UserAppointmentList = () => {
                         {(item?.status === "Pending" ||
                           (item?.status === "Rescheduled" &&
                             item?.rescheduled_by === "Doctor")) && (
-                          <div class="appointmentBox reschedule">
+                          <div class="appointmentBox reschedule" style={{ backgroundColor: "honeydew" }}>
                             <div class="first">
                               <div class="imgPrts">
                                 <img
@@ -374,12 +374,12 @@ const UserAppointmentList = () => {
                               </button>
                             </div>
                             <div class="third">
-                              <div class="clockCalenderPrts red-text w-100">
-                                <img src="/images/doctor-dashboard/red-clock.svg" />
+                              <div class="clockCalenderPrts dark-text w-100">
+                                <img src="/images/doctor-dashboard/dark-clock.svg" />
                                 <span>{item.slot}</span>
                               </div>
-                              <div class="clockCalenderPrts red-text w-100">
-                                <img src="/images/doctor-dashboard/red-calender.svg" />
+                              <div class="clockCalenderPrts dark-text w-100">
+                                <img src="/images/doctor-dashboard/dark-calender.svg" />
                                 <span>{getFormattedDate(item.date)}</span>
                               </div>
                             </div>
@@ -403,7 +403,7 @@ const UserAppointmentList = () => {
                 {pastAppointments?.length > 0 ? (
                   pastAppointments?.map((appointment) => {
                     return (
-                      <div class="appointmentBox">
+                      <div class="appointmentBox reschedule_done">
                         <div class="first">
                           <div class="imgPrts">
                             <img

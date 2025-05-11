@@ -31,24 +31,54 @@ const ManageReview = () => {
     setTotalPages(Math.ceil(reviewList.length / itemsPerPage));
   }, [reviewList]);
 
-  const fetchReviews = async () => {
-    try {
-      const response = await fetchDataAuth(`MasterPanel/get-report/`, navigate);
-      if (!response.ok) throw new Error("Failed to fetch");
-      const data = await response.json();
 
-      const formattedData = (data?.report || []).map((review) => ({
+
+
+  // const fetchReviews = async () => {
+  //   try {
+  //     const response = await fetchDataAuth(`MasterPanel/get-report/`, navigate);
+  //     if (!response.ok) throw new Error("Failed to fetch");
+  //     const data = await response.json();
+
+  //     const formattedData = (data?.report || []).map((review) => ({
+  //       ...review,
+  //       status: review?.status || "invalid",
+  //     }));
+
+  //     setReviewList(formattedData);
+  //   } catch (error) {
+  //     console.error("Error fetching reviews:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
+  const fetchReviews = async (page = 1, searchQuery = "") => {
+      setLoading(true);
+      const fetchUrl = `MasterPanel/get-report/?page=${page}&limit=${itemsPerPage}&search_key=${encodeURIComponent(
+        searchQuery
+      )}`;;
+      try {
+        const response = await fetchDataAuth(fetchUrl);
+  
+        if (!response.ok) throw new Error("Fetching Doctor List Failed");
+        const totalPagesHeader = response.headers.get("Total-Pages");
+        const totalPages = totalPagesHeader ? parseInt(totalPagesHeader, 10) : 1;
+        const data = await response.json();
+        const formattedData = (data?.data || []).map((review) => ({
         ...review,
         status: review?.status || "invalid",
       }));
-
-      setReviewList(formattedData);
-    } catch (error) {
-      console.error("Error fetching reviews:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+        setReviewList(formattedData);
+        setTotalPages(totalPages);
+      } catch (error) {
+        console.error("Fetch Doctor List Error: ", error);
+        throw error;
+      } finally {
+        setLoading(false);
+      }
+    };
 
   const handleStatusChange = async (review, selectedOption) => {
     setReviewList((prev) =>
