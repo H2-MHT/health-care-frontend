@@ -94,7 +94,7 @@ const ManageDoctors = () => {
 
   const handleChange = (doctor) => {
     setShowModal(true);
-    setDoctorId(doctor?.id);
+    setDoctorId(doctor?.doctor_id);
   };
 
   const onSubmit = async (data) => {
@@ -155,7 +155,7 @@ const ManageDoctors = () => {
             {doctorList &&
               doctorList.map((doctor) => {
                 return (
-                  <tr key={doctor.id}>
+                  <tr key={doctor.doctor_id}>
                     <td>
                       <div className="d-flex align-items-center gap-3">
                         <div class="profile-photo">
