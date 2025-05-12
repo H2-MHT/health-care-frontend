@@ -105,7 +105,6 @@ const ManagePatient = () => {
         <table className="doctoradmintable">
           <thead>
             <tr>
-              {/* <th>{t("superadmin.profile-photo")}</th> */}
               <th>{t("superadmin.patient-name")}</th>
               <th>{t("edit-profile.phone-number")}</th>
               <th>{t("edit-profile.country")}</th>
@@ -114,7 +113,7 @@ const ManagePatient = () => {
           </thead>
           <tbody>
             {patientList &&
-              patientList.map((patient) => {
+              !patientList.map((patient) => {
                 return (
                   <tr key={patient.id}>
                     <td>
@@ -178,10 +177,16 @@ const ManagePatient = () => {
                   </tr>
                 );
               })}
+               {patientList?.length === 0 && (
+                <tr>
+                  <td colSpan="6" className="text-center text-muted py-4">
+                  No Patient available
+                  </td>
+                </tr>
+              )}
           </tbody>
         </table>
       </div>
-      {/* {openPatientForm && <AddPatient open={openPatientForm} setOpen={setOpenPatientForm}/>} */}
       {openPopUp && (
         <PopUp
           open={openPopUp}

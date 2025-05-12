@@ -190,6 +190,13 @@ const ManageClinic = () => {
                   </tr>
                 );
               })}
+               {clinicList?.length === 0 && (
+                <tr>
+                  <td colSpan="6" className="text-center text-muted py-4">
+                  No clinic available
+                  </td>
+                </tr>
+              )}
           </tbody>
         </table>
       </div>
