@@ -8,18 +8,22 @@ import { Modal } from "react-bootstrap";
 import Select from "../../../components/form/Select";
 import { paymentSortBy } from "../../../utils/constants";
 import { useTranslation } from "react-i18next";
+import InputField from "../../../components/form/InputField";
+import { showToast } from "../../../utils/toast";
 
 const DoctorWallet = () => {
-  const{t} = useTranslation("wallet");
+  const { t } = useTranslation("wallet");
   const [walletDetails, setWalletDetails] = useState();
   const [rowDetails, setRowDetails] = useState();
   const [modelOpen, setModelOpen] = useState(false);
   const [modelOpenPop, setModelOpenPop] = useState(false);
+  const [copied, setCopied] = useState({ personal: false, registry: false });
   const [accountdetails, setAccountdetails] = useState();
-  const [doctorTotalAmount,setDoctorTotalAmount]=useState()
-  const [withdrawalRequestList,setWithdrawalRequestList] = useState([]);
-  const [details, setShowDetails] = useState(false)
+  const [doctorTotalAmount, setDoctorTotalAmount] = useState();
+  const [withdrawalRequestList, setWithdrawalRequestList] = useState([]);
+  const [details, setShowDetails] = useState(false);
   const [accountList, setAccountList] = useState([]);
+  const [referalsCodeDetails, setReferalsCodeDetails] = useState();
   const navigate = useNavigate();
 
   const paymentStatusColors = {
@@ -54,7 +58,7 @@ const DoctorWallet = () => {
       }
 
       const getData = await response.json();
-      setDoctorTotalAmount(getData?.data)
+      setDoctorTotalAmount(getData?.data);
     } catch (error) {
       console.log(error.message);
     }
@@ -72,9 +76,12 @@ const DoctorWallet = () => {
 
   const getWithdrawalRequestList = async () => {
     // const userData = JSON.parse(localStorage.getItem('user_data'));
-    
+
     try {
-      const response = await fetchDataAuth(`payment/withdrawal-request/`, navigate);
+      const response = await fetchDataAuth(
+        `payment/withdrawal-request/`,
+        navigate
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch data from the server.");
       }
@@ -85,23 +92,38 @@ const DoctorWallet = () => {
       console.log(error.message);
     }
   };
-
   const fetchAccountList = async () => {
-      const userData = JSON.parse(localStorage.getItem("user_data"));
-      try {
-        const response = await fetchDataAuth(
-          `payment/add-account-detail/?user_id=${userData.id}`,
-          navigate
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch data from the server.");
-        }
-        const getData = await response.json();
-        setAccountList(getData.accounts);
-      } catch (error) {
-        console.log(error.message);
+    const userData = JSON.parse(localStorage.getItem("user_data"));
+    try {
+      const response = await fetchDataAuth(
+        `payment/add-account-detail/?user_id=${userData.id}`,
+        navigate
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
       }
-    };
+      const getData = await response.json();
+      setAccountList(getData.accounts);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+ const copyToClipboard = async (text, type) => {
+    if (!text) {
+      showToast("No text to copy", "error");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied({ ...copied, [type]: true });
+      setTimeout(() => setCopied({ ...copied, [type]: false }), 1000);
+    } catch (error) {
+      console.error("Failed to copy text: ", error);
+    }
+  };
+
 
   const handleRowClick = (rowData) => {
     setShowDetails(true);
@@ -111,12 +133,12 @@ const DoctorWallet = () => {
   useEffect(() => {
     getDoctorWalletDetails();
     getWithdrawalRequestList();
-    getDoctorPaymentDetails()
+    getDoctorPaymentDetails();
   }, []);
 
-  const handleDate = (date)=>{
+  const handleDate = (date) => {
     return new Date(date).toLocaleDateString();
-  }
+  };
 
   return (
     <>
@@ -202,23 +224,6 @@ const DoctorWallet = () => {
                                       : "NA"}
                                   </span>
                                 </td>
-                                {/* <td>
-                                  <img
-                                    src="images/doctor-dashboard/greendownArrow.webp"
-                                    width="15"
-                                    class="img-fluid"
-                                    alt="arrow"
-                                  />
-                                </td> */}
-
-                                {/* <td>
-                              <img
-                                src="images/doctor-dashboard/redupArrow.webp"
-                                width="15"
-                                class="img-fluid"
-                                alt="arrow"
-                              />
-                            </td> */}
                               </tr>
                             </tbody>
                           </>
@@ -227,88 +232,6 @@ const DoctorWallet = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* {details && (
-                  <div class="col-md-12 mt-4 p-4">
-                    <div
-                      class="border rounded border-1"
-                      style={{ position: "relative" }}
-                    >
-                      <h3 class="cardHeadingText">{t("wallet.details")}</h3>
-
-                      <div class="d-flex flex-column list-alignment">
-                        <div class="d-flex align-items-center">
-                          <p class="details-label">
-                            {t("wallet.payment-from")}
-                            <span>{rowDetails?.sender}</span>
-                          </p>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                          <p class="details-label">
-                            {t("wallet.details")}
-                            <span>{rowDetails?.description}</span>
-                          </p>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                          <p class="details-label">
-                            {t("wallet.transaction-time")}
-                            <span>{rowDetails?.date}</span>
-                          </p>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                          <p class="details-label">
-                            {t("wallet.payment")}
-                            <span>{rowDetails?.final_amount}</span>
-                          </p>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                          <p class="details-label">
-                            {t("wallet.clinic-earning")}:{" "}
-                            <span>{rowDetails?.clinic_charge}</span>
-                          </p>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                          <p class="details-label">
-                            {t("wallet.total-incomes")}:{" "}
-                            <span>{rowDetails?.total}</span>
-                          </p>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                          <p class="details-label">
-                            {t("wallet.status")}: <span>received</span>
-                          </p>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                          <p class="details-label">
-                            {t("wallet.invoice")}:{" "}
-                            <span>
-                              <img
-                                src="images/doctor-dashboard/fileIcon.webp"
-                                width="24"
-                                alt="image"
-                              />
-                            </span>
-                          </p>
-                        </div>
-                        <a
-                          href="#"
-                          class="support-link"
-                          data-bs-toggle="modal"
-                          data-bs-target="#supportModal"
-                        >
-                          {t("wallet.support")}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                )} */}
               </div>
             </div>
             <div class="col-md-5 right-col p-4">
@@ -384,72 +307,40 @@ const DoctorWallet = () => {
                   </button>
                 </div>
               </div>
+              <div class="refferalCode">
+                        <p>Your Stripe Link</p>{" "}
+                        <InputField
+                          type="text"
+                          placeholder="Stripe Link"
+                          className="w-50"
+                          disabled
+                          value={doctorTotalAmount?.stripe_link}
+                          name="Personal_code"
+                        />{" "}
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            copyToClipboard(
+                              doctorTotalAmount?.stripe_link || "",
+                              "personal"
+                            );
+                          }}
+                        >
+                          <img src="../images/doctor-dashboard/copy.webp" width="25" />
+                        </a>{" "}
+                        {copied.personal && (
+                          <span style={{ color: "green", marginLeft: "10px" }}>
+                            Copied!
+                          </span>
+                        )}
+                      </div>
+
 
               <div class="payment-method-container">
                 <div class="payment-method-heading">
                   {t("wallet.payment-methods")}
                 </div>
-
-                {/* <div class="payment-method-card bg-white w-100">
-                  <div class="cardFirst-row">
-                    <div class="d-flex align-items-center">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="flexRadioDefault"
-                          id="flexRadioDefault1"
-                        />
-                        <label
-                          class="form-check-label radio-text"
-                          for="flexRadioDefault1"
-                        >
-                          {accountNumberFormat}
-                        </label>
-                      </div>
-                    </div>
-                    <div class="acc-img">
-                      <div>
-                        <img
-                          src="images/doctor-dashboard/visa.webp"
-                          width="40px"
-                          alt="img"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="payment-method-card bg-white w-100">
-                  <div class="cardFirst-row">
-                    <div class="d-flex align-items-center">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="flexRadioDefault"
-                          id="flexRadioDefault1"
-                        />
-                        <label
-                          class="form-check-label radio-text"
-                          for="flexRadioDefault1"
-                        >
-                          {accountNumberFormat}
-                        </label>
-                      </div>
-                    </div>
-                    <div class="acc-img">
-                      <div>
-                        <img
-                          src="images/doctor-dashboard/visa.webp"
-                          width="40px"
-                          alt="img"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-
                 <div class="payment-method-card bg-white w-100">
                   <div class="cardFirst-row">
                     <div class="d-flex align-items-center">
@@ -478,6 +369,7 @@ const DoctorWallet = () => {
                       </div>
                     </div>
                   </div>
+                  
                   <div class="cardSecond-row">
                     <div class="pay-card-content">
                       {t("wallet.payment-method-txt")}

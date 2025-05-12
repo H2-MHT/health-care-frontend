@@ -2247,6 +2247,8 @@ main{
     display: flex;
     gap: 15px;
     align-items: center;
+    justify-content: flex-start;
+    padding: 5% 0 0;
   }
 
   .refferalCode p{
