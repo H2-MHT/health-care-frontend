@@ -9,7 +9,7 @@ import PopUp from "./popUp";
 import Pagination from "../../../components/pagination/pagination";
 import { Loader } from "../../../components/ui/loader/loader";
 import { useTranslation } from "react-i18next";
-
+     
 const ManageClinic = () => {
   const { t } = useTranslation();
   const [clinicList, setClinicList] = useState(null);
@@ -74,21 +74,6 @@ const ManageClinic = () => {
     fetchClinicList();
   };
 
-  // const viewClinicDetail = async (id) => {
-  //     const viewUrl = `MasterPanel/user_detail/${id}/`;
-
-  //     try {
-  //       const response = await postData(viewUrl, { role: "Clinic" });
-  //       if (!response.ok) throw new Error("Fetching Clinic Details Failed");
-
-  //       const getData = await response.json();
-  //       console.log(getData);
-  //     } catch (error) {
-  //       console.error("Fetching Clinic Details Error: ", error);
-  //       throw error;
-  //     }
-  //   };
-
   return loading ? (
     <Loader />
   ) : (
@@ -106,22 +91,12 @@ const ManageClinic = () => {
             <img src="../images/search-dark.svg" />
           </a>
         </div>
-        {/* <div class="sorting">
-          <select>
-            <option>{t("superadmin.sort-by")}</option>
-            <option>{t("superadmin.sort-by")}</option>
-          </select>
-        </div> */}
-        {/* <a href="#" className="blue_btn" style={{ height: "56px" }}>
-          Add +
-        </a> */}
       </div>
 
       <div className="adminDetails padding-20 bg-white border-radius-20">
         <table className="doctoradmintable">
           <thead>
             <tr>
-              {/* <th>{t("superadmin.clinic-logo")}</th> */}
               <th>{t("clinic-signup.clinic-name")}</th>
               <th>{t("edit-profile.phone-number")}</th>
               <th>{t("superadmin.website-link")}</th>
