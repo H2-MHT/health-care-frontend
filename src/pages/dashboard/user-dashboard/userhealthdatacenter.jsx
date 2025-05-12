@@ -463,7 +463,7 @@ const UserHealthDataCenter = () => {
             </div>
           </div>
           <div class={`col-md-10 ${list?.length > 0 ? "acc-height" : ""}`}>
-            <div class="bg-darkgreen padding-20 border-radius-20 h-100">
+            <div class="bg-darkgreen padding-20 border-radius-20 h-100 overflow-auto">
               {list?.length > 0 && <Accordion list={list} />}
             </div>
           </div>

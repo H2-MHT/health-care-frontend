@@ -104,7 +104,6 @@ li {
 .acc-height {
   height: 270px;
   max-height: 270px;
-  overflow-x: auto;
 }
 
 .text-light-black {

@@ -478,7 +478,7 @@ const PatientEditProfile = () => {
                     >
                       {t("edit-profile.public-view")}
                     </a>
-                    <div className={`profileviewImg greenC ${getProfileClass(profileStatus)}`}>
+                    <div className={`profileviewImg`}>
                       <FileUpload
                         src={isProfiledata?.profile_picture}
                         name="uploadPhoto"
