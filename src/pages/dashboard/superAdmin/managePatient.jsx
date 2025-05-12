@@ -113,7 +113,7 @@ const ManagePatient = () => {
           </thead>
           <tbody>
             {patientList &&
-              !patientList.map((patient) => {
+              patientList.map((patient) => {
                 return (
                   <tr key={patient.id}>
                     <td>
