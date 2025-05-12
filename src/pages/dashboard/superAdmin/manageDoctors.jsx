@@ -12,24 +12,22 @@ import { useForm } from "react-hook-form";
 import InputField from "../../../components/form/InputField";
 import { showToast } from "../../../utils/toast";
 
-
 const ManageDoctors = () => {
   const { t } = useTranslation();
   const [doctorList, setDoctorList] = useState(null);
   const [openPopUp, setOpenPopUp] = useState(false);
   const [functionType, setFunctionType] = useState("");
-  const [doctorId,setDoctorId]=useState()
+  const [doctorId, setDoctorId] = useState();
   const [userObject, setUserObject] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const [showModal,setShowModal]=useState(false)
+  const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [totalPages, setTotalPages] = useState(1);
 
-
   useEffect(() => {
-      fetchDoctorList(currentPage, query);
-    }, [currentPage]);
+    fetchDoctorList(currentPage, query);
+  }, [currentPage]);
 
   const itemsPerPage = 5;
 
@@ -37,7 +35,7 @@ const ManageDoctors = () => {
     setLoading(true);
     const fetchUrl = `MasterPanel/user_list/?page=${page}&limit=${itemsPerPage}&search_key=${encodeURIComponent(
       searchQuery
-    )}&role=Doctor`;;
+    )}&role=Doctor`;
     try {
       const response = await fetchDataAuth(fetchUrl);
 
@@ -81,11 +79,11 @@ const ManageDoctors = () => {
     fetchDoctorList();
   };
 
- const schema = Yup.object().shape({
+  const schema = Yup.object().shape({
     name: Yup.string().required("Stripe Url is required"),
   });
 
- const {
+  const {
     register,
     handleSubmit,
     reset,
@@ -94,32 +92,29 @@ const ManageDoctors = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleChange=(doctor)=>{
-    setShowModal(true)
-    setDoctorId(doctor?.id)
-  }
+  const handleChange = (doctor) => {
+    setShowModal(true);
+    setDoctorId(doctor?.id);
+  };
 
   const onSubmit = async (data) => {
     try {
-        const payload = {
-          stripe_link: data?.name,
-          doctor_id:doctorId
-        };
-        const response = await postData(
-            `MasterPanel/add-stripe-link/`, payload
-        );
-        if (response.status == 200) {
-            let responseData = await response.json();
-            showToast(responseData?.message, "success");
-           await fetchDoctorList()
-            setShowModal(false);
-           reset()
-        }
+      const payload = {
+        stripe_link: data?.name,
+        doctor_id: doctorId,
+      };
+      const response = await postData(`MasterPanel/add-stripe-link/`, payload);
+      if (response.status == 200) {
+        let responseData = await response.json();
+        showToast(responseData?.message, "success");
+        await fetchDoctorList();
+        setShowModal(false);
+        reset();
+      }
     } catch (error) {
-        showToast(error.message, "error");
+      showToast(error.message, "error");
     }
-};
-
+  };
 
   return loading ? (
     <Loader />
@@ -142,7 +137,7 @@ const ManageDoctors = () => {
           Add +
         </a> */}
       </div>
-  
+
       <div className="adminDetails padding-20 bg-white border-radius-20">
         <table className="doctoradmintable">
           <thead>
@@ -154,7 +149,6 @@ const ManageDoctors = () => {
               {/* <th>Status</th> */}
               <th>Stripe Link</th>
               <th>{t("superadmin.action")}</th>
-
             </tr>
           </thead>
           <tbody>
@@ -164,42 +158,27 @@ const ManageDoctors = () => {
                   <tr key={doctor.id}>
                     <td>
                       <div className="d-flex align-items-center gap-3">
-                      <div class="profile-photo">
-                        <img
-                          src={
-                            doctor?.profile_picture
-                              ? doctor.profile_picture
-                              : "../images/sample.png"
-                          }
-                          alt="profile_photo"
-                        />
-                      </div>
-                      <Link
-                        to="/superadmin/document/verification"
-                        state={{ doctor: doctor }}
-                      >
-                        {doctor.name}
-                      </Link>
+                        <div class="profile-photo">
+                          <img
+                            src={
+                              doctor?.profile_picture
+                                ? doctor.profile_picture
+                                : "../images/sample.png"
+                            }
+                            alt="profile_photo"
+                          />
+                        </div>
+                        <Link
+                          to="/superadmin/document/verification"
+                          state={{ doctor: doctor }}
+                        >
+                          {doctor.name}
+                        </Link>
                       </div>
                     </td>
-                 
-                    {/* <td>
-                      <Link
-                        to="/superadmin/document/verification"
-                        state={{ doctor: doctor }}
-                      >
-                        {doctor.first_name} {doctor.last_name}
-                      </Link>
-                    </td> */}
                     <td>{doctor.speciality}</td>
                     <td>{doctor.country}</td>
-                    {/* <td>
-                      <div>
-                        active
-                      </div>
-                    </td> */}
-                    <td>{doctor?.stripe_link
-                    } </td>
+                    <td>{doctor?.stripe_link} </td>
                     <td>
                       <div className="actions">
                         <Link
@@ -233,24 +212,15 @@ const ManageDoctors = () => {
                         >
                           <img src="../images/deleteBlack.webp" />
                         </a>
-                        {/* <a>
-                        <i class="fa-solid fa-square-plus"></i>
-                  <img
-                    src="../images/folder.svg"
-                    onClick={() => handleChange(doctor)}
-                  />
-                </a> */}
-                  {/* <a
-                          href="#"
-                          className="tooltip2"
-                          onClick={() => handleChange(doctor)}
-                          data-tooltip="Add Stripe Link"
-                        >
-                         <i class="fa-solid fa-square-plus"></i>
-                        </a> */}
-                        <div class="icon-circle">
-  <i class="fa-solid fa-square-plus"></i>
-</div>
+                        <div class="iconCircleAdd">
+                          <div
+                            className="plus-text"
+                            onClick={() => handleChange(doctor)}
+                            data-tooltip="Add Stripe Link"
+                          >
+                            +
+                          </div>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -290,23 +260,27 @@ const ManageDoctors = () => {
               <div className="row g-4">
                 <div className="form-group">
                   <label className="block text-sm font-medium mb-1">
-                     Stripe URl
+                    Stripe URl
                   </label>
                   <InputField
-                    type="url" 
+                    type="url"
                     {...register("name")}
                     className="w-full rounded-md mb-4"
                   />
                   <p className="text-danger">{errors.name?.message}</p>
                 </div>
               </div>
-               <div className="gap-2 justify-content-center d-flex w-auto mx-auto">
-              <button type="submit" className="blue_btn ">
-                Save
-              </button>
-              <button type="button" className="blue_btn"  onClick={() => setShowModal(false)}>
-              Cancel
-              </button>
+              <div className="gap-2 justify-content-center d-flex w-auto mx-auto">
+                <button type="submit" className="blue_btn ">
+                  Save
+                </button>
+                <button
+                  type="button"
+                  className="blue_btn"
+                  onClick={() => setShowModal(false)}
+                >
+                  Cancel
+                </button>
               </div>
             </form>
           </div>

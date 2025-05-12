@@ -157,6 +157,45 @@
     visibility: visible;
     opacity: 1;
 }
-.doctoradmintable{
-
+.iconCircleAdd{
+    width: 40px;
+    height: 40px;
+    background-color: #dedede;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
 }
+.iconCircleAdd .plus-text{
+    color: #000 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  [data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%; /* Position above */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+  }
+  
+  [data-tooltip]:hover::after {
+    opacity: 1;
+  }
+  
