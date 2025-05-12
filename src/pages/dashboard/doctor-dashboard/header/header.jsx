@@ -119,9 +119,9 @@ export const Header = () => {
     const sidebarCol = sidebarColRef.current;
     const handleSidebarColClick = () => {
       const aside = document.querySelector("aside");
-      const rightContent = document.querySelector(".rightContent");
+      // const rightContent = document.querySelector(".rightContent");
       aside?.classList.toggle("sidebarClose");
-      rightContent?.classList.toggle("rightsidefull");
+      // rightContent?.classList.toggle("rightsidefull");
     };
     sidebarCol?.addEventListener("click", handleSidebarColClick);
 
@@ -284,7 +284,7 @@ export const Header = () => {
                 )}
               </a>
 
-              <div className={`profileImg ${getProfileClass(profileStatus)}`}>
+              <div className={`profileImg ${auth.user === "Doctor" ? getProfileClass(profileStatus) : ""}`}>
                 <img
                   src={isProfiledata?.profile_picture || "/images/globe.png"}
                   className="img-fluid profile1"

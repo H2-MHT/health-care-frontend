@@ -10,11 +10,11 @@ export async function redirectToFitbitAuth() {
     const codeChallenge = await generateCodeChallenge(codeVerifier);
     const authUrl = `https://www.fitbit.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=code&code_challenge=${codeChallenge}&code_challenge_method=S256&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
     const loginWindow = window.open(authUrl, "_blank");
-  setTimeout(() => {
-    if (loginWindow) {
-      loginWindow.close();
-    }
-  }, 10000);
+//   setTimeout(() => {
+//     if (loginWindow) {
+//       loginWindow.close();
+//     }
+//   }, 10000);
 }
 export async function exchangeCodeForTokens(code) {
     const codeVerifier = localStorage.getItem("code_verifier");
