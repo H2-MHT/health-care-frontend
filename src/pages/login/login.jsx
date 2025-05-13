@@ -117,7 +117,7 @@ const Login = () => {
                 </div>
                 <div className="formArea loginmain">
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="row g-3">
+                    <div className="row g-3 loginChangeColor">
                       <div className="col-md-4 col-6">
                         <div className={`radiotype topRadio ${role === "Patient" ? "active" : ""}`}>
                           <Controller
