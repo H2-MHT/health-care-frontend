@@ -38,6 +38,7 @@ import Specialization from "../pages/dashboard/superAdmin/specialization/special
 import ManageDoctors from "../pages/dashboard/superAdmin/manageDoctors";
 import ManageClinic from "../pages/dashboard/superAdmin/manageClinic";
 import ManageReview from "../pages/dashboard/superAdmin/manageReview";
+import ManageReviewAdmin from "../pages/dashboard/superAdmin/manageReviewAdmin/manageReviewAdmin"
 import MyDocumentVerification from "../pages/dashboard/superAdmin/myDocumentVerification"
 import PatientEditProfile from "../pages/patient/editProfile/editProfile";
 import { PatientDashboard } from "../pages/patient/dashboard/dashboard";
@@ -585,6 +586,12 @@ const AppRoutes = () => {
     {
       path: "/superadmin/specialization",
       element: <Specialization/>,
+      exact: true,
+      layout: true,
+    },
+     {
+      path: "/superadmin/manage/review",
+      element: <ManageReviewAdmin/>,
       exact: true,
       layout: true,
     },

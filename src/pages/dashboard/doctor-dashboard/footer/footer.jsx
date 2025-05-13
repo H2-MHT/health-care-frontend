@@ -120,7 +120,7 @@ export const Footer = () => {
                 </ul>
               </div>
               <div class="right">
-                <p> &copy; 2024 {t("footer.footer-bottom-text")}</p>
+                <p> &copy; 2025 {t("footer.footer-bottom-text")}</p>
               </div>
             </div>
           </div>
