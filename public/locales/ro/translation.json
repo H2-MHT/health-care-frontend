@@ -161,7 +161,11 @@
     "dmca": "DMCA",
     "terms-of-service": "Termeni și condiții",
     "cookie-policy": "Politica de cookie-uri",
-    "footer-bottom-text": "My Health Today LTD. Toate drepturile rezervate"
+    "footer-bottom-text": "My Health Today LTD. Toate drepturile rezervate",
+     "footer-text":"H2.doctor este o platformă digitală de sănătate care conectează utilizatorii cu profesioniști independenți din domeniul sănătății pentru consultații și servicii de consiliere sigure la distanță. Platforma nu oferă diagnostic sau tratament medical și nu este responsabilă pentru niciun rezultat medical rezultat în urma consultării.",
+    "terms-conditions":"Termeni și condiții",
+    "privacy-policy":"Politica de confidențialitate",
+    "security-governance":"Securitate și guvernare"
   },
   "dashboard": {
     "list": "Listă",

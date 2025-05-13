@@ -163,7 +163,11 @@
     "dmca": "DMCA",
     "terms-of-service": "Terms of Service",
     "cookie-policy": "Cookie Policy",
-    "footer-bottom-text": "My Health Today All rights reserved"
+    "footer-bottom-text": "My Health Today All rights reserved",
+    "footer-text":"H2.doctor is a digital health platform that connects users with independent healthcare professionals for secure remote consultations and advisory services. The platform does not provide medical diagnosis or treatment and is not liable for any medical outcomes resulting from the consultation.",
+    "terms-conditions":"Terms & Conditions",
+    "privacy-policy":"Privacy Policy",
+    "security-governance":"Security & Governance"
   },
 
   "dashboard": {

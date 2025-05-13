@@ -3,6 +3,8 @@ import "./header.css";
 import { useNavigate,Link } from "react-router-dom";
 import Image from "../../form/Image";
 import { useTranslation } from "react-i18next";
+import { postData } from "../../../hooks/services/services";
+import { showToast } from "../../../utils/toast";
 
 
 const Header = () => {
@@ -60,7 +62,6 @@ const Header = () => {
 
   //  Change Language and Save to localStorage
   const changeLanguage = (lang) => {
-    console.log(lang,">>>>>>>>>>>")
     i18n.changeLanguage(lang);
     localStorage.setItem("selectedLang", lang);
     setIsLanguageDropdownOpen(false); // Close dropdown after selection

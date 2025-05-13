@@ -165,7 +165,11 @@
     "dmca": "DMCA",
     "terms-of-service": "Paslaugų teikimo sąlygos",
     "cookie-policy": "Slapukų politika",
-    "footer-bottom-text": "© My Health Today LTD. Visos teisės saugomos"
+    "footer-bottom-text": "© My Health Today LTD. Visos teisės saugomos",
+     "footer-text":"H2.doctor yra skaitmeninė sveikatos platforma, jungianti vartotojus su nepriklausomais sveikatos priežiūros specialistais, kad gautų saugias nuotolines konsultacijas ir konsultavimo paslaugas. Platforma neteikia medicininės diagnozės ar gydymo ir nėra atsakinga už jokius medicininius rezultatus, atsiradusius po konsultacijos.",
+    "terms-conditions":"Taisyklės ir sąlygos",
+    "privacy-policy":"Privatumo politika",
+    "security-governance":"Saugumas ir valdymas"
   },
 
   "dashboard": {

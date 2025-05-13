@@ -162,8 +162,11 @@
 "dmca": "DMCA",
 "terms-of-service": "Termos de Serviço",
 "cookie-policy": "Política de Cookies",
-
-"footer-bottom-text": "My Health Today LTD - Todos os direitos reservados"
+"footer-bottom-text": "My Health Today LTD - Todos os direitos reservados",
+"footer-text":"H2.doctor é uma plataforma de saúde digital que conecta usuários a profissionais de saúde independentes para consultas remotas seguras e serviços de orientação. A plataforma não fornece diagnóstico ou tratamento médico e não se responsabiliza por quaisquer consequências médicas resultantes da consulta",
+"terms-conditions":"Termos e Condições",
+"privacy-policy":"Política de Privacidade",
+"security-governance":"Segurança e Governança"
 },
 "dashboard": {
 "list": "Lista",
