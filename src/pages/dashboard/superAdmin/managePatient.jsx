@@ -118,7 +118,7 @@ const ManagePatient = () => {
                 return (
                   <tr key={patient.id}>
                     <td>
-                      <div className="d-flex align-items-center gap-3">
+                      <div className="d-flex align-items-center gap-3 justify-content-center">
                         <div class="profile-photo">
                           <img
                             src={
@@ -130,9 +130,16 @@ const ManagePatient = () => {
                           />
                         </div>
 
-                        <td>
+                        <p
+                          className="patient-name"
+                          title={
+                            patient.name.split(" ").length > 20
+                              ? patient.name
+                              : ""
+                          }
+                        >
                           {patient.name}
-                        </td>
+                        </p>
                       </div>
                     </td>
 

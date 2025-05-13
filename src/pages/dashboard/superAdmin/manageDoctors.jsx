@@ -163,26 +163,28 @@ const ManageDoctors = () => {
                 return (
                   <tr key={doctor.id}>
                     <td>
-                      <div className="d-flex align-items-center gap-3">
-                      <div class="profile-photo">
-                        <img
-                          src={
-                            doctor?.profile_picture
-                              ? doctor.profile_picture
-                              : "../images/sample.png"
-                          }
-                          alt="profile_photo"
-                        />
-                      </div>
-                      <Link
-                        to="/superadmin/document/verification"
-                        state={{ doctor: doctor }}
-                      >
-                        {doctor.name}
-                      </Link>
+                      <div className="d-flex align-items-center gap-3 justify-content-center">
+                        <div class="profile-photo">
+                          <img
+                            src={
+                              doctor?.profile_picture
+                                ? doctor.profile_picture
+                                : "../images/sample.png"
+                            }
+                            alt="profile_photo"
+                          />
+                        </div>
+                        <p className="doctor-name">
+                          <Link
+                            to="/superadmin/document/verification"
+                            state={{ doctor: doctor }}
+                          >
+                            {doctor.name}
+                          </Link>
+                        </p>
                       </div>
                     </td>
-                 
+
                     {/* <td>
                       <Link
                         to="/superadmin/document/verification"
@@ -198,8 +200,17 @@ const ManageDoctors = () => {
                         active
                       </div>
                     </td> */}
-                    <td>{doctor?.stripe_link
-                    } </td>
+                    <td
+                      title={
+                        doctor?.stripe_link?.length > 30
+                          ? doctor.stripe_link
+                          : ""
+                      }
+                    >
+                      {doctor?.stripe_link?.length > 30
+                        ? doctor.stripe_link.slice(0, 30) + "..."
+                        : doctor?.stripe_link}
+                    </td>
                     <td>
                       <div className="actions">
                         <Link
@@ -240,7 +251,7 @@ const ManageDoctors = () => {
                     onClick={() => handleChange(doctor)}
                   />
                 </a> */}
-                  {/* <a
+                        {/* <a
                           href="#"
                           className="tooltip2"
                           onClick={() => handleChange(doctor)}
@@ -249,8 +260,8 @@ const ManageDoctors = () => {
                          <i class="fa-solid fa-square-plus"></i>
                         </a> */}
                         <div class="icon-circle">
-  <i class="fa-solid fa-square-plus"></i>
-</div>
+                          <i class="fa-solid fa-square-plus"></i>
+                        </div>
                       </div>
                     </td>
                   </tr>

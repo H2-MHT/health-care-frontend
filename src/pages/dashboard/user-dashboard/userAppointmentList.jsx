@@ -253,7 +253,7 @@ const UserAppointmentList = () => {
 
   return (
     <>
-      <div class="rightContent">
+      <div class="rightContent rightsidefull">
         <div class="drCalender">
           <div class="tabPrt">
             <Link to="/patient/calender-view" className="bg-green">
