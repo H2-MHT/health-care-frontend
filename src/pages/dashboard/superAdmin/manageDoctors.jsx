@@ -133,20 +133,15 @@ const ManageDoctors = () => {
             <img src="../images/search-dark.svg" />
           </a>
         </div>
-        {/* <a href="#" className="blue_btn" style={{ height: "56px" }}>
-          Add +
-        </a> */}
       </div>
 
       <div className="adminDetails padding-20 bg-white border-radius-20">
         <table className="doctoradmintable">
           <thead>
             <tr>
-              {/* <th>{t("superadmin.profile-photo")}</th> */}
               <th>{t("superadmin.doctor-name")}</th>
               <th>{t("superadmin.speciality")}</th>
               <th>{t("edit-profile.country")}</th>
-              {/* <th>Status</th> */}
               <th>Stripe Link</th>
               <th>{t("superadmin.action")}</th>
             </tr>
@@ -157,7 +152,7 @@ const ManageDoctors = () => {
                 return (
                   <tr key={doctor.doctor_id}>
                     <td>
-                      <div className="d-flex align-items-center gap-3">
+                      <div className="d-flex align-items-center gap-3 justify-content-center">
                         <div class="profile-photo">
                           <img
                             src={
@@ -168,17 +163,43 @@ const ManageDoctors = () => {
                             alt="profile_photo"
                           />
                         </div>
-                        <Link
-                          to="/superadmin/document/verification"
-                          state={{ doctor: doctor }}
-                        >
-                          {doctor.name}
-                        </Link>
+                        <p className="doctor-name">
+                          <Link
+                            to="/superadmin/document/verification"
+                            state={{ doctor: doctor }}
+                          >
+                            {doctor.name}
+                          </Link>
+                        </p>
                       </div>
                     </td>
+
+                    {/* <td>
+                      <Link
+                        to="/superadmin/document/verification"
+                        state={{ doctor: doctor }}
+                      >
+                        {doctor.first_name} {doctor.last_name}
+                      </Link>
+                    </td> */}
                     <td>{doctor.speciality}</td>
                     <td>{doctor.country}</td>
-                    <td>{doctor?.stripe_link} </td>
+                    {/* <td>
+                      <div>
+                        active
+                      </div>
+                    </td> */}
+                    <td
+                      title={
+                        doctor?.stripe_link?.length > 30
+                          ? doctor.stripe_link
+                          : ""
+                      }
+                    >
+                      {doctor?.stripe_link?.length > 30
+                        ? doctor.stripe_link.slice(0, 30) + "..."
+                        : doctor?.stripe_link}
+                    </td>
                     <td>
                       <div className="actions">
                         <Link
@@ -212,20 +233,36 @@ const ManageDoctors = () => {
                         >
                           <img src="../images/deleteBlack.webp" />
                         </a>
-                        <div class="iconCircleAdd">
-                          <div
-                            className="plus-text"
-                            onClick={() => handleChange(doctor)}
-                            data-tooltip="Add Stripe Link"
-                          >
-                            +
-                          </div>
+                        {/* <a>
+                        <i class="fa-solid fa-square-plus"></i>
+                  <img
+                    src="../images/folder.svg"
+                    onClick={() => handleChange(doctor)}
+                  />
+                </a> */}
+                        {/* <a
+                          href="#"
+                          className="tooltip2"
+                          onClick={() => handleChange(doctor)}
+                          data-tooltip="Add Stripe Link"
+                        >
+                         <i class="fa-solid fa-square-plus"></i>
+                        </a> */}
+                        <div class="icon-circle">
+                          <i class="fa-solid fa-square-plus"></i>
                         </div>
                       </div>
                     </td>
                   </tr>
                 );
               })}
+              {doctorList?.length === 0 && (
+                <tr>
+                  <td colSpan="6" className="text-center text-muted py-4">
+                  No doctor available
+                  </td>
+                </tr>
+              )}
           </tbody>
         </table>
       </div>

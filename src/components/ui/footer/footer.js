@@ -94,7 +94,7 @@ export const Footer = () => {
             <div className="right">
               <p>
                 {" "}
-                &copy; 2024 My Health Today LTD All rights reserved
+                &copy; My Health Today&#169; All rights reserved
               </p>
             </div>
           </div>

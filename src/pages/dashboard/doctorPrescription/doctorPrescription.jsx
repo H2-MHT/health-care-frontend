@@ -38,6 +38,38 @@ const DoctorPrescription = () => {
     setSelectedPatientObject(patientObject);
   };
 
+
+  const handlePdfDownload = async (appointmentId) => {
+      const token = localStorage.getItem("user_token");
+      if (!token) {
+        console.error("User is not logged in or no token available.");
+        return;
+      }
+  
+      let pdfUrl = `consultation/prescription_template/?appointment_id=${appointmentId}`;
+  
+      try {
+        const response = await fetchData(pdfUrl);
+        if (!response.ok) {
+          throw new Error("Failed to fetch the PDF");
+        }
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+        window.open(blobUrl, "_blank");
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = "prescription.pdf"; // Set the desired filename for download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        // Clean up the Blob URL after a short delay
+        setTimeout(() => window.URL.revokeObjectURL(blobUrl), 100);
+      } catch (error) {
+        console.error("Error downloading the PDF:", error);
+      }
+    };
+
+
   return (
     <>
       {loading ? (
@@ -122,6 +154,21 @@ const DoctorPrescription = () => {
                               <img
                                 src="../images/doctor-dashboard/edit-skill.webp"
                                 alt="Edit"
+                              />
+                            </a>
+                          </div>
+                          <div className="file col-3">
+                            <a
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handlePdfDownload(patientObject?.appointment_id);
+                              }}
+                            >
+                              <img
+                                src="../images/verification.svg"
+                                className="img-fluid"
+                                alt="Download prescription"
                               />
                             </a>
                           </div>

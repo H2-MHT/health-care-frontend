@@ -1,4 +1,3 @@
-// import React, { useState, useEffect, useMemo } from "react";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./header.css";
 import { useSelector } from "react-redux";
@@ -9,9 +8,11 @@ import NotificationDropdown from "../../notification/NotificationPatient";
 import {
   deleteData,
   fetchData,
+  postData,
   updateData,
 } from "../../../../hooks/services/services";
 import { getProfileClass } from "../../../../utils/common";
+import { showToast } from "../../../../utils/toast";
 
 export const Header = () => {
   const { t, i18n } = useTranslation();
@@ -57,6 +58,8 @@ export const Header = () => {
       console.error("Error updating notification:", error);
     }
   };
+
+  console.log(currentLang, ">>>currentLang");
 
   useEffect(() => {
     if (documentVerification.length) {
@@ -198,9 +201,28 @@ export const Header = () => {
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("selectedLang", lang);
+    handleSubmit();
     setIsOpen(false);
   };
 
+  const handleSubmit = async () => {
+    let LagResult = languages.filter(
+      (item) => item.code.toUpperCase() === currentLang
+    );
+    try {
+      const payload = {
+        code: LagResult[0]?.code,
+        language_name: LagResult[0]?.label,
+      };
+      const response = await postData(`user/set-language/`, payload);
+      if (response.status === 200) {
+        const responseJson = await response.json();
+        showToast(responseJson?.message, "success");
+      }
+    } catch (error) {
+      showToast(error.message, "error");
+    }
+  };
   return (
     <header>
       <div className="dashHead">
@@ -284,7 +306,11 @@ export const Header = () => {
                 )}
               </a>
 
-              <div className={`profileImg ${auth.user === "Doctor" ? getProfileClass(profileStatus) : ""}`}>
+              <div
+                className={`profileImg ${
+                  auth.user === "Doctor" ? getProfileClass(profileStatus) : ""
+                }`}
+              >
                 <img
                   src={isProfiledata?.profile_picture || "/images/globe.png"}
                   className="img-fluid profile1"

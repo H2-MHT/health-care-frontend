@@ -275,7 +275,7 @@ header .mobile_topbar {
     width: 70px;
     font-size: 16px;
     font-weight: 500;
-    display: none;
+    /* display: none; */
   }
   .language .lang_select::before {
     height: 25px;
@@ -299,9 +299,10 @@ header .mobile_topbar {
     transform: translateY(-50%);
   }
   .language .langSubmenu {
-    width: 70px;
+    width: 120px;
     position: absolute;
     top: 65px;
+    right: 0;
     border: 1px solid #fff;
     border-radius: 6px;
     background: #fff;
@@ -326,6 +327,12 @@ header .mobile_topbar {
   /* header .top_bar .right_side{
         display: none;
     } */
+}
+
+@media(max-width:767px){
+  .startStop {
+    display: none;
+  }
 }
 
 /* [320 - 450] */
