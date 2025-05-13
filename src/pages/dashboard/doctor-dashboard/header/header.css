@@ -295,9 +295,9 @@ aside.sidebarClose .green-switch .form-check-input {
         padding: 20px 10px !important;
         border-radius: 0;
     }
-    .language{
+    /* .language{
         display: none;
-    }
+    } */
     .startStop {
         font-size: 8px;
         padding: 0 10px;

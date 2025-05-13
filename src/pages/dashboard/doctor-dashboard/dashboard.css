@@ -3125,6 +3125,7 @@ main{
     border: 1px solid #ccc;
     padding: 10px 20px;
     border-radius: 8px;
+    background: rgba(233, 233, 233, 0.5);
   }
 
   .topRadio:hover{
@@ -3431,6 +3432,15 @@ margin-bottom: 10px !important;
     font-size: 14px;
   font-weight: 500;
 }
+
+.loginChangeColor .col-md-4:first-child .topRadio.active, .loginChangeColor .col-md-4:first-child:hover .topRadio{
+    background:#8ebeb2 !important;
+}
+
+.loginChangeColor .col-md-4:nth-child(3) .topRadio.active, .loginChangeColor .col-md-4:nth-child(3):hover .topRadio{
+    background:#899c9e !important;
+}
+
 @media(min-width:1200px) and (max-width:1500px){
     .doc_public_view .docDetails .doctorsName .img-part img {
         width: 200px;
