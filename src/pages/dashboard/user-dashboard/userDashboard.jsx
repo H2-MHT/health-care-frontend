@@ -25,7 +25,6 @@ import {
   getFormattedDate,
 } from "../../../utils/common";
 import { useTranslation } from "react-i18next";
-
 import { requestForToken } from "../doctorChat/firebase";
 
 const UserDashboard = () => {
@@ -53,6 +52,17 @@ const UserDashboard = () => {
   const [clickedDate, setClickedDate] = useState(
     getAppointmentFormatDate(new Date())
   );
+  
+  const [visibleWidgets, setVisibleWidgets] = useState({
+    calendar: true,
+    userTagsLeft: true,
+    userTagsRight: true,
+    stepCounts: true,
+    notes: true,
+    patientData: true,
+  });
+  
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const progressPercentage = steps
     ? Math.min((steps / DAILY_STEP_GOAL) * 100, 100)
@@ -61,6 +71,7 @@ const UserDashboard = () => {
     ? Math.min((water / WATER_GOAL) * 100, 100)
     : 0;
   const formattedWater = water ? (water / 1000).toFixed(2) + "L" : "0L";
+
   // Master function
   const fetchAllFitbitData = async (date) => {
     setIsLoading(true);
@@ -102,6 +113,7 @@ const UserDashboard = () => {
       console.error("Error fetching Fitbit water data", error);
     }
   };
+
   const fetchRestingHeartRate = async (date) => {
     try {
       const data = await getFitbitData(`activities/heart/date/${date}/1d.json`);
@@ -114,6 +126,7 @@ const UserDashboard = () => {
       console.error("Error fetching Fitbit heart rate data", error);
     }
   };
+
   useEffect(() => {
     const accessToken = localStorage.getItem("access_token1");
     if (accessToken) {
@@ -158,6 +171,7 @@ const UserDashboard = () => {
       console.log("error :", error);
     }
   };
+
   const getProfile = async () => {
     setLoading(true);
     await getDoctorProfileRequest();
@@ -178,6 +192,7 @@ const UserDashboard = () => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
   const getTreatmentPlanData = async () => {
     if (!currentView?.startDate) {
       return;
@@ -210,7 +225,6 @@ const UserDashboard = () => {
       }
       const getData = await response.json();
       setAllNotesData(getData);
-      //
     } catch (error) {
       console.log(error.message);
     }
@@ -235,7 +249,7 @@ const UserDashboard = () => {
   };
 
   const handleDateClick = (date) => {
-    setClickedDate(date); // Update the clicked date in the parent
+    setClickedDate(date);
   };
 
   const updateInputNotes = (event) => {
@@ -307,525 +321,578 @@ const UserDashboard = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-
-    // Format date to "Mon / 9:20am"
     const options = {
-      weekday: "short", // Abbreviated weekday (e.g. Mon)
-      hour: "2-digit", // 2-digit hour (e.g. 09)
-      minute: "2-digit", // 2-digit minute (e.g. 20)
-      hour12: true, // Use 12-hour clock (e.g. am/pm)
+      weekday: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
     };
-
     const formattedTime = new Intl.DateTimeFormat("en-US", options).format(
       date
     );
-
-    // Return the formatted string in the desired format
     return `${formattedTime.split(",")[0]}`;
+  };
+
+ 
+  const toggleWidget = (widgetKey) => {
+    setVisibleWidgets((prev) => ({
+      ...prev,
+      [widgetKey]: !prev[widgetKey],
+    }));
+  };
+
+  
+  const toggleDropdown = () => {
+    setShowDropdown((prev) => !prev);
   };
 
   return (
     <>
-      <div class="rightContent rightsidefull">
-        <div class=" userDashboard">
-          <div class="profileMobile">
-            <div class="nameMobile">Hello, dr,Ava Williams!</div>
-            <div class="profileImgMobile">
-              <img src="images/profile-sample.png" class="img-fluid" />
+      <div className="rightContent rightsidefull">
+        <div className="userDashboard">
+          <div className="profileMobile">
+            <div className="nameMobile">Hello, dr,Ava Williams!</div>
+            <div className="profileImgMobile">
+              <img src="images/profile-sample.png" className="img-fluid" />
             </div>
           </div>
-
-          <div class="row g-4">
-            <div class="col-lg-5 col-md-12">
-              <div class="calenderPart w-100">
-                <div class="tabPrt">
-                  <Link to="/patient/calender-view" className="bg-green">
-                    {t("drawer.calendar")}
-                  </Link>
-                  <Link to="/patient/appointment-list" className="bg-orange">
-                    {t("dashboard.list")}
-                  </Link>
-                </div>
-                <div class="calenderDetail">
-                  <div class="responsive-iframe-container large-container">
-                    <MyCalendar
-                      events={false}
-                      onDateClick={handleDateClick}
-                      setCurrentView={setCurrentView}
+        
+          <div
+            style={{
+              position: "relative",
+              textAlign: "right",
+              marginBottom: "20px",
+            }}
+          >
+            <button
+              onClick={toggleDropdown}
+              style={{
+                padding: "8px 16px",
+                backgroundColor: "black",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Widget Menu
+            </button>
+            {showDropdown && (
+              <div
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  backgroundColor: "white",
+                  border: "1px solid #ccc",
+                  borderRadius: "5px",
+                  boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
+                  zIndex: 1000,
+                  padding: "10px",
+                  width: "200px",
+                }}
+              >
+                {Object.keys(visibleWidgets).map((widgetKey) => (
+                  <div
+                    key={widgetKey}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "5px 0",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={visibleWidgets[widgetKey]}
+                      onChange={() => toggleWidget(widgetKey)}
+                      style={{ marginRight: "10px" }}
                     />
+                    <label>
+                      {widgetKey
+                        .replace(/([A-Z])/g, " $1")
+                        .replace(/^./, (str) => str.toUpperCase())}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="row g-4">
+            {visibleWidgets.calendar && (
+              <div
+                className="col-lg-5 col-md-12"
+                style={{ position: "relative" }}
+              >
+                <img
+                  src="../images/user-dashboard/x.webp"
+                  className="close-widget-img"
+                  onClick={() => toggleWidget("calendar")}
+                  alt="Close calendar widget"
+                />
+                <div className="calenderPart w-100">
+                  <div className="tabPrt">
+                    <Link to="/patient/calender-view" className="bg-green">
+                      {t("drawer.calendar")}
+                    </Link>
+                    <Link to="/patient/appointment-list" className="bg-orange">
+                      {t("dashboard.list")}
+                    </Link>
+                  </div>
+                  <div className="calenderDetail">
+                    <div className="responsive-iframe-container large-container">
+                      <MyCalendar
+                        events={false}
+                        onDateClick={handleDateClick}
+                        setCurrentView={setCurrentView}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-7 col-md-12">
-              <div class="row g-3">
-                <div class="col-md-8">
-                  <div class="userTagLeft bg-white border-radius-20 padding-20">
-                    <div class="tagging darkGreenTag">
-                      {t("user-dashboard.allergy")}{" "}
-                      <img src="../images/user-dashboard/x.webp" />
-                    </div>
-                    <div class="tagging darkYellowTag">
-                      {t("user-dashboard.reccomendations")}{" "}
-                      <img src="../images/user-dashboard/x.webp" />
-                    </div>
-                    <div class="tagging tealTag">
-                      {t("edit-profile.english")}{" "}
-                      <img src="../images/user-dashboard/x.webp" />
-                    </div>
-                    <div class="tagging lightGrayTag">
-                      {t("user-dashboard.add")}
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="userTagRight bg-white border-radius-20 padding-20">
-                    <div class="usersRound">
-                      <img src={isProfiledata?.profile_picture} />
-                      <p>
-                        {isProfiledata?.first_name} ( {t("user-dashboard.you")})
-                      </p>
-                    </div>
-                    <div class="usersRound">
-                      <div class="addUserCir lightGrayTag">
-                        <img src="../images/user-dashboard/useraddIcon.svg" />
+            )}
+            {visibleWidgets.userTagsLeft ||
+            visibleWidgets.userTagsRight ||
+            visibleWidgets.stepCounts ? (
+              <div className="col-lg-7 col-md-12">
+                <div className="row g-3">
+                  {visibleWidgets.userTagsLeft && (
+                    <div className="col-md-8" style={{ position: "relative" }}>
+                      <img
+                        src="../images/user-dashboard/x.webp"
+                        className="close-widget-img"
+                        onClick={() => toggleWidget("userTagsLeft")}
+                        alt="Close user tags left widget"
+                      />
+                      <div className="userTagLeft bg-white border-radius-20 padding-20">
+                        <div className="tagging darkGreenTag">
+                          {t("user-dashboard.allergy")}{" "}
+                          <img src="../images/user-dashboard/x.webp" />
+                        </div>
+                        <div className="tagging darkYellowTag">
+                          {t("user-dashboard.reccomendations")}{" "}
+                          <img src="../images/user-dashboard/x.webp" />
+                        </div>
+                        <div className="tagging tealTag">
+                          {t("edit-profile.english")}{" "}
+                          <img src="../images/user-dashboard/x.webp" />
+                        </div>
+                        <div className="tagging lightGrayTag">
+                          {t("user-dashboard.add")}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="stepCounts">
-                    <div class="bg-white stepsIcon padding-20">
-                      {/* <img src="../images/user-dashboard/u-1.svg" />
-                      <img src="../images/user-dashboard/u-2.svg" /> */}
+                  )}
+                  {visibleWidgets.userTagsRight && (
+                    <div className="col-md-4" style={{ position: "relative" }}>
                       <img
-                        src="../images/user-dashboard/u-3.svg"
-                        class="Fitbit-login-icon"
-                        onClick={redirectToFitbitAuth}
-                        style={{ cursor: "pointer" }}
+                        src="../images/user-dashboard/x.webp"
+                        className="close-widget-img"
+                        onClick={() => toggleWidget("userTagsRight")}
+                        alt="Close user tags right widget"
                       />
-                      {/* <img src="../images/user-dashboard/u-4.svg" />
-                      <a href="#"> {t("user-dashboard.add")}</a> */}
-                    </div>
-                    <div class="swch">
-                      <div class="swchBox steps">
-                        <div class="swchTop">
-                          <img src="../images/user-dashboard/stepping.svg" />
-                          {t("user-dashboard.steps")}
+                      <div className="userTagRight bg-white border-radius-20 padding-20">
+                        <div className="usersRound">
+                          <img src={isProfiledata?.profile_picture} />
+                          <p>
+                            {isProfiledata?.first_name} (
+                            {t("user-dashboard.you")})
+                          </p>
                         </div>
-                        <h5>
-                          {!isAuthenticated ? (
-                            <span
-                              style={{
-                                fontSize: "0.4em",
-                                fontWeight: "normal",
-                              }}
-                            >
-                              {t("user-dashboard.not-authenticated")}
-                            </span>
-                          ) : isLoading ? (
-                            <SmallLoader />
-                          ) : steps !== null ? (
-                            steps
-                          ) : (
-                            "0"
-                          )}
-                        </h5>
-                        <div class="progressPart">
-                          <div class="progressBarArea whiteBar">
-                            <progress
-                              id="file"
-                              value={progressPercentage}
-                              max="100"
-                            >
-                              {" "}
-                              {progressPercentage}%{" "}
-                            </progress>
+                        <div className="usersRound">
+                          <div className="addUserCir lightGrayTag">
+                            <img src="../images/user-dashboard/useraddIcon.svg" />
                           </div>
                         </div>
-                        <h6>
-                          {progressPercentage}% {t("user-dashboard.of-goal")}
-                        </h6>
-                      </div>
-
-                      <div class="swchBox water">
-                        <div class="swchTop">
-                          <img src="../images/user-dashboard/water.svg" />
-                          {t("user-dashboard.water")}
-                        </div>
-                        <svg width="100" height="100" viewBox="0 0 100 100">
-                          <circle
-                            cx="50"
-                            cy="50"
-                            r="40"
-                            stroke="#d6d6d6"
-                            strokeWidth="10"
-                            fill="none"
-                          />
-                          <circle
-                            cx="50"
-                            cy="50"
-                            r="40"
-                            stroke="#3498db"
-                            strokeWidth="10"
-                            fill="none"
-                            strokeDasharray="251.2"
-                            strokeDashoffset={
-                              (1 - progressPercentagew / 100) * 251.2
-                            }
-                            strokeLinecap="round"
-                            transform="rotate(-90 50 50)"
-                          />
-                          <text
-                            x="50"
-                            y="55"
-                            textAnchor="middle"
-                            fontSize="18px"
-                            fill="#000"
-                          >
-                            <span
-                              style={{ fontSize: "0.4em", fontWeight: "bold" }}
-                            >
-                              {formattedWater}
-                            </span>
-                          </text>
-                        </svg>
-                        <h5>
-                          {!isAuthenticated ? (
-                            <span
-                              style={{
-                                fontSize: "0.4em",
-                                fontWeight: "normal",
-                              }}
-                            >
-                              {t("user-dashboard.not-authenticated")}
-                            </span>
-                          ) : isLoading ? (
-                            <SmallLoader />
-                          ) : water !== null ? (
-                            formattedWater
-                          ) : (
-                            "0"
-                          )}
-                        </h5>
-                      </div>
-
-                      <div class="swchBox calories">
-                        <div class="swchTop">
-                          <img src="../images/user-dashboard/calories.svg" />
-                          {t("user-dashboard.calories")}
-                        </div>
-                        <img
-                          src="../images/user-dashboard/calories-1.webp"
-                          class="img-fluid"
-                        />
-                        <h6>{t("clinic-dashboard.today")}</h6>
-                        <h5>
-                          {!isAuthenticated ? (
-                            <span
-                              style={{
-                                fontSize: "0.4em",
-                                fontWeight: "normal",
-                              }}
-                            >
-                              {t("user-dashboard.not-authenticated")}
-                            </span>
-                          ) : isLoading ? (
-                            <SmallLoader />
-                          ) : calories !== null ? (
-                            calories
-                          ) : (
-                            "0"
-                          )}
-                        </h5>
-                      </div>
-                      <div class="swchBox heartrate">
-                        <div class="swchTop">
-                          <img src="../images/user-dashboard/heartrate.svg" />
-                          {t("user-dashboard.heart-rate")}
-                        </div>
-                        <img
-                          src="../images/user-dashboard/heartrate-1.svg"
-                          class="img-fluid"
-                        />
-                        <h5>
-                          {!isAuthenticated ? (
-                            <span
-                              style={{
-                                fontSize: "0.4em",
-                                fontWeight: "normal",
-                              }}
-                            >
-                              {t("user-dashboard.not-authenticated")}
-                            </span>
-                          ) : isLoading ? (
-                            <SmallLoader />
-                          ) : HeartRate !== null ? (
-                            HeartRate
-                          ) : (
-                            "N/A"
-                          )}
-                        </h5>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-7 col-md-12">
-              <div class="row g-3">
-                <div class="col-md-9">
-                  <div class="notePart">
-                    <div class="noteTop">
-                      <h4>{t("dashboard.notes")}</h4>
-                      <div
-                        onClick={() => setOpenNotesModal(true)}
-                        className="cursor-pointer"
-                      >
-                        +
-                      </div>
-                    </div>
-                    <div class="notesFix">
-                      {allNotesData?.data.length > 0 ? (
-                        allNotesData?.data.map((item) => {
-                          return (
-                            <div class="notes">
-                              <h5>{item?.title}</h5>
-                              <div class="time">
-                                {formatDate(item?.created_at)}
-                              </div>
-                              <a href="#">
-                                <img
-                                  src="../images/doctor-dashboard/threeDots.webp"
-                                  width="30"
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    editNotesModal(item);
+                  )}
+                  {visibleWidgets.stepCounts && (
+                    <div className="col-md-12" style={{ position: "relative" }}>
+                      <img
+                        src="../images/user-dashboard/x.webp"
+                        className="close-widget-img"
+                        onClick={() => toggleWidget("stepCounts")}
+                        alt="Close step counts widget"
+                      />
+                      <div className="stepCounts">
+                        <div className="bg-white stepsIcon padding-20">
+                          <img
+                            src="../images/user-dashboard/u-3.svg"
+                            className="Fitbit-login-icon"
+                            onClick={redirectToFitbitAuth}
+                            style={{ cursor: "pointer" }}
+                          />
+                        </div>
+                        <div className="swch">
+                          <div className="swchBox steps">
+                            <div className="swchTop">
+                              <img src="../images/user-dashboard/stepping.svg" />
+                              {t("user-dashboard.steps")}
+                            </div>
+                            <h5>
+                              {!isAuthenticated ? (
+                                <span
+                                  style={{
+                                    fontSize: "0.4em",
+                                    fontWeight: "normal",
                                   }}
-                                />
-                              </a>
+                                >
+                                  {t("user-dashboard.not-authenticated")}
+                                </span>
+                              ) : isLoading ? (
+                                <SmallLoader />
+                              ) : steps !== null ? (
+                                steps
+                              ) : (
+                                "0"
+                              )}
+                            </h5>
+                            <div className="progressPart">
+                              <div className="progressBarArea whiteBar">
+                                <progress
+                                  id="file"
+                                  value={progressPercentage}
+                                  max="100"
+                                >
+                                  {progressPercentage}%
+                                </progress>
+                              </div>
                             </div>
-                          );
-                        })
-                      ) : (
-                        <div className="treatmentContainer">
-                          <div className="no-appointments">
-                            {t("dashboard.no-notes")}
+                            <h6>
+                              {progressPercentage}%{" "}
+                              {t("user-dashboard.of-goal")}
+                            </h6>
+                          </div>
+                          <div className="swchBox water">
+                            <div className="swchTop">
+                              <img src="../images/user-dashboard/water.svg" />
+                              {t("user-dashboard.water")}
+                            </div>
+                            <svg width="100" height="100" viewBox="0 0 100 100">
+                              <circle
+                                cx="50"
+                                cy="50"
+                                r="40"
+                                stroke="#d6d6d6"
+                                strokeWidth="10"
+                                fill="none"
+                              />
+                              <circle
+                                cx="50"
+                                cy="50"
+                                r="40"
+                                stroke="#3498db"
+                                strokeWidth="10"
+                                fill="none"
+                                strokeDasharray="251.2"
+                                strokeDashoffset={
+                                  (1 - progressPercentagew / 100) * 251.2
+                                }
+                                strokeLinecap="round"
+                                transform="rotate(-90 50 50)"
+                              />
+                              <text
+                                x="50"
+                                y="55"
+                                textAnchor="middle"
+                                fontSize="18px"
+                                fill="#000"
+                              >
+                                <span
+                                  style={{
+                                    fontSize: "0.4em",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  {formattedWater}
+                                </span>
+                              </text>
+                            </svg>
+                            <h5>
+                              {!isAuthenticated ? (
+                                <span
+                                  style={{
+                                    fontSize: "0.4em",
+                                    fontWeight: "normal",
+                                  }}
+                                >
+                                  {t("user-dashboard.not-authenticated")}
+                                </span>
+                              ) : isLoading ? (
+                                <SmallLoader />
+                              ) : water !== null ? (
+                                formattedWater
+                              ) : (
+                                "0"
+                              )}
+                            </h5>
+                          </div>
+                          <div className="swchBox calories">
+                            <div className="swchTop">
+                              <img src="../images/user-dashboard/calories.svg" />
+                              {t("user-dashboard.calories")}
+                            </div>
+                            <img
+                              src="../images/user-dashboard/calories-1.webp"
+                              className="img-fluid"
+                            />
+                            <h6>{t("clinic-dashboard.today")}</h6>
+                            <h5>
+                              {!isAuthenticated ? (
+                                <span
+                                  style={{
+                                    fontSize: "0.4em",
+                                    fontWeight: "normal",
+                                  }}
+                                >
+                                  {t("user-dashboard.not-authenticated")}
+                                </span>
+                              ) : isLoading ? (
+                                <SmallLoader />
+                              ) : calories !== null ? (
+                                calories
+                              ) : (
+                                "0"
+                              )}
+                            </h5>
+                          </div>
+                          <div className="swchBox heartrate">
+                            <div className="swchTop">
+                              <img src="../images/user-dashboard/heartrate.svg" />
+                              {t("user-dashboard.heart-rate")}
+                            </div>
+                            <img
+                              src="../images/user-dashboard/heartrate-1.svg"
+                              className="img-fluid"
+                            />
+                            <h5>
+                              {!isAuthenticated ? (
+                                <span
+                                  style={{
+                                    fontSize: "0.4em",
+                                    fontWeight: "normal",
+                                  }}
+                                >
+                                  {t("user-dashboard.not-authenticated")}
+                                </span>
+                              ) : isLoading ? (
+                                <SmallLoader />
+                              ) : HeartRate !== null ? (
+                                HeartRate
+                              ) : (
+                                "N/A"
+                              )}
+                            </h5>
                           </div>
                         </div>
-                      )}
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  {/* <div class="healthQuest">
-                    <img src="../images/user-dashboard/health-quest.webp" />
-                    <p>
-                      Health <span>Quest</span>
-                    </p>
-                  </div> */}
-                </div>
-                <div class="col-md-12">
-                  <div class="pateintData userdashdata">
-                    <div class="tabPrt">
-                      <a
-                        class="bg-pink"
-                        className={`tab-link ${
-                          activeTab === "treatment" ? "active" : ""
-                        } bg-pink`}
-                        onClick={() => handleTabClick("treatment")}
-                      >
-                        {t("dashboard.treatment-plan")}
-                      </a>
-                      <a
-                        class="bg-blue"
-                        className={`tab-link ${
-                          activeTab === "requests" ? "active" : ""
-                        } bg-blue`}
-                        onClick={() => handleTabClick("Requests")}
-                      >
-                        {t("dashboard.requests")}
-                      </a>
-                      <a
-                        class="bg-darkgreen"
-                        className={`tab-link ${
-                          activeTab === "archives" ? "active" : ""
-                        } bg-darkgreen`}
-                        onClick={() => handleTabClick("Archives")}
-                      >
-                        {t("dashboard.archives")}
-                      </a>
-                    </div>
-                    <div class="treatmentData">
-                      {activeTab === "treatment" && (
-                        <>
-                          {treatmentPlanData?.completed_appointments?.length >
-                          0 ? (
-                            treatmentPlanData?.completed_appointments?.map(
-                              (item) => {
-                                return (
-                                  <div class="treatmentDeatil">
-                                    <div>{item?.doctor_name}</div>
-                                    <div>
-                                      {t("appointment-list.for")}:
-                                      {treatmentPlanData?.patient?.patient_name}
-                                    </div>
-                                    <div class="main-blue-text">
-                                      {getFormattedDate(item.date)}
-                                    </div>
-                                    <div>{item?.date_time?.split("T")[0]}</div>
-                                    {/* <div class="file">
-                                    <img
-                                      src="../images/user-dashboard/verification.svg"
-                                      class="img-fluid"
-                                    />
-                                  </div> */}
-                                  </div>
-                                );
-                              }
-                            )
-                          ) : (
-                            <div className="treatmentContainer">
-                              <div className="no-appointments">
-                                {t("dashboard.no-appointments")}
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      )}
-
-                      {activeTab === "Requests" && (
-                        <>
-                          {treatmentPlanData?.upcoming_appointments.length >
-                          0 ? (
-                            treatmentPlanData?.upcoming_appointments?.map(
-                              (item) => {
-                                return (
-                                  <div class="treatmentDeatil">
-                                    <div>{item?.doctor_name}</div>
-                                    <div>
-                                      {t("appointment-list.for")}:
-                                      {treatmentPlanData?.patient?.patient_name}
-                                    </div>
-                                    <div class="main-blue-text">
-                                      {getFormattedDate(item.date)}
-                                    </div>
-                                    <div>{item?.date_time?.split("T")[0]}</div>
-                                    {/* <div class="file">
-                                    <img
-                                      src="../images/user-dashboard/verification.svg"
-                                      class="img-fluid"
-                                    />
-                                  </div> */}
-                                  </div>
-                                );
-                              }
-                            )
-                          ) : (
-                            <div className="treatmentContainer">
-                              <div className="no-appointments">
-                                {t("dashboard.no-appointments")}
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      )}
-
-                      {activeTab === "Archives" && (
-                        <>
-                          {treatmentPlanData?.archived_appointments.length >
-                          0 ? (
-                            treatmentPlanData?.archived_appointments?.map(
-                              (item) => {
-                                return (
-                                  <div class="treatmentDeatil">
-                                    <div>{item?.doctor_name}</div>
-                                    <div>
-                                      {t("appointment-list.for")}:
-                                      {treatmentPlanData?.patient?.patient_name}
-                                    </div>
-                                    <div class="main-blue-text">
-                                      {getFormattedDate(item.date)}
-                                    </div>
-                                    <div>{item?.date_time?.split("T")[0]}</div>
-                                    {/* <div class="file">
-                                    <img
-                                      src="../images/user-dashboard/verification.svg"
-                                      class="img-fluid"
-                                    />
-                                  </div> */}
-                                  </div>
-                                );
-                              }
-                            )
-                          ) : (
-                            <div className="treatmentContainer">
-                              <div className="no-appointments">
-                                {t("dashboard.no-appointments")}
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
-            </div>
-            {/* <div class="col-lg-5 col-md-12">
-              <div class="sixChart bg-white padding-20 border-radius-20 h-100">
-                <div class="row g-3">
-                  <div class="col-lg-4 col-md-6">
-                    <div class="userChart">
+            ) : null}
+            {visibleWidgets.notes || visibleWidgets.patientData ? (
+              <div className="col-lg-7 col-md-12">
+                <div className="row g-3">
+                  {visibleWidgets.notes && (
+                    <div className="col-md-9" style={{ position: "relative" }}>
                       <img
-                        src="../images/user-dashboard/userchrt-1.webp"
-                        class="img-fluid w-100"
+                        src="../images/user-dashboard/x.webp"
+                        className="close-widget-img"
+                        onClick={() => toggleWidget("notes")}
+                        alt="Close notes widget"
                       />
+                      <div className="notePart">
+                        <div className="noteTop">
+                          <h4>{t("dashboard.notes")}</h4>
+                          <div
+                            onClick={() => setOpenNotesModal(true)}
+                            className="cursor-pointer"
+                          >
+                            +
+                          </div>
+                        </div>
+                        <div className="notesFix">
+                          {allNotesData?.data.length > 0 ? (
+                            allNotesData?.data.map((item) => (
+                              <div className="notes" key={item.id}>
+                                <h5>{item?.title}</h5>
+                                <div className="time">
+                                  {formatDate(item?.created_at)}
+                                </div>
+                                <a href="#">
+                                  <img
+                                    src="../images/doctor-dashboard/threeDots.webp"
+                                    width="30"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      editNotesModal(item);
+                                    }}
+                                  />
+                                </a>
+                              </div>
+                            ))
+                          ) : (
+                            <div className="treatmentContainer">
+                              <div className="no-appointments">
+                                {t("dashboard.no-notes")}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                    <div class="userChart">
+                  )}
+                  {visibleWidgets.patientData && (
+                    <div className="col-md-12" style={{ position: "relative" }}>
                       <img
-                        src="../images/user-dashboard/userchrt-1.webp"
-                        class="img-fluid w-100"
+                        src="../images/user-dashboard/x.webp"
+                        className="close-widget-img"
+                        onClick={() => toggleWidget("patientData")}
+                        alt="Close patient data widget"
                       />
+                      <div className="pateintData userdashdata">
+                        <div className="tabPrt">
+                          <a
+                            className={`tab-link ${
+                              activeTab === "treatment" ? "active" : ""
+                            } bg-pink`}
+                            onClick={() => handleTabClick("treatment")}
+                          >
+                            {t("dashboard.treatment-plan")}
+                          </a>
+                          <a
+                            className={`tab-link ${
+                              activeTab === "Requests" ? "active" : ""
+                            } bg-blue`}
+                            onClick={() => handleTabClick("Requests")}
+                          >
+                            {t("dashboard.requests")}
+                          </a>
+                          <a
+                            className={`tab-link ${
+                              activeTab === "Archives" ? "active" : ""
+                            } bg-darkgreen`}
+                            onClick={() => handleTabClick("Archives")}
+                          >
+                            {t("dashboard.archives")}
+                          </a>
+                        </div>
+                        <div className="treatmentData">
+                          {activeTab === "treatment" && (
+                            <>
+                              {treatmentPlanData?.completed_appointments
+                                ?.length > 0 ? (
+                                treatmentPlanData?.completed_appointments?.map(
+                                  (item) => (
+                                    <div
+                                      className="treatmentDeatil"
+                                      key={item.id}
+                                    >
+                                      <div>{item?.doctor_name}</div>
+                                      <div>
+                                        {t("appointment-list.for")}:
+                                        {
+                                          treatmentPlanData?.patient
+                                            ?.patient_name
+                                        }
+                                      </div>
+                                      <div className="main-blue-text">
+                                        {getFormattedDate(item.date)}
+                                      </div>
+                                      <div>
+                                        {item?.date_time?.split("T")[0]}
+                                      </div>
+                                    </div>
+                                  )
+                                )
+                              ) : (
+                                <div className="treatmentContainer">
+                                  <div className="no-appointments">
+                                    {t("dashboard.no-appointments")}
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          )}
+                          {activeTab === "Requests" && (
+                            <>
+                              {treatmentPlanData?.upcoming_appointments.length >
+                              0 ? (
+                                treatmentPlanData?.upcoming_appointments?.map(
+                                  (item) => (
+                                    <div
+                                      className="treatmentDeatil"
+                                      key={item.id}
+                                    >
+                                      <div>{item?.doctor_name}</div>
+                                      <div>
+                                        {t("appointment-list.for")}:
+                                        {
+                                          treatmentPlanData?.patient
+                                            ?.patient_name
+                                        }
+                                      </div>
+                                      <div className="main-blue-text">
+                                        {getFormattedDate(item.date)}
+                                      </div>
+                                      <div>
+                                        {item?.date_time?.split("T")[0]}
+                                      </div>
+                                    </div>
+                                  )
+                                )
+                              ) : (
+                                <div className="treatmentContainer">
+                                  <div className="no-appointments">
+                                    {t("dashboard.no-appointments")}
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          )}
+                          {activeTab === "Archives" && (
+                            <>
+                              {treatmentPlanData?.archived_appointments.length >
+                              0 ? (
+                                treatmentPlanData?.archived_appointments?.map(
+                                  (item) => (
+                                    <div
+                                      className="treatmentDeatil"
+                                      key={item.id}
+                                    >
+                                      <div>{item?.doctor_name}</div>
+                                      <div>
+                                        {t("appointment-list.for")}:
+                                        {
+                                          treatmentPlanData?.patient
+                                            ?.patient_name
+                                        }
+                                      </div>
+                                      <div className="main-blue-text">
+                                        {getFormattedDate(item.date)}
+                                      </div>
+                                      <div>
+                                        {item?.date_time?.split("T")[0]}
+                                      </div>
+                                    </div>
+                                  )
+                                )
+                              ) : (
+                                <div className="treatmentContainer">
+                                  <div className="no-appointments">
+                                    {t("dashboard.no-appointments")}
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                    <div class="userChart">
-                      <img
-                        src="../images/user-dashboard/userchrt-1.webp"
-                        class="img-fluid w-100"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                    <div class="userChart">
-                      <img
-                        src="../images/user-dashboard/userchrt-1.webp"
-                        class="img-fluid w-100"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                    <div class="userChart">
-                      <img
-                        src="../images/user-dashboard/userchrt-1.webp"
-                        class="img-fluid w-100"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                    <div class="userChart">
-                      <img
-                        src="../images/user-dashboard/userchrt-1.webp"
-                        class="img-fluid w-100"
-                      />
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
-            </div> */}
+            ) : null}
           </div>
         </div>
       </div>
@@ -838,10 +905,10 @@ const UserDashboard = () => {
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <div class="modal-body">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <div class="saveArea d-flex align-items-center gap-2">
-                <a href="#" class="save" onClick={handleSubmit}>
+          <div className="modal-body">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+              <div className="saveArea d-flex align-items-center gap-2">
+                <a href="#" className="save" onClick={handleSubmit}>
                   {t("common.save")}
                 </a>
                 <a
@@ -862,8 +929,7 @@ const UserDashboard = () => {
               placeholder="Enter note title"
               style={{ marginBottom: "25px" }}
             />
-
-            <div class="NotesData">
+            <div className="NotesData">
               <textarea
                 id="text"
                 name="text"
@@ -877,7 +943,6 @@ const UserDashboard = () => {
           </div>
         </Modal.Body>
       </Modal>
-
       <Modal
         show={openNotesEditModal}
         backdrop="static"
@@ -887,14 +952,13 @@ const UserDashboard = () => {
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <div class="modal-body">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <div class="saveArea d-flex align-items-center gap-2">
-                <a href="#" class="save" onClick={updateNotes}>
+          <div className="modal-body">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+              <div className="saveArea d-flex align-items-center gap-2">
+                <a href="#" className="save" onClick={updateNotes}>
                   {t("common.save")}
                 </a>
                 <a
-                  // href="javascript:void(0)"
                   data-bs-dismiss="modal"
                   onClick={() => setOpenNotesEditModal(false)}
                 >
@@ -908,7 +972,6 @@ const UserDashboard = () => {
                 />
               </a>
             </div>
-
             <input
               type="text"
               id="title"
@@ -918,8 +981,7 @@ const UserDashboard = () => {
               placeholder="Enter note title"
               style={{ marginBottom: "25px" }}
             />
-
-            <div class="NotesData">
+            <div className="NotesData">
               <textarea
                 id="text"
                 name="note"

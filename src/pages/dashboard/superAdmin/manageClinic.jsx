@@ -109,7 +109,7 @@ const ManageClinic = () => {
                 return (
                   <tr key={clinic.id}>
                     <td>
-                      <div className="d-flex align-items-center gap-3">
+                      <div className="d-flex align-items-center gap-3 justify-content-center">
                         <div class="profile-photo">
                           <img
                             src={
@@ -120,13 +120,24 @@ const ManageClinic = () => {
                             alt="profile_photo"
                           />
                         </div>
-                        <td>{clinic.name}</td>
+                        <p className="clinic-name">
+                          <td>{clinic.name}</td>
+                        </p>
                       </div>
                     </td>
 
-                    <td>{clinic.phone_number
-                    }</td>
-                    <td>{clinic.website}</td>
+                    <td>{clinic.phone_number}</td>
+                    <td
+                      title={
+                        clinic?.website && clinic.website.length > 20
+                          ? clinic.website
+                          : ""
+                      }
+                    >
+                      {clinic?.website && clinic.website.length > 20
+                        ? clinic.website.slice(0, 20) + "..."
+                        : clinic?.website}
+                    </td>
                     <td>
                       <div className="actions">
                         <Link
