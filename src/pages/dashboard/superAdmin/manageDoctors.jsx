@@ -133,20 +133,15 @@ const ManageDoctors = () => {
             <img src="../images/search-dark.svg" />
           </a>
         </div>
-        {/* <a href="#" className="blue_btn" style={{ height: "56px" }}>
-          Add +
-        </a> */}
       </div>
 
       <div className="adminDetails padding-20 bg-white border-radius-20">
         <table className="doctoradmintable">
           <thead>
             <tr>
-              {/* <th>{t("superadmin.profile-photo")}</th> */}
               <th>{t("superadmin.doctor-name")}</th>
               <th>{t("superadmin.speciality")}</th>
               <th>{t("edit-profile.country")}</th>
-              {/* <th>Status</th> */}
               <th>Stripe Link</th>
               <th>{t("superadmin.action")}</th>
             </tr>
@@ -226,6 +221,13 @@ const ManageDoctors = () => {
                   </tr>
                 );
               })}
+              {doctorList?.length === 0 && (
+                <tr>
+                  <td colSpan="6" className="text-center text-muted py-4">
+                  No doctor available
+                  </td>
+                </tr>
+              )}
           </tbody>
         </table>
       </div>
