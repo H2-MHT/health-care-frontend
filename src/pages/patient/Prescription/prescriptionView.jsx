@@ -12,7 +12,7 @@ const PrescriptionView = () => {
   const [prescriptions, setPrescriptions] = useState([]);
 
   useEffect(() => {
-    const id = searchParams.get("id");
+    const id = searchParams.get("uid");
     if(id){
       fetchPrescriptions(id);
     }

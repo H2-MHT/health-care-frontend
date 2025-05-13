@@ -23,10 +23,10 @@ export default function AmountPopUp({
         }
         e.preventDefault();
         let payload = {
-            user_id: userData.id,
-            account_number:accountObject.account_number,
-            full_name:accountObject.full_name,
-            amount: amount,
+            user_id: userData?.id,
+            account_number:accountObject?.account_number,
+            full_name:accountObject?.full_name,
+            amount: +amount,
         };
         try {
             const response = await postData(url, payload);

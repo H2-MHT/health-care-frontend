@@ -12,24 +12,22 @@ import { useForm } from "react-hook-form";
 import InputField from "../../../components/form/InputField";
 import { showToast } from "../../../utils/toast";
 
-
 const ManageDoctors = () => {
   const { t } = useTranslation();
   const [doctorList, setDoctorList] = useState(null);
   const [openPopUp, setOpenPopUp] = useState(false);
   const [functionType, setFunctionType] = useState("");
-  const [doctorId,setDoctorId]=useState()
+  const [doctorId, setDoctorId] = useState();
   const [userObject, setUserObject] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const [showModal,setShowModal]=useState(false)
+  const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [totalPages, setTotalPages] = useState(1);
 
-
   useEffect(() => {
-      fetchDoctorList(currentPage, query);
-    }, [currentPage]);
+    fetchDoctorList(currentPage, query);
+  }, [currentPage]);
 
   const itemsPerPage = 5;
 
@@ -37,7 +35,7 @@ const ManageDoctors = () => {
     setLoading(true);
     const fetchUrl = `MasterPanel/user_list/?page=${page}&limit=${itemsPerPage}&search_key=${encodeURIComponent(
       searchQuery
-    )}&role=Doctor`;;
+    )}&role=Doctor`;
     try {
       const response = await fetchDataAuth(fetchUrl);
 
@@ -81,11 +79,11 @@ const ManageDoctors = () => {
     fetchDoctorList();
   };
 
- const schema = Yup.object().shape({
+  const schema = Yup.object().shape({
     name: Yup.string().required("Stripe Url is required"),
   });
 
- const {
+  const {
     register,
     handleSubmit,
     reset,
@@ -94,32 +92,29 @@ const ManageDoctors = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleChange=(doctor)=>{
-    setShowModal(true)
-    setDoctorId(doctor?.id)
-  }
+  const handleChange = (doctor) => {
+    setShowModal(true);
+    setDoctorId(doctor?.doctor_id);
+  };
 
   const onSubmit = async (data) => {
     try {
-        const payload = {
-          stripe_link: data?.name,
-          doctor_id:doctorId
-        };
-        const response = await postData(
-            `MasterPanel/add-stripe-link/`, payload
-        );
-        if (response.status == 200) {
-            let responseData = await response.json();
-            showToast(responseData?.message, "success");
-           await fetchDoctorList()
-            setShowModal(false);
-           reset()
-        }
+      const payload = {
+        stripe_link: data?.name,
+        doctor_id: doctorId,
+      };
+      const response = await postData(`MasterPanel/add-stripe-link/`, payload);
+      if (response.status == 200) {
+        let responseData = await response.json();
+        showToast(responseData?.message, "success");
+        await fetchDoctorList();
+        setShowModal(false);
+        reset();
+      }
     } catch (error) {
-        showToast(error.message, "error");
+      showToast(error.message, "error");
     }
-};
-
+  };
 
   return loading ? (
     <Loader />
@@ -138,30 +133,24 @@ const ManageDoctors = () => {
             <img src="../images/search-dark.svg" />
           </a>
         </div>
-        {/* <a href="#" className="blue_btn" style={{ height: "56px" }}>
-          Add +
-        </a> */}
       </div>
-  
+
       <div className="adminDetails padding-20 bg-white border-radius-20">
         <table className="doctoradmintable">
           <thead>
             <tr>
-              {/* <th>{t("superadmin.profile-photo")}</th> */}
               <th>{t("superadmin.doctor-name")}</th>
               <th>{t("superadmin.speciality")}</th>
               <th>{t("edit-profile.country")}</th>
-              {/* <th>Status</th> */}
               <th>Stripe Link</th>
               <th>{t("superadmin.action")}</th>
-
             </tr>
           </thead>
           <tbody>
             {doctorList &&
               doctorList.map((doctor) => {
                 return (
-                  <tr key={doctor.id}>
+                  <tr key={doctor.doctor_id}>
                     <td>
                       <div className="d-flex align-items-center gap-3 justify-content-center">
                         <div class="profile-photo">
@@ -267,6 +256,13 @@ const ManageDoctors = () => {
                   </tr>
                 );
               })}
+              {doctorList?.length === 0 && (
+                <tr>
+                  <td colSpan="6" className="text-center text-muted py-4">
+                  No doctor available
+                  </td>
+                </tr>
+              )}
           </tbody>
         </table>
       </div>
@@ -301,23 +297,27 @@ const ManageDoctors = () => {
               <div className="row g-4">
                 <div className="form-group">
                   <label className="block text-sm font-medium mb-1">
-                     Stripe URl
+                    Stripe URl
                   </label>
                   <InputField
-                    type="url" 
+                    type="url"
                     {...register("name")}
                     className="w-full rounded-md mb-4"
                   />
                   <p className="text-danger">{errors.name?.message}</p>
                 </div>
               </div>
-               <div className="gap-2 justify-content-center d-flex w-auto mx-auto">
-              <button type="submit" className="blue_btn ">
-                Save
-              </button>
-              <button type="button" className="blue_btn"  onClick={() => setShowModal(false)}>
-              Cancel
-              </button>
+              <div className="gap-2 justify-content-center d-flex w-auto mx-auto">
+                <button type="submit" className="blue_btn ">
+                  Save
+                </button>
+                <button
+                  type="button"
+                  className="blue_btn"
+                  onClick={() => setShowModal(false)}
+                >
+                  Cancel
+                </button>
               </div>
             </form>
           </div>
