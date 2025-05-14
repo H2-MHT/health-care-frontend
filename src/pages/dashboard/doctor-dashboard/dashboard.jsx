@@ -36,8 +36,10 @@ import { socket } from "../../../utils/config";
 import { Loader } from "../../../components/ui/loader/loader";
 import { useTranslation } from "react-i18next";
 import { requestForToken } from "../doctorChat/firebase";
+
 // Register chart.js elements
 ChartJS.register(ArcElement, Tooltip, Legend);
+
 const Dashboard = () => {
   const { t } = useTranslation("dashboard");
   const navigate = useNavigate();
@@ -53,6 +55,17 @@ const Dashboard = () => {
     title: "",
     text: "",
   });
+  // State for widget visibility and dropdown
+  const [visibleWidgets, setVisibleWidgets] = useState({
+    calenderPart: true,
+    notePart: true,
+    trustLeft: true,
+    trustRight: true,
+    pateintData: true,
+    chartLeft: true,
+    chartRight: true,
+  });
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const doctorDashboard = useSelector((state) => state.doctorDashboard);
 
@@ -115,45 +128,39 @@ const Dashboard = () => {
     setActiveTab(tab);
   };
 
-  const getProfile = async () => {
-    getDoctorProfileRequest();
-    try {
-      const response = await fetchDataAuth("auth/view-profile/", navigate);
-      if (!response.ok) {
-        throw new Error("Failed to fetch data from the server.");
-      }
-      const getData = await response.json();
-      dispatch(getDoctorProfileSuccess(getData.data));
-    } catch (error) {
-      dispatch(getDoctorProfileFailure(error.message));
-    } finally {
-    }
-  };
+   const getProfile = async () => {
+     getDoctorProfileRequest();
+     try {
+       const response = await fetchDataAuth("auth/view-profile/", navigate);
+       if (!response.ok) {
+         throw new Error("Failed to fetch data from the server.");
+       }
+       const getData = await response.json();
+       dispatch(getDoctorProfileSuccess(getData.data));
+     } catch (error) {
+       dispatch(getDoctorProfileFailure(error.message));
+     } finally {
+     }
+   };
 
   const handleDateClick = (date) => {
-    setClickedDate(date); // Update the clicked date in the parent
+    setClickedDate(date);
   };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-
-    // Format date to "Mon / 9:20am"
     const options = {
-      weekday: "short", // Abbreviated weekday (e.g. Mon)
-      hour: "2-digit", // 2-digit hour (e.g. 09)
-      minute: "2-digit", // 2-digit minute (e.g. 20)
-      hour12: true, // Use 12-hour clock (e.g. am/pm)
+      weekday: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
     };
-
     const formattedTime = new Intl.DateTimeFormat("en-US", options).format(
       date
     );
-
-    // Return the formatted string in the desired format
     return `${formattedTime.split(",")[0]}`;
   };
 
-  // Calculate total rating and count of ratings
   const total = doctorDashboard?.dashboard?.reviews?.reduce(
     (acc, review) => {
       if (review.rating >= 1 && review.rating <= 5) {
@@ -187,7 +194,6 @@ const Dashboard = () => {
       showToast("Please fill the fields first", "error");
       return;
     }
-
     if (isLoading) setIsLoading(true);
     try {
       const payload = {
@@ -253,271 +259,382 @@ const Dashboard = () => {
     }
   };
 
-  // Calculate average rating
   const averageRating =
     total?.count > 0 ? (total?.sum / total?.count).toFixed(1) : 0;
+
+  
+  const toggleWidget = (widgetKey) => {
+    setVisibleWidgets((prev) => ({
+      ...prev,
+      [widgetKey]: !prev[widgetKey],
+    }));
+  };
+
+  
+  const toggleDropdown = () => {
+    setShowDropdown((prev) => !prev);
+  };
+
+  
+  const formatWidgetLabel = (key) =>
+    key.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase());
 
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <div class="rightContent rightsidefull">
-          <div class="rightContentPart">
-            <div class="left">
-              <div class="calenderPart">
-                <div class="tabPrt">
-                  <Link to="/calendar-view" class="bg-green">
-                    {t("drawer.calendar")}
-                  </Link>
-                  <Link to="/calender-appointment-list" class="bg-orange">
-                    {t("dashboard.list")}
-                  </Link>
-                </div>
-                <div class="calenderDetail">
-                  <div class="responsive-iframe-container large-container">
-                    <MyCalendar
-                      events={false}
-                      onDateClick={handleDateClick}
-                      setCurrentView={setCurrentView}
+        <div className="rightContent rightsidefull">
+          <div
+            style={{
+              position: "relative",
+              textAlign: "right",
+              marginBottom: "20px",
+            }}
+          >
+            <button
+              onClick={toggleDropdown}
+              style={{
+                padding: "8px 16px",
+                backgroundColor: "black",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Widget Menu
+            </button>
+            {showDropdown && (
+              <div
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  backgroundColor: "white",
+                  border: "1px solid #ccc",
+                  borderRadius: "5px",
+                  zIndex: 1000,
+                  padding: "10px",
+                  width: "200px",
+                  maxHeight: "120px",
+                  overflowY: "auto", 
+                }}
+              >
+                {Object.keys(visibleWidgets).map((widgetKey) => (
+                  <div
+                    key={widgetKey}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "5px 0",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={visibleWidgets[widgetKey]}
+                      onChange={() => toggleWidget(widgetKey)}
+                      style={{ marginRight: "10px" }}
                     />
+                    <label>{formatWidgetLabel(widgetKey)}</label>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="rightContentPart">
+            <div className="left">
+              {visibleWidgets.calenderPart && (
+                <div className="calenderPart" style={{ position: "relative" }}>
+                  <img
+                    src="../images/user-dashboard/x.webp"
+                    className="close-widget-img"
+                    onClick={() => toggleWidget("calenderPart")}
+                    alt="Close calendar widget"
+                  />
+                  <div className="tabPrt">
+                    <Link to="/calendar-view" className="bg-green">
+                      {t("drawer.calendar")}
+                    </Link>
+                    <Link to="/calender-appointment-list" className="bg-orange">
+                      {t("dashboard.list")}
+                    </Link>
+                  </div>
+                  <div className="calenderDetail">
+                    <div className="responsive-iframe-container large-container">
+                      <MyCalendar
+                        events={false}
+                        onDateClick={handleDateClick}
+                        setCurrentView={setCurrentView}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="notePart">
-                <div class="noteTop">
-                  <h4>{t("dashboard.notes")}</h4>
-                  <a href="#" onClick={() => setOpenNotesModal(true)}>
-                    +
-                  </a>
-                </div>
-                <div className="notesFix">
-                  {doctorDashboard?.dashboard?.doctor_notes &&
-                  doctorDashboard.dashboard.doctor_notes.length > 0 ? (
-                    doctorDashboard.dashboard.doctor_notes.map((item) => (
-                      <div className="notes" key={item?.id}>
-                        <h5>{item?.title}</h5>
-                        <div className="time">
-                          {formatDate(item?.created_at)}
+              )}
+              {visibleWidgets.notePart && (
+                <div className="notePart" style={{ position: "relative" }}>
+                  <img
+                    src="../images/user-dashboard/x.webp"
+                    className="close-widget-img"
+                    onClick={() => toggleWidget("notePart")}
+                    alt="Close notes widget"
+                  />
+                  <div className="noteTop">
+                    <h4>{t("dashboard.notes")}</h4>
+                    <a href="#" onClick={() => setOpenNotesModal(true)}>
+                      +
+                    </a>
+                  </div>
+                  <div className="notesFix">
+                    {doctorDashboard?.dashboard?.doctor_notes &&
+                    doctorDashboard.dashboard.doctor_notes.length > 0 ? (
+                      doctorDashboard.dashboard.doctor_notes.map((item) => (
+                        <div className="notes" key={item?.id}>
+                          <h5>{item?.title}</h5>
+                          <div className="time">
+                            {formatDate(item?.created_at)}
+                          </div>
+                          <div
+                            className="edit-btn cursor-pointer"
+                            onClick={() => editNotesModal(item)}
+                          >
+                            <img
+                              src="../images/doctor-dashboard/threeDots.webp"
+                              width="30"
+                              alt="Edit"
+                            />
+                          </div>
                         </div>
-                        <div
-                          className="edit-btn cursor-pointer"
-                          onClick={() => editNotesModal(item)}
-                        >
-                          <img
-                            src="../images/doctor-dashboard/threeDots.webp"
-                            width="30"
-                            alt="Edit"
-                          />
+                      ))
+                    ) : (
+                      <div className="treatmentContainer">
+                        <div className="no-appointments">
+                          {t("dashboard.no-notes")}
                         </div>
                       </div>
-                    ))
-                  ) : (
-                    <div className="treatmentContainer">
-                      <div className="no-appointments">
-                        {t("dashboard.no-notes")}
-                      </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
-            <div class="right">
-              <div class="trust">
-                <div className="trustLeft">
-                  <div className="treatmentContainer">
-                    <div class="no-appointments">Coming soon...</div>
-                  </div>
-                </div>
-                <div class="trustRight">
-                  <div class="trustScore">
-                    <h5>{t("dashboard.my-trust-score")}</h5>
-                    <div class="score">
-                      <img
-                        src="/images/doctor-dashboard/star.png"
-                        class="img-fluid"
-                      />
-                      <div class="scoreData">{averageRating}</div>
+            <div className="right">
+              <div className="trust">
+                {visibleWidgets.trustLeft && (
+                  <div className="trustLeft" style={{ position: "relative" }}>
+                    <img
+                      src="../images/user-dashboard/x.webp"
+                      className="close-widget-img"
+                      onClick={() => toggleWidget("trustLeft")}
+                      alt="Close trust left widget"
+                    />
+                    <div className="treatmentContainer">
+                      <div className="no-appointments">Coming soon...</div>
                     </div>
                   </div>
-                  <div class="trustRate">
-                    <div class="rate">{total?.count}</div>
-                    {t("dashboard.reviews")}
+                )}
+                {visibleWidgets.trustRight && (
+                  <div className="trustRight" style={{ position: "relative" }}>
+                    <img
+                      src="../images/user-dashboard/x.webp"
+                      className="close-widget-img"
+                      onClick={() => toggleWidget("trustRight")}
+                      alt="Close trust right widget"
+                    />
+                    <div className="trustScore">
+                      <h5>{t("dashboard.my-trust-score")}</h5>
+                      <div className="score">
+                        <img
+                          src="/images/doctor-dashboard/star.png"
+                          className="img-fluid"
+                        />
+                        <div className="scoreData">{averageRating}</div>
+                      </div>
+                    </div>
+                    <div className="trustRate">
+                      <div className="rate">{total?.count}</div>
+                      {t("dashboard.reviews")}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
-              <div class="pateintData">
-                <div className="tabPrt">
-                  <a
-                    className={`tab-link ${
-                      activeTab === "treatment" ? "active" : ""
-                    } bg-pink`}
-                    onClick={() => handleTabClick("treatment")}
-                  >
-                    {t("dashboard.treatment-plan")}
-                  </a>
-                  <a
-                    className={`tab-link ${
-                      activeTab === "requests" ? "active" : ""
-                    } bg-blue`}
-                    onClick={() => handleTabClick("requests")}
-                  >
-                    {t("dashboard.requests")}
-                  </a>
-                  <a
-                    className={`tab-link ${
-                      activeTab === "archives" ? "active" : ""
-                    } bg-darkgreen`}
-                    onClick={() => handleTabClick("archives")}
-                  >
-                    {t("dashboard.archives")}
-                  </a>
+              {visibleWidgets.pateintData && (
+                <div className="pateintData" style={{ position: "relative" }}>
+                  <img
+                    src="../images/user-dashboard/x.webp"
+                    className="close-widget-img"
+                    onClick={() => toggleWidget("pateintData")}
+                    alt="Close patient data widget"
+                  />
+                  <div className="tabPrt">
+                    <a
+                      className={`tab-link ${
+                        activeTab === "treatment" ? "active" : ""
+                      } bg-pink`}
+                      onClick={() => handleTabClick("treatment")}
+                    >
+                      {t("dashboard.treatment-plan")}
+                    </a>
+                    <a
+                      className={`tab-link ${
+                        activeTab === "requests" ? "active" : ""
+                      } bg-blue`}
+                      onClick={() => handleTabClick("requests")}
+                    >
+                      {t("dashboard.requests")}
+                    </a>
+                    <a
+                      className={`tab-link ${
+                        activeTab === "archives" ? "active" : ""
+                      } bg-darkgreen`}
+                      onClick={() => handleTabClick("archives")}
+                    >
+                      {t("dashboard.archives")}
+                    </a>
+                  </div>
+                  <div className="tab-content">
+                    {activeTab === "treatment" && (
+                      <div className="treatmentData">
+                        {doctorDashboard?.dashboard?.patient_diagnoses &&
+                        doctorDashboard.dashboard.patient_diagnoses.length >
+                          0 ? (
+                          doctorDashboard.dashboard.patient_diagnoses.map(
+                            (item) => (
+                              <div className="treatmentDeatil" key={item?.id}>
+                                <div>{item?.doctor_name}</div>
+                                <div>for: {item?.patient_name}</div>
+                                <div className="main-blue-text">
+                                  {item?.condition}
+                                </div>
+                                <div>
+                                  {getFormattedDate(item?.diagnosis_date)}
+                                </div>
+                              </div>
+                            )
+                          )
+                        ) : (
+                          <div className="treatmentContainer">
+                            <div className="no-appointments">
+                              {t("dashboard.no-appointments")}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {activeTab === "requests" && (
+                      <div className="treatmentData">
+                        {doctorDashboard?.dashboard?.upcoming_requests?.length >
+                        0 ? (
+                          doctorDashboard.dashboard.upcoming_requests.map(
+                            (item) => (
+                              <div className="treatmentDeatil" key={item?.id}>
+                                <div>{item?.doctor_name}</div>
+                                <div>for: {item?.patient_name}</div>
+                                <div>{getFormattedDate(item?.date)}</div>
+                              </div>
+                            )
+                          )
+                        ) : (
+                          <div className="treatmentContainer">
+                            <div className="no-appointments">
+                              {t("dashboard.no-appointments")}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {activeTab === "archives" && (
+                      <div className="treatmentData">
+                        {doctorDashboard?.dashboard?.archived_data?.length >
+                        0 ? (
+                          doctorDashboard.dashboard.archived_data.map(
+                            (item, index) => (
+                              <div
+                                className="treatmentDeatil"
+                                key={item?.id || index}
+                              >
+                                <div>
+                                  {item?.doctor_name || "Unknown Doctor"}
+                                </div>
+                                <div>
+                                  for: {item?.patient_name || "Unknown Patient"}
+                                </div>
+                                <div>
+                                  {item?.date
+                                    ? getFormattedDate(new Date(item.date))
+                                    : "No Date Available"}
+                                </div>
+                              </div>
+                            )
+                          )
+                        ) : (
+                          <div className="treatmentContainer">
+                            <div className="no-appointments">
+                              {t("dashboard.no-appointments")}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-
-                <div className="tab-content">
-                  {/* Treatment Plan Tab Content */}
-                  {activeTab === "treatment" && (
-                    <div className="treatmentData">
-                      {doctorDashboard?.dashboard?.patient_diagnoses &&
-                      doctorDashboard.dashboard.patient_diagnoses.length > 0 ? (
-                        doctorDashboard.dashboard.patient_diagnoses.map(
-                          (item) => (
-                            <div className="treatmentDeatil" key={item?.id}>
-                              <div>{item?.doctor_name}</div>
-                              <div>for: {item?.patient_name}</div>
-                              <div className="main-blue-text">
-                                {item?.condition}
-                              </div>
-                              <div>
-                                {getFormattedDate(item?.diagnosis_date)}
-                              </div>
-                            </div>
-                          )
-                        )
-                      ) : (
-                        <div className="treatmentContainer">
-                          <div className="no-appointments">
-                            {t("dashboard.no-appointments")}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  {/* Requests Tab Content */}
-                  {activeTab === "requests" && (
-                    <div className="treatmentData">
-                      {doctorDashboard?.dashboard?.upcoming_requests?.length >
-                      0 ? (
-                        doctorDashboard.dashboard.upcoming_requests.map(
-                          (item) => (
-                            <div className="treatmentDeatil" key={item?.id}>
-                              <div>{item?.doctor_name}</div>
-                              <div>for: {item?.patient_name}</div>
-                              <div>{getFormattedDate(item?.date)}</div>
-                              {/* <div className="file">
-                                <img
-                                  src="/images/doctor-dashboard/verification.svg"
-                                  className="img-fluid"
-                                  alt="Verification"
-                                />
-                              </div> */}
-                            </div>
-                          )
-                        )
-                      ) : (
-                        <div className="treatmentContainer">
-                          <div className="no-appointments">
-                            {t("dashboard.no-appointments")}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Archives Tab Content */}
-                  {activeTab === "archives" && (
-                    <div className="treatmentData">
-                      {doctorDashboard?.dashboard?.archived_data?.length > 0 ? (
-                        doctorDashboard.dashboard.archived_data.map(
-                          (item, index) => (
-                            <div
-                              className="treatmentDeatil"
-                              key={item?.id || index}
-                            >
-                              <div>{item?.doctor_name || "Unknown Doctor"}</div>
-                              <div>
-                                for: {item?.patient_name || "Unknown Patient"}
-                              </div>
-                              <div>
-                                {item?.date
-                                  ? getFormattedDate(new Date(item.date))
-                                  : "No Date Available"}
-                              </div>
-                              {/* <div className="file">
-                                <img
-                                  src="/images/doctor-dashboard/verification.svg"
-                                  className="img-fluid"
-                                  alt="Verification"
-                                  loading="lazy"
-                                />
-                              </div> */}
-                            </div>
-                          )
-                        )
-                      ) : (
-                        <div className="treatmentContainer">
-                          <div className="no-appointments">
-                            {t("dashboard.no-appointments")}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
+              )}
             </div>
           </div>
-          <div class="reportChart">
-            <div class="circleChart">
-              <div class="chartLeft">
-                <ProgressCircle
-                  percentage={doctorDashboard?.dashboard?.returns_percentage}
-                ></ProgressCircle>
-                <div class="circle2">
-                  <p>{t("drawer.consultations")}</p>
-                  <h5>{doctorDashboard?.dashboard?.total_consultations}</h5>
+          <div className="reportChart">
+            <div className="circleChart">
+              {visibleWidgets.chartLeft && (
+                <div className="chartLeft" style={{ position: "relative" }}>
+                  <img
+                    src="../images/user-dashboard/x.webp"
+                    className="close-widget-img"
+                    onClick={() => toggleWidget("chartLeft")}
+                    alt="Close chart left widget"
+                  />
+                  <ProgressCircle
+                    percentage={doctorDashboard?.dashboard?.returns_percentage}
+                  ></ProgressCircle>
+                  <div className="circle2">
+                    <p>{t("drawer.consultations")}</p>
+                    <h5>{doctorDashboard?.dashboard?.total_consultations}</h5>
+                  </div>
+                  <div className="circle3">
+                    <h5>{doctorDashboard?.dashboard?.total_clients}</h5>
+                    <p>{t("dashboard.clients")}</p>
+                  </div>
                 </div>
-                <div class="circle3">
-                  <h5>{doctorDashboard?.dashboard?.total_clients}</h5>
-                  <p>{t("dashboard.clients")}</p>
-                </div>
-              </div>
-              <div class="chartRight">
-                <div class="lastReport">
-                  <h5>{t("dashboard.last-reports")}</h5>
-                  <div className="lastReportFix">
-                    {doctorDashboard?.dashboard?.last_report?.length > 0 ? (
-                      doctorDashboard?.dashboard?.last_report?.map((item) => {
-                        return (
-                          <div class="reportDetail">
-                            <div class="img-prt">
+              )}
+              {visibleWidgets.chartRight && (
+                <div className="chartRight" style={{ position: "relative" }}>
+                  <img
+                    src="../images/user-dashboard/x.webp"
+                    className="close-widget-img"
+                    onClick={() => toggleWidget("chartRight")}
+                    alt="Close chart right widget"
+                  />
+                  <div className="lastReport">
+                    <h5>{t("dashboard.last-reports")}</h5>
+                    <div className="lastReportFix">
+                      {doctorDashboard?.dashboard?.last_report?.length > 0 ? (
+                        doctorDashboard?.dashboard?.last_report?.map((item) => (
+                          <div className="reportDetail" key={item?.id}>
+                            <div className="img-prt">
                               <img
                                 src="/images/doctor-dashboard/profile-sample.png"
-                                class="img-fluid"
+                                className="img-fluid"
                               />
                               {item?.patient_name}
                             </div>
-                            <div class="red-green">
-                              {item?.status == "Active" ? (
+                            <div className="red-green">
+                              {item?.status === "Active" ? (
                                 <img
-                                  src={`/images/doctor-dashboard/redcircle.png`}
-                                  class="img-fluid"
+                                  src="/images/doctor-dashboard/redcircle.png"
+                                  className="img-fluid"
                                 />
                               ) : (
                                 <img
-                                  src={`/images/doctor-dashboard/greencircle.png`}
-                                  class="img-fluid"
+                                  src="/images/doctor-dashboard/greencircle.png"
+                                  className="img-fluid"
                                 />
                               )}
                             </div>
@@ -525,18 +642,18 @@ const Dashboard = () => {
                               {item?.diagnosis_date} <span>{item?.time}</span>
                             </div>
                           </div>
-                        );
-                      })
-                    ) : (
-                      <div className="treatmentContainer">
-                        <div className="no-appointments">
-                          {t("dashboard.no-reports")}
+                        ))
+                      ) : (
+                        <div className="treatmentContainer">
+                          <div className="no-appointments">
+                            {t("dashboard.no-reports")}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -550,10 +667,10 @@ const Dashboard = () => {
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <div class="modal-body">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <div class="saveArea d-flex align-items-center gap-2">
-                <a href="#" class="save" onClick={updateNotes}>
+          <div className="modal-body">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+              <div className="saveArea d-flex align-items-center gap-2">
+                <a href="#" className="save" onClick={updateNotes}>
                   {t("common.save")}
                 </a>
                 <a
@@ -565,19 +682,17 @@ const Dashboard = () => {
               </div>
               <a href="#">
                 <img
-                  src="images/doctor-dashboard/delete.png"
+                  src="/images/doctor-dashboard/delete.png"
                   onClick={deleteNotes}
                   style={{ width: "20px", height: "20px" }}
                 />
               </a>
             </div>
-
-            <div class="noteDate">
+            <div className="noteDate">
               <p>{t("dashboard.created")}</p>
               <h6>{getFormattedDate(editNotesData?.created_at)}</h6>
               <p>{getTime(editNotesData?.created_at)}</p>
             </div>
-
             <input
               type="text"
               id="title"
@@ -587,8 +702,7 @@ const Dashboard = () => {
               placeholder="Enter note title"
               style={{ marginBottom: "25px" }}
             />
-
-            <div class="NotesData">
+            <div className="NotesData">
               <textarea
                 id="note"
                 name="note"
@@ -611,10 +725,10 @@ const Dashboard = () => {
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <div class="modal-body">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <div class="saveArea d-flex align-items-center gap-2">
-                <a href="#" class="save" onClick={handleSubmit}>
+          <div className="modal-body">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+              <div className="saveArea d-flex align-items-center gap-2">
+                <a href="#" className="save" onClick={handleSubmit}>
                   {t("common.save")}
                 </a>
                 <a
@@ -626,7 +740,6 @@ const Dashboard = () => {
                 </a>
               </div>
             </div>
-
             <input
               type="text"
               id="title"
@@ -636,12 +749,11 @@ const Dashboard = () => {
               placeholder="Enter note title"
               style={{ marginBottom: "25px" }}
             />
-
-            <div class="NotesData">
+            <div className="NotesData">
               <textarea
                 id="text"
                 name="text"
-                value={notesData?.note}
+                value={notesData?.text}
                 onChange={handleInputChange}
                 placeholder="Enter your note here..."
                 rows="4"

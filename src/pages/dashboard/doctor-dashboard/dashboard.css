@@ -3433,6 +3433,13 @@ margin-bottom: 10px !important;
   font-weight: 500;
 }
 
+.close-widget-img {
+ position: absolute;
+    top: 2px;
+    left: -15px;
+    cursor: pointer;
+}
+
 .loginChangeColor .col-md-4:first-child .topRadio.active, .loginChangeColor .col-md-4:first-child:hover .topRadio{
     background:#8ebeb2 !important;
 }
