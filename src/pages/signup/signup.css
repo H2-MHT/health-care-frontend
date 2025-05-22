@@ -93,8 +93,12 @@
 
 .signupTab .formArea form .checkboxtype{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     gap: 10px;
+}
+
+.signupTab .formArea form .checkboxtype input[type="checkbox"]{
+    margin-top: 3px;
 }
 
 .signupTab .formArea form .checkboxtype label{

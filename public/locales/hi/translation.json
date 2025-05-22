@@ -39,7 +39,20 @@
     "licenses_certifications": "लाइसेंस और प्रमाणपत्र",
     "about_yourself": "अपने बारे में और बताएं",
     "languages_lable": "भाषाएँ",
-    "working_time": "कार्य समय"
+    "working_time": "कार्य समय",
+    "term_link":"https://data.my-health.today/website/hi/terms.pdf",
+    "policy_link":"https://data.my-health.today/website/hi/privacy-policy.pdf",
+    "acknowledge":"मैं स्वीकार करता हूं",
+    "patient_bill":" रोगी के अधिकारों का बिल ",
+    "responsitbilities":"और जिम्मेदारियाँ",
+    "patient_rights":"https://data.my-health.today/website/hi/patient-rights.pdf",
+    "code_Conduct":"मैं इसका सम्मान करने के लिए सहमत हूं",
+    "doctor_code":"डॉक्टर का कोड",
+    "doctor_Link":"https://data.my-health.today/website/hi/doctor-code.pdf",
+    "Conduct_and":"आचरण और जिम्मेदारियों का",
+    "medical_disclaimer":"चिकित्सा अस्वीकरण:",
+    "continuing_professionals":"जारी रखते हुए, मैं सहमत हूं कि H2.doctor एक डिजिटल स्वास्थ्य प्लेटफ़ॉर्म है जो सुरक्षित दूरस्थ परामर्श और परामर्श सेवा के लिए उपयोगकर्ता को स्वतंत्र स्वास्थ्य सेवा पेशेवरों से जोड़ता है। प्लेटफ़ॉर्म आपातकालीन चिकित्सा सेवा की जगह नहीं लेता है। सभी नैदानिक ​​निर्णय परामर्श पेशेवर की जिम्मेदारी है, और प्लेटफ़ॉर्म परामर्श से उत्पन्न किसी भी चिकित्सा परिणाम के लिए उत्तरदायी नहीं है।"
+    
   },
   "ui_header": {
     "register_now": "अभी पंजीकरण करें",

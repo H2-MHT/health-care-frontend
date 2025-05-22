@@ -39,7 +39,20 @@
     "licenses_certifications": "Ліцензії та сертифікати",
     "about_yourself": "Розкажіть більше про себе",
     "languages_lable": "Мови",
-    "working_time": "Графік роботи"
+    "working_time": "Графік роботи",
+    "term_link":"https://data.my-health.today/website/uk/terms.pdf",
+    "policy_link":"https://data.my-health.today/website/uk/privacy-policy.pdf",
+    "acknowledge":"Я визнаю",
+    "patient_bill":" Білль про права пацієнта",
+    "responsitbilities":"і відповідальність",
+    "patient_rights":"https://data.my-health.today/website/uk/patient-rights.pdf",
+    "code_Conduct":"Я згоден поважати",
+    "doctor_code":"Код лікаря",
+    "doctor_Link":"https://data.my-health.today/website/uk/doctor-code.pdf",
+    "Conduct_and":"поведінки та відповідальності",
+    "medical_disclaimer":"Медична відмова від відповідальності:",
+    "continuing_professionals":"Продовжуючи, я погоджуюся з тим, що H2.doctor — це цифрова платформа охорони здоров’я, яка з’єднує користувачів із незалежними медичними працівниками для безпечних дистанційних консультацій і консультацій. платформа не замінює службу екстреної медичної допомоги. Усі клінічні рішення є відповідальністю спеціаліста-консультанта, і платформа не несе відповідальності за будь-які медичні результати в результаті консультації"
+    
   },
   "ui_header": {
     "register_now": "Зареєструватися зараз",

@@ -39,7 +39,20 @@
 "licenses_certifications": "Licencias y certificaciones",
 "about_yourself": "Cuéntanos más sobre ti",
 "languages_lable": "Idiomas",
-"working_time": "Horario de atención"
+"working_time": "Horario de atención",
+"term_link":"https://data.my-health.today/website/es/terms.pdf",
+"policy_link":"https://data.my-health.today/website/es/privacy-policy.pdf",
+"acknowledge":"reconozco el",
+"patient_bill":" Declaración de derechos de la paciente ",
+"responsitbilities":"y Responsabilidad",
+"patient_rights":"https://data.my-health.today/website/es/patient-rights.pdf",
+"code_Conduct":"Estoy de acuerdo en respetar la",
+"doctor_code":"Código de la doctora",
+"doctor_Link":"https://data.my-health.today/website/es/doctor-code.pdf",
+"Conduct_and":"de Conducta y Responsabilidades",
+"medical_disclaimer":"Descargo de responsabilidad médica:",
+"continuing_professionals":"Al continuar, acepto que H2.doctor es una plataforma de salud digital que conecta al usuario con profesionales de la salud independientes para consultas remotas seguras y servicios complementarios. La plataforma no reemplaza el servicio médico de emergencia. Todas las decisiones clínicas son responsabilidad del profesional consultante y la plataforma no se responsabiliza de los resultados médicos derivados de la consulta."
+    
 },
 "ui_header": {
 "register_now": "Regístrate ahora",

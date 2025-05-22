@@ -49,6 +49,18 @@ const Signup = () => {
       [true],
       "You must accept the terms and conditions"
     ),
+       acknowledge: Yup.boolean().oneOf(
+      [true],
+     "You must acknowledge the Patient Bill of Rights and Responsibilities to continue."
+    ),
+     codeOfConduct: Yup.boolean().oneOf(
+      [true],
+     "You must agree to respect the Doctor's Code of Conduct and Responsibilities to proceed."
+    ),
+    MedicalDisciaimer: Yup.boolean().oneOf(
+      [true],
+     "By continuing, I agree that H2.doctor is a digital health platform..."
+    ),
   });
 
   // assign the default values to the fields
@@ -76,6 +88,7 @@ const Signup = () => {
   const formValues = getValues();
   // Handle form submission
   const onSubmit = async (data) => {
+    console.log(data,">>>>>>>Data")
     setLoading(true);
     try {
       const payload = {
@@ -85,7 +98,11 @@ const Signup = () => {
         password: data.healthPassword,
         confirm_password: data.confirmPassword,
         role: data.member,
-      };
+        medical_disclaimer:data.MedicalDisciaimer,
+        acknowledge:data.acknowledge,
+        code_of_conduct:data.codeOfConduct,
+        terms_and_condition:data.acceptTerms
+    };
 
       const response = await postRequest("auth/signup/", payload); // Call the API service
       if (response?.status === 201) {
@@ -282,14 +299,14 @@ const Signup = () => {
                                   {t("singup.creating_account")}{" "}
                                   <a
                                     target="_blank"
-                                    href="https://data.my-health.today/website/en/terms.pdf"
+                                    href={t("singup.term_link")}
                                   >
                                     {t("singup.terms_use")}
                                   </a>{" "}
                                   {t("singup.and_lable")}{" "}
                                   <a
                                     target="_blank"
-                                    href="https://data.my-health.today/website/en/privacy-policy.pdf"
+                                    href={t("singup.policy_link")}
                                   >
                                     {t("singup.Privacy_policy")}
                                   </a>
@@ -301,12 +318,82 @@ const Signup = () => {
                                 </p>
                               )}
                             </div>
+                             <div className="col-md-12">
+                              <div className="checkboxtype">
+                                <InputField
+                                  type="checkbox"
+                                  register={register}
+                                  name="acknowledge"
+                                />
+                                <label>
+                                   {t("singup.acknowledge")}{" "}
+                                   <a
+                                    target="_blank"
+                                    href={t("singup.patient_rights")}
+                                  >
+                                   {t("singup.patient_bill")} {" "}
+                                  
+                                  </a>
+                                   {t("singup.responsitbilities")} 
+
+                                </label>
+                              </div>
+                              {errors?.acknowledge && (
+                                <p className="error-message mt-1">
+                                  {errors.acknowledge.message}
+                                </p>
+                              )}
+                            </div>
+                              <div className="col-md-12">
+                              <div className="checkboxtype">
+                                <InputField
+                                  type="checkbox"
+                                  register={register}
+                                  name="codeOfConduct"
+                                />
+                                <label>
+                                   {t("singup.code_Conduct")}{" "}
+                                    <a
+                                    target="_blank"
+                                    href={t("singup.doctor_Link")}
+                                  >
+                                   {t("singup.doctor_code")} {" "}
+                                  
+                                  </a>
+                                 {t("singup.Conduct_and")} {" "}
+                                </label>
+                              </div>
+                              {errors?.codeOfConduct && (
+                                <p className="error-message mt-1">
+                                  {errors.codeOfConduct.message}
+                                </p>
+                              )}
+                            </div>
+                              <div className="col-md-12">
+                                  <h5>{t("singup.medical_disclaimer")}</h5>
+
+                              <div className="checkboxtype">
+                                <InputField
+                                  type="checkbox"
+                                  register={register}
+                                  name="MedicalDisciaimer"
+                                />
+                                <label>
+                                  {t("singup.continuing_professionals")}
+                                </label>
+                              </div>
+                              {errors?.MedicalDisciaimer && (
+                                <p className="error-message mt-1">
+                                  {errors.MedicalDisciaimer.message}
+                                </p>
+                              )}
+                            </div>
                             <div className="col-md-12">
                               <LoadingButton
                                 loading={loading}
                                 type="submit"
                                 className="black_btn" // Pass the existing class
-                                buttonText={" Create an account"}
+                                buttonText={t("login.create_account")}
                               ></LoadingButton>
                             </div>
                             <div className="co-md-12">

@@ -233,6 +233,29 @@ export const putFormData = async (endpoint, body) => {
   }
 };
 
+
+export const patchFormData = async (endpoint, body) => {
+  let token = localStorage.getItem('user_token')
+  try {
+    const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: body
+    });
+    if (!response.ok) {
+      const errorDetails = await response.json();
+      const errorMessages = Object.values(errorDetails).flat();
+      throw new Error(errorMessages[0]);
+    }
+    return await response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+};
+
 export const deleteData = async (endpoint,payload) => {
   let token = localStorage.getItem('user_token')
   try {

@@ -39,7 +39,20 @@
     "licenses_certifications": "Licențe și certificări",
     "about_yourself": "Spune-ne mai multe despre tine",
     "languages_lable": "Limbi vorbite",
-    "working_time": "Program de lucru"
+    "working_time": "Program de lucru",
+    "term_link":"https://data.my-health.today/website/ro/terms.pdf",
+    "policy_link":"https://data.my-health.today/website/ro/privacy-policy.pdf",
+    "acknowledge":"Recunosc",
+    "patient_bill":" Declarația drepturilor pacientului ",
+    "responsitbilities":"și Responsabilități",
+    "patient_rights":"https://data.my-health.today/website/ro/patient-rights.pdf",
+    "code_Conduct":"Sunt de acord să respect",
+    "doctor_code":"Codul medicului",
+    "doctor_Link":"https://data.my-health.today/website/ro/doctor-code.pdf",
+    "Conduct_and":"de conduită și responsabilități",
+    "medical_disclaimer":"Declinarea răspunderii medicale:",
+    "continuing_professionals":"Continuând, sunt de acord că H2.doctor este o platformă digitală de sănătate care conectează utilizatorul cu profesioniști independenți din domeniul sănătății pentru consultații securizate la distanță și servicii adiționale. platforma nu înlocuiește serviciul medical de urgență . Toate deciziile clinice sunt responsabilitatea profesionistului consultant, iar platforma nu este responsabilă pentru niciun rezultat medical rezultat în urma consultării."
+    
   },
   "ui_header": {
     "register_now": "Înregistrează-te acum",

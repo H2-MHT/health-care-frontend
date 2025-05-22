@@ -39,7 +39,20 @@
     "licenses_certifications": "Licencijos ir sertifikatai",
     "about_yourself": "Papasakokite apie save",
     "languages_lable": "Kalbos",
-    "working_time": "Darbo laikas"
+    "working_time": "Darbo laikas",
+    "term_link":"https://data.my-health.today/website/lt/terms.pdf",
+    "policy_link":"https://data.my-health.today/website/lt/privacy-policy.pdf",
+    "acknowledge":"Pripažįstu",
+    "patient_bill":" Paciento teisių įstatymas",
+    "responsitbilities":"ir pareigos",
+    "patient_rights":"https://data.my-health.today/website/lt/patient-rights.pdf",
+    "code_Conduct":"Sutinku gerbti",
+    "doctor_code":"Gydytojo kodas",
+    "doctor_Link":"https://data.my-health.today/website/lt/doctor-code.pdf",
+    "Conduct_and":"elgesio ir pareigų",
+    "medical_disclaimer":"Medicinos atsisakymas:",
+    "continuing_professionals":"Tęsdamas sutinku, kad H2.doctor yra skaitmeninė sveikatos platforma, jungianti vartotoją su nepriklausomais sveikatos priežiūros specialistais, kad gautų saugias nuotolines konsultacijas ir papildomas paslaugas. platforma nepakeičia greitosios medicinos pagalbos. Už visus klinikinius sprendimus atsako konsultuojantis profesionalas, o platforma neatsako už jokias medicinines konsultacijos pasekmes."
+    
   },
   "ui_header": {
     "register_now": "Registruokitės dabar",

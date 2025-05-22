@@ -39,7 +39,20 @@
     "licenses_certifications": "Licencje i certyfikaty",
     "about_yourself": "Opowiedz coś o sobie",
     "languages_lable": "Języki",
-    "working_time": "Godziny pracy"
+    "working_time": "Godziny pracy",
+    "term_link":"https://data.my-health.today/website/pl/terms.pdf",
+    "policy_link":"https://data.my-health.today/website/pl/privacy-policy.pdf",
+    "acknowledge":"Potwierdzam",
+    "patient_bill":" Karta praw pacjenta",
+    "responsitbilities":"i obowiązki",
+    "patient_rights":"https://data.my-health.today/website/pl/patient-rights.pdf",
+    "code_Conduct":"Zgadzam się szanować",
+    "doctor_code":"Kod lekarza",
+    "doctor_Link":"https://data.my-health.today/website/pl/doctor-code.pdf",
+    "Conduct_and":"Postępowania i Odpowiedzialności",
+    "medical_disclaimer":"Zastrzeżenie medyczne:",
+    "continuing_professionals":"Kontynuując, zgadzam się, że H2.doctor jest cyfrową platformą zdrowotną, która łączy użytkownika z niezależnymi specjalistami opieki zdrowotnej w celu bezpiecznych zdalnych konsultacji i usług adisory. Platforma nie zastępuje pogotowia ratunkowego. Wszystkie decyzje kliniczne są odpowiedzialnością specjalisty konsultującego, a platforma nie ponosi odpowiedzialności za żadne wyniki medyczne wynikające z konsultacji."
+    
   },
   "ui_header": {
     "register_now": "Zarejestruj się teraz",
