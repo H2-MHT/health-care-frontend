@@ -39,7 +39,20 @@
     "licenses_certifications": "Licenses & Certifications",
     "about_yourself": "Tell more about yourself",
     "languages_lable": "Languages",
-    "working_time": "Working Time"
+    "working_time": "Working Time",
+    "term_link":"https://data.my-health.today/website/en/terms.pdf",
+    "policy_link":"https://data.my-health.today/website/en/privacy-policy.pdf",
+    "acknowledge":"I acknowledge the",
+    "patient_bill":" Patient Bill of Rights ",
+    "responsitbilities":"and Responsitbilities",
+    "patient_rights":"https://data.my-health.today/website/en/patient-rights.pdf",
+    "code_Conduct":"I agree to respect the",
+    "doctor_code":"Doctor`s code",
+    "doctor_Link":"https://data.my-health.today/website/en/doctor-code.pdf",
+    "Conduct_and":"of Conduct and Responsitbilities",
+    "medical_disclaimer":"Medical Disclaimer:",
+    "continuing_professionals":"By continuing, I agree that H2.doctor is a digital health platform that connects user with independent heathcare professionals for secure remote consultations and adisory service. the platform does not replace emergency medical service . All clinical decisions are the responsibility of the consulting professional, and the platform is not liable for any medical outcomes resulting from the consultation"
+    
   },
   "ui_header": {
     "register_now": "Register Now",
@@ -163,7 +176,11 @@
     "dmca": "DMCA",
     "terms-of-service": "Terms of Service",
     "cookie-policy": "Cookie Policy",
-    "footer-bottom-text": "My Health Today All rights reserved"
+    "footer-bottom-text": "My Health Today All rights reserved",
+    "footer-text":"H2.doctor is a digital health platform that connects users with independent healthcare professionals for secure remote consultations and advisory services. The platform does not provide medical diagnosis or treatment and is not liable for any medical outcomes resulting from the consultation.",
+    "terms-conditions":"Terms & Conditions",
+    "privacy-policy":"Privacy Policy",
+    "security-governance":"Security & Governance"
   },
 
   "dashboard": {

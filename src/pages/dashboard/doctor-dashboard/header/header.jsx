@@ -201,14 +201,15 @@ export const Header = () => {
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("selectedLang", lang);
-    handleSubmit();
+    handleSubmit(lang)
     setIsOpen(false);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (lang) => {
     let LagResult = languages.filter(
-      (item) => item.code.toUpperCase() === currentLang
+      (item) => item.code.toUpperCase() === lang.toUpperCase()
     );
+    
     try {
       const payload = {
         code: LagResult[0]?.code,

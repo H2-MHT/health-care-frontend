@@ -74,7 +74,9 @@ const ManageClinic = () => {
     fetchClinicList();
   };
 
-  return loading ? (
+  return ( 
+    <>
+    {loading ? (
     <Loader />
   ) : (
     <div class="rightContent rightsidefull">
@@ -203,7 +205,8 @@ const ManageClinic = () => {
         onPageChange={setCurrentPage}
       />
     </div>
-  );
-};
+  )}
+  </>
+)};
 
 export default ManageClinic;

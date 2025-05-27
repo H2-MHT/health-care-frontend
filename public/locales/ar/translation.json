@@ -39,7 +39,21 @@
     "licenses_certifications": "الرخص والشهادات",
     "about_yourself": "أخبرنا عن نفسك",
     "languages_lable": "اللغات",
-    "working_time": "أوقات العمل"
+    "working_time": "أوقات العمل",
+     "term_link":"https://data.my-health.today/website/ar/terms.pdf",
+    "policy_link":"https://data.my-health.today/website/ar/privacy-policy.pdf",
+    "acknowledge":"أنا أعترف",
+    "patient_bill":" ميثاق حقوق المريض ",
+    "responsitbilities":"والمسؤوليات",
+    "patient_rights":"https://data.my-health.today/website/ar/patient-rights.pdf",
+    "code_Conduct":"أوافق على احترام",
+    "doctor_code":"كود الطبيب",
+    "doctor_Link":"https://data.my-health.today/website/ar/doctor-code.pdf",
+    "Conduct_and":"السلوك والمسؤوليات",
+    "medical_disclaimer":"إخلاء المسؤولية الطبية:",
+    "continuing_professionals":"بالمواصلة، أوافق على أن H2.doctor هي منصة صحية رقمية تربط المستخدمين بأخصائيي رعاية صحية مستقلين للحصول على استشارات عن بُعد آمنة وخدمة استشارية. المنصة لا تُغني عن خدمات الطوارئ الطبية. جميع القرارات السريرية تقع على عاتق الأخصائي الاستشاري، والمنصة غير مسؤولة عن أي نتائج طبية ناتجة عن الاستشارة."
+    
+    
   },
   "ui_header": {
     "register_now": "سجل الآن",
@@ -160,7 +174,11 @@
     "dmca": "DMCA",
     "terms-of-service": "شروط الخدمة",
     "cookie-policy": "سياسة الكوكيز",
-    "footer-bottom-text": "شركة ماي هيلث توداي المحدودة، جميع الحقوق محفوظة"
+    "footer-bottom-text": "شركة ماي هيلث توداي المحدودة، جميع الحقوق محفوظة",
+    "footer-text":"H2.doctor منصة صحية رقمية تربط المستخدمين بأخصائيي رعاية صحية مستقلين لتقديم استشارات وخدمات استشارية آمنة عن بُعد. لا تقدم المنصة أي تشخيص أو علاج طبي، ولا تتحمل مسؤولية أي نتائج طبية ناتجة عن الاستشارة.",
+     "terms-conditions":"الشروط والأحكام",
+     "privacy-policy":"سياسة الخصوصية",
+    "security-governance":"الأمن والحوكمة"
   },
   "dashboard": {
     "list": "قائمة",
