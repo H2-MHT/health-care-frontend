@@ -39,7 +39,20 @@
     "licenses_certifications": "لائسنس اور اسناد",
     "about_yourself": "اپنے بارے میں بتائیں",
     "languages_lable": "زبانیں",
-    "working_time": "کام کے اوقات"
+    "working_time": "کام کے اوقات",
+     "term_link":"https://data.my-health.today/website/ur/terms.pdf",
+    "policy_link":"https://data.my-health.today/website/ur/privacy-policy.pdf",
+    "acknowledge":"میں تسلیم کرتا ہوں۔",
+    "patient_bill":" مریض کے حقوق کا بل ",
+    "responsitbilities":"اور ذمہ داریاں",
+    "patient_rights":"https://data.my-health.today/website/ur/patient-rights.pdf",
+    "code_Conduct":"میں احترام کرنے سے اتفاق کرتا ہوں۔",
+    "doctor_code":"ڈاکٹر کا کوڈ",
+    "doctor_Link":"https://data.my-health.today/website/ur/doctor-code.pdf",
+    "Conduct_and":"طرز عمل اور ذمہ داریوں کا",
+    "medical_disclaimer":"طبی دستبرداری:",
+    "continuing_professionals":"جاری رکھ کر، میں اس بات سے اتفاق کرتا ہوں کہ H2.doctor ایک ڈیجیٹل ہیلتھ پلیٹ فارم ہے جو محفوظ ریموٹ مشاورت اور ایڈزری سروس کے لیے صارف کو صحت کی دیکھ بھال کے آزاد پیشہ ور افراد سے جوڑتا ہے۔ پلیٹ فارم ہنگامی طبی خدمات کی جگہ نہیں لیتا۔ تمام طبی فیصلے مشاورتی پیشہ ور کی ذمہ داری ہیں، اور پلیٹ فارم مشاورت کے نتیجے میں کسی بھی طبی نتائج کے لیے ذمہ دار نہیں ہے۔"
+    
   },
   "ui_header": {
     "register_now": "ابھی رجسٹر کریں",
@@ -160,7 +173,11 @@
     "dmca": "DMCA",
     "terms-of-service": "سروس کی شرائط",
     "cookie-policy": "کوکی پالیسی",
-    "footer-bottom-text": "مائی ہیلتھ ٹوڈے لمیٹڈ، تمام حقوق محفوظ ہیں"
+    "footer-bottom-text": "مائی ہیلتھ ٹوڈے لمیٹڈ، تمام حقوق محفوظ ہیں",
+    "footer-text":"H2.doctor ایک ڈیجیٹل ہیلتھ پلیٹ فارم ہے جو محفوظ دور دراز سے مشاورت اور مشاورتی خدمات کے لیے صارفین کو صحت کی دیکھ بھال کے آزاد پیشہ ور افراد سے جوڑتا ہے۔ پلیٹ فارم طبی تشخیص یا علاج فراہم نہیں کرتا ہے اور مشاورت کے نتیجے میں آنے والے کسی بھی طبی نتائج کے لیے ذمہ دار نہیں ہے۔",
+    "terms-conditions":"شرائط و ضوابط",
+    "privacy-policy":"رازداری کی پالیسی",
+    "security-governance":"سیکیورٹی اور گورننس"
   },
   "dashboard": {
     "list": "فہرست",

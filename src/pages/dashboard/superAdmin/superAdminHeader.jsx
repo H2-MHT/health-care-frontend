@@ -2,6 +2,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "../doctor-dashboard/header/header.css";
 import { useTranslation } from "react-i18next";
+import { postData } from "../../../hooks/services/services";
+import { showToast } from "../../../utils/toast";
 
 export const SuperAdminHeader = () => {
   const { t, i18n } = useTranslation();
@@ -74,7 +76,28 @@ export const SuperAdminHeader = () => {
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("selectedLang", lang);
+    handleSubmit(lang)
     setIsOpen(false);
+  };
+
+const handleSubmit = async (lang) => {
+    let LagResult = languages.filter(
+      (item) => item?.code.toUpperCase() === lang.toUpperCase()
+    );
+    
+    try {
+      const payload = {
+        code: LagResult[0]?.code,
+        language_name: LagResult[0]?.label,
+      };
+      const response = await postData(`user/set-language/`, payload);
+      if (response.status === 200) {
+        const responseJson = await response.json();
+        showToast(responseJson?.message, "success");
+      }
+    } catch (error) {
+      showToast(error.message, "error");
+    }
   };
 
   return (

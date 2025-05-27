@@ -39,7 +39,20 @@
 "licenses_certifications": "Licenças e Certificações",
 "about_yourself": "Conte mais sobre você",
 "languages_lable": "Idiomas",
-"working_time": "Horário de trabalho"
+"working_time": "Horário de trabalho",
+ "term_link":"https://data.my-health.today/website/pt-br/terms.pdf",
+"policy_link":"https://data.my-health.today/website/pt-br/privacy-policy.pdf",
+"acknowledge":"Eu reconheço a",
+"patient_bill":"Carta de Direitos do Paciente",
+"responsitbilities":"e as Responsabilidades",
+"patient_rights":"https://data.my-health.today/website/pt-br/patient-rights.pdf",
+"code_Conduct":"Concordo em respeitar o",
+"doctor_code":"Código do Médico",
+"doctor_Link":"https://data.my-health.today/website/pt-br/doctor-code.pdf",
+"Conduct_and":"de Conduta e Responsabilidades",
+"medical_disclaimer":"Aviso Médico:",
+"continuing_professionals":"Ao continuar, concordo que o H2.doctor é uma plataforma de saúde digital que conecta usuários a profissionais de saúde independentes para consultas remotas seguras e serviços de orientação. A plataforma não substitui os serviços médicos de emergência. Todas as decisões clínicas são de responsabilidade do profissional consultado, e a plataforma não se responsabiliza por quaisquer resultados médicos decorrentes da consulta."
+    
 },
 "ui_header": {
 "register_now": "Registrar agora",
@@ -162,8 +175,11 @@
 "dmca": "DMCA",
 "terms-of-service": "Termos de Serviço",
 "cookie-policy": "Política de Cookies",
-
-"footer-bottom-text": "My Health Today LTD - Todos os direitos reservados"
+"footer-bottom-text": "My Health Today LTD - Todos os direitos reservados",
+"footer-text":"H2.doctor é uma plataforma de saúde digital que conecta usuários a profissionais de saúde independentes para consultas remotas seguras e serviços de orientação. A plataforma não fornece diagnóstico ou tratamento médico e não se responsabiliza por quaisquer consequências médicas resultantes da consulta",
+"terms-conditions":"Termos e Condições",
+"privacy-policy":"Política de Privacidade",
+"security-governance":"Segurança e Governança"
 },
 "dashboard": {
 "list": "Lista",

@@ -446,6 +446,42 @@ export const PatientDrawer = () => {
                 <span>{t("drawer.settings")}</span>
               </Link>
             </li>
+
+ <li>
+              <Link
+                to="/patient/support"
+                className={
+                  selectedDrawerItem === "/patient/support"
+                    ? "active"
+                    : ""
+                }
+                onClick={() => setSelectedDrawerItem("/patient/support")}
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11.9982 17.9932C12.8755 20.3647 15.5388 21.5867 17.9469 20.7226C20.3549 19.8585 21.5957 17.2355 20.7183 14.864L18.7075 9.48252M11.9982 17.9932L2.25174 10.5907M11.9982 17.9932L9.98969 12.5646M9.98969 12.5646L18.7075 9.48252M9.98969 12.5646L7.98123 7.13593C7.10383 4.76444 8.34459 2.14149 10.7526 1.2774C13.1606 0.413314 15.824 1.63529 16.7014 4.00678L18.7075 9.48252M12.4895 18.9543C11.9142 19.548 11.2596 20.0299 10.5036 20.375C9.7073 20.7398 8.8459 20.9465 7.9685 20.9832C7.0911 21.02 6.21495 20.8861 5.39011 20.5892C4.56527 20.2923 3.80793 19.8383 3.16135 19.2531C2.51476 18.6678 1.99154 17.9628 1.62173 17.1783C0.875206 15.5951 0.797823 13.7846 1.40653 12.1451C2.01524 10.5057 3.2602 9.17147 4.86767 8.43591C5.82841 7.9956 6.88162 7.7862 7.94056 7.82496L8.21466 7.82496"
+                    stroke="white"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span
+                  onClick={() => {
+                    setSelectedDrawerItem("/patient/support");
+                    navigate("/patient/support");
+                  }}
+                >
+                  Support
+                </span>
+              </Link>
+            </li>
+
             <li>
               <Link
                 to=""

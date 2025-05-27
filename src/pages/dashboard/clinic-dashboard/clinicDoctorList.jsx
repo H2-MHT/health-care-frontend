@@ -130,9 +130,9 @@ const ClinicDoctorList = () => {
                 <img src="../images/search-dark.svg" />
               </a>
             </div>
-            <div class="sorting">
+            {/* <div class="sorting">
               <Select options={paymentSortBy} />
-            </div>
+            </div> */}
           </div>
           <div class="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
             <div class="recomend">

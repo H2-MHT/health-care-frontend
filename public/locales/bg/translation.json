@@ -39,7 +39,20 @@
     "licenses_certifications": "Лицензи и сертификати",
     "about_yourself": "Разкажете повече за себе си",
     "languages_lable": "Езици",
-    "working_time": "Работно време"
+    "working_time": "Работно време",
+     "term_link":"https://data.my-health.today/website/bg/terms.pdf",
+    "policy_link":"https://data.my-health.today/website/bg/privacy-policy.pdf",
+    "acknowledge":"Признавам",
+    "patient_bill":" Законът за правата на пациента",
+    "responsitbilities":"и Отговорности",
+    "patient_rights":"https://data.my-health.today/website/bg/patient-rights.pdf",
+    "code_Conduct":"Съгласен съм да уважавам",
+    "doctor_code":"Код на лекаря",
+    "doctor_Link":"https://data.my-health.today/website/bg/doctor-code.pdf",
+    "Conduct_and":"на поведение и отговорности",
+    "medical_disclaimer":"Медицински отказ от отговорност:",
+    "continuing_professionals":"Продължавайки, приемам, че H2.doctor е цифрова здравна платформа, която свързва потребителя с независими професионалисти в областта на здравеопазването за сигурни дистанционни консултации и помощни услуги. платформата не замества спешната медицинска помощ. Всички клинични решения са отговорност на консултанта и платформата не носи отговорност за никакви медицински резултати в резултат на консултацията"
+    
   },
   "ui_header": {
     "register_now": "Регистрирай се сега",
@@ -161,7 +174,12 @@
     "dmca": "DMCA",
     "terms-of-service": "Условия за ползване",
     "cookie-policy": "Политика за бисквитки",
-    "footer-bottom-text": "My Health Today LTD. Всички права запазени."
+    "footer-bottom-text": "My Health Today LTD. Всички права запазени.",
+    "footer-text":"H2.doctor е дигитална здравна платформа, която свързва потребителите с независими здравни специалисти за сигурни дистанционни консултации и съвети. Платформата не предоставя медицинска диагноза или лечение и не носи отговорност за каквито и да е медицински последствия, произтичащи от консултациите.",
+    "terms-conditions":"Правила и условия",
+    "privacy-policy":"Политика за поверителност",
+    "security-governance":"Сигурност и управление"
+
   },
   "dashboard": {
     "list": "Списък",

@@ -39,7 +39,20 @@
 "licenses_certifications": "Лицензии и сертификаты",
 "about_yourself": "Расскажите о себе",
 "languages_lable": "Языки",
-"working_time": "Время работы"
+"working_time": "Время работы",
+"term_link":"https://data.my-health.today/website/ru/terms.pdf",
+"policy_link":"https://data.my-health.today/website/ru/privacy-policy.pdf",
+"acknowledge":"Я признаю",
+"patient_bill":"Билль о правах пациентов ",
+"responsitbilities":"и обязанности",
+"patient_rights":"https://data.my-health.today/website/ru/patient-rights.pdf",
+"code_Conduct":"Я согласен уважать",
+"doctor_code":"Код врача",
+"doctor_Link":"https://data.my-health.today/website/ru/doctor-code.pdf",
+"Conduct_and":"поведения и ответственности",
+ "medical_disclaimer":"Медицинская отмена ответственности:",
+"continuing_professionals":"Продолжая, я соглашаюсь, что H2.doctor — это цифровая платформа здравоохранения, которая связывает пользователя с независимыми специалистами в области здравоохранения для безопасных удаленных консультаций и оказания услуг. Платформа не заменяет экстренную медицинскую помощь. Все клинические решения являются ответственностью специалиста-консультанта, и платформа не несет ответственности за какие-либо медицинские результаты, полученные в результате консультации."
+    
 },
 "ui_header": {
 "register_now": "Зарегистрироваться",
@@ -165,7 +178,11 @@
 "dmca": "DMCA",
 "terms-of-service": "Условия использования",
 "cookie-policy": "Политика использования файлов cookie",
-"footer-bottom-text": "My Health Today LTD. Все права защищены"
+"footer-bottom-text": "My Health Today LTD. Все права защищены",
+"footer-text":"H2.doctor — это цифровая платформа здравоохранения, которая связывает пользователей с независимыми специалистами здравоохранения для безопасных удаленных консультаций и консультативных услуг. Платформа не предоставляет медицинскую диагностику или лечение и не несет ответственности за какие-либо медицинские результаты, полученные в результате консультации.",
+"terms-conditions":"Условия использования",
+"privacy-policy":"политика конфиденциальности",
+"security-governance":"Безопасность и управление"
 },
 
 "dashboard": {

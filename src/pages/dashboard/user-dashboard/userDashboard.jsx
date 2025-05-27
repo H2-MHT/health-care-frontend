@@ -356,7 +356,7 @@ const UserDashboard = () => {
               <img src="images/profile-sample.png" className="img-fluid" />
             </div>
           </div>
-        
+
           <div
             style={{
               position: "relative",
@@ -389,6 +389,8 @@ const UserDashboard = () => {
                   zIndex: 1000,
                   padding: "10px",
                   width: "200px",
+                  maxHeight: "120px",
+                  overflowY: "auto",
                 }}
               >
                 {Object.keys(visibleWidgets).map((widgetKey) => (
@@ -424,7 +426,7 @@ const UserDashboard = () => {
               >
                 <img
                   src="../images/user-dashboard/x.webp"
-                  className="close-widget-img"
+                  className="close-widget-imgg"
                   onClick={() => toggleWidget("calendar")}
                   alt="Close calendar widget"
                 />
@@ -458,7 +460,7 @@ const UserDashboard = () => {
                     <div className="col-md-8" style={{ position: "relative" }}>
                       <img
                         src="../images/user-dashboard/x.webp"
-                        className="close-widget-img"
+                        className="close-widget-imgg"
                         onClick={() => toggleWidget("userTagsLeft")}
                         alt="Close user tags left widget"
                       />
@@ -485,7 +487,7 @@ const UserDashboard = () => {
                     <div className="col-md-4" style={{ position: "relative" }}>
                       <img
                         src="../images/user-dashboard/x.webp"
-                        className="close-widget-img"
+                        className="close-widget-imgg"
                         onClick={() => toggleWidget("userTagsRight")}
                         alt="Close user tags right widget"
                       />
@@ -509,7 +511,7 @@ const UserDashboard = () => {
                     <div className="col-md-12" style={{ position: "relative" }}>
                       <img
                         src="../images/user-dashboard/x.webp"
-                        className="close-widget-img"
+                        className="close-widget-imgg"
                         onClick={() => toggleWidget("stepCounts")}
                         alt="Close step counts widget"
                       />
@@ -697,7 +699,7 @@ const UserDashboard = () => {
                     <div className="col-md-9" style={{ position: "relative" }}>
                       <img
                         src="../images/user-dashboard/x.webp"
-                        className="close-widget-img"
+                        className="close-widget-imgg"
                         onClick={() => toggleWidget("notes")}
                         alt="Close notes widget"
                       />
@@ -746,7 +748,7 @@ const UserDashboard = () => {
                     <div className="col-md-12" style={{ position: "relative" }}>
                       <img
                         src="../images/user-dashboard/x.webp"
-                        className="close-widget-img"
+                        className="close-widget-imgg"
                         onClick={() => toggleWidget("patientData")}
                         alt="Close patient data widget"
                       />

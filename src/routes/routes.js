@@ -20,6 +20,7 @@ import DoctorPrescription from "../pages/dashboard/doctorPrescription/doctorPres
 import ClinicCalendarView from "../pages/dashboard/clinic-dashboard/clinicCalendarView";
 import AllDoctorList from "../pages/dashboard/user-dashboard/bookAppointmenet/allDoctorList"
 import AllFavDoctor from "../pages/dashboard/user-dashboard/bookAppointmenet/allFavDoctor"
+import PatientSupport from "../pages/dashboard/user-dashboard/patientSupport/patientSupport"
 import FavClinicPublicView from "../pages/dashboard/user-dashboard/favClinicPublicView"
 import PrescriptionView from "../pages/patient/Prescription/prescriptionView"
 import ClinicProfileSetting from "../pages/dashboard/clinic-dashboard/clinicProfileSetting/profileSetting"
@@ -27,6 +28,8 @@ import UserDashboard from "../pages/dashboard/user-dashboard/userDashboard";
 import AllClinic from "../pages/dashboard/user-dashboard/allClinic";
 import AllFavClinic from "../pages/dashboard/user-dashboard/allFavClinic"
 import MyVerification from "../pages/dashboard/doctor-dashboard/myVerification/myVerification"
+import DoctorSupport from "../pages/dashboard/doctor-dashboard/doctorSupport/doctorSupport"
+import ClinicSupport from "../pages/dashboard/clinic-dashboard/clinicSupport/clinicSupport"
 import UserView from "../pages/dashboard/user-dashboard/userView";
 import FamilyMemberProfileDashboard from "../pages/dashboard/user-dashboard/addFamilyMember/familyMemberProfileDashboard"
 import UserHealthDataCenter from "../pages/dashboard/user-dashboard/userhealthdatacenter";
@@ -38,7 +41,9 @@ import Specialization from "../pages/dashboard/superAdmin/specialization/special
 import ManageDoctors from "../pages/dashboard/superAdmin/manageDoctors";
 import ManageClinic from "../pages/dashboard/superAdmin/manageClinic";
 import ManageReview from "../pages/dashboard/superAdmin/manageReview";
+import ManageReviewAdmin from "../pages/dashboard/superAdmin/manageReviewAdmin/manageReviewAdmin"
 import MyDocumentVerification from "../pages/dashboard/superAdmin/myDocumentVerification"
+import CreateAdmin from "../pages/dashboard/superAdmin/createAdmin/createAdmin"
 import PatientEditProfile from "../pages/patient/editProfile/editProfile";
 import { PatientDashboard } from "../pages/patient/dashboard/dashboard";
 import VideoCall2 from "../pages/dashboard/doctorChat/VideoCall2";
@@ -225,6 +230,14 @@ const AppRoutes = () => {
       allowedRoles: ["Clinic"],
     },
     {
+      path: "/clinic/support",
+      element: <ClinicSupport />,
+      exact: true,
+      layout: true,
+      allowedRoles: ["Clinic"],
+    },
+    
+    {
       path: "/clinic/ProfileSetting",
       element: <ClinicProfileSetting />,
       exact: true,
@@ -268,6 +281,13 @@ const AppRoutes = () => {
     {
       path: "/doctor/myVerification",
       element: <MyVerification/>,
+      exact: true,
+      layout: true,
+      allowedRoles: ["Doctor"],
+    },
+     {
+      path: "/doctor/support",
+      element: <DoctorSupport/>,
       exact: true,
       layout: true,
       allowedRoles: ["Doctor"],
@@ -436,6 +456,13 @@ const AppRoutes = () => {
       allowedRoles: ["Patient"],
     },
     {
+      path: "/patient/support",
+      element: <PatientSupport/>,
+      exact: true,
+      layout: true,
+      allowedRoles: ["Patient"],
+    },
+     {
       path: "/patient/consultationrrecordsList",
       element: <PatientConsultationrRecordsList/>,
       exact: true,
@@ -584,7 +611,20 @@ const AppRoutes = () => {
     },
     {
       path: "/superadmin/specialization",
+
       element: <Specialization/>,
+      exact: true,
+      layout: true,
+    },
+     {
+      path: "/superadmin/manage/review",
+      element: <ManageReviewAdmin/>,
+      exact: true,
+      layout: true,
+    },
+    {
+      path: "/superadmin/create/admin",
+      element: <CreateAdmin/>,
       exact: true,
       layout: true,
     },

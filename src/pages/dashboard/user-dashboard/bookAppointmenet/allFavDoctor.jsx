@@ -204,9 +204,9 @@ console.log(doctorList,'>>>doctorList')
                 <img src="../images/search-dark.svg" alt="search" />
               </a>
             </div>
-            <div className="sorting">
+            {/* <div className="sorting">
               <Select options={paymentSortBy} />
-            </div>
+            </div> */}
           </div>
 
           <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
