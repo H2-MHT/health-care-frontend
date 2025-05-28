@@ -107,6 +107,7 @@ const PatientPrescription = () => {
                           <div className="file col-3">
                             <a
                               href="#"
+                              data-tooltip="Download Prescription"
                               onClick={(e) => {
                                 e.preventDefault();
                                 handlePdfDownload(prescription?.appointment_id);
