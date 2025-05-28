@@ -470,10 +470,10 @@ const AppointmentList = () => {
                           </a>
                         </div>
                         <div class="second">
-                          <button type="button" class="transparent_blue_lg">
+                          <button type="button" class="transparent_blue_lg" onClick={() => navigate("/doctor/consultation-recordslist")}>
                             {t("appointment-list.records")}:
                           </button>
-                          <button type="button" class="blue_lg">
+                          <button type="button" class="blue_lg" onClick={()=> navigate(`/doctor/consultation-report/${appointment?.id}`)}>
                             {t("appointment-list.consultation-report")}:
                           </button>
                         </div>

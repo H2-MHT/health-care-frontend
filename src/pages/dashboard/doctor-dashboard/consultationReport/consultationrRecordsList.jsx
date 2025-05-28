@@ -43,12 +43,12 @@ function ConsultationRecordsList() {
 
         <div class="drAppointmentReport">
           <div class="tabPrt">
-            <a class="bg-darkgreen" onClick={()=>setActiveTab("records")}>
+            <a class="bg-darkgreen" onClick={() => setActiveTab("records")}>
               Records
             </a>
-            <a class="bg-blue" onClick={()=>setActiveTab("reports")}>
+            <a class="bg-blue" onClick={() => setActiveTab("reports")}>
               Reports
-            </a >
+            </a>
           </div>
           <div class="drAppointmentReportInner">
             <div class="left bg-white">
@@ -57,7 +57,8 @@ function ConsultationRecordsList() {
                   {patientList?.map((item) => {
                     return (
                       <div className="reportDetail" key={item.id}>
-                        <div className="img-prt">
+                        <div className="col-md-12 d-flex">
+                        <div className="img-prt col-md-3 d-flex align-items-center">
                           <img
                             src={item?.patient?.profile_picture}
                             className="img-fluid"
@@ -70,7 +71,9 @@ function ConsultationRecordsList() {
                             {item?.patient?.last_name}
                           </Link>
                         </div>
-                        <div className="red-green">
+                       
+                        <div class="third col-md-3 d-flex align-items-center">
+                           <div className="red-green">
                           {item.status === "Completed" ? (
                             <img
                               src="../images/greencircle.png"
@@ -85,11 +88,19 @@ function ConsultationRecordsList() {
                             />
                           )}
                         </div>
-                        <div className="text-weight-bold">
-                          {getFormattedDate(item?.date)}
-                          <span className="text-weight-normal">
-                            {item?.slot}
-                          </span>
+                        </div>
+                        <div class="third col-md-3 d-flex align-items-center">
+                          <div class="clockCalenderPrt dark-text w-100">
+                            <img src="/images/doctor-dashboard/dark-calender.svg" />
+                            <span className="text-weight-bold">{getFormattedDate(item?.date)}</span>
+                          </div>
+                        </div>
+                        <div class="third col-md-3 d-flex align-items-center">
+                          <div class="clockCalenderPrt dark-text w-100">
+                            <img src="/images/doctor-dashboard/dark-clock.svg" />
+                            <span className="text-weight-bold">{item?.slot}</span>
+                          </div>
+                        </div>
                         </div>
                       </div>
                     );
@@ -167,5 +178,3 @@ function ConsultationRecordsList() {
 }
 
 export default ConsultationRecordsList;
-
-
