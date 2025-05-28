@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchData } from "../../../../hooks/services/services";
 import { useSSR } from "react-i18next";
+import { getFormattedDate } from "../../../../utils/common";
 
 function ConsultationRecordsList() {
   const [patientList, setPatientList] = useState();
+  const [activeTab, setActiveTab] = useState("records");
   const navigate = useNavigate();
 
   const consultationList = async () => {
@@ -41,12 +43,12 @@ function ConsultationRecordsList() {
 
         <div class="drAppointmentReport">
           <div class="tabPrt">
-            <a href="#" class="bg-darkgreen">
+            <a class="bg-darkgreen" onClick={()=>setActiveTab("records")}>
               Records
             </a>
-            <Link  class="bg-blue">
+            <a class="bg-blue" onClick={()=>setActiveTab("reports")}>
               Reports
-            </Link>
+            </a >
           </div>
           <div class="drAppointmentReportInner">
             <div class="left bg-white">
@@ -62,8 +64,7 @@ function ConsultationRecordsList() {
                             alt="Patient"
                           />
                           <Link
-                            to="/doctor/consultation-report/"
-                            state={{ item: item?.appointment_id }}
+                            to={`/doctor/consultation-report/${item?.appointment_id}`}
                           >
                             {item?.patient?.first_name}{" "}
                             {item?.patient?.last_name}
@@ -85,7 +86,7 @@ function ConsultationRecordsList() {
                           )}
                         </div>
                         <div className="text-weight-bold">
-                          {item?.date}{" "}
+                          {getFormattedDate(item?.date)}
                           <span className="text-weight-normal">
                             {item?.slot}
                           </span>
@@ -96,7 +97,7 @@ function ConsultationRecordsList() {
                 </div>
               </div>
             </div>
-            <div class="right bg-black-transparent padding-20">
+            {/* <div class="right bg-black-transparent padding-20">
               <div class="videoPart">
                 <img src="../images/video-img.svg" class="img-fluid w-100" />
               </div>
@@ -157,7 +158,7 @@ function ConsultationRecordsList() {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

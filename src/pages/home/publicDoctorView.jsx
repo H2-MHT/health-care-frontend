@@ -32,7 +32,7 @@ const PublicDoctorView = () => {
                 </div>
                 <div class="right">
                   <div class="para">
-                    Maternal-Fetal Medicine{" "}
+                    {doctor?.professional_stat}
                     <span class="text-mainblue">
                       {" "}
                       {doctor?.experience_years} years of practice

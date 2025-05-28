@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchData } from "../../../../hooks/services/services";
+import { getFormattedDate } from "../../../../utils/common";
 
-const PatientConsultationRecordsList=()=> {
+const PatientConsultationRecordsList = () => {
   const [patientList, setPatientList] = useState();
   const navigate = useNavigate();
-  
+  const sampleImage = "/images/sample.png";
+
   const consultationList = async () => {
-    const response = await fetchData("consultation/prescription-list/", navigate);
+    const response = await fetchData(
+      "consultation/prescription-list/",
+      navigate
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch data from the server.");
     }
@@ -40,12 +45,8 @@ const PatientConsultationRecordsList=()=> {
 
         <div class="drAppointmentReport">
           <div class="tabPrt">
-            <Link  class="bg-darkgreen">
-              Records
-            </Link>
-            <Link  class="bg-blue" >
-              Reports
-            </Link>
+            <Link class="bg-darkgreen">Records</Link>
+            <Link class="bg-blue">Reports</Link>
           </div>
           <div class="drAppointmentReportInner">
             <div class="left bg-white">
@@ -55,9 +56,15 @@ const PatientConsultationRecordsList=()=> {
                     return (
                       <div className="reportDetail" key={item.id}>
                         <div className="img-prt">
-                          <Link to="/patient/consultationreport"
-                          state={{ item: item?.appointment_id }}>
-                          {item?.patient?.name} {item?.patient?.last_name}
+                          <img
+                            src={item?.doctor?.profile_picture || sampleImage}
+                            className="img-fluid"
+                            alt="Patient"
+                          />
+                          <Link
+                            to={`/patient/consultationreport/${item?.appointment_id}`}
+                          >
+                            Dr. {item?.doctor?.name}
                           </Link>
                         </div>
                         <div className="red-green">
@@ -75,11 +82,17 @@ const PatientConsultationRecordsList=()=> {
                             />
                           )}
                         </div>
-                        <div className="text-weight-bold">
-                          {item?.created_date                          }{" "}
-                          <span className="text-weight-normal">
-                            {item?.slot}
-                          </span>
+                        <div class="third">
+                          <div class="clockCalenderPrt dark-text w-100">
+                            <img src="/images/doctor-dashboard/dark-calender.svg" />
+                            <span>{getFormattedDate(item?.created_date)}</span>
+                          </div>
+                        </div>
+                        <div class="third">
+                          <div class="clockCalenderPrt dark-text w-100">
+                            <img src="/images/doctor-dashboard/dark-clock.svg" />
+                            <span>{item?.slot}</span>
+                          </div>
                         </div>
                       </div>
                     );
@@ -87,7 +100,7 @@ const PatientConsultationRecordsList=()=> {
                 </div>
               </div>
             </div>
-            <div class="right bg-black-transparent padding-20">
+            {/* <div class="right bg-black-transparent padding-20">
               <div class="videoPart">
                 <img src="../images/video-img.svg" class="img-fluid w-100" />
               </div>
@@ -148,18 +161,12 @@ const PatientConsultationRecordsList=()=> {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default PatientConsultationRecordsList;
-
-
-
-
-
-

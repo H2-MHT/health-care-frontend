@@ -776,6 +776,12 @@ main{
     width: 40%;
 }
 
+.clockCalenderPrt{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .width-30 {
     width: 30% !important;
 }
