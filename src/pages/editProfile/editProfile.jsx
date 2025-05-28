@@ -655,12 +655,8 @@ const EditProfile = () => {
                               )}
                             />
                           </div>
-                          {console.log(
-                            ">>>>>>>>>.isProfiledata",
-                            isProfiledata
-                          )}
                           {selectedWorkPlace == "other" && (
-                            <div className="col-md-12">
+                            <div className="col-md-12 mt-3">
                               <div className="row">
                                 <div className="col-md-6">
                                   <label>Hospital Name</label>

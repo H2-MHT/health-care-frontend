@@ -22,6 +22,7 @@ const DoctorProfileStep2 = ({ setStateCount }) => {
   let { token } = useSelector((state) => state.auth);
 
   const [languageOptions, setLanguageOptions] = useState([]);
+  const [currencies, setCurrency] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,6 +46,11 @@ const DoctorProfileStep2 = ({ setStateCount }) => {
       uploadFile: null,
     },
   });
+
+  useEffect(()=>{
+    const filtered = currencyCodes?.data?.filter(item => ['GBP', 'USD', 'EUR'].includes(item?.code));
+    setCurrency(filtered)
+  },[currencyCodes])
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -178,7 +184,7 @@ const DoctorProfileStep2 = ({ setStateCount }) => {
                           value={selectedCurrency}
                           onChange={handleChange}
                         >
-                          {currencyCodes?.data?.map((item) => (
+                          {currencies?.map((item) => (
                             <option key={item?.code} value={item?.code}>
                               {item?.code} - {item?.currency}
                             </option>

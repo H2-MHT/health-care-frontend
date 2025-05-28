@@ -8,13 +8,10 @@ import { useTranslation } from "react-i18next";
 import { InputField } from "../../../components/form/InputField";
 import { Country, City } from "country-state-city";
 import AutoSelect from "../../../components/form/AutoSelect";
-import {
-  
-  Experience,
-  Speciality,
-} from "../../../utils/constants";
+import { Experience, Speciality } from "../../../utils/constants";
 import { loginSuccess } from "../../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
+import CreateSelect from "../../../components/form/CreateSelect";
 
 const DoctorProfileStep1 = ({ setStateCount }) => {
   const dispatch = useDispatch();
@@ -49,10 +46,11 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
 
   useEffect(() => {
     if (selectedCountry) {
-      const cityOptions = City.getCitiesOfCountry(selectedCountry)?.map((city) => ({
-        value: city.name,
-        label: city.name,
-      })) || [];
+      const cityOptions =
+        City.getCitiesOfCountry(selectedCountry)?.map((city) => ({
+          value: city.name,
+          label: city.name,
+        })) || [];
       setCities(cityOptions);
       setValue("city", ""); // Reset city when country changes
     } else {
@@ -87,11 +85,11 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
   const onSubmit = async (data) => {
     try {
       const payload = { ...data };
-      if(selectedWorkPlace == "other"){
-        payload.clinic = selectedWorkPlace
+      if (selectedWorkPlace == "other") {
+        payload.clinic = selectedWorkPlace;
       }
-      if(selectedWorkPlace !== "other"){
-        payload.work_place = selectedWorkPlace
+      if (selectedWorkPlace !== "other") {
+        payload.work_place = selectedWorkPlace;
       }
       const response = await updateData(
         "auth/update-profile/",
@@ -100,7 +98,6 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
 
       if (response.status === 200) {
         const responseData = await response.json();
-        console.log(">>>>>>>>>>>responseData", responseData)
         localStorage.setItem("user_data", JSON.stringify(responseData?.data));
         dispatch(loginSuccess(responseData?.data?.role, token));
         showToast(responseData?.message, "success");
@@ -111,12 +108,12 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
     }
   };
 
-  const selectWorkplace = (e) =>{
-    setSelectedWorkPlace(e.target.value)
-    setValue("hospital_name" , "")
-    setValue("location" , "")
-    setValue("website" , "")
-  }
+  const selectWorkplace = (e) => {
+    setSelectedWorkPlace(e.target.value);
+    setValue("hospital_name", "");
+    setValue("location", "");
+    setValue("website", "");
+  };
 
   return (
     <section className="form_part space-cmn">
@@ -140,14 +137,16 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
                             control={control}
                             render={({ field }) => (
                               <AutoSelect
-                              label="Country"
-                              options={countryOptions}
-                              placeholder="Select Country"
-                              error={errors.country?.message}
-                              value={field.value}
-                              onChange={(option) => field.onChange(option?.value)}
-                              isSearchable={true}
-                            />
+                                label="Country"
+                                options={countryOptions}
+                                placeholder="Select Country"
+                                error={errors.country?.message}
+                                value={field.value}
+                                onChange={(option) =>
+                                  field.onChange(option?.value)
+                                }
+                                isSearchable={true}
+                              />
                             )}
                           />
                         </div>
@@ -157,15 +156,17 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
                             control={control}
                             render={({ field }) => (
                               <AutoSelect
-                              label="City"
-                              options={cities}
-                              placeholder="Select City"
-                              error={errors.city?.message}
-                              value={field.value}
-                              onChange={(option) => field.onChange(option?.value)}
-                              isDisabled={!cities.length}
-                              isSearchable={true}
-                            />
+                                label="City"
+                                options={cities}
+                                placeholder="Select City"
+                                error={errors.city?.message}
+                                value={field.value}
+                                onChange={(option) =>
+                                  field.onChange(option?.value)
+                                }
+                                isDisabled={!cities.length}
+                                isSearchable={true}
+                              />
                             )}
                           />
                         </div>
@@ -212,7 +213,7 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
 
                     {/* Place of Work */}
                     <div className="col-md-12">
-                          <label>{t("singup.place_Work")}</label>
+                      <label>{t("singup.place_Work")}</label>
                       <Select
                         options={workPlaces}
                         placeholder="Hospital Name"
@@ -280,17 +281,22 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
                     <div className="col-md-12">
                       <div className="row">
                         <div className="col-md-6">
+                          <label>Professional Stats</label>
                           <Controller
                             name="professional_stat"
                             control={control}
-                            render={({ field }) => (
-                              <Select
-                                label="Professional Stats"
-                                options={Speciality}
-                                placeholder="Speciality"
-                                {...field}
-                              />
-                            )}
+                            render={({ field }) => {
+                              return (
+                                <CreateSelect
+                                  options={Speciality}
+                                  name="professional_stat"
+                                  isSearchable={true}
+                                  onChange={(option) => {
+                                    field.onChange(option?.value); // sends value to form
+                                  }}
+                                />
+                              );
+                            }}
                           />
                         </div>
                         <div className="col-md-6">
