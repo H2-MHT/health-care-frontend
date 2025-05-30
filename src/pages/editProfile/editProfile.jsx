@@ -637,30 +637,29 @@ const EditProfile = () => {
                       <div class="row g-4">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label>{t("edit-profile.place-of-work")}</label>
                             <Controller
                               name="work_place"
                               control={control}
                               defaultValue={selectedWorkPlace}
                               render={({ field }) => (
-                                <Select
-                                  {...field}
+                                <AutoSelect
+                                  label={t("edit-profile.place-of-work")}
                                   options={placeData}
                                   placeholder="Select Hospital"
-                                  onChange={(e) => {
-                                    setSelectedWorkPlace(e.target.value);
-                                    field.onChange(e.target.value);
+                                  isSearchable={true} 
+                                  error={errors?.work_place?.message}
+                                  onChange={(option) => {
+                                    const selectedValue = option?.value || "";
+                                    setSelectedWorkPlace(selectedValue);
+                                    field.onChange(selectedValue);
                                   }}
+                                  value={field.value}
                                 />
                               )}
                             />
                           </div>
-                          {console.log(
-                            ">>>>>>>>>.isProfiledata",
-                            isProfiledata
-                          )}
                           {selectedWorkPlace == "other" && (
-                            <div className="col-md-12">
+                            <div className="col-md-12 mt-3">
                               <div className="row">
                                 <div className="col-md-6">
                                   <label>Hospital Name</label>

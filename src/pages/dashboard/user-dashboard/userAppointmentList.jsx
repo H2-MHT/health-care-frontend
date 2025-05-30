@@ -290,9 +290,9 @@ const UserAppointmentList = () => {
                                 />
                                 <p>{item?.doctor?.name}</p>
                               </div>
-                              <a onClick={() => getRecentDoctorlist(item)}>
+                              {/* <a onClick={() => getRecentDoctorlist(item)}>
                                 {t("calendar-view.review-medical-history")}
-                              </a>
+                              </a> */}
                             </div>
                             <div className="second">
                               <button
@@ -340,9 +340,9 @@ const UserAppointmentList = () => {
                                 />
                                 <p>{item?.doctor?.name}</p>
                               </div>
-                              <a href="#" onClick={() => setModelOpen(true)}>
+                              {/* <a href="#" onClick={() => setModelOpen(true)}>
                                 Review medical history
-                              </a>
+                              </a> */}
                             </div>
                             <div class="fourth">
                               <div class="d-flex gap-2 justify-content-center">
@@ -407,35 +407,37 @@ const UserAppointmentList = () => {
                         <div class="first">
                           <div class="imgPrts">
                             <img
-                              src="/images/doctor-dashboard/profile-sample.png"
-                              class="img-fluid"
-                            />
-                            <p>{appointment.patient_name}</p>
+                                  src={
+                                    appointment?.doctor?.profile_picture
+                                      ? appointment?.doctor?.profile_picture
+                                      : sampleImage
+                                  }
+                                  class="img-fluid"
+                                />
+                            <p>{appointment.doctor?.name}</p>
                           </div>
                           <a onClick={() => getRecentDoctorlist(appointment)}>
                             {t("calendar-view.review-medical-history")}
                           </a>
                         </div>
                         <div class="second">
-                          <button type="button" class="transparent_blue_lg">
+                          <button type="button" class="transparent_blue_lg" onClick={() => navigate("/patient/consultationrrecordsList")}>
                             {t("appointment-list.records")}
                           </button>
-                          <button type="button" class="blue_lg">
+                          <button type="button" class="blue_lg" onClick={()=> navigate(`/patient/consultationreport/${appointment?.id}`)}>
                             {t("appointment-list.consultation-report")}
                           </button>
                         </div>
                         <div class="third">
-                          <div class="clockCalenderPrts">
-                            <img src="/images/doctor-dashboard/dark-clock.svg" />
-                            <span>{appointment?.slot}</span>
-                          </div>
-                          <div class="clockCalenderPrts">
-                            <img src="/images/doctor-dashboard/dark-calender.svg" />
-                            <span>
-                              {getFormattedDate(appointment?.date)}
-                            </span>
-                          </div>
-                        </div>
+                              <div class="clockCalenderPrts dark-text w-100">
+                                <img src="/images/doctor-dashboard/dark-clock.svg" />
+                                <span>{appointment?.slot}</span>
+                              </div>
+                              <div class="clockCalenderPrts dark-text w-100">
+                                <img src="/images/doctor-dashboard/dark-calender.svg" />
+                                <span>{getFormattedDate(appointment?.date)}</span>
+                              </div>
+                            </div>
                       </div>
                     );
                   })

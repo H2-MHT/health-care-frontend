@@ -146,6 +146,7 @@ const DoctorPrescription = () => {
                           <div className="skillEdit">
                             <a
                               href="#"
+                              data-tooltip="Add/Edit Prescription"
                               onClick={(e) => {
                                 e.preventDefault();
                                 getPatientDetails(patientObject);
@@ -160,6 +161,7 @@ const DoctorPrescription = () => {
                           <div className="file col-3">
                             <a
                               href="#"
+                              data-tooltip="Download Prescription"
                               onClick={(e) => {
                                 e.preventDefault();
                                 handlePdfDownload(patientObject?.appointment_id);

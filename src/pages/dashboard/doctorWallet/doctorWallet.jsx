@@ -168,9 +168,9 @@ const DoctorWallet = () => {
                   </a>
                 </div>
                 <div class="sorting">
-                  <div class="sorting">
+                  {/* <div class="sorting">
                     <Select options={paymentSortBy} />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
