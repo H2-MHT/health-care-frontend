@@ -3,9 +3,11 @@ import Select from "../../../components/form/Select";
 import { showToast } from "../../../utils/toast";
 import { fetchDataAuth, postData } from "../../../hooks/services/services";
 import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 
-const SessionLengths = ({setConsultationDetails, ConsultationDetails}) => {
-  const {t} = useTranslation("session-length")
+const SessionLengths = ({ setConsultationDetails, ConsultationDetails }) => {
+  const { t } = useTranslation("session-length");
   const [formData, setFormData] = useState({
     planned_session: "",
     urgent_session: "",
@@ -75,7 +77,10 @@ const SessionLengths = ({setConsultationDetails, ConsultationDetails}) => {
             consultationData?.planned_session_length?.toString() || "",
           urgent_session_length:
             consultationData?.urgent_session_length?.toString() || "",
-          buffer_time: `${consultationData?.buffer_time.split(':')[1]}:${consultationData?.buffer_time.split(':')[2]}` || "",
+          buffer_time:
+            `${consultationData?.buffer_time.split(":")[1]}:${
+              consultationData?.buffer_time.split(":")[2]
+            }` || "",
           planned_fee: consultationData?.planned_fees || "",
           urgent_fee: consultationData?.urgent_fees || "",
         }));
@@ -168,7 +173,7 @@ const SessionLengths = ({setConsultationDetails, ConsultationDetails}) => {
       </div>
 
       {/* Second Session Selection */}
-      <div className="d-flex align-items-center gap-4 mt-3">
+      {/* <div className="d-flex align-items-center gap-4 mt-3">
         <div className="form-group w-50">
           <Select
             options={urgentSessionOptions}
@@ -212,7 +217,7 @@ const SessionLengths = ({setConsultationDetails, ConsultationDetails}) => {
             )}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Buffer Time */}
       <div className="d-flex gap-3 mt-4 align-items-center">
@@ -233,6 +238,10 @@ const SessionLengths = ({setConsultationDetails, ConsultationDetails}) => {
       <p className="mt-4">{t("session.consultation-fees")} :</p>
       <div className="d-flex gap-3 mt-3 align-items-center">
         <p className="mb-0">{t("appointment-manage.planned-consultation")}</p>
+        <i
+          class="fa-solid fa-circle-info"
+          title="If you want to update your hourly rate, please create a support ticket"
+        ></i>
         <div className="form-group w-auto">
           <input
             type="text"
@@ -241,13 +250,16 @@ const SessionLengths = ({setConsultationDetails, ConsultationDetails}) => {
             onChange={handleInputChange}
             value={formData.planned_fee}
             disabled={ConsultationDetails?.planned_fees}
-            className={ConsultationDetails?.planned_fees ?  "disabled-field" : ""}
+            className={
+              ConsultationDetails?.planned_fees ? "disabled-field" : ""
+            }
+            data-tooltip="View Patient"
           />
         </div>
         <p className="mb-0">per {formData.planned_session_length} min</p>
       </div>
 
-      <div className="d-flex gap-3 mt-3 align-items-center">
+      {/* <div className="d-flex gap-3 mt-3 align-items-center">
         <p className="mb-0">{t("appointment-manage.urgent-call")}</p>
         <div className="form-group w-auto">
           <input
@@ -262,7 +274,7 @@ const SessionLengths = ({setConsultationDetails, ConsultationDetails}) => {
           />
         </div>
         <p className="mb-0">per {formData.urgent_session_length} min</p>
-      </div>
+      </div> */}
 
       <button className="blue_btn" type="submit" onClick={handleSubmit}>
         {t("common.save")}

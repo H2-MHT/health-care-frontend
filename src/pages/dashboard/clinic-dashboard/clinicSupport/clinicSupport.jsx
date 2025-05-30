@@ -69,7 +69,6 @@ setViewItem(true)
   const handleModelOpen = (items) => {
     setAdminDataList(items);
   };
-
   return (
     <>
       <div class="rightContent rightsidefull">
@@ -117,7 +116,7 @@ setViewItem(true)
                             onClick={() => {
                               handleViewItem(items);
                             }}
-                            data-tooltip="Delete Patient"
+                            data-tooltip="View Document"
                           >
                              <img src="../images/eye.webp" width="30px"/>
                           </a>
@@ -127,7 +126,7 @@ setViewItem(true)
                             href="#"
                             className="tooltip2"
                             onClick={() => deleteAdmin(items)}
-                            data-tooltip="Delete Patient"
+                            data-tooltip="Delete "
                           >
                             <img src="/images/deleteBlack.webp" />
                           </a>
@@ -135,7 +134,7 @@ setViewItem(true)
                             href="#"
                             className="tooltip2"
                             onClick={() => handleModelOpen(items)}
-                            data-tooltip="Delete Patient"
+                            data-tooltip="Edit"
                           >
                             <img
                               src="../../images/edit-dark.svg"

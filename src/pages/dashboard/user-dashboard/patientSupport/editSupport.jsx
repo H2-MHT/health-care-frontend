@@ -6,7 +6,7 @@ import { patchFormData, updateData } from "../../../../hooks/services/services";
 import InputField from "../../../../components/form/InputField";
 import { showToast } from "../../../../utils/toast";
 import FileUpload from "../../../../components/form/FileUpload";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 const EditSupport = ({
   setEditDoctorModel,
   editDoctorModel,
@@ -17,6 +17,7 @@ const EditSupport = ({
     title: Yup.string().required("title is required"),
     description: Yup.string().required("Description is required"),
   });
+  const [previewImage, setPreviewImage] = useState(null);
 
   const {
     register,
@@ -36,6 +37,9 @@ const EditSupport = ({
         description: editSupportData?.description || "",
         attachment: editSupportData?.attachment || "",
       });
+        if (editSupportData.attachment) {
+        setPreviewImage(editSupportData.attachment); // must be a full URL
+      }
     }
   }, [editSupportData, reset]);
 
@@ -87,13 +91,13 @@ const EditSupport = ({
                   >
                     {/* File Input */}
 
-                    <div className="addFamilyProfile">
+                    {/* <div className="addFamilyProfile">
                       <FileUpload
                         name="attachment"
                         label="Upload Profile Picture"
                         control={control}
                       />
-                    </div>
+                    </div> */}
                     <div className="form-group">
                       <label>Title</label>
                       <InputField type="text" {...register("title")} />
@@ -106,6 +110,34 @@ const EditSupport = ({
                         {errors.description?.message}
                       </p>
                     </div>
+                    <div className="form-group">
+                      <label>Upload Your Document</label>
+                      <InputField
+                        type="file"
+                        {...register("attachment_file")}
+                         onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            setPreviewImage(URL.createObjectURL(file));
+                          }
+                        }}
+                      />
+                    </div>
+                     {previewImage && (
+                      <div className="form-group mt-3">
+                        <img
+                          src={previewImage}
+                          alt="Preview"
+                          style={{
+                            maxWidth: "200px",
+                            maxHeight: "200px",
+                            borderRadius: "10px",
+                            border: "1px solid #ccc",
+                            padding: "5px",
+                          }}
+                        />
+                      </div>
+                    )}
                     <div className="d-flex gap-2 justify-content-center mt-5 mb-5">
                       <button type="submit" className="blue_btn">
                         Save changes

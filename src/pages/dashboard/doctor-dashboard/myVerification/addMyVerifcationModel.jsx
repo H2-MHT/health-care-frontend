@@ -7,10 +7,9 @@ import { AddFormData } from "../../../../hooks/services/services";
 import InputField from "../../../../components/form/InputField";
 import { showToast } from "../../../../utils/toast";
 import FileUpload from "../../../../components/form/FileUpload";
-;
-
-function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData}) {
+function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData }) {
   // Validation Schema
+   const [previewImage, setPreviewImage] = useState(null);
   const schema = Yup.object().shape({
     date: Yup.string().required("date is required"),
     name: Yup.string().required("name is required"),
@@ -29,17 +28,19 @@ function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData}) {
     resolver: yupResolver(schema),
   });
 
-
-  
   const onSubmit = async (data) => {
-  
-  try {
+    try {
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("date", data.date);
       formData.append("description", data.description);
-      formData.append("attachment", data.attachment_file); // Append file correctly
-      const response = await AddFormData("doctors/licence-certificate/", formData);
+  if (data.attachment_file && data.attachment_file[0]) {
+        formData.append("attachment", data.attachment_file[0]);
+      } // Append file correctly
+      const response = await AddFormData(
+        "doctors/licence-certificate/",
+        formData
+      );
       if (response?.status === 201) {
         let responseData = await response.json();
         showToast(responseData?.msg, "success");
@@ -51,10 +52,6 @@ function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData}) {
       showToast(error.message, "error");
     }
   };
-
-
-
-  
 
   return (
     <>
@@ -71,10 +68,13 @@ function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData}) {
             <div className="modal-body">
               <div className="row">
                 <div className="col-md-12">
-                  <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    encType="multipart/form-data"
+                  >
                     {/* File Input */}
-                    
-                    <div
+
+                    {/* <div
                     className="addFamilyProfile"
                   >
                     <FileUpload
@@ -82,8 +82,8 @@ function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData}) {
                         label="Upload Profile Picture"
                         control={control}
                     />
-                  </div>
-                  <div className="form-group">
+                  </div> */}
+                    <div className="form-group">
                       <label>Name</label>
                       <InputField type="text" {...register("name")} />
                       <p className="text-danger">{errors.name?.message}</p>
@@ -99,13 +99,50 @@ function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData}) {
                     <div className="form-group">
                       <label>Description</label>
                       <InputField type="text" {...register("description")} />
-                      <p className="text-danger">{errors.description?.message}</p>
+                      <p className="text-danger">
+                        {errors.description?.message}
+                      </p>
                     </div>
-
+                    <div className="form-group">
+                      <label>Upload Your Document</label>
+                      <InputField
+                        type="file"
+                        {...register("attachment_file")}
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            setPreviewImage(URL.createObjectURL(file));
+                          }
+                        }}
+                      />
+                    </div>
+                       {previewImage && (
+                      <div className="form-group mt-3">
+                        <img
+                          src={previewImage}
+                          alt="Preview"
+                          style={{
+                            maxWidth: "200px",
+                            maxHeight: "200px",
+                            borderRadius: "10px",
+                            border: "1px solid #ccc",
+                            padding: "5px",
+                          }}
+                        />
+                      </div>
+                    )}
                     {/* Submit Buttons */}
                     <div className="d-flex gap-2 justify-content-center mt-5 mb-5">
-                      <button type="submit" className="blue_btn">Save changes</button>
-                      <button type="button" className="transparent_btn" onClick={() => setOpenModel(false)}>Cancel</button>
+                      <button type="submit" className="blue_btn">
+                        Save changes
+                      </button>
+                      <button
+                        type="button"
+                        className="transparent_btn"
+                        onClick={() => setOpenModel(false)}
+                      >
+                        Cancel
+                      </button>
                     </div>
                   </form>
                 </div>
@@ -119,11 +156,3 @@ function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData}) {
 }
 
 export default AddMyVerifcationModel;
-
-
-
-
-
-
-
-
