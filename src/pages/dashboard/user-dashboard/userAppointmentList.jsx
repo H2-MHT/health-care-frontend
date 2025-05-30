@@ -581,7 +581,7 @@ const UserAppointmentList = () => {
                             {t("appointment-manage.planned-consultation")}
                           </label>
                         </div>
-                        <div className="radiotype d-flex align-items-center gap-2">
+                        {/* <div className="radiotype d-flex align-items-center gap-2">
                           <InputField
                             type="radio"
                             name="appointmentType"
@@ -592,7 +592,7 @@ const UserAppointmentList = () => {
                           <label className="mb-0">
                             {t("appointment-manage.urgent-call")}
                           </label>
-                        </div>
+                        </div> */}
                       </div>
                       <div className="timeScroll">
                         {availableSlots?.length > 0 ? (

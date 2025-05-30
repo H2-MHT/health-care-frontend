@@ -179,7 +179,7 @@ const AppointmentManage = ({ConsultationDetails}) => {
               {t("appointment-manage.planned-consultation")}
             </label>
           </div>
-          <div className="radiotype d-flex align-items-center gap-2">
+          {/* <div className="radiotype d-flex align-items-center gap-2">
             <InputField
               type="radio"
               name="appointmentType"
@@ -190,7 +190,7 @@ const AppointmentManage = ({ConsultationDetails}) => {
             <label className="mb-0">
               {t("appointment-manage.urgent-call")}
             </label>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="d-flex gap-2 mt-3">

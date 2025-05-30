@@ -6,8 +6,10 @@ import { AddFormData } from "../../../../hooks/services/services";
 import InputField from "../../../../components/form/InputField";
 import { showToast } from "../../../../utils/toast";
 import FileUpload from "../../../../components/form/FileUpload";
+import { useState } from "react";
 const AddSupport = ({ addDoctorModel, setAddDoctorModel,fetchadminList }) => {
   // Validation Schema
+  const [previewImage, setPreviewImage] = useState(null);
   const schema = Yup.object().shape({
     title: Yup.string().required("title is required"),
     description: Yup.string().required("Description is required"),
@@ -30,7 +32,9 @@ const AddSupport = ({ addDoctorModel, setAddDoctorModel,fetchadminList }) => {
       const formData = new FormData();
       formData.append("title", data.title);
       formData.append("description", data.description);
-      formData.append("attachment", data.attachment_file); // Append file correctly
+       if (data.attachment_file && data.attachment_file[0]) {
+        formData.append("attachment", data.attachment_file[0]);
+      }
       const response = await AddFormData("user/support/", formData);
       if (response?.status === 201) {
         let responseData = await response.json();
@@ -63,15 +67,6 @@ const AddSupport = ({ addDoctorModel, setAddDoctorModel,fetchadminList }) => {
                     onSubmit={handleSubmit(onSubmit)}
                     encType="multipart/form-data"
                   >
-                    {/* File Input */}
-
-                    <div className="addFamilyProfile">
-                      <FileUpload
-                        name="attachment_file"
-                        label="Upload Profile Picture"
-                        control={control}
-                      />
-                    </div>
                     <div className="form-group">
                       <label>Title</label>
                       <InputField type="text" {...register("title")} />
@@ -84,6 +79,30 @@ const AddSupport = ({ addDoctorModel, setAddDoctorModel,fetchadminList }) => {
                         {errors.description?.message}
                       </p>
                     </div>
+                      <div className="form-group">
+                      <label>Upload Your Document</label>
+                      <InputField type="file" {...register("attachment_file")} onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            setPreviewImage(URL.createObjectURL(file));
+                          }
+                        }}/>
+                    </div>
+                     {previewImage && (
+                      <div className="form-group mt-3">
+                        <img
+                          src={previewImage}
+                          alt="Preview"
+                          style={{
+                            maxWidth: "200px",
+                            maxHeight: "200px",
+                            borderRadius: "10px",
+                            border: "1px solid #ccc",
+                            padding: "5px",
+                          }}
+                        />
+                      </div>
+                    )}
                     <div className="d-flex gap-2 justify-content-center mt-5 mb-5">
                       <button type="submit" className="blue_btn">
                         Save changes

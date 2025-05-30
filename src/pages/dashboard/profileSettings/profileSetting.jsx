@@ -148,7 +148,7 @@ const ProfileSetting = () => {
                     <div class="d-flex gap-3 justify-content-center mt-4">
                       <button
                         type="button"
-                        class="blue_btn"
+                        class="delete_button"
                         onClick={accountDelete}
                       >
                         {t("log-out.delete-account")}
@@ -162,12 +162,8 @@ const ProfileSetting = () => {
                       </button>
                     </div>
 
-                    <div class="text-center mt-4">
-                      <p> {t("log-out.deactivation-consequences-title")}</p>
-                      <p>{t("log-out.deactivation-consequences1")}</p>
-                      <p>{t("log-out.deactivation-consequences2")}</p>
-                      <p>{t("log-out.deactivation-consequences3")}</p>
-                      <p>{t("log-out.restore-access-instructions")}</p>
+                    <div class="text-center mt-3 text-[12px] ">
+                      <p> {t("log-out.deactivation-consequences-title")} {t("log-out.deactivation-consequences1")} {t("log-out.deactivation-consequences2")} {t("log-out.deactivation-consequences3")} {t("log-out.restore-access-instructions")}</p>
                     </div>
                   </div>
                 </div>

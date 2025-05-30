@@ -279,7 +279,7 @@ const DoctorWallet = () => {
                   </div>
                   <button
                     type="button"
-                    onClick={() => setModelOpenPop(true)}
+                    // onClick={() => setModelOpenPop(true)}
                     class="border-0 bg-none"
                   >
                     <div class="get-payed-card bg-white">
@@ -350,6 +350,7 @@ const DoctorWallet = () => {
                           type="radio"
                           name="flexRadioDefault"
                           id="flexRadioDefault1"
+                          onClick={() => setModelOpenPop(true)}
                         />
                         <label
                           class="form-check-label radio-text"
