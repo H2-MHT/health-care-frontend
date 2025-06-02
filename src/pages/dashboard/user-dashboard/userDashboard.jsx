@@ -72,26 +72,6 @@ const UserDashboard = () => {
     : 0;
   const formattedWater = water ? (water / 1000).toFixed(2) + "L" : "0L";
 
-    useEffect(() => {
-      const handleMessage = (event) => {
-                console.log(">>>>>>>>>>>>>>jjjjjjjjjjjjj")
-  
-        if (event.data?.type === "fitbit-login-success") {
-          console.log(">>>>>>>>>>>>>>jjjjjjjjjjjjj")
-          const { access_token, refresh_token, user_id } = event.data.payload;
-  
-          localStorage.setItem("access_token1", access_token);
-          localStorage.setItem("refresh_token1", refresh_token);
-          localStorage.setItem("user_id1", user_id);
-  
-          console.log("✅ Fitbit login successful. Tokens saved.");
-        }
-      };
-  
-      window.addEventListener("message", handleMessage);
-      return () => window.removeEventListener("message", handleMessage);
-    }, []);
-
   // Master function
   const fetchAllFitbitData = async (date) => {
     setIsLoading(true);
