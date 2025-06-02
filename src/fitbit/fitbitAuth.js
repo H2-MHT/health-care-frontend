@@ -1,6 +1,7 @@
 import { API_URL } from "../hooks/services/apiUrl";
 import { generateCodeVerifier, generateCodeChallenge } from "./pkceUtils";
-const CLIENT_ID = "23QB7R";
+//const CLIENT_ID = "23QB7R";
+const CLIENT_ID = "23QJ39"
 const REDIRECT_URI = "https://h2.doctor/callback";
 const SCOPES = "activity heartrate sleep weight profile nutrition";
 const TOKEN_URL = "https://api.fitbit.com/oauth2/token";
@@ -17,6 +18,7 @@ export async function redirectToFitbitAuth() {
 //   }, 10000);
 }
 export async function exchangeCodeForTokens(code) {
+    console.log(">>>>>>>>>>>>>>>>>code", code)
     const codeVerifier = localStorage.getItem("code_verifier");
     const data = new URLSearchParams({
         client_id: CLIENT_ID,
@@ -32,6 +34,8 @@ export async function exchangeCodeForTokens(code) {
             body: data
         });
         const result = await response.json();
+            console.log(">>>>>>>>>>>>>>>>>result", result)
+
         if (result.access_token) {
             if (result.access_token) {
                 console.log("Fitbit Access Token received:", result.access_token);  // Debug log
