@@ -10,6 +10,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Image from "../../components/form/Image";
 import { postData } from "../../hooks/services/services";
 import LoadingButton from "../../components/ui/loader/LoadingButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function ResetPassword() {
   const navigate = useNavigate();
@@ -18,6 +20,8 @@ function ResetPassword() {
   const email = queryParams.get("email"); // Get 'email' query parameter
 
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
   const schema = Yup.object().shape({
     newPassword: Yup.string()
@@ -83,24 +87,51 @@ function ResetPassword() {
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div class="row g-4">
                       <div class="col-md-12">
-                        <div class="form-group">
+                        <div
+                          class="form-group"
+                          style={{ position: "relative" }}
+                        >
                           <label>Create New Paasword</label>
                           <InputField
-                            type="password"
+                            type={showPasswordConfirm ? "text" : "password"}
                             name="newPassword"
                             register={register}
                             error={errors?.newPassword?.message}
                           />
+                          <FontAwesomeIcon
+                            icon={showPasswordConfirm ? faEyeSlash : faEye}
+                            onClick={() => setShowPasswordConfirm((prev) => !prev)}
+                            style={{
+                              position: "absolute",
+                              top: "45px",
+                              right: "10px",
+                              cursor: "pointer",
+                              color: "#888",
+                              fontSize: "18px",
+                            }}
+                          />
                         </div>
                       </div>
                       <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group" style={{ position: "relative" }}>
                           <label>Confirm New Password</label>
                           <InputField
-                            type="password"
+                           type={showPassword ? "text" : "password"}
                             name="confirmPassword"
                             register={register}
                             error={errors?.confirmPassword?.message}
+                          />
+                          <FontAwesomeIcon
+                            icon={showPassword ? faEyeSlash : faEye}
+                            onClick={() => setShowPassword((prev) => !prev)}
+                            style={{
+                              position: "absolute",
+                              top: "45px",
+                              right: "10px",
+                              cursor: "pointer",
+                              color: "#888",
+                              fontSize: "18px",
+                            }}
                           />
                         </div>
                       </div>

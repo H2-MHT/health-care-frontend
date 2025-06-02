@@ -205,6 +205,28 @@ li {
   padding: 10px 30px;
 }
 
+.delete_button {
+  background: #d3d3d3;               /* Light grey background */
+  color: #333;                       /* Dark grey text for accessibility */
+  font-size: 12px;                   /* Smaller font */
+  font-weight: 400;                  /* Lighter weight to deemphasize */
+  border-radius: 20px;
+  height: 36px;
+  padding: 8px 24px;
+  border: 1px solid #bbb;           /* Softer border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.delete_button:hover {
+  background: #c0c0c0;
+}
+
+
 .blue_btn:hover {
   background: #fff;
   color: #00bbd3;

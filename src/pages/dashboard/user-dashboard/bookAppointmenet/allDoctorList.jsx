@@ -223,20 +223,24 @@ const AllDoctorList = () => {
 
                               <div className="drRdetail">
                                 <div className="top">
+                                  {item?.professional_stat}
+                                     <span className="main-blue-text">
+                                      {item?.expertise}
+                                    </span> 
+                                </div>
+                                <div className="top">
                                   <div className="verified">
                                     <img
                                       src="../images/batch.svg"
                                       alt="batch"
                                     />
-                                    {t("all-doctor-list.generalist")}
-                                    <span className="main-blue-text">
-                                      {item?.expertise}
-                                    </span>
-                                  </div>
-                                </div>
-                                <div className="recondName">
+                                    <div className="recondName">
                                   Dr. {item?.first_name} {item?.last_name}
                                 </div>
+                                  
+                                  </div>
+                                </div>
+                                
                                 <div className="clinicLoca d-flex align-items-center gap-2">
                                   <img
                                     src="../images/mappin.svg"
@@ -276,17 +280,17 @@ const AllDoctorList = () => {
                         </div>
                         <p>{item?.bio}</p>
                         <div className="doclistBtn2 d-flex justify-content-end gap-3">
-                          <span className="transparent_btn">
+                          {/* <span className="transparent_btn">
                             Urgent hourly rate : &nbsp;{" "}
                             <span className="fw-bold">
                               {" "}
                               {item?.urgent_hourly_rate}{" "}
                             </span>
-                          </span>
+                          </span> */}
                           <span className="transparent_btn">
                             Planned hourly rate : &nbsp;{" "}
                             <span className="fw-bold">
-                              {item?.planned_hourly_rate}
+                              {item?.planned_hourly_rate||"00"}
                             </span>
                           </span>
                           <Link
@@ -304,9 +308,9 @@ const AllDoctorList = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="viewFullSchdl">
+                      {/* <div className="viewFullSchdl">
                         {t("all-doctor-list.view-full-schedules")}
-                      </div>
+                      </div> */}
                     </div>
                   );
                 })

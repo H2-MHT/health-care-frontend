@@ -12,21 +12,49 @@ import Select from "../../../components/form/Select";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-const AppointmentManage = ({ConsultationDetails}) => {
-  const{t} = useTranslation("appointment-manage")
+const AppointmentManage = ({ ConsultationDetails }) => {
+  const { t } = useTranslation("appointment-manage");
   const navigate = useNavigate();
   const profileData = useSelector((state) => state?.userProfile?.userProfile);
   const dashboardData = useSelector(
     (state) => state?.doctorDashboard?.dashboard
   );
+  const documentVerification = useSelector(
+    (state) => state?.documentVerification?.documentVerification
+  );
 
-  const [getAppointmentData, setgetAppointmentData] = useState([]);
+  const [getAppointmentData, setGetAppointmentData] = useState([]);
   const [formData, setFormData] = useState({
     appointmentType: "Urgent",
     days: "",
     startTime: "",
     endTime: "",
   });
+  const [profileStatus, setProfileStatus] = useState("Rejected");
+
+  useEffect(() => {
+    // Determine profile status based on documentVerification
+    if (Array.isArray(documentVerification) && documentVerification.length) {
+      const determineStatus = () => {
+        if (documentVerification.some((doc) => doc.status === "Rejected")) {
+          setProfileStatus("Rejected");
+        } else if (
+          documentVerification.some((doc) => doc.status === "Pending")
+        ) {
+          setProfileStatus("Pending");
+        } else if (
+          documentVerification.every((doc) => doc.status === "Verified")
+        ) {
+          setProfileStatus("Verified");
+        } else {
+          setProfileStatus("Rejected"); // Default to Rejected if no clear status
+        }
+      };
+      determineStatus();
+    } else {
+      setProfileStatus("Rejected"); // Default if documentVerification is empty or undefined
+    }
+  }, [documentVerification]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,26 +82,26 @@ const AppointmentManage = ({ConsultationDetails}) => {
         throw new Error("Failed to fetch data from the server.");
       }
       const data = await response.json();
-      setgetAppointmentData(data);
+      setGetAppointmentData(data);
     } catch (error) {
       console.error(error.message);
+      showToast("Failed to fetch appointment data", "error");
     }
   };
 
   const accountDelete = useCallback(async (data, event) => {
     event.preventDefault();
     try {
-      const response = await deleteData(`doctors/delete-appointment/?appointment_id=${data?.id}`);
+      const response = await deleteData(
+        `doctors/delete-appointment/?appointment_id=${data?.id}`
+      );
       if (response?.status === 200 || response?.status === 204) {
         showToast("Preference successfully deleted", "success");
-
-        // Update state properly
-        setgetAppointmentData((prevData) => ({
-          ...prevData,
-          data: prevData?.data?.filter((item) => item?.id !== data?.id) || [],
-        }));
-
-        // Re-fetch updated data from API
+        setGetAppointmentData((prevData) =>
+          Array.isArray(prevData)
+            ? prevData.filter((item) => item?.id !== data?.id)
+            : []
+        );
         await getAllAppointmentData();
       } else {
         showToast("Failed to delete preference", "error");
@@ -90,42 +118,44 @@ const AppointmentManage = ({ConsultationDetails}) => {
 
     for (let slot of allSlots) {
       if (slot.days === newSlot.days) {
-        // Check only for the same day
         const slotStart = new Date(`1970-01-01T${slot.start_time}`);
         const slotEnd = new Date(`1970-01-01T${slot.end_time}`);
-
-        // Check if new slot overlaps with existing slot
         if (
-          (newStart >= slotStart && newStart < slotEnd) || // Start in range
-          (newEnd > slotStart && newEnd <= slotEnd) || // End in range
+          (newStart >= slotStart && newStart < slotEnd) ||
+          (newEnd > slotStart && newEnd <= slotEnd) ||
           (newStart <= slotStart && newEnd >= slotEnd)
         ) {
-          // Completely covers existing slot
           throw new Error(
             `Slot overlaps with an existing slot on ${slot.days} (${slot.start_time} - ${slot.end_time})`
           );
         }
       }
     }
-
     return "Slot can be added";
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent form submission behavior
+    event.preventDefault();
     if (
       !formData.appointmentType ||
       !formData.days ||
       !formData.startTime ||
       !formData.endTime
     ) {
+      showToast("Please fill all fields", "error");
       return;
     }
 
-    if (formData.endTime < formData.startTime) {
-      showToast("End time should be greater than to start time", "error");
+    if (formData.endTime <= formData.startTime) {
+      showToast("End time must be greater than start time", "error");
       return;
     }
+
+    if (profileStatus !== "Verified") {
+      showToast("Profile must be verified to add appointments", "error");
+      return;
+    }
+
     const payload = {
       appointment_type: formData?.appointmentType,
       days: formData?.days,
@@ -138,7 +168,7 @@ const AppointmentManage = ({ConsultationDetails}) => {
     try {
       isSlotOverlapping(getAppointmentData, payload);
     } catch (error) {
-      showToast("Slot already exist in between this time range", "error");
+      showToast("Slot already exists in this time range", "error");
       return;
     }
 
@@ -149,13 +179,15 @@ const AppointmentManage = ({ConsultationDetails}) => {
       );
       if (response?.status === 201) {
         showToast("Appointment preference successfully added", "success");
-        await getAllAppointmentData(); // Refresh data after successful post
+        await getAllAppointmentData();
         setFormData({
           appointmentType: "Urgent",
           days: "",
           startTime: "",
           endTime: "",
         });
+      } else {
+        showToast("Failed to add appointment preference", "error");
       }
     } catch (error) {
       showToast(error.message, "error");
@@ -179,7 +211,7 @@ const AppointmentManage = ({ConsultationDetails}) => {
               {t("appointment-manage.planned-consultation")}
             </label>
           </div>
-          <div className="radiotype d-flex align-items-center gap-2">
+          {/* <div className="radiotype d-flex align-items-center gap-2">
             <InputField
               type="radio"
               name="appointmentType"
@@ -190,7 +222,7 @@ const AppointmentManage = ({ConsultationDetails}) => {
             <label className="mb-0">
               {t("appointment-manage.urgent-call")}
             </label>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="d-flex gap-2 mt-3">
@@ -222,19 +254,27 @@ const AppointmentManage = ({ConsultationDetails}) => {
           />
         </div>
         <button
-          className={`addingBtn height-57${
-            !ConsultationDetails ? "disabled-add-btn" : ""
+          className={`addingBtn height-57 ${
+            !ConsultationDetails || profileStatus !== "Verified"
+              ? "disabled-add-btn"
+              : ""
           }`}
-          title={`${!ConsultationDetails ? "Please choose session first" : ""}`}
+          title={
+            !ConsultationDetails
+              ? "Please choose session first"
+              : profileStatus !== "Verified"
+              ? "Profile not verified"
+              : ""
+          }
           type="submit"
           onClick={handleSubmit}
-          disabled={!ConsultationDetails}
+          disabled={!ConsultationDetails || profileStatus !== "Verified"}
         >
           {t("appointment-manage.add")}
         </button>
       </div>
       <div className="fixedTimingBox">
-        {getAppointmentData?.length > 0 &&
+        {Array.isArray(getAppointmentData) && getAppointmentData?.length > 0 ? (
           getAppointmentData?.map((item) => (
             <div key={item?.id} className="fixedTiming">
               <p>{item?.appointment_type}</p>
@@ -246,7 +286,10 @@ const AppointmentManage = ({ConsultationDetails}) => {
                 X
               </a>
             </div>
-          ))}
+          ))
+        ) : (
+          <p>No Appointments</p>
+        )}
       </div>
     </div>
   );
