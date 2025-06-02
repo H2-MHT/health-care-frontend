@@ -62,7 +62,7 @@ export const Header = () => {
   console.log(currentLang, ">>>currentLang");
 
   useEffect(() => {
-    if (documentVerification.length) {
+    if (documentVerification?.length) {
       const determineStatus = () => {
         if (documentVerification.some((doc) => doc.status === "Rejected")) {
           setProfileStatus("Rejected");
