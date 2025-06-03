@@ -251,7 +251,7 @@ useEffect(() => {
                   fill="white"
                 />
               </svg>
-              <span> Support</span>
+              <span>{t("support.support")}</span>
             </Link>
           </li>
         </ul>

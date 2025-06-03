@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { fetchData } from "../../../../hooks/services/services";
 import { useSSR } from "react-i18next";
 import { getFormattedDate } from "../../../../utils/common";
+import { useTranslation } from "react-i18next";
 
 function ConsultationRecordsList() {
+  const { t } = useTranslation();
   const [patientList, setPatientList] = useState();
   const [activeTab, setActiveTab] = useState("records");
   const navigate = useNavigate();
@@ -44,10 +46,10 @@ function ConsultationRecordsList() {
         <div class="drAppointmentReport">
           <div class="tabPrt">
             <a class="bg-darkgreen" onClick={() => setActiveTab("records")}>
-              Records
+              {t("appointment-list.records")}
             </a>
             <a class="bg-blue" onClick={() => setActiveTab("reports")}>
-              Reports
+              {t("support.reports")}
             </a>
           </div>
           <div class="drAppointmentReportInner">
@@ -108,68 +110,6 @@ function ConsultationRecordsList() {
                 </div>
               </div>
             </div>
-            {/* <div class="right bg-black-transparent padding-20">
-              <div class="videoPart">
-                <img src="../images/video-img.svg" class="img-fluid w-100" />
-              </div>
-
-              <div class="videoProfileName">
-                <div class="flex-profile">
-                  <img src="../images/profile-sample.png" class="img-fluid" />
-                  Jenny Leibovitz
-                </div>
-                <p>
-                  Thu, Sept 12, 2020 <span>12:30 pm - 13:12 pm</span>
-                </p>
-              </div>
-
-              <div class="thumbmnailBox">
-                <div class="thumbnailpart">
-                  <div class="videothumb">
-                    <img src="../images/thumb.svg" class="img-fluid w-100" />
-                  </div>
-                  <h5>
-                    Main tag <span>short resume</span>
-                  </h5>
-                  <a href="#">
-                    <img src="../images/videoicon.svg" />
-                  </a>
-                </div>
-                <div class="thumbnailpart">
-                  <div class="videothumb">
-                    <img src="../images/thumb.svg" class="img-fluid w-100" />
-                  </div>
-                  <h5>
-                    Main tag <span>short resume</span>
-                  </h5>
-                  <a href="#">
-                    <img src="../images/videoicon.svg" />
-                  </a>
-                </div>
-                <div class="thumbnailpart">
-                  <div class="videothumb">
-                    <img src="../images/thumb.svg" class="img-fluid w-100" />
-                  </div>
-                  <h5>
-                    Main tag <span>short resume</span>
-                  </h5>
-                  <a href="#">
-                    <img src="../images/videoicon.svg" />
-                  </a>
-                </div>
-                <div class="thumbnailpart">
-                  <div class="videothumb">
-                    <img src="../images/thumb.svg" class="img-fluid w-100" />
-                  </div>
-                  <h5>
-                    Main tag <span>short resume</span>
-                  </h5>
-                  <a href="#">
-                    <img src="../images/videoicon.svg" />
-                  </a>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

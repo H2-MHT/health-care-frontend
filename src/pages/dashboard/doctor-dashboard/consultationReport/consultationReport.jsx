@@ -4,10 +4,12 @@ import { fetchDataAuth, updateData } from "../../../../hooks/services/services";
 import { showToast } from "../../../../utils/toast";
 import CommonModal from "../../../../components/form/Modal";
 import { getFormattedDate } from "../../../../utils/common";
+import { useTranslation } from "react-i18next";
 
 function ConsultationReport() {
   const { id } = useParams();
   const navigate = useNavigate();
+    const { t } = useTranslation();
   const [consultationData, setConsultationData] = useState();
   const [recommendation, setRecommendation] = useState();
   const [consultation, setConsultation] = useState();
@@ -43,7 +45,7 @@ function ConsultationReport() {
     return (
       <>
         <div>
-          <label>Consultation Report</label>
+          <label> {t("appointment-list.consultation-report")}</label>
           <input
             type="text"
             value={consultation}
@@ -52,7 +54,7 @@ function ConsultationReport() {
           />
         </div>
         <div className="mt-3">
-          <label>Recommendation</label>
+          <label> {t("support.recommendation")}</label>
           <input
             type="text"
             value={recommendation}
@@ -102,9 +104,9 @@ function ConsultationReport() {
         <div class="drAppointmentReport">
           <div class="tabPrt">
             <Link class="bg-darkgreen" to="/doctor/consultation-recordslist">
-              Records
+               {t("appointment-list.records")}
             </Link>
-            <Link class="bg-blue">Reports</Link>
+            <Link class="bg-blue">{t("support.reports")}</Link>
           </div>
           <div class="drAppointmentReportInner">
             <div class="left bg-white-transparent padding-20">
@@ -113,7 +115,7 @@ function ConsultationReport() {
                   <img src="/images/checkSeal.svg" />
                 </div>
                 <h6>
-                  Consultation report{" "}
+                 {t("appointment-list.consultation-report")}{" "}
                   <span onClick={() => setOpenModal(true)}>
                     <img src="/images/edit-dark.svg" />
                   </span>
@@ -122,14 +124,14 @@ function ConsultationReport() {
               </div>
 
               <div class="treatmentPlan border-radius-20 border-gray padding-20">
-                <h6>Preinscriptions & treatment plan</h6>
+                <h6>{t("appointment-list.treatment-plan")}</h6>
                 {consultationData?.prescription ? (
                   <div class="treatmentPlanDeatil border-radius-20 border-gray">
                     <div>
-                      Dr. {consultationData?.prescription?.doctor?.name}
+                     {t("support.dr")}  {consultationData?.prescription?.doctor?.name}
                     </div>
                     <div>
-                      for: {consultationData?.prescription?.patient?.name}
+                    {t("support.for")}  {consultationData?.prescription?.patient?.name}
                     </div>
                     <div class="clockCalenderPrt dark-tex">
                       <img src="/images/doctor-dashboard/dark-clock.svg" />
@@ -169,7 +171,7 @@ function ConsultationReport() {
 
               <div class="reportContent border-radius-20 border-gray padding-20">
                 <h6>
-                  Reccomendations
+                  {t("user-dashboard.reccomendations")}
                   <span onClick={() => setOpenModal(true)}>
                     <img src="/images/edit-dark.svg" />
                   </span>

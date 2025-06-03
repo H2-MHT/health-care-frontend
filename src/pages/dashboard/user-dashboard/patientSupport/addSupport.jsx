@@ -5,11 +5,12 @@ import { useForm } from "react-hook-form";
 import { AddFormData } from "../../../../hooks/services/services";
 import InputField from "../../../../components/form/InputField";
 import { showToast } from "../../../../utils/toast";
-import FileUpload from "../../../../components/form/FileUpload";
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 const AddSupport = ({ addDoctorModel, setAddDoctorModel,fetchadminList }) => {
   // Validation Schema
   const [previewImage, setPreviewImage] = useState(null);
+   const { t } = useTranslation();
   const schema = Yup.object().shape({
     title: Yup.string().required("title is required"),
     description: Yup.string().required("Description is required"),
@@ -68,19 +69,19 @@ const AddSupport = ({ addDoctorModel, setAddDoctorModel,fetchadminList }) => {
                     encType="multipart/form-data"
                   >
                     <div className="form-group">
-                      <label>Title</label>
+                      <label>{t("support.support-title")}</label>
                       <InputField type="text" {...register("title")} />
                       <p className="text-danger">{errors.title?.message}</p>
                     </div>
                     <div className="form-group">
-                      <label>Description</label>
+                      <label>{t("add-education.description")}</label>
                       <InputField type="text" {...register("description")} />
                       <p className="text-danger">
                         {errors.description?.message}
                       </p>
                     </div>
                       <div className="form-group">
-                      <label>Upload Your Document</label>
+                      <label>t{t("support.your-document")}</label>
                       <InputField type="file" {...register("attachment_file")} onChange={(e) => {
                           const file = e.target.files[0];
                           if (file) {
@@ -105,14 +106,14 @@ const AddSupport = ({ addDoctorModel, setAddDoctorModel,fetchadminList }) => {
                     )}
                     <div className="d-flex gap-2 justify-content-center mt-5 mb-5">
                       <button type="submit" className="blue_btn">
-                        Save changes
+                      {t("common.save-changes")}
                       </button>
                       <button
                         type="button"
                         className="transparent_btn"
                         onClick={() => setAddDoctorModel(false)}
                       >
-                        Cancel
+                       {t("common.cancel")}
                       </button>
                     </div>
                   </form>

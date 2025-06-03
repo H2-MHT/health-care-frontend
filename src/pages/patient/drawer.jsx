@@ -477,7 +477,7 @@ export const PatientDrawer = () => {
                     navigate("/patient/support");
                   }}
                 >
-                  Support
+                 {t("support.support")}
                 </span>
               </Link>
             </li>
@@ -572,7 +572,7 @@ export const PatientDrawer = () => {
                   <div class="row g-4">
                     <div class="col-md-12">
                       <div class="form-group text-center">
-                        <h3>Are you sure you want to become a Doctor?</h3>
+                        <h3>{t("support.profile-change")}</h3>
                       </div>
                     </div>
                     <div class="gap-2 justify-content-center d-flex w-auto mx-auto">
@@ -581,14 +581,14 @@ export const PatientDrawer = () => {
                         class="blue_btn"
                         onClick={handleSubmit}
                       >
-                        Yes
+                         {t("superadmin.yes")}
                       </button>
                       <button
                         type="button"
                         class="blue_btn"
                         onClick={() => setModelOpen(false)}
                       >
-                        No
+                         {t("superadmin.no")}
                       </button>
                     </div>
                   </div>

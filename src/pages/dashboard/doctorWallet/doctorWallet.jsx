@@ -308,7 +308,7 @@ const DoctorWallet = () => {
                 </div>
               </div>
               <div class="refferalCode">
-                        <p>Your Stripe Link</p>{" "}
+                        <p>{t("support.stripe-link")}</p>{" "}
                         <InputField
                           type="text"
                           placeholder="Stripe Link"
@@ -331,7 +331,7 @@ const DoctorWallet = () => {
                         </a>{" "}
                         {copied.personal && (
                           <span style={{ color: "green", marginLeft: "10px" }}>
-                            Copied!
+                           {t("support.copied")}
                           </span>
                         )}
                       </div>
