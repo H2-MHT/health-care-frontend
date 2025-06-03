@@ -13,7 +13,7 @@ import { fetchData } from "../../../hooks/services/services";
 import MeetVideoCall from "../doctorChat/MeetVideoCall";
 import { Modal } from "react-bootstrap";
 import CommonModal from "../../../components/form/Modal";
-import { API_URL } from "../../../hooks/services/apiUrl";
+import { API_URL, LIVE_URL } from "../../../hooks/services/apiUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
@@ -73,7 +73,7 @@ function CalendarView() {
     } else {
       url = "patient/calendar-view/";
     }
-    const meetingUrl = `${API_URL}/${url}?${
+    const meetingUrl = `${LIVE_URL}/${url}?${
       selectedAppointment?.meeting_link?.split("?")[1]
     }`;
     return meetingUrl;
