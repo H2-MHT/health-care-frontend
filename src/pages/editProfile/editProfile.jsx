@@ -382,7 +382,7 @@ const EditProfile = () => {
         const sp = Speciality?.find(
           (c) => c.value == updatedFields.professional_stat
         );
-        if (!sp) {
+        if (updatedFields.professional_stat && sp == undefined) {
           addSpeclization(updatedFields.professional_stat);
         }
       }
