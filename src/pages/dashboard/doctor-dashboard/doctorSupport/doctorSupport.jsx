@@ -93,10 +93,10 @@ setViewItem(true)
           <table className="doctoradmintable">
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>{t("superadmin.action")}</th>
+                <th>{t("support.support-title")}</th>
+                <th>{t("add-education.description")}</th>
+                <th> {t("wallet.status")}</th>
+                <th>{t("support.action")}</th>
               </tr>
             </thead>
             <tbody>
@@ -154,7 +154,7 @@ setViewItem(true)
               {adminList?.length === 0 && (
                 <tr>
                   <td colSpan="6" className="text-center text-muted py-4">
-                    <span>No adimn available</span>
+                    <span>{t("support.admin-support")}</span>
                   </td>
                 </tr>
               )}

@@ -601,5 +601,25 @@
     "select-specialization" : "Select specialization",
     "created-date" : "Created Date"
 
+  },
+   "support":{
+"support-title":"Title",
+"action":"Action",
+"admin-support":"No admin support available",
+"your-document":"Upload Your Document",
+"support":"Support",
+"profile-changeVerified":"Are you sure you want to become a Doctor?",
+"document-verification":"My Document Verification",
+"view":"View",
+"pending":"Pending",
+"verified":"Verified",
+"rejected":"Rejected",
+"stripe-link":"Your Stripe Link",
+"copied":"Copied!",
+"reports":"Reports",
+"recommendation":"Recommendation",
+"treatment-plan":"Preinscriptions & treatment plan",
+"dr":"Dr.",
+"for":" for: "
   }
 }
