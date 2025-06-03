@@ -432,8 +432,7 @@ export const Drawer = () => {
                     navigate("/doctor/support");
                   }}
                 >
-                  Support
-                  {/* {t("drawer.settings")} */}
+                  {t("support.support")}
                 </span>
               </Link>
             </li>
@@ -526,7 +525,7 @@ export const Drawer = () => {
                   <div class="row g-4">
                     <div class="col-md-12">
                       <div class="form-group text-center">
-                        <h3> Are you sure you want to become a patient? </h3>
+                        <h3>  {t("support.profile-changeVerified")}</h3>
                       </div>
                     </div>
                     <div class="gap-2 justify-content-center d-flex w-auto mx-auto">
@@ -535,14 +534,14 @@ export const Drawer = () => {
                         class="blue_btn"
                         onClick={handleSubmit}
                       >
-                        Yes
+                        {t("superadmin.yes")}
                       </button>
                       <button
                         type="button"
                         class="blue_btn"
                         onClick={() => setModelOpen(false)}
                       >
-                        No
+                        {t("superadmin.no")}
                       </button>
                     </div>
                   </div>

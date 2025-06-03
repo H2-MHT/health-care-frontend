@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Modal } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { patchFormData, updateData } from "../../../../hooks/services/services";
 import InputField from "../../../../components/form/InputField";
@@ -13,6 +14,7 @@ const EditSupport = ({
   editSupportData,
   fetchadminList,
 }) => {
+    const { t } = useTranslation();
   const schema = Yup.object().shape({
     title: Yup.string().required("title is required"),
     description: Yup.string().required("Description is required"),
@@ -99,19 +101,19 @@ const EditSupport = ({
                       />
                     </div> */}
                     <div className="form-group">
-                      <label>Title</label>
+                      <label>{t("support.support-title")}</label>
                       <InputField type="text" {...register("title")} />
                       <p className="text-danger">{errors.title?.message}</p>
                     </div>
                     <div className="form-group">
-                      <label>Description</label>
+                      <label>{t("add-education.description")}</label>
                       <InputField type="text" {...register("description")} />
                       <p className="text-danger">
                         {errors.description?.message}
                       </p>
                     </div>
                     <div className="form-group">
-                      <label>Upload Your Document</label>
+                      <label>{t("support.your-document")}</label>
                       <InputField
                         type="file"
                         {...register("attachment_file")}
@@ -140,14 +142,14 @@ const EditSupport = ({
                     )}
                     <div className="d-flex gap-2 justify-content-center mt-5 mb-5">
                       <button type="submit" className="blue_btn">
-                        Save changes
+                       {t("common.save-changes")}
                       </button>
                       <button
                         type="button"
                         className="transparent_btn"
                         onClick={() => setEditDoctorModel(false)}
                       >
-                        Cancel
+                       {t("common.cancel")}
                       </button>
                     </div>
                   </form>

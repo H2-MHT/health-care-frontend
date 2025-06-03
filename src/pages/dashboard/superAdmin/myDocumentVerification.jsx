@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { fetchDataAuth, updateApointmentData, updateData, updateFormData } from "../../../hooks/services/services";
+import { fetchDataAuth, updateApointmentData } from "../../../hooks/services/services";
 import ViewVerificationDocument from "./viewVerificationDocument"
 import { showToast } from "../../../utils/toast";
 import ShowModelRejected from "./showModelRejected"
-import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 function MyDocumentVerification() {
   const [viewItem, setviewItem] = useState();
   const [licensesdetail, setLicensesdetail] = useState();
  const [showModal,setShowModal]=useState(false)
  const [documentDeatils,setDocumentDeatils]=useState()
+ const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [viewDocument,setViewDocument]=useState(false)
@@ -89,17 +90,17 @@ const handleChange = async (event,item) => {
           <div class="col-md-12">
             <div class="padding-inner border-radius-20 bg-white h-100">
               <div class="d-flex align-items-center justify-content-between mb-4">
-                <h3 class="docinfohead">My Document Verification</h3>
+                <h3 class="docinfohead">{t("support.document-verification")}</h3>
               </div>
 
               <div class="mediaDegestPart">
                 <table border="1">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Status</th>
-                      <th>View</th>
+                      <th>{t("prescription.name")}</th>
+                      <th> {t("add-education.description")}</th>
+                      <th>{t("wallet.status")}</th>
+                      <th>{t("wallet.view")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -114,9 +115,9 @@ const handleChange = async (event,item) => {
                             className="border p-2 rounded"
                             name="status"
                           >
-                            <option value="Pending">Pending</option>
-                            <option value="Verified">Verified</option>
-                            <option value="Rejected">Rejected</option>
+                            <option value="Pending">{t("support.pending")}</option>
+                            <option value="Verified">{t("support.verified")}</option>
+                            <option value="Rejected">{t("support.rejected")}</option>
                           </select>
                         </td>
 
@@ -128,7 +129,7 @@ const handleChange = async (event,item) => {
                               handleViewItem(item);
                             }}
                           >
-                            View
+                          {t("support.view")}
                           </a>
                         </td>
                       </tr>
