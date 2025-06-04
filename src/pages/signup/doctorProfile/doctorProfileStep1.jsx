@@ -286,7 +286,7 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
                     <div className="col-md-12">
                       <div className="row">
                         <div className="col-md-6">
-                          <label>
+                          <label className="d-flex align-items-center gap-2">
                             Professional Stats
                             <i
                               class="fa-solid fa-circle-info"
