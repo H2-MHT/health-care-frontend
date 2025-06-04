@@ -21,6 +21,11 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
   const [selectedWorkPlace, setSelectedWorkPlace] = useState("");
   let { token } = useSelector((state) => state.auth);
 
+  const years = [];
+  for (let i = 1; i <= 99; i++) {
+    years.push({ label: String(i), value: String(i) });
+  }
+
   const {
     control,
     handleSubmit,
@@ -281,7 +286,13 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
                     <div className="col-md-12">
                       <div className="row">
                         <div className="col-md-6">
-                          <label>Professional Stats</label>
+                          <label>
+                            Professional Stats
+                            <i
+                              class="fa-solid fa-circle-info"
+                              title="If you want to create new then Type text and click on create"
+                            ></i>
+                          </label>
                           <Controller
                             name="professional_stat"
                             control={control}
@@ -306,7 +317,7 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
                             render={({ field }) => (
                               <Select
                                 label="Experience"
-                                options={Experience}
+                                options={years}
                                 placeholder="Years of Experience"
                                 {...field}
                               />

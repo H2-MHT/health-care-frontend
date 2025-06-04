@@ -61,12 +61,10 @@ const EditProfile = () => {
     (state) => state?.documentVerification?.documentVerification
   );
 
-  const years = [
-    { label: "1", value: "1" },
-    { label: "2", value: "2" },
-    { label: "3", value: "3" },
-    { label: "5", value: "5" },
-  ];
+  const years = [];
+  for (let i = 1; i <= 99; i++) {
+    years.push({ label: String(i), value: String(i) });
+  }
 
   const {
     register,
@@ -763,7 +761,7 @@ const EditProfile = () => {
                             />
                           </div>
                         </div>
-                        <div class="col-md-12">
+                        {/* <div class="col-md-12">
                           <h5 class="adding">
                             {t("edit-profile.add-to-profile")}
                           </h5>
@@ -782,7 +780,7 @@ const EditProfile = () => {
                               </a>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
 
