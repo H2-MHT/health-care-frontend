@@ -13,6 +13,7 @@ import MultiSelectDropdown from "../../../components/form/multiSelectDropdown";
 import { loginSuccess } from "../../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import currencyCodes from "currency-codes";
+import TextArea from "../../../components/form/TextArea"
 
 const DoctorProfileStep2 = ({ setStateCount }) => {
   const [selectedCurrency, setSelectedCurrency] = useState("");
@@ -151,7 +152,7 @@ const DoctorProfileStep2 = ({ setStateCount }) => {
                           name="aboutYourself"
                           control={control}
                           render={({ field }) => (
-                            <InputField
+                            <TextArea
                               type="text"
                               placeholder="Your text here..."
                               {...field}
