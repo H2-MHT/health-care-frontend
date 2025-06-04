@@ -635,13 +635,19 @@ const EditProfile = () => {
                       <div class="row g-4">
                         <div class="col-md-12">
                           <div class="form-group">
+                            <label className="d-flex align-items-center gap-2">{t("edit-profile.place-of-work")}
+                                <i
+                              class="fa-solid fa-circle-info"
+                              title="If you want to add a new hospital than chose other option"
+                            ></i>
+                            </label>
                             <Controller
                               name="work_place"
                               control={control}
                               defaultValue={selectedWorkPlace}
                               render={({ field }) => (
                                 <AutoSelect
-                                  label={t("edit-profile.place-of-work")}
+                               
                                   options={placeData}
                                   placeholder="Select Hospital"
                                   isSearchable={true} 
@@ -726,8 +732,12 @@ const EditProfile = () => {
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label>
+                            <label className="d-flex align-items-center gap-2">
                               {t("edit-profile.professional-statistics")}
+                                <i
+                              class="fa-solid fa-circle-info"
+                              title="If you want to create new then Type text and click on create"
+                            ></i>
                             </label>
                             <Controller
                               name="professional_stat"
