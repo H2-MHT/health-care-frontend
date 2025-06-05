@@ -124,7 +124,7 @@ function ConsultationReport() {
               </div>
 
               <div class="treatmentPlan border-radius-20 border-gray padding-20">
-                <h6>{t("appointment-list.treatment-plan")}</h6>
+                <h6>{t("support.treatment-plan")}</h6>
                 {consultationData?.prescription ? (
                   <div class="treatmentPlanDeatil border-radius-20 border-gray">
                     <div>
