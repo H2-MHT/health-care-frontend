@@ -240,7 +240,7 @@ const AppointmentModal = ({
                     />
                     <label className="mb-0">Planned consultation</label>
                   </div>
-                  <div className="radiotype d-flex align-items-center gap-2">
+                  {/* <div className="radiotype d-flex align-items-center gap-2">
                     <InputField
                       type="radio"
                       name="appointmentType"
@@ -249,7 +249,7 @@ const AppointmentModal = ({
                       onChange={handleRadioChange}
                     />
                     <label className="mb-0">Urgent call</label>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="timeScroll">
                   {availableSlots?.length > 0 ? (

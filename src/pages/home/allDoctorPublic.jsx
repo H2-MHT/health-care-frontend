@@ -127,8 +127,8 @@ const AllDoctorPublic = () => {
                                 </div>
                                 <div className="top">
                                   <div className="verified">
-                                    {item?.speciality || "Generalist"} |{" "}
-                                    {item?.experience_years} years of experience
+                                    {item?.speciality } |{" "}
+                                    {item?.experience_years || 0} years of experience
                                     <span className="main-blue-text">
                                       {item?.expertise}
                                     </span>

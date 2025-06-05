@@ -25,7 +25,7 @@ const AppointmentManage = ({ ConsultationDetails }) => {
 
   const [getAppointmentData, setGetAppointmentData] = useState([]);
   const [formData, setFormData] = useState({
-    appointmentType: "Urgent",
+    appointmentType: "Planned",
     days: "",
     startTime: "",
     endTime: "",
@@ -142,7 +142,7 @@ const AppointmentManage = ({ ConsultationDetails }) => {
       !formData.startTime ||
       !formData.endTime
     ) {
-      showToast("Please fill all fields", "error");
+      showToast("Please fill all fields", "error")
       return;
     }
 
@@ -157,7 +157,8 @@ const AppointmentManage = ({ ConsultationDetails }) => {
     }
 
     const payload = {
-      appointment_type: formData?.appointmentType,
+      // appointment_type: formData?.appointmentType,
+      appointment_type: "Planned",
       days: formData?.days,
       start_time: formData?.startTime,
       end_time: formData?.endTime,
@@ -181,7 +182,7 @@ const AppointmentManage = ({ ConsultationDetails }) => {
         showToast("Appointment preference successfully added", "success");
         await getAllAppointmentData();
         setFormData({
-          appointmentType: "Urgent",
+          appointmentType: "Planned",
           days: "",
           startTime: "",
           endTime: "",

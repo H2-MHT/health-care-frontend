@@ -11,7 +11,6 @@ const PublicDoctorView = () => {
   const [totalReviewSum, setTotalReviewSum] = useState(0);
   const [reviewData, setReviewData] = useState([]);
   const { doctor } = location.state || {};
-  console.log(doctor,">>>>>>>>>>doctor")
   return (
     <>
       <Header />
@@ -35,7 +34,7 @@ const PublicDoctorView = () => {
                     {doctor?.professional_stat}
                     <span class="text-mainblue">
                       {" "}
-                      {doctor?.experience_years} years of practice
+                      {doctor?.experience_years || 0} years of practice 
                     </span>
                   </div>
                   <div class="dcNm">
@@ -47,16 +46,16 @@ const PublicDoctorView = () => {
                     </div>
                     <div class="dcSpecialist">
                       <div class="d-flex justify-content-center align-items-center flex-column gap-1 spclt">
-                        <img src="../images/user-dashboard/gyne.svg" />
+                        {/* <img src="../images/user-dashboard/gyne.svg" /> */}
                         <span class="text-red">
                           {" "}
-                          {doctor?.speciality || "Generalist"}
+                          {doctor?.speciality }
                         </span>
                       </div>
-                      <div class="bStar d-flex align-items-center gap-2">
+                      {/* <div class="bStar d-flex align-items-center gap-2">
                         <img src="../images/user-dashboard/black-star.svg" />
                         <span class="text-black ">{doctor?.rating || 0}</span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 
@@ -83,24 +82,24 @@ const PublicDoctorView = () => {
                           class="img-fluid"
                         />
                       </div>
-                      <span class="label">Urgent call</span>
+                      {/* <span class="label">Urgent call</span> */}
                     </div>
                   </div>
 
                   <div class="doctor_call mt-5">
-                    <span className="transparent_btn">
+                    {/* <span className="transparent_btn">
                       Urgent hourly rate : {doctor?.urgent_hourly_rate}
-                    </span>
+                    </span> */}
                     <span className="transparent_btn">
                       Planned hourly rate : {doctor?.planned_hourly_rate}
                     </span>
-                    <a
+                    {/* <a
                       href="#"
                       class="light_black_btn d-flex align-items-center gap-3"
                     >
                       <img src="../images/user-dashboard/askQ.png" /> ask a
                       question
-                    </a>
+                    </a> */}
                     {/* <a
                       href="#"
                       class="blue_btn d-flex align-items-center gap-3"
