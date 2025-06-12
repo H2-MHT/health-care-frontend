@@ -43,7 +43,6 @@ const Video = () => {
     toggleScreenSharingMode,
     callToUser
   } = useContext(VideoCallContext);
-  console.log(">>>>>>>>>>>>>>>>>>>video jsx call", callToUser)
   const [sendMessage, setSendMessage] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
@@ -83,7 +82,6 @@ const Video = () => {
       setSendMessage("");
     }
   };
-
   return (
     <>
       <div className="video-container">

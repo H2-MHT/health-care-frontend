@@ -86,7 +86,7 @@ const ProfileSetting = () => {
                 </div>
               </div>
             </div>
-            <div class="col-md-12">
+            {/* <div class="col-md-12">
               <div class="settingBox bg-white border-radius-20 padding-20">
                 <h3 class="text-darkgreen mb-5">
                   {t("profile-setting.appointment-management")}
@@ -95,7 +95,7 @@ const ProfileSetting = () => {
                   <AppointmentManage />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <TimeLanguage />
             <CommunicationNotifications />

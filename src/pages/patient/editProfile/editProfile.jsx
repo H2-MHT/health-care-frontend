@@ -473,7 +473,6 @@ const PatientEditProfile = () => {
                 <div class="profileViewPrt">
                   <div class="profileViewTop">
                     <a
-                      href="#"
                       onClick={() => navigate("/patient/public-view")}
                     >
                       {t("edit-profile.public-view")}
@@ -556,16 +555,16 @@ const PatientEditProfile = () => {
                         key={item.id}
                       >
                         <div className="form-group w-50 d-flex">
-                          <p className="mb-0">Allergies name : </p> {item?.name}
+                          <p className="mb-0"> {t("edit-profile.allergies-name")}</p> {item?.name}
                         </div>
                         <div className="d-flex gap-3 w-50 d-flex">
-                          <p className="mb-0">Document Link : </p>{" "}
+                          <p className="mb-0">{t("edit-profile.document-link")}</p>{" "}
                           <a
                             href={item?.document_link}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            Click here
+                           {t("edit-profile.click-here")}
                           </a>
                         </div>
                         <div className="d-flex align-items-center gap-3">
@@ -585,7 +584,7 @@ const PatientEditProfile = () => {
                       </div>
                     )):(<div className="treatmentContainer">
                       <div className="no-appointments">
-                        No alergies
+                       {t("edit-profile.no-alergies")}
                       </div>
                     </div>)}
                 </div>
@@ -627,17 +626,17 @@ const PatientEditProfile = () => {
                         key={item.id}
                       >
                         <div className="form-group w-50 d-flex">
-                          <p className="mb-0">Medical history name : </p>{" "}
+                          <p className="mb-0">{t("edit-profile.history-name")}  </p>{" "}
                           {item?.name}
                         </div>
                         <div className="d-flex gap-3 w-50 d-flex">
-                          <p className="mb-0">Document Link : </p>{" "}
+                          <p className="mb-0">  {t("edit-profile.document-link")} </p>{" "}
                           <a
                             href={item?.document_link}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            Click here
+                           {t("edit-profile.click-here")}
                           </a>
                         </div>
                         <div className="d-flex align-items-center gap-3">
@@ -657,7 +656,7 @@ const PatientEditProfile = () => {
                       </div>
                     )): (<div className="treatmentContainer">
                       <div className="no-appointments">
-                        No medical history
+                       {t("edit-profile.no-medical")}
                       </div>
                     </div>)}
                 </div>

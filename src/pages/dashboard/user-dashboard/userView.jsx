@@ -64,7 +64,7 @@ try {
               <div class="right">
                 <div class="para">
                   Maternal-Fetal Medicine
-                  <span class="text-mainblue"> 16 years of practice</span>
+                  <span class="text-mainblue"> {doctor?.experience_years || 0} years of practice </span>
                 </div>
                 <div class="dcNm">
                   <div class="Nm">
@@ -77,13 +77,13 @@ try {
                     <div class="d-flex justify-content-center align-items-center flex-column gap-1 spclt">
                       <img src="../../images/user-dashboard/gyne.svg" />
                       <span class="text-red">
-                        {doctor?.speciality || "Gynecology"}
+                        {doctor?.professional_stat}
                       </span>
                     </div>
-                    <div class="bStar d-flex align-items-center gap-2">
+                    {/* <div class="bStar d-flex align-items-center gap-2">
                       <img src="../../images/black-star.svg" />
                       <span class="text-black ">{doctor?.rating || 0}</span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -115,18 +115,18 @@ try {
                 </div>
 
                 <div class="doctor_call mt-5">
-                  <sapn className="transparent_btn">
+                  {/* <sapn className="transparent_btn">
                     urgent fee: {doctor?.urgent_hourly_rate}{" "}
-                  </sapn>
+                  </sapn> */}
                   <sapn className="transparent_btn">
-                    planned fee: {doctor?.planned_hourly_rate}
+                    Planned Fee: {doctor?.planned_hourly_rate}
                   </sapn>
-                  <a
+                  {/* <a
                     class="light_black_btn d-flex align-items-center gap-3"
                   >
                     <img src="../../images/user-dashboard/askQ.png" /> ask a
                     question
-                  </a>
+                  </a> */}
                   <a
                     class="blue_btn d-flex align-items-center gap-3"
                     onClick={() => makeAppointment(doctor)}

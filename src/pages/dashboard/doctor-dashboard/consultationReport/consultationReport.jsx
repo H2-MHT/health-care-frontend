@@ -68,6 +68,7 @@ function ConsultationReport() {
 
   const handleSubmit = async () => {
     try {
+      
       const payload = {
         translated_text: consultation,
         recommendation: recommendation,

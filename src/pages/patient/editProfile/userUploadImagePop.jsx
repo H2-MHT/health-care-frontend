@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import UserEditProfilePop from "./userAddProfilePop"
+  import { useTranslation } from "react-i18next";
 
 const UserUploadImagePop = ({ setModelOpen, Modal, modelOpen }) => {
     const [uploadedData, setUploadedData]=useState()
     const [userEditOpenModel, setUserEditOpenModel]=useState(false)
-   
+    const { t } = useTranslation("edit-profile");
     const handleImage = (event) => {
       const file = event.target.files[0]; // Get the selected file
       console.log(file,">>>>>>>>>file")
@@ -29,9 +30,9 @@ const UserUploadImagePop = ({ setModelOpen, Modal, modelOpen }) => {
       <Modal.Body>
         <div className="imageUpload">
           <img src="../../images/download-btn.webp" />
-          <h4>Upload a file</h4>
-          <p>Drag and drop or browse to choose a file</p>
-          <span>(pdf, jpg or png only)</span>
+          <h4>{t("edit-profile.Upload a file")}</h4>
+          <p> {t("edit-profile.drag-drop")}</p>
+          <span>({t("edit-profile.pdf-jpg")})</span>
           <input type="file" name="uplaod image" onChange={handleImage}/>
         </div>
       </Modal.Body>

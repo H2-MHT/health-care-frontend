@@ -485,7 +485,7 @@ export const Drawer = () => {
               </Link>
             </li>
             <li>
-              <a href="#" onClick={logoutUser}>
+              <Link onClick={logoutUser}>
                 <svg
                   width="21"
                   height="18"
@@ -500,7 +500,7 @@ export const Drawer = () => {
                 </svg>
 
                 <span>{t("drawer.logout")}</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

@@ -222,23 +222,28 @@ const AllDoctorList = () => {
                               </div>
 
                               <div className="drRdetail">
-                                <div className="top">
+                                {/* <div className="top">
                                   {item?.professional_stat}
                                      <span className="main-blue-text">
                                       {item?.expertise}
                                     </span> 
-                                </div>
-                                <div className="top">
+                                </div> */}                                
+                                  
+                                 <div className="top">
                                   <div className="verified">
-                                    <img
+                                    
+                                    {item?.speciality } {" "}
+                                    
+                                {item?.expertise ||"Generalist" }  &nbsp;<span className="main-blue-text"> {item?.experience_years || 0} years of experience </span>
+                                
+                                  </div>
+                                </div>
+                                  <div className="recondName d-flex gap-3">
+                                  <img
                                       src="../images/batch.svg"
                                       alt="batch"
-                                    />
-                                    <div className="recondName">
-                                  Dr. {item?.first_name} {item?.last_name}
-                                </div>
-                                  
-                                  </div>
+                                    /> 
+                                    Dr. {item?.first_name} {item?.last_name}
                                 </div>
                                 
                                 <div className="clinicLoca d-flex align-items-center gap-2">
@@ -270,11 +275,11 @@ const AllDoctorList = () => {
                                 src="../images/general-medicine.svg"
                                 alt="medicine"
                               />
-                              <span>{item?.specialty}</span>
+                              <span>{item?.specialty || "General Medicine"}</span>
                             </div>
                             <div className="bStar d-flex align-items-center gap-2">
                               <img src="../images/black-star.svg" alt="star" />
-                              <span className="text-black">{item?.rating}</span>
+                              <span className="text-black">{item?.rating }</span>
                             </div>
                           </div>
                         </div>
@@ -308,9 +313,9 @@ const AllDoctorList = () => {
                           </span>
                         </div>
                       </div>
-                      {/* <div className="viewFullSchdl">
+                      <div className="viewFullSchdl">
                         {t("all-doctor-list.view-full-schedules")}
-                      </div> */}
+                      </div>
                     </div>
                   );
                 })

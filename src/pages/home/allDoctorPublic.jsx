@@ -127,8 +127,8 @@ const AllDoctorPublic = () => {
                                 </div>
                                 <div className="top">
                                   <div className="verified">
-                                    {item?.speciality || "Generalist"} |{" "}
-                                    {item?.experience_years} years of experience
+                                    {item?.speciality } |{" "}
+                                    {item?.experience_years || 0} years of experience
                                     <span className="main-blue-text">
                                       {item?.expertise}
                                     </span>
@@ -169,7 +169,7 @@ const AllDoctorPublic = () => {
                         <div className="d-flex justify-content-around ">
                           <div className="mt-4 mb-2">
                             <div className="consult">
-                              Planned Consultation : {item?.planned_hourly_rate||"0.00"}
+                              Planned Consultation :{item?.planned_hourly_rate||"0.00"}
                             </div>
                           </div>
 

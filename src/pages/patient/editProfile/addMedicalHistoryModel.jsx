@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { showToast } from "../../../utils/toast";
 import { AddFormData, postData } from "../../../hooks/services/services";
 import InputField from "../../../components/form/InputField";
+import { useTranslation } from "react-i18next";
 
 function AddMedicalHistoryModel({
   setUserMedicalHistoryModel,
@@ -14,7 +15,7 @@ function AddMedicalHistoryModel({
 }) {
 
   const today = new Date().toISOString().split("T")[0];
-
+  const { t } = useTranslation("edit-profile");
   const schema = Yup.object().shape({
     file_name: Yup.string().required("Name is required"),
     url: Yup.string().required("Url is required"),
@@ -74,30 +75,30 @@ function AddMedicalHistoryModel({
               <div className="row g-4">
                 <div className="form-group">
                   <label className="block text-sm font-medium mb-1">
-                    File name
+                  {t("edit-profile.file_name")}
                   </label>
                   <InputField
                     type="text"
                     {...register("file_name")}
-                    className="w-full p-2 border rounded-md mb-4"
+                    className="w-full p-2 rounded-md mb-4"
                   />
                   <p className="text-danger">{errors.file_name?.message}</p>
                 </div>
                 <div>
-                  <label>URL</label>
+                  <label>{t("edit-profile.url")}</label>
                   <InputField
                     type="text"
                     {...register("url")}
-                    className="w-full p-2 border rounded-md mb-4"
+                    className="w-full p-2 rounded-md mb-4"
                   />
                   <p className="text-danger">{errors.url?.message}</p>
                 </div>
                 <div>
-                  <label>Date</label>
+                  <label>{t("wallet.date")}</label>
                   <InputField
                     type="date"
                     {...register("date")}
-                    className="w-full p-2 border rounded-md mb-4"
+                    className="w-full p-2 rounded-md mb-4"
                     max={today} 
                   />
                    <p className="text-danger">{errors.date?.message}</p>
@@ -105,7 +106,7 @@ function AddMedicalHistoryModel({
               </div>
 
               <button type="submit" className="blue_btn mx-auto mt-4">
-                Save
+                {t("common.save")}
               </button>
             </form>
           </div>
