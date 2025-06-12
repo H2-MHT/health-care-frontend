@@ -408,7 +408,7 @@ const EditProfile = () => {
                     <div class="row g-4">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label>{t("singup.first_name")}</label>
+                          <label>{t("singup.first_name" )} </label>
                           <Controller
                             name="first_name"
                             control={control}
@@ -563,7 +563,9 @@ const EditProfile = () => {
                 </div>
                 <div class="profileViewPrt">
                   <div class="profileViewTop">
-                    <a href="#">{t("edit-profile.public-view")}</a>
+                    <a  onClick={()=>navigate("/doctor/public-view")}>
+                        {t("edit-profile.public-view")}
+                    </a>
                     <div
                       class={`profileviewImg grrenC ${getProfileClass(
                         profileStatus

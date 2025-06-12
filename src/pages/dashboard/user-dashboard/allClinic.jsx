@@ -35,7 +35,6 @@ const AllClinic = () => {
     try {
       const response = await fetchDataAuth(url, navigate);
       const totalPagesHeader = response.headers.get("Total-Pages");
-      console.log("Full Headers:", [...response.headers.entries()]);
       const totalPages = totalPagesHeader ? parseInt(totalPagesHeader, 10) : 1;
       const getData = await response.json();
       setClinicDetails(Array.isArray(getData?.data) ? getData.data : []);
@@ -157,7 +156,6 @@ const AllClinic = () => {
       setLoading(false);
     }
   };
-
   return (
     <div className="rightContent rightsidefull">
       <div className="profileMobile">
@@ -184,17 +182,17 @@ const AllClinic = () => {
             <img src="../images/search-dark.svg" alt="Search" />
           </a>
         </div>
-        <div className="sorting">
+        {/* <div className="sorting">
           <select>
             <option>Sort by</option>
             <option>Sort by</option>
           </select>
-        </div>
+        </div> */}
       </div>
       <div className="favClinic">
         <div className="row g-4">
-          {favoriteClinicList.length && allClinicList?.length > 0 ? (
-            allClinicList?.map((item, index) => (
+          {clinicDetails?.length > 0 ? (
+            clinicDetails?.map((item, index) => (
               <div className="col-lg-4 col-md-6" key={index}>
                 <div className="favBox">
                   <img

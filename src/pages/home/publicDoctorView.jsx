@@ -34,8 +34,8 @@ const PublicDoctorView = () => {
                     {doctor?.professional_stat}
                     <span class="text-mainblue">
                       {" "}
-                      {doctor?.experience_years || 0} years of practice 
-                    </span>
+                      {doctor?.experience_years || 0} years of practice
+                    </span> 
                   </div>
                   <div class="dcNm">
                     <div class="Nm">
@@ -46,10 +46,10 @@ const PublicDoctorView = () => {
                     </div>
                     <div class="dcSpecialist">
                       <div class="d-flex justify-content-center align-items-center flex-column gap-1 spclt">
-                        {/* <img src="../images/user-dashboard/gyne.svg" /> */}
+                        <img src="../images/user-dashboard/gyne.svg" />
                         <span class="text-red">
                           {" "}
-                          {doctor?.speciality }
+                          {doctor?.professional_stat }
                         </span>
                       </div>
                       {/* <div class="bStar d-flex align-items-center gap-2">

@@ -48,9 +48,14 @@ const Dashboard = () => {
   const [editOpenNotesModal, setEditOpenNotesModal] = useState(false);
   const [openNotesModal, setOpenNotesModal] = useState(false);
   const [activeTab, setActiveTab] = useState("treatment");
+  const [selectedAppointment, setSelectedAppointment] = useState();
   const [editNotesData, setEditNotesData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [currentView, setCurrentView] = useState();
+  const [appointmentList, setAppointmentList] = useState();
+  const [scheduledEvents, setScheduledEvents] = useState([]);
+  const [videoModal, setVideoModal] = useState(false);
+    const isProfileData = useSelector((state) => state?.userProfile?.userProfile);
   const [notesData, setNotesData] = useState({
     title: "",
     text: "",
@@ -275,6 +280,49 @@ const Dashboard = () => {
     setShowDropdown((prev) => !prev);
   };
 
+  useEffect(() => {
+    if (currentView?.startDate) getPatientAppointments();
+  }, [currentView]);
+
+ const getPatientAppointments = async () => {
+    const startDate = getAppointmentFormattedDate(currentView?.startDate);
+    const endDate = getAppointmentFormattedDate(currentView?.endDate);
+    try {
+      const response = await fetchData(
+        `doctors/doctor-booked-appointment/?doctor_user_id=${isProfileData?.id}&start_date=${startDate}&end_date=${endDate}`,
+        navigate
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
+      const responseData = await response.json();
+      setAppointmentList(responseData?.data);
+      const events = responseData?.data?.map((item) => {
+        let a = `${item?.date}T${item?.slot?.split("-")[0]?.trim()}:00.000Z`;
+        return {
+          title: item?.patient?.name,
+          date: a,
+          appointment_id: item?.id,
+          extendedProps: {
+            meetingLink: item?.meeting_link,
+            data: item,
+          },
+        };
+      });
+      setScheduledEvents(events);
+    } catch (error) {
+      console.log("error", error?.message);
+    }
+  };
+
+
+   const handleEventClick = (clickInfo) => {
+    let appointment = clickInfo.event.extendedProps;
+    if (appointment) {
+      setSelectedAppointment(appointment?.data);
+      setVideoModal(true);
+    }
+  };
   
   const formatWidgetLabel = (key) =>
     key.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase());
@@ -303,7 +351,7 @@ const Dashboard = () => {
                 cursor: "pointer",
               }}
             >
-              Widget Menu
+              Widget Menu 
             </button>
             {showDropdown && (
               <div
@@ -363,9 +411,12 @@ const Dashboard = () => {
                   <div className="calenderDetail">
                     <div className="responsive-iframe-container large-container">
                       <MyCalendar
-                        events={false}
+                        events={true}
                         onDateClick={handleDateClick}
                         setCurrentView={setCurrentView}
+                        eventList={scheduledEvents}
+                        onEventClick={handleEventClick}
+                        isCalendarView={true}
                       />
                     </div>
                   </div>

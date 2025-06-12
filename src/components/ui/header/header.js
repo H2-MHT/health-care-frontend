@@ -92,7 +92,7 @@ const Header = () => {
 
 
   return (
-    <header>
+    <header className="headerWithoutLogin">
       <div className="container">
         {/* <div className="mobile_topbar">
           * ! <div className="logPrt">

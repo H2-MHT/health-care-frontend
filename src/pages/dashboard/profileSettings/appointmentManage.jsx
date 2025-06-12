@@ -7,7 +7,7 @@ import {
 import { showToast } from "../../../utils/toast";
 import { InputField } from "../../../components/form/InputField";
 import { useNavigate } from "react-router-dom";
-import { dayOptions } from "../../../utils/constants";
+import { dayOptionsslot } from "../../../utils/constants";
 import Select from "../../../components/form/Select";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -175,7 +175,7 @@ const AppointmentManage = ({ ConsultationDetails }) => {
 
     try {
       const response = await postData(
-        "doctors/create-appointment-and-generate-slot/",
+        "doctors/generate-slots/",
         payload
       );
       if (response?.status === 201) {
@@ -233,7 +233,7 @@ const AppointmentManage = ({ ConsultationDetails }) => {
             placeholder={t("appointment-manage.select-days")}
             onChange={handleInputChange}
             value={formData?.days}
-            options={dayOptions}
+            options={dayOptionsslot}
           />
         </div>
         <div className="form-group w-fill">

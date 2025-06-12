@@ -169,7 +169,7 @@ const AllDoctorPublic = () => {
                         <div className="d-flex justify-content-around ">
                           <div className="mt-4 mb-2">
                             <div className="consult">
-                              Planned Consultation : {item?.planned_hourly_rate||"0.00"}
+                              Planned Consultation :{item?.planned_hourly_rate||"0.00"}
                             </div>
                           </div>
 
