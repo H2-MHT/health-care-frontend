@@ -7,10 +7,10 @@ import Image from "../../components/form/Image";
 import { Loader } from "../../components/ui/loader/loader";
 import Pagination from "../../components/pagination/pagination.js";
 import Header from "../../components/ui/header/header";
-import { Footer } from "../../components/ui/footer/footer.js";
 import Flag from "react-world-flags";
 import { Country } from "country-state-city";
 import { useTranslation } from "react-i18next";
+import { Footer } from "../dashboard/doctor-dashboard/footer/footer.jsx";
 const countryCodeMap = Object.fromEntries(
   Country.getAllCountries().map((country) => [
     country.name.toLowerCase(),
@@ -67,6 +67,7 @@ const AllDoctorPublic = () => {
   //     setShowFirstModal(true);
   //     setSelectedDoctorAppointement(item);
   //   };
+  console.log(allDoctorList,">>>>>allDoctorList")
   return (
     <>
       <Header />
@@ -117,7 +118,7 @@ const AllDoctorPublic = () => {
                           <div className="left paddingLeftt">
                             <div className="docrecomdpart">
                               <div className="docImg">
-                                <Flag code={countryCode} className="docflag" />
+                                <Flag code={countryCode}  className="docflag" />
                                 <Image src={item?.profile_picture} />
                               </div>
 
@@ -128,7 +129,7 @@ const AllDoctorPublic = () => {
                                 <div className="top">
                                   <div className="verified">
                                     {item?.speciality } |{" "}
-                                    {item?.experience_years || 0} years of experience
+                                    {item?.experience_years || 0} years of experience 
                                     <span className="main-blue-text">
                                       {item?.expertise}
                                     </span>
@@ -159,6 +160,13 @@ const AllDoctorPublic = () => {
                             </div>
                           </div>
                           <div className="right">
+                            <div className="greenimg">
+                              <img
+                                src="../images/general-medicine.svg"
+                                alt="medicine"
+                              />
+                              <span>{item?.specialty || "General Medicine"}</span>
+                            </div>
                             <div className="bStar d-flex align-items-center gap-2">
                               <img src="../images/black-star.svg" alt="star" />
                               <span className="text-black">{item?.rating}</span>
@@ -166,14 +174,14 @@ const AllDoctorPublic = () => {
                           </div>
                         </div>
 
-                        <div className="d-flex justify-content-around ">
-                          <div className="mt-4 mb-2">
+                        <div className="d-flex align-items-center justify-content-between mt-3 ">
+                          <div className="mt-2 mb-2">
                             <div className="consult">
                               Planned Consultation :{item?.planned_hourly_rate||"0.00"}
                             </div>
                           </div>
 
-                          <div className="d-flex flex-column gap-2 align-items-center justify-content-center">
+                          <div className="d-flex  gap-2 align-items-center justify-content-center">
                             <Link
                               to="/public-doctor-view"
                               state={{ doctor: item }}

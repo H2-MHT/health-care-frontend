@@ -46,7 +46,7 @@ const PublicDoctorView = () => {
                     </div>
                     <div class="dcSpecialist">
                       <div class="d-flex justify-content-center align-items-center flex-column gap-1 spclt">
-                        <img src="../images/user-dashboard/gyne.svg" />
+                        {/* <img src="../images/user-dashboard/gyne.svg" /> */}
                         <span class="text-red">
                           {" "}
                           {doctor?.professional_stat }
@@ -75,15 +75,15 @@ const PublicDoctorView = () => {
                           </div>
                         </div> */}
                     </div>
-                    <div class="toggle" onclick="toggleActive(this)">
+                    {/* <div class="toggle" onclick="toggleActive(this)">
                       <div class="circle">
                         <img
                           src="../images/user-dashboard/phone.png"
                           class="img-fluid"
                         />
                       </div>
-                      {/* <span class="label">Urgent call</span> */}
-                    </div>
+                      <span class="label">Urgent call</span>
+                    </div> */}
                   </div>
 
                   <div class="doctor_call mt-5">

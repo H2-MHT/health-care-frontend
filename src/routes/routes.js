@@ -124,7 +124,7 @@ const DoctorWallet = lazy(() =>
 const Login = lazy(() => import("../pages/login/login"));
 const Dashboard = lazy(() =>
   import("../pages/dashboard/doctor-dashboard/dashboard")
-);
+)
 const AllClinicPublic = lazy(() => import("../pages/home/allClinicPublic"))
 const AllDoctorPublic = lazy(() => import("../pages/home/allDoctorPublic"))
 const PublicClinicView = lazy(() => import("../pages/home/publicClinicView"))

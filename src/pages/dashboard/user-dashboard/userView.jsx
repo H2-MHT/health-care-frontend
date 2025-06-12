@@ -63,7 +63,7 @@ try {
               </div>
               <div class="right">
                 <div class="para">
-                  Maternal-Fetal Medicine
+                  {doctor?.professional_stat}
                   <span class="text-mainblue"> {doctor?.experience_years || 0} years of practice </span>
                 </div>
                 <div class="dcNm">
@@ -75,7 +75,7 @@ try {
                   </div>
                   <div class="dcSpecialist">
                     <div class="d-flex justify-content-center align-items-center flex-column gap-1 spclt">
-                      <img src="../../images/user-dashboard/gyne.svg" />
+                      {/* <img src="../../images/user-dashboard/gyne.svg" /> */}
                       <span class="text-red">
                         {doctor?.professional_stat}
                       </span>
@@ -103,7 +103,7 @@ try {
                           </div>
                         </div> */}
                   </div>
-                  <div class="toggle" onclick="toggleActive(this)">
+                  {/* <div class="toggle" onclick="toggleActive(this)">
                     <div class="circle">
                       <img
                         src="../../images/doctor-dashboard/phone.png"
@@ -111,7 +111,7 @@ try {
                       />
                     </div>
                     <span class="label">Urgent call </span>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div class="doctor_call mt-5">

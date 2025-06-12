@@ -215,6 +215,7 @@
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid #D9D9D9;
+    height: 100%;
  }
  
  .favBox .favContent{
@@ -1041,7 +1042,7 @@
 }
 
 .backgroundImage{
-   background-image: url("../../../../public/images/bg.png");
+   background-image: url("../../../../public/images/bg-2.svg");
    background-size: cover;
    background-repeat: no-repeat;
    background-position: center;
