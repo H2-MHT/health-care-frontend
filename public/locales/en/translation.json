@@ -40,19 +40,18 @@
     "about_yourself": "Tell more about yourself",
     "languages_lable": "Languages",
     "working_time": "Working Time",
-    "term_link":"https://data.my-health.today/website/en/terms.pdf",
-    "policy_link":"https://data.my-health.today/website/en/privacy-policy.pdf",
-    "acknowledge":"I acknowledge the",
-    "patient_bill":" Patient Bill of Rights ",
-    "responsitbilities":"and Responsitbilities",
-    "patient_rights":"https://data.my-health.today/website/en/patient-rights.pdf",
-    "code_Conduct":"I agree to respect the",
-    "doctor_code":"Doctor`s code",
-    "doctor_Link":"https://data.my-health.today/website/en/doctor-code.pdf",
-    "Conduct_and":"of Conduct and Responsitbilities",
-    "medical_disclaimer":"Medical Disclaimer:",
-    "continuing_professionals":"By continuing, I agree that H2.doctor is a digital health platform that connects user with independent heathcare professionals for secure remote consultations and adisory service. the platform does not replace emergency medical service . All clinical decisions are the responsibility of the consulting professional, and the platform is not liable for any medical outcomes resulting from the consultation"
-    
+    "term_link": "https://data.my-health.today/website/en/terms.pdf",
+    "policy_link": "https://data.my-health.today/website/en/privacy-policy.pdf",
+    "acknowledge": "I acknowledge the",
+    "patient_bill": " Patient Bill of Rights ",
+    "responsitbilities": "and Responsitbilities",
+    "patient_rights": "https://data.my-health.today/website/en/patient-rights.pdf",
+    "code_Conduct": "I agree to respect the",
+    "doctor_code": "Doctor`s code",
+    "doctor_Link": "https://data.my-health.today/website/en/doctor-code.pdf",
+    "Conduct_and": "of Conduct and Responsitbilities",
+    "medical_disclaimer": "Medical Disclaimer:",
+    "continuing_professionals": "By continuing, I agree that H2.doctor is a digital health platform that connects user with independent heathcare professionals for secure remote consultations and adisory service. the platform does not replace emergency medical service . All clinical decisions are the responsibility of the consulting professional, and the platform is not liable for any medical outcomes resulting from the consultation"
   },
   "ui_header": {
     "register_now": "Register Now",
@@ -72,7 +71,6 @@
     "submit": "Submit",
     "subscribe-now": "Subscribe now",
     "add": "Add"
-
   },
   "edit-profile": {
     "Male": "Male",
@@ -100,9 +98,27 @@
     "medications-name": "medications name",
     "attached-file": "Attached file",
     "medical-history": "Medical history",
-    "show-profile":"show in profile",
+    "show-profile": "show in profile",
     "select_country": "Select Country",
-    "select_city": "Select City"
+    "select_city": "Select City",
+    "file_name":"File name",
+    "url":"URL",
+    "document-link":"Document Link",
+    "allergies-name":"Allergies name",
+    "upload-file":" Upload a file",
+    "drag-drop":"Drag and drop or browse to choose a file",
+    "pdf-jpg":"pdf, jpg or png only",
+    "click-here":"Click here",
+    "no-alergies":" No alergies",
+    "history-name":"Medical history name :",
+    "no-medical":"No medical history",
+    "prescriptions":"Prescriptions",
+    "created-date":"Created Date:",
+    "prescription-found":" No Prescription found",
+    "maternal-medicine":"Maternal-Fetal Medicine",
+    "years-practice":"years of practice"
+    
+
   },
   "add-education": {
     "school": "School",
@@ -143,7 +159,6 @@
       "7": "Sunday"
     }
   },
-
   "drawer": {
     "dashboard": "Dashboard",
     "calendar": "Calendar",
@@ -163,7 +178,6 @@
     "doctor": "Doctor",
     "clinic": "Clinic"
   },
-
   "footer": {
     "links": "Links",
     "add-head": "H2 Health Help",
@@ -177,12 +191,11 @@
     "terms-of-service": "Terms of Service",
     "cookie-policy": "Cookie Policy",
     "footer-bottom-text": "My Health Today All rights reserved",
-    "footer-text":"H2.doctor is a digital health platform that connects users with independent healthcare professionals for secure remote consultations and advisory services. The platform does not provide medical diagnosis or treatment and is not liable for any medical outcomes resulting from the consultation.",
-    "terms-conditions":"Terms & Conditions",
-    "privacy-policy":"Privacy Policy",
-    "security-governance":"Security & Governance"
+    "footer-text": "H2.doctor is a digital health platform that connects users with independent healthcare professionals for secure remote consultations and advisory services. The platform does not provide medical diagnosis or treatment and is not liable for any medical outcomes resulting from the consultation.",
+    "terms-conditions": "Terms & Conditions",
+    "privacy-policy": "Privacy Policy",
+    "security-governance": "Security & Governance"
   },
-
   "dashboard": {
     "list": "List",
     "treatment-plan": "Treatment Plan",
@@ -198,7 +211,6 @@
     "no-reports": "No reports available",
     "created": "Created"
   },
-
   "prescription": {
     "patient": "Patient",
     "add-prescription": "ADD PRESCRIPTION",
@@ -212,7 +224,6 @@
     "additional-instruction": "Additional Instructions",
     "name": "Name"
   },
-
   "wallet": {
     "transaction-history": "Withdrawal Requests",
     "sender": "Sender",
@@ -262,16 +273,29 @@
     "reason": "Reason",
     "name": "Name",
     "delete": "Delete",
-    "all-notifications": "All Notifications"
-  },
+    "all-notifications": "All Notifications",
+    "Online-consultation":"Online consultation",
+    "confirm":"Confirm",
+    "payment-succesfully":"Payment was made succesfully",
+    "for-staying":"Thank you for staying with H-2",
+    "receive-notificatio":"You will receive a notification as soon as the specialist confirms the reservation",
+    "ok":" ok",
+    "appointment-confirmed":"Appointment confirmed",
+    "virtual-office":"Remember to enter your virtual office 5 minutes before your consultation.",
+    "add-reminder":"Add the reminder?",
+    "years-practice":"6 years practice",
+    "leon-france":"Leon, France",
+    "your-appointment":"The Join appointment button will be enabled 5 minutes before your appointment.",
+    "specialist-appointment":" The specialist will be available at the time of your appointment.",
+    "microphone-camera":"Remember to enable your microphone and camera permissions from your browser."
 
+  },
   "membership": {
     "basic-membership-plan": "Basic Membership Plan",
     "premium-member": "Premium Member",
     "membership-plan": "Your MembershipPlan",
     "are-you-sure": "Are you sure about"
   },
-
   "referrals": {
     "your-referrals": "Your Referrals",
     "referrals-txt": "Share your unique referral code with friends, family, or colleagues and enjoy exclusive benefits together!",
@@ -286,7 +310,6 @@
     "invitation-code": "Your invitation code",
     "bonus-point-txt": "Bonus point will be add on your account as soon as your referal will complete first consultation on the platform"
   },
-
   "appointment-manage": {
     "choose-appointment-types": "Choose acceptable appointment types:",
     "planned-consultation": "Planned Consultation",
@@ -303,16 +326,16 @@
       "Sun": "Sunday"
     },
     "no-available-slots": "No available slots",
-    "confirm-payment": "Confirm payment"
+    "confirm-payment": "Confirm payment",
+    "pay-now":"Pay Now",
+    "Secure-money":"Secure money transfer using your bank account. Visa, MasterCard, Discover, American Express"
   },
-
   "session": {
     "session-lengths": "Session Lengths",
     "planned": "Planned",
     "buffer-time": "Buffer Time",
     "consultation-fees": "Consultation Fees"
   },
-
   "time-language": {
     "time-language": "Time and Language",
     "system-timezone": "Use system timezone",
@@ -321,21 +344,18 @@
     "select-timezone": "Select Timezone",
     "select-option": "Select Options"
   },
-
   "reschedule": {
     "reschedule-policy": "Reschedule Policy",
     "possibility-of-reschedule": "Possibility of reschedule",
     "limit": "Limit the number of reschedules",
     "reschedule-period": "Reschedule period"
   },
-
   "cancellation": {
     "policy": "Cancellation Policy",
     "no-fee": "No-Fee Cancellation Period",
     "notice": "for cancellations made less than",
     "time-before": "before the consultation"
   },
-
   "communication": {
     "comms": "Communication and Notifications",
     "notif-pref": "Notification Preferences",
@@ -347,13 +367,11 @@
     "whatsapp": "WhatsApp",
     "platform-messenger": "Platform Messenger"
   },
-
   "data-privacy": {
     "two-factor": "Two-Factor Authentication",
     "preferred": "Preferred method",
     "verification": "verification"
   },
-
   "reset-password": {
     "reset-password": "Reset the password",
     "current-password": "Current Password",
@@ -362,7 +380,6 @@
     "password-requirements": "Use 8 or more characters with a mix of letters, numbers & symbols",
     "change-password-btn": "Change Password"
   },
-
   "device-tracker": {
     "access-history": "Access History",
     "current": "Current session",
@@ -370,7 +387,6 @@
     "no-active-session": "No active sessions found.",
     "no-activity-found": "No Activity Found"
   },
-
   "log-out": {
     "title": "Log out or delete account",
     "logout": "Log Out",
@@ -383,30 +399,25 @@
     "deactivation-consequences3": "Your saved patient records and consultation history will remain in the system for the data retention period specified in our privacy policy.",
     "restore-access-instructions": "To restore access to your account, simply sign in using your username and password."
   },
-
   "reset-password-pop": {
     "verification": "Verification Code",
     "confirm-email": "Confirm your e-mail",
     "sent-code": " We've sent a code to",
     "send-again": "Send Again"
   },
-
   "profile-setting": {
     "personal-profile-settings": "Personal profile settings",
     "appointment-management": "Appointment Management",
     "privacy-security": "Data Privacy and Security"
   },
-
   "calendar-view": {
     "review-medical-history": " Review medical history ",
     "no-appointments-found": "No Appointments found"
   },
-
   "header": {
     "appointment-started": "Appointment Just STARTED",
     "urgent": "Urgent"
   },
-
   "appointment-list": {
     "coming-soon": "Coming soon",
     "no-upcoming-appointments": "No upcoming appointments",
@@ -432,9 +443,9 @@
     "ok": "OK",
     "leave-message": " Leave a message and support team will contact with you",
     "send-email": "Send E-mail",
-    "go-to-chat": "Go to chat"
+    "go-to-chat": "Go to chat",
+    "reserve-appointment":"You want to reserve the appointment with"
   },
-
   "clinic-dashboard": {
     "appointments": "Appointments",
     "today": "Today",
@@ -448,13 +459,11 @@
     "activity": "Activity",
     "day": "Day"
   },
-
   "clinic-reviews": {
     "reply": "Reply",
     "replies": "Replies",
     "review-title": "Review title"
   },
-
   "user-dashboard": {
     "allergy": "Allergy",
     "reccomendations": "Reccomendations",
@@ -467,7 +476,6 @@
     "calories": "Calories",
     "heart-rate": "Heart Rate"
   },
-
   "health-data-center": {
     "blood": "Blood",
     "height": "Height",
@@ -488,7 +496,6 @@
     "health": "Health",
     "quest": "Quest"
   },
-
   "all-doctor-list": {
     "generalist": "Generalist",
     "more-info": "More Info",
@@ -508,7 +515,6 @@
     "general-medicine": "General medicine",
     "meet-our-doctors": "Meet our doctors"
   },
-
   "clinic-signup": {
     "clinic-registration": "Clinic Registration",
     "clinic-name": "Clinic Name",
@@ -531,7 +537,6 @@
     "submit-registration": "Submit Registration",
     "back": "Back"
   },
-
   "clinic-see-user": {
     "contact-patient": "Contact with patient",
     "years-old": "years old",
@@ -539,7 +544,6 @@
     "request-access": "Request for access",
     "incoming-call": "Incoming call"
   },
-
   "video-call": {
     "video-call": "Video Call",
     "your-video": "Your Video",
@@ -561,65 +565,64 @@
     "expertise": "Expertise",
     "works-in": "Works in",
     "biography": "Biography",
-    "sort-by" : "Sort by",
-    "clinic-logo" : "Clinic Logo",
-    "website-link" : "Website Link",
-    "action" : "Action",
-    "profile-photo"  : "Profile Photo",
-    "doctor-name" : "Doctor Name",
-    "speciality" : "Speciality",
-    "patient-name" : "Patient Name",
-    "manage-payment" : "Manage Payment Requests",
-    "request-date" : "Request Date",
-    "request-amount" : "Request Amount",
-    "are-you-sure" : "Are you sure you want to ",
-    "payment-of" : "payment of",
-    "manage-patient" : "Manage Patient",
-    "manage-doctor" : "Manage Doctor",
-    "manage-clinic" : "Manage Clinic",
-    "specialization" : "Specialization",
-    "manage-paymentt" : "Manage Payment",
-    "reported-reviews" : "Reported Reviews",
-    "reported-date" :"Reported Date",
-    "reported-by" :"Reported By",
-    "review-content" :"Review Content",
-    "reported-reason" : "Reported Reason",
-    "no-reviews" : "No reviews found.",
-    "yes" : "Yes",
-    "no" : "No",
-    "existing-specialization" : "Existing Specialization",
-    "all-pending-specialization" : "All Pending Specialization",
-    "no-pending-specialization" : "No pending specialization found",
-    "approved" : "Approved",
-    "merge" : "Merge",
-    "approve-new-specialization" : "Approve New Specialization",
-    "new-specialization" : "A doctor has submitted a new specialization",
-    "specialization-name":"Specialization Name",
-    "interventional-name" : "Interventional Pulmonology Doctor Name",
-    "merge-new-specialization" : "Merge New Specialization",
-    "source-specialization" : "Source Specialization",
-    "select-specialization" : "Select specialization",
-    "created-date" : "Created Date"
-
+    "sort-by": "Sort by",
+    "clinic-logo": "Clinic Logo",
+    "website-link": "Website Link",
+    "action": "Action",
+    "profile-photo": "Profile Photo",
+    "doctor-name": "Doctor Name",
+    "speciality": "Speciality",
+    "patient-name": "Patient Name",
+    "manage-payment": "Manage Payment Requests",
+    "request-date": "Request Date",
+    "request-amount": "Request Amount",
+    "are-you-sure": "Are you sure you want to ",
+    "payment-of": "payment of",
+    "manage-patient": "Manage Patient",
+    "manage-doctor": "Manage Doctor",
+    "manage-clinic": "Manage Clinic",
+    "specialization": "Specialization",
+    "manage-paymentt": "Manage Payment",
+    "reported-reviews": "Reported Reviews",
+    "reported-date": "Reported Date",
+    "reported-by": "Reported By",
+    "review-content": "Review Content",
+    "reported-reason": "Reported Reason",
+    "no-reviews": "No reviews found.",
+    "yes": "Yes",
+    "no": "No",
+    "existing-specialization": "Existing Specialization",
+    "all-pending-specialization": "All Pending Specialization",
+    "no-pending-specialization": "No pending specialization found",
+    "approved": "Approved",
+    "merge": "Merge",
+    "approve-new-specialization": "Approve New Specialization",
+    "new-specialization": "A doctor has submitted a new specialization",
+    "specialization-name": "Specialization Name",
+    "interventional-name": "Interventional Pulmonology Doctor Name",
+    "merge-new-specialization": "Merge New Specialization",
+    "source-specialization": "Source Specialization",
+    "select-specialization": "Select specialization",
+    "created-date": "Created Date"
   },
-   "support":{
-"support-title":"Title",
-"action":"Action",
-"admin-support":"No admin support available",
-"your-document":"Upload Your Document",
-"support":"Support",
-"profile-changeVerified":"Are you sure you want to become a Doctor?",
-"document-verification":"My Document Verification",
-"view":"View",
-"pending":"Pending",
-"verified":"Verified",
-"rejected":"Rejected",
-"stripe-link":"Your Stripe Link",
-"copied":"Copied!",
-"reports":"Reports",
-"recommendation":"Recommendation",
-"treatment-plan":"Preinscriptions & treatment plan",
-"dr":"Dr.",
-"for":" for: "
+  "support": {
+    "support-title": "Title",
+    "action": "Action",
+    "admin-support": "No admin support available",
+    "your-document": "Upload Your Document",
+    "support": "Support",
+    "profile-changeVerified": "Are you sure you want to become a Doctor?",
+    "document-verification": "My Document Verification",
+    "view": "View",
+    "pending": "Pending",
+    "verified": "Verified",
+    "rejected": "Rejected",
+    "stripe-link": "Your Stripe Link",
+    "copied": "Copied!",
+    "reports": "Reports",
+    "recommendation": "Recommendation",
+    "treatment-plan": "Preinscriptions & treatment plan",
+    "dr": "Dr.",
+    "for": " for: "
   }
 }

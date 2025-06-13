@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fetchData, postData } from "../../../hooks/services/services";
 import { showToast } from "../../../utils/toast";
+import { useTranslation } from "react-i18next";
 
 const AppointmentModal = ({
   showFirstModal,
@@ -19,13 +20,14 @@ const AppointmentModal = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
-
+ const { t } = useTranslation("appointment-manage");
   const [clickedDate, setClickedDate] = useState(new Date());
   const [appointmentType, setAppointmentType] = useState("Planned");
   const [availableSlots, setAvailableSlots] = useState();
   const [bookedSlots, setBookedSlots] = useState();
   const [selectedTimeSlot, setSelectedTimeSlot] = useState();
   const [showSecondModal, setShowSecondModal] = useState(false);
+  const [stripeLink,SetStripeLink]=useState("")
   const [showThirdModal, setShowThirdModal] = useState(false);
   const [showFourthModal, setShowFourthModal] = useState(false);
   const [showFifthModal, setShowFifthModal] = useState(false);
@@ -140,6 +142,8 @@ const AppointmentModal = ({
       ); // Call the API service
       if (response.status == 201) {
         let responseData = await response.json();
+  
+        SetStripeLink(responseData?.data?.stripe_link)
         setAppointmentId(responseData?.data?.appointment_id);
         setShowFirstModal(false);
         setShowSecondModal(true);
@@ -170,35 +174,34 @@ const AppointmentModal = ({
     } catch (error) {}
   };
 
-  const payAppointmentStrip = async () => {
-    try {
-      const payload = {
-        appointment_id: appointmentId,
-        doctor_user_id: selectedDoctorAppointement?.id,
-        patient_user_id: isProfiledata?.id,
-      };
+  // const payAppointmentStrip = async () => {
+  //   try {
+  //     const payload = {
+  //       appointment_id: appointmentId,
+  //       doctor_user_id: selectedDoctorAppointement?.id,
+  //       patient_user_id: isProfiledata?.id,
+  //     };
 
-      const response = await postData(
-        "doctors/appointment/create-checkout-session/",
-        payload
-      );
+  //     const response = await postData(
+  //       "doctors/appointment/create-checkout-session/",
+  //       payload
+  //     )
+  //     if (response.status === 200) {
+  //       let responseData = await response.json();
 
-      if (response.status === 200) {
-        let responseData = await response.json();
-
-        if (responseData?.session_url) {
-          setShowThirdModal(false);
-          window.location.href = responseData.session_url;
-        } else {
-          showToast("Failed to retrieve payment URL", "error");
-        }
-      } else {
-        showToast("Payment session creation failed", "error");
-      }
-    } catch (error) {
-      showToast(error.message, "error");
-    }
-  };
+  //       if (responseData?.session_url) {
+  //         setShowThirdModal(false);
+  //         window.location.href = responseData.session_url;
+  //       } else {
+  //         showToast("Failed to retrieve payment URL", "error");
+  //       }
+  //     } else {
+  //       showToast("Payment session creation failed", "error");
+  //     }
+  //   } catch (error) {
+  //     showToast(error.message, "error");
+  //   }
+  // };
 
   return (
     <>
@@ -209,10 +212,6 @@ const AppointmentModal = ({
         onHide={() => setShowFirstModal(false)}
         size="lg"
       >
-        {console.log(
-          ">>>>>>>>>>>>selectedDoctorAppointement",
-          selectedDoctorAppointement
-        )}
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <div class="appointPopup">
@@ -238,9 +237,9 @@ const AppointmentModal = ({
                       checked={appointmentType === "Planned"}
                       onChange={handleRadioChange}
                     />
-                    <label className="mb-0">Planned consultation</label>
+                    <label className="mb-0">{t("appointment-manage.planned-consultation")}</label>
                   </div>
-                  <div className="radiotype d-flex align-items-center gap-2">
+                  {/* <div className="radiotype d-flex align-items-center gap-2">
                     <InputField
                       type="radio"
                       name="appointmentType"
@@ -249,7 +248,7 @@ const AppointmentModal = ({
                       onChange={handleRadioChange}
                     />
                     <label className="mb-0">Urgent call</label>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="timeScroll">
                   {availableSlots?.length > 0 ? (
@@ -277,7 +276,7 @@ const AppointmentModal = ({
                       </div>
                     ))
                   ) : (
-                    <p>No available slots</p>
+                    <p> {t("appointment-manage.no-available-slots")}</p>
                   )}
                 </div>
                 <div class="setimeBtn">
@@ -286,7 +285,7 @@ const AppointmentModal = ({
                     class="blue_btn"
                     onClick={appoinmentSubmit}
                   >
-                    set the time
+                    {t("appointment-list.set-the-time")}
                   </a>
                   <div class="bg-mainblue border-round p-2 d-flex align-items-center justify-content-center">
                     <button
@@ -319,15 +318,15 @@ const AppointmentModal = ({
           <div>
             <div class="modal-body pt-0">
               <div class="appointPopup pt-0">
-                <h4 class="text-center mb-3">Confirm the time</h4>
+                <h4 class="text-center mb-3">{t("appointment-list.confirm-time")}</h4>
                 <div class="confirmTime">
                   <p class="para font-20 text-center">
-                    You want to reserve the appointment with{" "}
+                     {t("appointment-list.reserve-appointment")}{" "}
                     <span class="text-mainblue">
-                      Dr. {selectedDoctorAppointement?.first_name}{" "}
+                       {t("support.dr")} {selectedDoctorAppointement?.first_name}{" "}
                       {selectedDoctorAppointement?.last_name}
                     </span>{" "}
-                    for:
+                     {t("support.for")}
                   </p>
                   <div class="d-flex align-items-center justify-content-center gap-4 my-3">
                     <span>{selectedTimeSlot}</span>
@@ -340,7 +339,7 @@ const AppointmentModal = ({
                     class="blue_btn"
                     onClick={() => setShowThirdModal(true)}
                   >
-                    Confirm
+                     {t("singup.confirm_lable")}
                   </button>
                   <button
                     type="button"
@@ -350,7 +349,7 @@ const AppointmentModal = ({
                       setShowSecondModal(false);
                     }}
                   >
-                    Change
+                   {t("appointment-list.change")}
                   </button>
                 </div>
               </div>
@@ -370,7 +369,7 @@ const AppointmentModal = ({
             <div class="modal-heading-alignment">
               <img src="../../images/Info.svg" />
               <h5 class="modal-title text-left" id="exampleModalLabel">
-                Confirm payment
+                {t("appointment-manage.confirm-payment")}
               </h5>
             </div>
           </div>
@@ -386,17 +385,11 @@ const AppointmentModal = ({
                         <div class="cardFirst-row">
                           <div class="d-flex align-items-center">
                             <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="flexRadioDefault"
-                                id="flexRadioDefault1"
-                              />
                               <label
                                 class="form-check-label radio-text"
                                 for="flexRadioDefault1"
                               >
-                                Add Payment Method
+                                   {t("appointment-manage.pay-now")}
                               </label>
                             </div>
                           </div>
@@ -412,93 +405,61 @@ const AppointmentModal = ({
                         </div>
                         <div class="cardSecond-row">
                           <div class="pay-card-content">
-                            Secure money transfer using your bank account. Visa,
-                            MasterCard, Discover, American Express
+                           {t("appointment-manage.Secure-money")}
                           </div>
                         </div>
                       </div>
-
-                      <div class="payment-method-card bg-white w-100">
-                        <div class="cardFirst-row">
-                          <div class="d-flex align-items-center">
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="flexRadioDefault"
-                                id="flexRadioDefault1"
-                              />
-                              <label
-                                class="form-check-label radio-text"
-                                for="flexRadioDefault1"
-                              >
-                                ..........9216
-                              </label>
-                            </div>
-                          </div>
-                          <div class="acc-img">
-                            <div>
-                              <img
-                                src="../../images/visa.webp"
-                                width="40"
-                                alt="img"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="cardSecond-row">
-                          <div class="pay-card-content">cardSecond-row</div>
-                        </div>
-                      </div>
+                        
                     </div>
                   </div>
                 </div>
                 <div class="col-md-5">
                   <div class="userPayment">
-                    <h5>Resume</h5>
+                    <h5> {t("wallet.resume")}</h5>
                     <hr />
-                    <p>Online consultation</p>
+                    <p> {t("wallet.Online-consultation")}</p>
                     <div class="userPaymentBox">
                       <div class="category">
-                        <h4>Category:</h4>
+                        <h4>{t("wallet.category")}:</h4>
                         <h6 class="main-blue-text">
                           {appointmentSummary?.category}
                         </h6>
                       </div>
                       <div class="category">
-                        <h4>Date:</h4>
+                        <h4>{t("wallet.date")}:</h4>
                         <h6>{appointmentSummary?.date}</h6>
                       </div>
                       <div class="category">
-                        <h4>Hour:</h4>
+                        <h4>{t("wallet.hour")}:</h4>
                         <h6>{appointmentSummary?.time}</h6>
                       </div>
 
                       <div class="dashDevider"></div>
 
                       <div class="category">
-                        <h4>Subtotal:</h4>
+                        <h4>{t("wallet.sub-total")}:</h4>
                         <h6>{appointmentSummary?.subtotal}</h6>
                       </div>
                       <div class="category">
-                        <h4>Discount:</h4>
+                        <h4>{t("wallet.discount")}:</h4>
                         <h6>{appointmentSummary?.discount}</h6>
                       </div>
 
                       <hr />
 
                       <div class="totalCost">
-                        <span>Total:</span>
+                        <span>{t("wallet.total")}:</span>
                         {appointmentSummary?.subtotal}
                       </div>
 
-                      <button
+                      <a
                         type="button"
                         class="blue_btn"
-                        onClick={payAppointmentStrip}
+                        href={stripeLink}
+                        target="blank"
                       >
-                        Confirm
-                      </button>
+                        {t("wallet.confirm")}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -528,11 +489,10 @@ const AppointmentModal = ({
           <div class="modal-body pt-0">
             <div class="appointPopup pt-0">
               <div class="confirmTime text-center">
-                <p class="fw-bold">Payment was made succesfully</p>
-                <h4 class="main-blue-text">Thank you for staying with H-2</h4>
+                <p class="fw-bold">{t("wallet.payment-succesfully")}</p>
+                <h4 class="main-blue-text"> {t("wallet.for-staying")}</h4>
                 <p class="para font-20 text-center mb-4">
-                  You will receive a notification as soon as the specialist
-                  confirms the reservation
+                {t("wallet.receive-notificatio")}
                 </p>
               </div>
               <div class="d-flex gap-2 justify-content-center">
@@ -544,7 +504,7 @@ const AppointmentModal = ({
                     setShowFifthModal(true);
                   }}
                 >
-                  ok
+                  {t("wallet.ok")}
                 </button>{" "}
               </div>
             </div>
@@ -568,17 +528,16 @@ const AppointmentModal = ({
             ></button>
           </div>
           <div class="confirmTime text-center w-100">
-            <p class="fw-medium fs-2 mb-2">Appointment confirmed</p>
+            <p class="fw-medium fs-2 mb-2">{t("wallet.appointment-confirmed")}</p>
             <p class="para font-16 text-center mb-3">
-              Remember to enter your virtual office 5 minutes before your
-              consultation.
+              {t("wallet.virtual-office")}
             </p>
             <h4
               class="main-blue-text pointer"
               data-bs-toggle="modal"
               data-bs-target="#remindMe"
             >
-              Add the reminder?
+              {t("wallet.add-reminder")}
             </h4>
 
             <div class="reminderBox">
@@ -588,19 +547,19 @@ const AppointmentModal = ({
               <div class="remindcontentPart">
                 <div class="left">
                   <h5>
-                    Generalist{" "}
-                    <span class="main-blue-text">6 years practice</span>
+                 {t("all-doctor-list.generalist")} {" "}
+                    <span class="main-blue-text">{t("all-doctor-list.years-practice")}</span>
                   </h5>
                   <div class="verified">
                     <img src="../images/batch.svg" />
                     <span class="text-mainblue">
-                      Dr. {selectedDoctorAppointement?.first_name}{" "}
+                     {t("support.dr")} {selectedDoctorAppointement?.first_name}{" "}
                       {selectedDoctorAppointement?.last_name}
                     </span>{" "}
                   </div>
                   <div class="blueLoca d-flex align-items-center gap-2">
                     <img src="../images/mpin-blue.svg" />{" "}
-                    <span class="text-mainblue">Leon, France</span>
+                    <span class="text-mainblue">{t("wallet.leon-france")}</span>
                   </div>
                 </div>
                 <div class="right">
@@ -619,16 +578,14 @@ const AppointmentModal = ({
             <div class="remindBlueBox">
               <ol>
                 <li>
-                  The "Join appointment" button will be enabled 5 minutes before
-                  your appointment.
+                  {t("wallet.your-appointment")}
+               
                 </li>
                 <li>
-                  The specialist will be available at the time of your
-                  appointment.
+                  {t("wallet.specialist-appointment")}
                 </li>
                 <li class="mb-0">
-                  Remember to enable your microphone and camera permissions from
-                  your browser.
+                  {t("wallet.microphone-camera")}
                 </li>
               </ol>
             </div>

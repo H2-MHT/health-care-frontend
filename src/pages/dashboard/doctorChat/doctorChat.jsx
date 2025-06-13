@@ -104,7 +104,6 @@ const DoctorChat = () => {
       console.log(error.message);
     }
   };
-
   const getUsersForDoctor = async () => {
     try {
       // Run both fetches in parallel

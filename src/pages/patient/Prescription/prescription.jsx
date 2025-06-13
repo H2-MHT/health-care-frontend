@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { Loader } from "../../../components/ui/loader/loader";
 import { useSelector } from "react-redux";
 import { showToast } from "../../../utils/toast";
+import { useTranslation } from "react-i18next";
 
 const PatientPrescription = () => {
   const navigate = useNavigate();
+   const { t } = useTranslation("edit-profile");
   const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
   const [loading, setLoading] = useState(false);
   const [prescriptions, setPrescriptions] = useState([]);
@@ -80,7 +82,7 @@ const PatientPrescription = () => {
             <div class="pateintData">
               <div class="tabPrt">
                 <a href="#" class="bg-darkgreen">
-                  Prescriptions
+                   {t("edit-profile.prescriptions")}
                 </a>
               </div>
               <div class="preinscriptionsOuter">
@@ -121,7 +123,7 @@ const PatientPrescription = () => {
                             </a>
                           </div>
                           <div className="doubleLine col-3">
-                            <span>Created Date:</span>{" "}
+                            <span> {t("edit-profile.created-date")}</span>{" "}
                             {prescription?.created_date}
                           </div>
                         </div>
@@ -130,7 +132,7 @@ const PatientPrescription = () => {
                   ) : (
                     <div className="treatmentContainer">
                       <div className="no-appointments">
-                        No Prescription found
+                         {t("edit-profile.prescription-found")}
                       </div>
                     </div>
                   )}

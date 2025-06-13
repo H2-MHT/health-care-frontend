@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { fetchDataPublic } from "../../hooks/services/services";
-import { Link } from "react-router-dom";
+import { fetchDataAuth, fetchDataPublic } from "../../hooks/services/services";
+import { Link, useNavigate } from "react-router-dom";
 import { paymentSortBy } from "../../utils/constants";
 import Select from "../../components/form/Select";
 import Image from "../../components/form/Image";
 import { Loader } from "../../components/ui/loader/loader";
 import Pagination from "../../components/pagination/pagination.js";
 import Header from "../../components/ui/header/header";
-import { Footer } from "../../components/ui/footer/footer.js";
 import Flag from "react-world-flags";
 import { Country } from "country-state-city";
 import { useTranslation } from "react-i18next";
+import { Footer } from "../dashboard/doctor-dashboard/footer/footer.jsx";
 const countryCodeMap = Object.fromEntries(
   Country.getAllCountries().map((country) => [
     country.name.toLowerCase(),
@@ -20,8 +20,10 @@ const countryCodeMap = Object.fromEntries(
 
 const AllDoctorPublic = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [allDoctorList, setAllDoctorList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [languageOptions, setLanguageOptions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [query, setQuery] = useState("");
@@ -55,18 +57,44 @@ const AllDoctorPublic = () => {
     }
   };
 
+  const getLanguageData = async () => {
+    try {
+      const response = await fetchDataAuth("clinics/languages", navigate);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
+      const getData = await response.json();
+      const formattedData = getData?.map((item) => ({
+        name: item.title,
+        id: item.id,
+      }));
+      setLanguageOptions(formattedData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const doctorsWithLanguageNames = allDoctorList?.map((doctor) => {
+    const languageNames = doctor?.languages
+      ?.map((id) =>
+        languageOptions?.find((lang) => String(lang.id) === String(id))
+      )
+      .filter(Boolean)
+      .map((lang) => lang.name);
+
+    return {
+      ...doctor,
+      languages: languageNames,
+    };
+  });
   useEffect(() => {
     PaginatedDoctorList(currentPage, query);
   }, [currentPage]);
 
   useEffect(() => {
     PaginatedDoctorList();
+    getLanguageData();
   }, []);
 
-  //   const makeAppointment = (item) => {
-  //     setShowFirstModal(true);
-  //     setSelectedDoctorAppointement(item);
-  //   };
   return (
     <>
       <Header />
@@ -105,8 +133,8 @@ const AllDoctorPublic = () => {
 
           <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
             <div className="recomend row g-4">
-              {allDoctorList.length > 0 ? (
-                allDoctorList.map((item) => {
+              {doctorsWithLanguageNames.length > 0 ? (
+                doctorsWithLanguageNames.map((item) => {
                   const countryName = item?.country?.toLowerCase?.();
                   const countryCode = countryCodeMap[countryName] || "fr";
 
@@ -127,8 +155,9 @@ const AllDoctorPublic = () => {
                                 </div>
                                 <div className="top">
                                   <div className="verified">
-                                    {item?.speciality || "Generalist"} |{" "}
-                                    {item?.experience_years} years of experience
+                                    {item?.speciality} |{" "}
+                                    {item?.experience_years || 0} years of
+                                    experience
                                     <span className="main-blue-text">
                                       {item?.expertise}
                                     </span>
@@ -144,21 +173,28 @@ const AllDoctorPublic = () => {
                                   </span>
                                 </div>
 
-                                <div className="d-flex gap-2">
-                                  {Array.isArray(item?.languages) &&
-                                    item.languages.map((lang, langIndex) => (
-                                      <div
-                                        className="langSpeak"
-                                        key={langIndex}
-                                      >
-                                        <span>{lang.title}</span>
-                                      </div>
-                                    ))}
+                                <div className="language-container d-flex gap-2 langAll">
+                                  {item?.languages?.map((lang, langIndex) => (
+                                    <div className="langSpeak" key={langIndex}>
+                                      <span className="languageSpeak">
+                                        {lang}
+                                      </span>
+                                    </div>
+                                  ))}
                                 </div>
                               </div>
                             </div>
                           </div>
                           <div className="right">
+                            <div className="greenimg">
+                              <img
+                                src="../images/general-medicine.svg"
+                                alt="medicine"
+                              />
+                              <span>
+                                {item?.specialty || "General Medicine"}
+                              </span>
+                            </div>
                             <div className="bStar d-flex align-items-center gap-2">
                               <img src="../images/black-star.svg" alt="star" />
                               <span className="text-black">{item?.rating}</span>
@@ -166,14 +202,15 @@ const AllDoctorPublic = () => {
                           </div>
                         </div>
 
-                        <div className="d-flex justify-content-around ">
-                          <div className="mt-4 mb-2">
+                        <div className="d-flex align-items-center justify-content-between mt-3 ">
+                          <div className="mt-2 mb-2">
                             <div className="consult">
-                              Planned Consultation : {item?.planned_hourly_rate||"0.00"}
+                              Consultation fee :{" "}
+                              {item?.planned_hourly_rate || "0.00"}
                             </div>
                           </div>
 
-                          <div className="d-flex flex-column gap-2 align-items-center justify-content-center">
+                          <div className="d-flex  gap-2 align-items-center justify-content-center">
                             <Link
                               to="/public-doctor-view"
                               state={{ doctor: item }}

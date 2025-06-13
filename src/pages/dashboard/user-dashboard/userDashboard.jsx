@@ -3,7 +3,9 @@ import "./userdashboard.css";
 import { Link, useNavigate } from "react-router-dom";
 import {
   deleteData,
+  fetchData,
   fetchDataAuth,
+  fetchFitbitDataAuth,
   postData,
   putData,
 } from "../../../hooks/services/services";
@@ -33,10 +35,14 @@ const UserDashboard = () => {
   const dispatch = useDispatch();
   const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
   const [treatmentPlanData, setTreatmentPlanData] = useState();
+   const [appointmentList, setAppointmentList] = useState();
   const [openNotesModal, setOpenNotesModal] = useState(false);
   const [openNotesEditModal, setOpenNotesEditModal] = useState(false);
   const [editNotesData, setEditNotesData] = useState();
+  const [videoModal, setVideoModal] = useState(false);
   const [allNotesData, setAllNotesData] = useState();
+    const [selectedAppointment, setSelectedAppointment] = useState();
+  const [scheduledEvents, setScheduledEvents] = useState([]);
   const [notesData, setNotesData] = useState();
   const [activeTab, setActiveTab] = useState("treatment");
   const [loading, setLoading] = useState(false);
@@ -90,7 +96,7 @@ const UserDashboard = () => {
 
   const fetchStepCount = async (date) => {
     try {
-      const data = await getFitbitData(`activities/date/${date}.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=activities/date/${date}.json`);
       console.log("Activities Data:", data);
       if (data?.summary) {
         setSteps(data.summary.steps);
@@ -103,7 +109,7 @@ const UserDashboard = () => {
 
   const fetchWaterQuantity = async (date) => {
     try {
-      const data = await getFitbitData(`foods/log/water/date/${date}/1d.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=foods/log/water/date/${date}/1d.json`);
       if (data?.["foods-log-water"]?.length > 0) {
         setWater(data["foods-log-water"][0].value);
       } else {
@@ -116,7 +122,7 @@ const UserDashboard = () => {
 
   const fetchRestingHeartRate = async (date) => {
     try {
-      const data = await getFitbitData(`activities/heart/date/${date}/1d.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=activities/heart/date/${date}/1d.json`);
       if (data?.["activities-heart"]?.length > 0) {
         setHeartRate(
           data["activities-heart"][0]?.value?.restingHeartRate || "N/A"
@@ -153,6 +159,43 @@ const UserDashboard = () => {
     getProfile();
     storeDeviceToken();
   }, []);
+
+
+  const getPatientAppointments = async () => {
+    const startDate = getAppointmentFormattedDate(currentView?.startDate);
+    const endDate = getAppointmentFormattedDate(currentView?.endDate);
+    try {
+      const response = await fetchData(
+        `doctors/patient-booked-appointment/?patient_user_id=${isProfiledata?.id}&start_date=${startDate}&end_date=${endDate}`,
+        navigate
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
+      const responseData = await response.json();
+      setAppointmentList(responseData?.data);
+      const events = responseData?.data?.map((item) => {
+        let a = `${item?.date}T${item?.slot?.split("-")[0]?.trim()}:00.000`;
+        return {
+          title: item?.doctor?.name,
+          date: a,
+          appointment_id: item?.id,
+          extendedProps: {
+            meetingLink: item?.meeting_link,
+            data: item,
+          },
+        };
+      });
+
+      setScheduledEvents(events);
+    } catch (error) {
+      console.log("error", error?.message);
+    }
+  };
+
+    useEffect(() => {
+      if (currentView?.startDate) getPatientAppointments();
+    }, [currentView]);
 
   const storeDeviceToken = async () => {
     try {
@@ -214,6 +257,14 @@ const UserDashboard = () => {
       setTreatmentPlanData(getData);
     } catch (error) {
       console.log(error.message);
+    }
+  };
+
+const handleEventClick = (clickInfo) => {
+    let appointment = clickInfo.event.extendedProps;
+    if (appointment) {
+      setSelectedAppointment(appointment?.data);
+      setVideoModal(true);
     }
   };
 
@@ -442,9 +493,11 @@ const UserDashboard = () => {
                   <div className="calenderDetail">
                     <div className="responsive-iframe-container large-container">
                       <MyCalendar
-                        events={false}
+                        events={true}
+                        onEventClick={handleEventClick}
                         onDateClick={handleDateClick}
                         setCurrentView={setCurrentView}
+                        eventList={scheduledEvents}
                       />
                     </div>
                   </div>

@@ -4,15 +4,21 @@ import { fetchDataAuth } from "../../../hooks/services/services";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../../../components/ui/loader/loader";
 import Flag from 'react-world-flags';
-
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 function PatientPublicView() {
   const [loading, setLoading] = useState(false);
+   const { t } = useTranslation("edit-profile");
   const [patientDetails, setPatientDetails] = useState({});
   const [medicalDocumentDetails, setMedicalDocumentDetails] = useState([]);
   const [allergyDetails, setAllergyDetails] = useState([]);
   const [showAllergy, setShowAllergy] = useState(false);
+    const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
     const [showAllMedicalHistory, setShowAllMedicalHistory] = useState(false);
   const navigate = useNavigate();
+  
+ console.log(isProfiledata,">>>>isProfiledata")
+
 
   const countries = [
     {
@@ -77,22 +83,6 @@ function PatientPublicView() {
     }
   ];
 
-  const fetchPatientDetails = async () => {
-    setLoading(true);
-    const url = "";
-    try {
-      const response = await fetchDataAuth(url, navigate);
-      if (response.status === 200) {
-        const data = await response.json();
-        setPatientDetails(data);
-      } else throw new Error("Failed to fetch Patient Details from server");
-    } catch (err) {
-      console.error("Error Fetching Details: ", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const getMedicalDocumentsData = async () => {
     try {
       const response = await fetchDataAuth(
@@ -129,8 +119,9 @@ function PatientPublicView() {
     // fetchPatientDetails();
     getMedicalDocumentsData();
     getAllergiesData();
-  });
+  },[]);
 
+ 
   return loading ? (
     <Loader />
   ) : (
@@ -138,16 +129,16 @@ function PatientPublicView() {
       <div class="clinic_see_user bg-white border-radius-20 padding-20 pb-5">
         <div class="clinicUser">
           <div class="left">
-            <a href="#" class="blue_btn d-flex align-items-center gap-3">
-              Contact with patient
-            </a>
+            {/* <a href="#" class="blue_btn d-flex align-items-center gap-3">
+               {t("clinic-see-user.contact-patient")} 
+            </a> */}
           </div>
           <div class="right">
             <div class="docNameImg">
               <div>
-                <h1>{patientDetails?.name || "Jenny Leibovitz"}</h1>
+                <h1>{isProfiledata?.first_name} {isProfiledata?.last_name} </h1>
                 <div class="dcDetails">
-                  <p>{patientDetails?.age || "28"} years old</p>
+                  <p>{isProfiledata?.dob || 0 } {t("clinic-see-user.years-old")}</p>
                   <img src="../images/clinic-dashboard/gender.svg" />
                 </div>
                 <div class="dcDetails">
@@ -164,16 +155,16 @@ function PatientPublicView() {
                 </div>
                 <div class="dcDetails">
                   <p>
-                    {patientDetails?.city || "Leon"},{" "}
-                    {patientDetails?.country || "France"}
+                    {isProfiledata?.city || "Leon"},{" "}
+                    {isProfiledata?.country || "France"}
                   </p>
-                  <Flag code={"in"} />
+                  {/* <Flag code={"in"} /> */}
                   {/* <img src="../images/clinic-dashboard/flag.svg" /> */}
                 </div>
               </div>
               <div class="img-part">
                 <img
-                  src="../images/clinic-dashboard/user-1.svg"
+                  src={isProfiledata?.profile_picture}
                   class="img-fluid"
                 />
               </div>
@@ -183,86 +174,23 @@ function PatientPublicView() {
         <div class="clinicUserData">
           <div class="clinicUserDataInner">
             <div class="left">
-              <h5>{patientDetails?.email_address || "Email address"}</h5>
-              <h5>{patientDetails?.phone_number || "Phone Number"}</h5>
+              <h5>  Email: {isProfiledata?.email }</h5>
+              <h5>Phone Number: {isProfiledata?.phone_number}</h5>
             </div>
             <div class="right"></div>
           </div>
 
           <p class="mt-5">
-            BioNam non in lacus, id ultrices ex. at elit at, maximus non ex
-            porta ullamcorper Nunc tortor. faucibus non, Quisque id leo. varius
-            Nullam vehicula, vitae diam varius nisl. sollicitudin. venenatis
-            sollicitudin. at dui. urna. ullamcorper urnuis Nam non in lacus, id
-            ultrices ex. at elit at, maximus non ex porta ullamcorper Nunc
-            tortor. faucibus non, Quisque id{" "}
+            
+          {isProfiledata?.bio}
           </p>
         </div>
 
         <div class="row mt-5">
-          {/* <div class="col-md-12">
-            <div class="">
-              <div class="d-flex align-items-center justify-content-between mb-4">
-                <h3 class="docinfohead">Allergies</h3>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <textarea
-                      rows="3"
-                      placeholder="medications name"
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="licenses p-0">
-                    <div class="file">
-                      <img
-                        src="../images/clinic-dashboard/verification.svg"
-                        class="img-fluid"
-                      />
-                    </div>
-                    <div class="form-group w-100">
-                      <label>name</label>
-                      <input type="date" placeholder="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <a href="#" class="downopen">
-                <img src="../images/clinic-dashboard/downopen.svg" />
-              </a>
-            </div>
-          </div>
-
-          <hr class="mt-4 mb-4" />
-
-          <div class="col-md-12">
-            <div class="">
-              <div class="d-flex align-items-center justify-content-between mb-4">
-                <h3 class="docinfohead">Medical history</h3>
-              </div>
-
-              <p class="fileacces">You dont have access to this files</p>
-
-              <a href="#" class="blue_btn btn-danger mx-auto">
-                Requestion for access
-              </a>
-            </div>
-          </div> */}
-
           <div class="col-md-12 mt-3">
             <div class="padding-inner border-radius-20 bg-white">
               <div class="d-flex align-items-center justify-content-between mb-4">
-                <h3 class="docinfohead">Allergies</h3>
-                {/* <a>
-                  <img
-                    src="../images/folder.svg"
-                    onClick={() => setUserAddOpenModel(true)}
-                  />
-                </a> */}
+                <h3 class="docinfohead"> {t("edit-profile.allergies")}</h3>
               </div>
               <div className="allergiesMain">
                 {allergyDetails?.slice(0, 2).map((item) => (
@@ -271,27 +199,13 @@ function PatientPublicView() {
                     key={item.id}
                   >
                     <div className="form-group w-50 d-flex">
-                      <p className="mb-0">Allergies name:</p>
+                      <p className="mb-0">{t("edit-profile.allergies-name")}</p>
                       {item?.name}
                     </div>
                     <div className="d-flex  gap-3 w-50 d-flex">
-                      <p className="mb-0">Document Link:</p>
+                      <p className="mb-0">{t("edit-profile.document-link")}</p>
                       {item?.document_link}
                     </div>
-                    {/* <div className="d-flex align-items-center gap-3">
-                      <img
-                        src="../images/edit.svg"
-                        width="25"
-                        onClick={() => handleEditAllergieDetails(item)}
-                        alt="edit"
-                      />
-                      <img
-                        src="../images/delete.svg"
-                        width="25"
-                        alt="delete"
-                        onClick={() => removeAllergie(item)}
-                      />
-                    </div> */}
                   </div>
                 ))}
                 {showAllergy &&
@@ -301,26 +215,12 @@ function PatientPublicView() {
                       key={item.id}
                     >
                       <div className="form-group w-50 d-flex">
-                        <p className="mb-0">Allergies name:</p> {item?.name}
+                        <p className="mb-0"> {t("edit-profile.allergies-name")}</p> {item?.name}
                       </div>
                       <div className="d-flex gap-3 w-50 d-flex">
-                        <p className="mb-0">Document Link:</p>{" "}
+                        <p className="mb-0"> {t("edit-profile.document-link")}</p>{" "}
                         {item?.document_link}
                       </div>
-                      {/* <div className="d-flex align-items-center gap-3">
-                        <img
-                          src="../images/edit.svg"
-                          width="25"
-                          onClick={() => handleEditAllergieDetails(item)}
-                          alt="edit"
-                        />
-                        <img
-                          src="../images/delete.svg"
-                          width="25"
-                          alt="delete"
-                          onClick={() => removeAllergie(item)}
-                        />
-                      </div> */}
                     </div>
                   ))}
               </div>
@@ -342,13 +242,7 @@ function PatientPublicView() {
           <div class="col-md-12 mt-3">
             <div class="padding-inner border-radius-20 bg-white">
               <div class="d-flex align-items-center justify-content-between mb-4">
-                <h3 class="docinfohead">Medical history</h3>
-                {/* <a>
-                  <img
-                    src="../images/folder.svg"
-                    onClick={() => setUserMedicalHistoryModel(true)}
-                  />
-                </a> */}
+                <h3 class="docinfohead">{t("edit-profile.medical-history")}</h3>
               </div>
               <div className="allergiesMain">
                 {medicalDocumentDetails?.slice(0, 2).map((item) => (
@@ -357,27 +251,13 @@ function PatientPublicView() {
                     key={item.id}
                   >
                     <div className="form-group w-50 d-flex">
-                      <p className="mb-0">Allergies name:</p>
+                      <p className="mb-0"> {t("edit-profile.allergies-name")}</p>
                       {item?.name}
                     </div>
                     <div className="d-flex  gap-3 w-50 d-flex">
-                      <p className="mb-0">Document Link:</p>
+                      <p className="mb-0">{t("edit-profile.document-link")}</p>
                       {item?.document_link}
                     </div>
-                    {/* <div className="d-flex align-items-center gap-3">
-                      <img
-                        src="../images/edit.svg"
-                        width="25"
-                        onClick={() => handleMedicalDocumentDetails(item)}
-                        alt="edit"
-                      />
-                      <img
-                        src="../images/delete.svg"
-                        width="25"
-                        alt="delete"
-                        onClick={() => removeMedicalDocument(item)}
-                      />
-                    </div> */}
                   </div>
                 ))}
 
@@ -388,26 +268,12 @@ function PatientPublicView() {
                       key={item.id}
                     >
                       <div className="form-group w-50 d-flex">
-                        <p className="mb-0">Medical history:</p> {item?.name}
+                        <p className="mb-0"> {t("edit-profile.medical-history")}</p> {item?.name}
                       </div>
                       <div className="d-flex gap-3 w-50 d-flex">
-                        <p className="mb-0">Document Link:</p>{" "}
+                        <p className="mb-0">{t("edit-profile.document-lin")}</p>{" "}
                         {item?.document_link}
                       </div>
-                      {/* <div className="d-flex align-items-center gap-3">
-                        <img
-                          src="../images/edit.svg"
-                          width="25"
-                          onClick={() => handleMedicalDocumentDetails(item)}
-                          alt="edit"
-                        />
-                        <img
-                          src="../images/delete.svg"
-                          width="25"
-                          alt="delete"
-                          onClick={() => removeMedicalDocument(item)}
-                        />
-                      </div> */}
                     </div>
                   ))}
               </div>

@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import "../signup/signup.css";
-import { fetchDataAuth, updateData } from "../../hooks/services/services";
+import {  updateData } from "../../hooks/services/services";
 import { showToast } from "../../utils/toast";
 import Select from "../../components/form/Select";
 import { InputField } from "../../components/form/InputField";
 import { Country, countryCityData } from "../../utils/constants";
+import { useTranslation } from "react-i18next";
 
 const PatientProfile = ({ setStateCount }) => {
+  const { t } = useTranslation("edit-profile");
   const {
     control,
     handleSubmit,
@@ -52,12 +53,12 @@ const PatientProfile = ({ setStateCount }) => {
             <div className="signupTab">
               <div className="formArea border-radius-20 border-gray">
                 <h5 className="form-head mt-4 mb-5">
-                  Complete your Information
+                   {t("singup.Complete_Information")}
                 </h5>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="row g-4">
                     <div className="col-md-12">
-                      <label>Place of Residence</label>
+                      <label> {t("singup.place_residence")}</label>
                       <div className="row">
                         <div className="col-md-6">
                           <Controller
@@ -95,7 +96,7 @@ const PatientProfile = ({ setStateCount }) => {
 
                     {/* Date of Birth */}
                     <div className="col-md-12">
-                      <label>Date of Birth</label>
+                      <label>{t("singup.date_birth")}</label>
                       <Controller
                         name="dob"
                         control={control}
@@ -107,7 +108,7 @@ const PatientProfile = ({ setStateCount }) => {
 
                     {/* Gender */}
                     <div className="col-md-12">
-                      <label>Gender</label>
+                      <label> {t("singup.Gender_lable")}</label>
                       <div className="d-flex align-items-center justify-content-between">
                         {["Male", "Female", "Other"].map((gender) => (
                           <Controller
@@ -134,14 +135,14 @@ const PatientProfile = ({ setStateCount }) => {
                     {/* Submit & Skip */}
                     <div className="col-md-12">
                       <button type="submit" className="black_btn">
-                        Confirm
+                        {t("singup.confirm_lable")}
                       </button>
                       <a
                         href="#"
                         className="back justify-content-end"
                         onClick={() => setStateCount(4)}
                       >
-                        Skip <img src="images/frontarrow.png" alt="arrow" />
+                         {t("singup.skip_lable")} <img src="images/frontarrow.png" alt="arrow" />
                       </a>
                     </div>
                   </div>

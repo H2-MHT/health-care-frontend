@@ -114,7 +114,7 @@ main{
 }
 
 .main-content .dash-content .rightContent{
-    width: calc(100% - 300px);
+    width: calc(100% - 110px);
     padding: 20px 20px 0;
 }
 
@@ -1309,8 +1309,8 @@ main{
 }
 
 .recomend .recomendBox .left .docrecomdpart .docImg img{
-    width: 70px;
-    height: 70px;
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
 }
 
@@ -1320,7 +1320,7 @@ main{
     object-fit: contain;
     position: absolute;
     bottom: 0px;
-    right: 5px;
+    right: 13px;
     border-radius: 0;
 }
 
@@ -1369,6 +1369,15 @@ main{
     gap: 5px;
     margin-top: 10px;
     margin-bottom: 20px;
+}
+
+.langAll{
+    margin-top: 10px;
+}
+
+.langAll .langSpeak{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 .recomend .recomendBox .left .docrecomdpart .drRdetail .langSpeak span{
@@ -3061,7 +3070,7 @@ main{
  }
 
  .videocallMain .modal-dialog{
-    max-width: 70%;
+    max-width: 80%;
     margin: 1.75rem auto 1.75rem auto;
  }
 
@@ -3127,6 +3136,22 @@ main{
 
   .videobutton img{
     width: 50px;
+  }
+
+  .chatAreaDc{
+    width: 500px;
+    height: 350px;
+    border: 1px solid #818181;
+    border-radius: 8px;
+    padding: 2px;
+    background: #fff;
+    margin-top: 24px;
+    position: relative;
+  }
+
+  .chatAreaDc .chat-input-section{
+    bottom: 0;
+    position: absolute
   }
 
   .topRadio{

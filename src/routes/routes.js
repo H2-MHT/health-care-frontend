@@ -54,6 +54,7 @@ import ConsultationrRecordsList from "../pages/dashboard/doctor-dashboard/consul
 import PatientConsultationReport from "../pages/dashboard/user-dashboard/patientConsultationReport/patientConsultationReport"
 import PatientConsultationrRecordsList from "../pages/dashboard/user-dashboard/patientConsultationReport/patientConsultationrRecordsList"
 import ConsultationReport from "../pages/dashboard/doctor-dashboard/consultationReport/consultationReport"
+import DoctorView from "../pages/editProfile/doctorView";
 const PatientInfo = lazy(() => import("../pages/dashboard/superAdmin/patientInfo"))
 const DoctorInfo = lazy(() => import("../pages/dashboard/superAdmin/doctorInfo"))
 const ClinicInfo = lazy(() => import("../pages/dashboard/superAdmin/clinicInfo"))
@@ -123,7 +124,7 @@ const DoctorWallet = lazy(() =>
 const Login = lazy(() => import("../pages/login/login"));
 const Dashboard = lazy(() =>
   import("../pages/dashboard/doctor-dashboard/dashboard")
-);
+)
 const AllClinicPublic = lazy(() => import("../pages/home/allClinicPublic"))
 const AllDoctorPublic = lazy(() => import("../pages/home/allDoctorPublic"))
 const PublicClinicView = lazy(() => import("../pages/home/publicClinicView"))
@@ -278,6 +279,13 @@ const AppRoutes = () => {
       layout: false,
       allowedRoles: ["Doctor"],
     },
+      {
+      path: "/doctor/public-view",
+      element: <DoctorView/>,
+      exact: true,
+      layout: true,
+      allowedRoles: ["Doctor"],
+    },
     {
       path: "/doctor/myVerification",
       element: <MyVerification/>,
@@ -309,6 +317,7 @@ const AppRoutes = () => {
     {
       path: "/doctor/editprofile",
       element: <EditProfile />,
+
       exact: true,
       layout: true,
       allowedRoles: ["Doctor"],
@@ -349,6 +358,7 @@ const AppRoutes = () => {
       layout: true,
       allowedRoles: ["Doctor"],
     },
+    
     {
       path: "/stripe",
       element: <Stripe />,

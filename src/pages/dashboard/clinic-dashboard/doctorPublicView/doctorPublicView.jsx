@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import DoctorPublicReviews from "./doctorPublicReviews";
 import Image from "../../../../components/form/Image";
+import { useTranslation } from "react-i18next";
 
 const DoctorPublicView = () => {
   const [totalReviewSum, setTotalReviewSum] = useState(0);
+   const { t } = useTranslation();
   const [reviewData, setReviewData] = useState([]);
   const [activeTab, setActiveTab] = useState("reviews");
   const location = useLocation();
@@ -27,23 +29,23 @@ const DoctorPublicView = () => {
               </div>
               <div class="right">
                 <div class="para">
-                  Maternal-Fetal Medicine{" "}
+                 {t("edit-profile.maternal-medicine")}{" "}
                   <span class="text-mainblue">
                     {" "}
-                    {doctor?.years || 0} years of practice
+                    {doctor?.years || 0} {t("edit-profile.years-practice")}
                   </span>
                 </div>
                 <div class="dcNm">
                   <div class="Nm">
                     <img src="images/batch.svg" />
                     <span class="text-mainblue">
-                      {doctor?.first_name} {doctor?.last_name}
+                     {t("support.dr")} {doctor?.first_name} {doctor?.last_name}
                     </span>
                   </div>
                   <div class="dcSpecialist">
                     <div class="d-flex justify-content-center align-items-center flex-column gap-1 spclt">
                       <img src="images/gyne.svg" />
-                      <span class="text-red">Gynecology</span>
+                      <span class="text-red">{doctor?.professional_stat }</span>
                     </div>
                     <div class="bStar d-flex align-items-center gap-2">
                       <img src="images/black-star.svg" />

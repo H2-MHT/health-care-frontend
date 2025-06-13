@@ -3,9 +3,10 @@ import {
   deleteData,
   deleteWithPayload,
   fetchData,
+  fetchDataAuth,
   postData,
 } from "../../../../hooks/services/services";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { paymentSortBy } from "../../../../utils/constants";
 import Select from "../../../../components/form/Select";
 import Image from "../../../../components/form/Image";
@@ -28,10 +29,12 @@ const countryCodeMap = Object.fromEntries(
 
 const AllDoctorList = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate()
   const [doctorList, setDoctorList] = useState([]);
   const [allDoctorList, setAllDoctorList] = useState([]);
   const [favDoctorList, setFavDoctorList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [languageOptions,setLanguageOptions]=useState([])
   const [favoriteDoctors, setFavoriteDoctors] = useState({}); // Track favorites per doctor
   const [showFirstModal, setShowFirstModal] = useState(false);
   const [selectedDoctorAppointement, setSelectedDoctorAppointement] =
@@ -109,7 +112,6 @@ const AllDoctorList = () => {
       console.error(error.message);
     }
   };
-
   const handleToggleFavorite = async (id) => {
     const isFav = !!favoriteDoctors[id];
 
@@ -149,8 +151,39 @@ const AllDoctorList = () => {
     }
   };
 
+  const getLanguageData = async () => {
+      try {
+        const response = await fetchDataAuth("clinics/languages", navigate);
+        if (!response.ok) {
+          throw new Error("Failed to fetch data from the server.");
+        }
+        const getData = await response.json();
+        const formattedData = getData?.map((item) => ({
+          name: item.title,
+          id: item.id,
+        }));
+        setLanguageOptions(formattedData);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  
+  const doctorsWithLanguageNames = doctorList.map(doctor => {
+  const languageNames = doctor.languages
+    ?.map(id => languageOptions?.find(lang => lang.id === id))
+    .filter(Boolean)
+    .map(lang => lang.name);
+
+  return {
+    ...doctor,
+    languages: languageNames // now it's an array of language names
+  };
+});
+
+
+
   useEffect(() => {
-    // getDoctorList();
+     getLanguageData()
     getFavDoctorList();
   }, []);
 
@@ -195,15 +228,15 @@ const AllDoctorList = () => {
           </div>
           <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
             <div className="recomend">
-              {allDoctorList.length > 0 ? (
-                allDoctorList.map((item) => {
+              {doctorsWithLanguageNames.length > 0 ? (
+                doctorsWithLanguageNames.map((item) => {
                   const countryName = item?.country?.toLowerCase?.();
                   const countryCode = countryCodeMap[countryName] || "FR";
                   return (
                     <div className="Docbox" key={item?.id}>
                       <div className="recomendBox">
                         <div className="clinicDocMain d-flex gap-3">
-                          <div className="left paddingLeftt">
+                          <div className="left allDoctor">
                             <img
                               src={
                                 favoriteDoctors[item.id] || item.favourite
@@ -218,27 +251,32 @@ const AllDoctorList = () => {
                             <div className="docrecomdpart">
                               <div className="docImg">
                                 <Flag code={countryCode} className="docflag" />
-                                <Image src={item?.profile_picture} />
+                                <Image src={item?.profile_picture} className="doctorListImg"/>
                               </div>
-
-                              <div className="drRdetail">
-                                <div className="top">
+                                
+                              <div className="drRdetail pt-2">
+                                {/* <div className="top">
                                   {item?.professional_stat}
                                      <span className="main-blue-text">
                                       {item?.expertise}
                                     </span> 
-                                </div>
-                                <div className="top">
+                                </div> */}                                
+                                  
+                                 <div className="top">
                                   <div className="verified">
-                                    <img
+                                    
+                                    {item?.speciality } {" "}
+                                    
+                                {item?.expertise ||"Generalist" }  &nbsp;<span className="main-blue-text"> {item?.experience_years || 0} years of experience </span>
+                                
+                                  </div>
+                                </div>
+                                  <div className="recondName d-flex gap-3">
+                                  <img
                                       src="../images/batch.svg"
                                       alt="batch"
-                                    />
-                                    <div className="recondName">
-                                  Dr. {item?.first_name} {item?.last_name}
-                                </div>
-                                  
-                                  </div>
+                                    /> 
+                                    Dr. {item?.first_name} {item?.last_name}
                                 </div>
                                 
                                 <div className="clinicLoca d-flex align-items-center gap-2">
@@ -251,15 +289,16 @@ const AllDoctorList = () => {
                                   </span>
                                 </div>
                                 <div className="d-flex gap-2">
-                                  {Array.isArray(item?.languages) &&
-                                    item.languages.map((lang, langIndex) => (
+                                  {
+                                    item?.languages?.map((lang, langIndex) => {
+                                      return(
                                       <div
                                         className="langSpeak"
                                         key={langIndex}
                                       >
-                                        <span>{lang.title}</span>
+                                        <span className="languageSpeak">{lang}</span>
                                       </div>
-                                    ))}
+                                    )})}
                                 </div>
                               </div>
                             </div>
@@ -270,15 +309,15 @@ const AllDoctorList = () => {
                                 src="../images/general-medicine.svg"
                                 alt="medicine"
                               />
-                              <span>{item?.specialty}</span>
+                              <span>{item?.specialty || "General Medicine"}</span>
                             </div>
                             <div className="bStar d-flex align-items-center gap-2">
                               <img src="../images/black-star.svg" alt="star" />
-                              <span className="text-black">{item?.rating}</span>
+                              <span className="text-black">{item?.rating }</span>
                             </div>
                           </div>
                         </div>
-                        <p>{item?.bio}</p>
+                        <p className="pl-5">{item?.bio}</p>
                         <div className="doclistBtn2 d-flex justify-content-end gap-3">
                           {/* <span className="transparent_btn">
                             Urgent hourly rate : &nbsp;{" "}
@@ -288,7 +327,7 @@ const AllDoctorList = () => {
                             </span>
                           </span> */}
                           <span className="transparent_btn">
-                            Planned hourly rate : &nbsp;{" "}
+                            Consultation fee  : &nbsp;{" "}
                             <span className="fw-bold">
                               {item?.planned_hourly_rate||"00"}
                             </span>
@@ -308,9 +347,9 @@ const AllDoctorList = () => {
                           </span>
                         </div>
                       </div>
-                      {/* <div className="viewFullSchdl">
+                      <div className="viewFullSchdl">
                         {t("all-doctor-list.view-full-schedules")}
-                      </div> */}
+                      </div>
                     </div>
                   );
                 })

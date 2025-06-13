@@ -6,6 +6,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { BsSendFill, BsEmojiSmile } from "react-icons/bs";
 import Picker from "emoji-picker-react";
 import "./Chat.css";
+import { useSelector } from "react-redux";
 
 const ChatModal = ({
   isVisible,
@@ -19,6 +20,8 @@ const ChatModal = ({
   const messagesEndRef = useRef(null);
   const notificationSound = useRef(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [socket, setSocket] = useState(null);
+  let { user, token } = useSelector((state) => state.auth);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -26,10 +29,36 @@ const ChatModal = ({
     }
   };
 
+useEffect(() => {
+  const ws = new WebSocket("wss://backend.h2.doctor/ws/video/testroom/");
+
+  ws.onopen = () => {
+    console.log("WebSocket Connected");
+  };
+
+  ws.onmessage = (event) => {
+    console.log("Message Received:", event.data);
+  };
+
+  ws.onerror = (error) => {
+    console.error("WebSocket Error:", error);
+  };
+
+  ws.onclose = () => {
+    console.log("WebSocket Disconnected");
+  };
+
+  setSocket(ws);
+
+  return () => {
+    ws.close();
+  };
+}, [chatMessages]); // ⬅️ Empty array to run once
+
+
   useEffect(() => {
     scrollToBottom();
   }, [chatMessages]);
-
   useEffect(() => {
     if (isVisible) {
       scrollToBottom();
@@ -114,7 +143,7 @@ const ChatModal = ({
             </div>
           ) : (
             <div className="no-message">
-              <span>No messages here</span>
+              <span>No messages here </span>
             </div>
           )}
         </Modal.Body>

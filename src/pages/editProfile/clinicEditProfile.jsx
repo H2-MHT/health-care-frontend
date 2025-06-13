@@ -314,7 +314,7 @@ const translatedDays = days.map((day) => ({
 
                 <div class="profileViewPrt">
                   <div class="profileViewTop">
-                    <a href="#">{t("edit-profile.public-view")}</a>
+                    <a ></a>
                     <div class="profileviewImg">
                       <FileUpload
                         src={

@@ -62,6 +62,36 @@ export const fetchDataAuth = async (endpoint, navigate) => {
   }
 };
 
+export const fetchFitbitDataAuth = async (endpoint, navigate, token) => {
+  try {
+    let token = localStorage.getItem('access_token1')
+    if (!token) {
+      navigate("/login"); // Redirect user when API error occurs
+      return
+    }
+    const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
+
+    if (!response.ok) {
+      const errorDetails = await response?.json();
+      const errorMessages = Object.values(errorDetails).flat();
+      if (errorDetails?.code == "token_not_valid") {
+        navigate("/login"); // Redirect user when API error occurs
+      }
+      throw new Error(errorMessages[0]);
+    }
+    return await response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+};
+
 export const fetchAdminData = async (endpoint, navigate) => {
   try {
     let token = localStorage.getItem('user_token')
