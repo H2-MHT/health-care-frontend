@@ -160,6 +160,7 @@
 
 .clinic_doc_list .recomend .recomendBox{
   display: block;
+  height: 100%;
 }
 
 .clinic_doc_list .recomend .recomendBox .docImg .dc-img{

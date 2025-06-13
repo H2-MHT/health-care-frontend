@@ -1309,8 +1309,8 @@ main{
 }
 
 .recomend .recomendBox .left .docrecomdpart .docImg img{
-    width: 70px;
-    height: 70px;
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
 }
 
@@ -1320,7 +1320,7 @@ main{
     object-fit: contain;
     position: absolute;
     bottom: 0px;
-    right: 5px;
+    right: 13px;
     border-radius: 0;
 }
 
@@ -1369,6 +1369,15 @@ main{
     gap: 5px;
     margin-top: 10px;
     margin-bottom: 20px;
+}
+
+.langAll{
+    margin-top: 10px;
+}
+
+.langAll .langSpeak{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 .recomend .recomendBox .left .docrecomdpart .drRdetail .langSpeak span{

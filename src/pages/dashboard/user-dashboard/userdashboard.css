@@ -864,7 +864,12 @@
  }
 
  .paddingLeftt{
-   padding: 2% 0% 0% 5%;
+   padding: 0% 0% 0% 0%;
+   position: relative;
+ }
+
+ .allDoctor{
+   padding: 5px 0% 0% 5%;
    position: relative;
  }
  .heartImg{
