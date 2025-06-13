@@ -4,6 +4,7 @@ import Image from "../../components/form/Image";
 import Header from "../../components/ui/header/header";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Footer } from "../dashboard/doctor-dashboard/footer/footer";
 
 const PublicDoctorView = () => {
    const { t } = useTranslation();
@@ -532,6 +533,7 @@ const PublicDoctorView = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
