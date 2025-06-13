@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import { fetchDataAuth } from "../../hooks/services/services";
 import Header from "../../components/ui/header/header";
+import { Footer } from "../dashboard/doctor-dashboard/footer/footer";
+
 
 const PublicClinicView = () => {
   const location = useLocation();
@@ -28,7 +30,7 @@ const PublicClinicView = () => {
   useEffect(() => {
     getClinicList();
   }, []);
-  console.log(clinicDoctorList, ">>>>>>>>>clinicDoctorList");
+  console.log(clinic, ">>>clinicDoctorList");
   return (
     <>
       <Header />
@@ -36,7 +38,7 @@ const PublicClinicView = () => {
         <div class="publicViewMain bg-white border-radius-20">
           <div class="clinicPublicView">
             <img
-              src="../images/user-dashboard/clinic_head.svg"
+              src={clinic?.profile_picture ||"../images/user-dashboard/clinic_head.svg"}
               class="img-fluid w-100"
             />
           </div>
@@ -281,6 +283,7 @@ const PublicClinicView = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
