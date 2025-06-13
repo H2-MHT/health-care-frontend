@@ -30,14 +30,13 @@ const FavClinicPublicView=()=> {
   useEffect(() => {
     getClinicList();
   }, []);
-
   return (
     <>
       <div class="rightContent p-0 clinicPubView">
         <div class="publicViewMain bg-white border-radius-20">
           <div class="clinicPublicView">
             <img
-              src="../images/user-dashboard/clinic_head.svg"
+              src={clinic?.profile_picture || "../images/user-dashboard/clinic_head.svg"}
               class="img-fluid w-100"
             />
           </div>

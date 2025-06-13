@@ -339,6 +339,12 @@
   display: none;
 }
 
+.clinicPublicView img{
+  height: 800px;
+  object-fit: cover;
+  object-position: center;
+}
+
 @media (max-width:580px){
    .main-content .dash-content .rightContent .rightContentPart .right .trust{
        grid-template-columns: 1fr;

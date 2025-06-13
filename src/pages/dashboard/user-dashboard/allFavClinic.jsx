@@ -77,7 +77,7 @@ const AllFavClinic = () => {
   const addClinicSubmit = async (id) => {
     try {
       const payload = { fav_clinic: id };
-      const response = await postData("patient/favourite/", payload);
+      const response = await postData("patient/fav-clinic/", payload);
 
       if (response.status === 201) {
         let responseData = await response.json();
