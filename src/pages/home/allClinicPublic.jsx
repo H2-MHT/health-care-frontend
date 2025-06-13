@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Pagination from "../../components/pagination/pagination";
 import { Loader } from "../../components/ui/loader/loader";
 import Header from "../../components/ui/header/header";
-import { Footer } from "../../components/ui/footer/footer";
+import { Footer } from "../dashboard/doctor-dashboard/footer/footer";
 
 const AllClinicPublic = () => {
   const navigate = useNavigate();

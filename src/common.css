@@ -77,6 +77,24 @@ li {
   font-weight: 500;
 }
 
+.language-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* optional spacing between tags */
+}
+
+.pl-5 {
+  padding-left: 5%;
+}
+
+.languageSpeak {
+  background-color: black !important;
+  font-size: 12px !important;
+  color: #ffff !important;
+  padding: 2px 2px !important;
+  border-radius: 7px !important;
+}
+
 .border-radius-20 {
   border-radius: 20px !important;
 }
