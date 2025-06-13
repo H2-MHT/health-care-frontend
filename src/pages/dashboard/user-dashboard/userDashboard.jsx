@@ -5,6 +5,7 @@ import {
   deleteData,
   fetchData,
   fetchDataAuth,
+  fetchFitbitDataAuth,
   postData,
   putData,
 } from "../../../hooks/services/services";
@@ -95,7 +96,7 @@ const UserDashboard = () => {
 
   const fetchStepCount = async (date) => {
     try {
-      const data = await getFitbitData(`activities/date/${date}.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=activities/date/${date}.json`);
       console.log("Activities Data:", data);
       if (data?.summary) {
         setSteps(data.summary.steps);
@@ -108,7 +109,7 @@ const UserDashboard = () => {
 
   const fetchWaterQuantity = async (date) => {
     try {
-      const data = await getFitbitData(`foods/log/water/date/${date}/1d.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=foods/log/water/date/${date}/1d.json`);
       if (data?.["foods-log-water"]?.length > 0) {
         setWater(data["foods-log-water"][0].value);
       } else {
@@ -121,7 +122,7 @@ const UserDashboard = () => {
 
   const fetchRestingHeartRate = async (date) => {
     try {
-      const data = await getFitbitData(`activities/heart/date/${date}/1d.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=activities/heart/date/${date}/1d.json`);
       if (data?.["activities-heart"]?.length > 0) {
         setHeartRate(
           data["activities-heart"][0]?.value?.restingHeartRate || "N/A"
