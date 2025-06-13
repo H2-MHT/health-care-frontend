@@ -182,21 +182,16 @@ const AllClinic = () => {
             <img src="../images/search-dark.svg" alt="Search" />
           </a>
         </div>
-        {/* <div className="sorting">
-          <select>
-            <option>Sort by</option>
-            <option>Sort by</option>
-          </select>
-        </div> */}
       </div>
       <div className="favClinic">
         <div className="row g-4">
+          {console.log(clinicDetails,">>>clinicDetails")}
           {clinicDetails?.length > 0 ? (
             clinicDetails?.map((item, index) => (
               <div className="col-lg-4 col-md-6" key={index}>
                 <div className="favBox">
                   <img
-                    src="../images/user-dashboard/favclinic.svg"
+                    src={item?.profile_picture||"../images/user-dashboard/favclinic.svg"}
                     className="img-fluid w-100 clinicImg"
                     alt="Clinic"
                   />

@@ -43,7 +43,7 @@ const AllClinicPublic = () => {
       PaginatedClinicList(1, query);
     }
   };
-
+console.log(allClinicList,">>>>>allClinicList")
   useEffect(() => {
     PaginatedClinicList(currentPage, query);
   }, [currentPage]);
@@ -96,7 +96,7 @@ const AllClinicPublic = () => {
                 <div className="col-lg-4 col-md-6" key={index}>
                   <div className="favBox">
                     <img
-                      src="../images/user-dashboard/favclinic.svg"
+                      src={item?.profile_picture || "../images/user-dashboard/favclinic.svg"}
                       className="img-fluid w-100 clinicImg"
                       alt="Clinic"
                     />
