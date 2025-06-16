@@ -245,15 +245,16 @@ const AllDoctorList = () => {
                               }
                               alt="Favorite Toggle"
                               onClick={() => handleToggleFavorite(item.id)}
-                              style={{ cursor: "pointer" }}
-                              className="heartImg img-fluid"
+                              style={{ cursor: "pointer", width: "22px", height: "22px" }}
+                              className="heartImg img-fluid width-25"
+                              
                             />
                             <div className="docrecomdpart">
                               <div className="docImg">
                                 <Flag code={countryCode} className="docflag" />
                                 <Image src={item?.profile_picture} className="doctorListImg"/>
                               </div>
-                                
+                                {console.log(item,">>>>>>>>item")}
                               <div className="drRdetail pt-2">
                                 {/* <div className="top">
                                   {item?.professional_stat}
@@ -263,11 +264,10 @@ const AllDoctorList = () => {
                                 </div> */}                                
                                   
                                  <div className="top">
-                                  <div className="verified">
-                                    
-                                    {item?.speciality } {" "}
-                                    
-                                {item?.expertise ||"Generalist" }  &nbsp;<span className="main-blue-text"> {item?.experience_years || 0} years of experience </span>
+                                  <div className="verified font-20">
+
+                                  
+                               {item?.professional_stat || "Generalist"}  &nbsp;<span className="main-blue-text "> {item?.experience_years || 0} years of experience </span>
                                 
                                   </div>
                                 </div>
@@ -304,14 +304,14 @@ const AllDoctorList = () => {
                             </div>
                           </div>
                           <div className="right">
-                            <div className="greenimg">
+                            <div className="greenimg font-20">
                               <img
                                 src="../images/general-medicine.svg"
                                 alt="medicine"
                               />
                               <span>{item?.specialty || "General Medicine"}</span>
                             </div>
-                            <div className="bStar d-flex align-items-center gap-2">
+                            <div className="bStar d-flex align-items-center gap-2 font-20">
                               <img src="../images/black-star.svg" alt="star" />
                               <span className="text-black">{item?.rating }</span>
                             </div>
