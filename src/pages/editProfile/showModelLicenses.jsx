@@ -2,13 +2,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+import { useForm,Controller } from "react-hook-form";
 import InputField from "../../components/form/InputField";
 import { showToast } from "../../utils/toast";
 import { AddFormData, postData } from "../../hooks/services/services";
 import FileUpload from "../../components/form/FileUpload";
+import TextArea from "../../components/form/TextArea";
 
-function ShowModelLicenses({ setShowModelLicenses, showModelLicenses,getLicensesData }) {
+function ShowModelLicenses({
+  setShowModelLicenses,
+  showModelLicenses,
+  getLicensesData,
+}) {
   // Validation Schema
   const schema = Yup.object().shape({
     date: Yup.string().required("date is required"),
@@ -27,8 +32,6 @@ function ShowModelLicenses({ setShowModelLicenses, showModelLicenses,getLicenses
     resolver: yupResolver(schema),
   });
 
-
-  
   const onSubmit = async (data) => {
     console.log(data, ">>>>>>> Submitted Data");
 
@@ -38,24 +41,22 @@ function ShowModelLicenses({ setShowModelLicenses, showModelLicenses,getLicenses
       formData.append("date", data.date);
       formData.append("description", data.description);
       formData.append("attachment", data.attachment_file); // Append file correctly
-    
-      
-      const response = await AddFormData("doctors/licence-certificate/", formData);
+
+      const response = await AddFormData(
+        "doctors/licence-certificate/",
+        formData
+      );
 
       if (response?.status === 201) {
         let responseData = await response.json();
         showToast(responseData?.msg, "success");
         setShowModelLicenses(false);
-      await  getLicensesData()
+        await getLicensesData();
       }
     } catch (error) {
       showToast(error.message, "error");
     }
   };
-
-
-
-  
 
   return (
     <>
@@ -72,19 +73,20 @@ function ShowModelLicenses({ setShowModelLicenses, showModelLicenses,getLicenses
             <div className="modal-body">
               <div className="row">
                 <div className="col-md-12">
-                  <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-                    {/* File Input */}
-                    
-                    <div
-                    className="addFamilyProfile"
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    encType="multipart/form-data"
                   >
-                    <FileUpload
+                    {/* File Input */}
+
+                    <div className="addFamilyProfile">
+                      <FileUpload
                         name="attachment_file"
                         label="Upload Profile Picture"
                         control={control}
-                    />
-                  </div>
-                  <div className="form-group">
+                      />
+                    </div>
+                    <div className="form-group">
                       <label>Name</label>
                       <InputField type="text" {...register("name")} />
                       <p className="text-danger">{errors.name?.message}</p>
@@ -99,14 +101,28 @@ function ShowModelLicenses({ setShowModelLicenses, showModelLicenses,getLicenses
                     {/* Description Input */}
                     <div className="form-group">
                       <label>Description</label>
-                      <InputField type="text" {...register("description")} />
-                      <p className="text-danger">{errors.description?.message}</p>
+                      <Controller
+                        name="description"
+                        control={control}
+                        render={({ field }) => <TextArea {...field} />}
+                      />
+                      <p className="text-danger">
+                        {errors.description?.message}
+                      </p>
                     </div>
 
                     {/* Submit Buttons */}
                     <div className="d-flex gap-2 justify-content-center mt-5 mb-5">
-                      <button type="submit" className="blue_btn">Save changes</button>
-                      <button type="button" className="transparent_btn" onClick={() => setShowModelLicenses(false)}>Cancel</button>
+                      <button type="submit" className="blue_btn">
+                        Save changes
+                      </button>
+                      <button
+                        type="button"
+                        className="transparent_btn"
+                        onClick={() => setShowModelLicenses(false)}
+                      >
+                        Cancel
+                      </button>
                     </div>
                   </form>
                 </div>
@@ -120,10 +136,3 @@ function ShowModelLicenses({ setShowModelLicenses, showModelLicenses,getLicenses
 }
 
 export default ShowModelLicenses;
-
-
-
-
-
-
-

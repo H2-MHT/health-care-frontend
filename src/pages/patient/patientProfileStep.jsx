@@ -39,6 +39,7 @@ const PatientProfile = ({ setStateCount }) => {
         const responseData = await response.json();
         localStorage.setItem("user_data", JSON.stringify(responseData?.data));
         showToast(responseData?.message, "success");
+          setStateCount(4);
       }
     } catch (error) {
       showToast(error.message, "error");

@@ -113,7 +113,11 @@ const AllDoctorPublic = () => {
             </div>
           </div>
 
-          <div className="sortSearchArea">
+               <div className="favClinic">
+             <div className="row g-4">
+             <div className="col-md-2 ">
+              <div class="filter-sidebar">
+                 <div className="sortSearchArea">
             <div className="search">
               <input
                 type="search"
@@ -126,13 +130,58 @@ const AllDoctorPublic = () => {
                 <img src="../images/search-dark.svg" alt="search" />
               </a>
             </div>
-            {/* <div className="sorting">
-              <Select options={paymentSortBy} />
-            </div> */}
           </div>
 
-          <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
-            <div className="recomend row g-4">
+                <select class="filter-select">
+                  <option selected disabled>
+                    Type of specialist
+                  </option>
+                  <option>Generalist</option>
+                  <option>Cardiologist</option>
+                </select>
+
+                <div class="price-filter mb-3">
+                  <label>Price</label>
+                  <div class="price-range">
+                    <input type="range" min="0" max="100" />
+                    <div class="price-labels">
+                      <span>$0</span>
+                      <span>$100</span>
+                    </div>
+                  </div>
+                </div>
+
+                <select class="filter-select">
+                  <option selected disabled>
+                    Country
+                  </option>
+                </select>
+
+                <select class="filter-select">
+                  <option selected disabled>
+                    City
+                  </option>
+                </select>
+
+                <select class="filter-select">
+                  <option selected disabled>
+                    Raiting
+                  </option>
+                </select>
+
+                <div class="checkbox-group">
+                  <label>
+                    <input type="checkbox" checked /> Public
+                  </label>
+                  <label>
+                    <input type="checkbox" /> Privat
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-10">
+                <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
+            <div className="recomend row g-4 col-md-10">
               {doctorsWithLanguageNames.length > 0 ? (
                 doctorsWithLanguageNames.map((item) => {
                   const countryName = item?.country?.toLowerCase?.();
@@ -236,7 +285,10 @@ const AllDoctorPublic = () => {
               )}
             </div>
           </div>
-
+            </div>
+            </div>
+        
+           </div>
           {allDoctorList.length > 0 && (
             <Pagination
               totalPages={totalPages}

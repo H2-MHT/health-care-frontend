@@ -2,11 +2,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+import { useForm,Controller } from "react-hook-form";
 import InputField from "../../components/form/InputField";
 import { showToast } from "../../utils/toast";
 import { AddFormData, postData } from "../../hooks/services/services";
 import FileUpload from "../../components/form/FileUpload";
+import TextArea from "../../components/form/TextArea";
 
 function AddMediaDigestModel({ setModelOpenMediaDigest, modelOpenMediaDigest,getMediaDigest }) {
   // Validation Schema
@@ -90,11 +91,16 @@ function AddMediaDigestModel({ setModelOpenMediaDigest, modelOpenMediaDigest,get
                       <p className="text-danger">{errors.title?.message}</p>
                     </div>
 
-                    {/* Description Input */}
-                    <div className="form-group">
+                   <div className="form-group">
                       <label>Description</label>
-                      <InputField type="text" {...register("description")} />
-                      <p className="text-danger">{errors.description?.message}</p>
+                      <Controller
+                        name="description"
+                        control={control}
+                        render={({ field }) => <TextArea {...field} />}
+                      />
+                      <p className="text-danger">
+                        {errors.description?.message}
+                      </p>
                     </div>
 
                     {/* Submit Buttons */}
