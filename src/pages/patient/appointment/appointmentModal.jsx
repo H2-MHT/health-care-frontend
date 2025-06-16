@@ -20,14 +20,14 @@ const AppointmentModal = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
- const { t } = useTranslation("appointment-manage");
+  const { t } = useTranslation("appointment-manage");
   const [clickedDate, setClickedDate] = useState(new Date());
   const [appointmentType, setAppointmentType] = useState("Planned");
   const [availableSlots, setAvailableSlots] = useState();
   const [bookedSlots, setBookedSlots] = useState();
   const [selectedTimeSlot, setSelectedTimeSlot] = useState();
   const [showSecondModal, setShowSecondModal] = useState(false);
-  const [stripeLink,SetStripeLink]=useState("")
+  const [stripeLink, SetStripeLink] = useState("");
   const [showThirdModal, setShowThirdModal] = useState(false);
   const [showFourthModal, setShowFourthModal] = useState(false);
   const [showFifthModal, setShowFifthModal] = useState(false);
@@ -50,7 +50,7 @@ const AppointmentModal = ({
       getAppointmentPlannedSlots();
     }
   }, [appointmentType, clickedDate, selectedDoctorAppointement]);
-
+  console.log(selectedDoctorAppointement, ">>>>selectedDoctorAppointement");
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const isSuccess = params.get("status") === "success";
@@ -65,27 +65,28 @@ const AppointmentModal = ({
 
   const getAppointmentPlannedSlots = async () => {
     try {
+      const today = new Date(clickedDate).toLocaleDateString("en-US", {
+        weekday: "long",
+      });
       const response = await fetchData(
-        `doctors/get-all-slots/?doctor_user_id=${selectedDoctorAppointement?.id}`,
+        `doctors/filter-slots/?doctor_id=${selectedDoctorAppointement?.doctor_id}&weekday=${today}`,
         navigate
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data from the server.");
       }
       const responseData = await response.json();
-      const today = new Date(clickedDate).toLocaleDateString("en-US", {
-        weekday: "short",
+      const allSlots = responseData?.slots;
+      const updatedSlots = allSlots?.map((slot) => {
+        const slotStr = `${slot.start_time} - ${slot.end_time}`;
+        const matched = bookedSlots.find((b) => b.slot === slotStr);
+        return {
+          ...slot,
+          slot: slotStr,
+          booked: matched ? true : false,
+        };
       });
-      const doctorSchedule = responseData?.data[0]?.schedule;
-      let data = doctorSchedule?.[today]?.[appointmentType];
-      if (data) {
-        data.forEach((slot) => {
-          slot.booked = bookedSlots.some((b) => b.slot === slot.slot);
-        });
-        setAvailableSlots(data);
-      } else {
-        setAvailableSlots([]);
-      }
+      setAvailableSlots(updatedSlots);
     } catch (error) {
       console.log("error", error?.message);
     }
@@ -93,6 +94,9 @@ const AppointmentModal = ({
 
   const getAppointmentBookedSlots = async () => {
     try {
+      const today = new Date(clickedDate).toLocaleDateString("en-US", {
+        weekday: "long",
+      });
       const response = await fetchData(
         `doctors/book-and-get-appointment/?doctor_user_id=${
           selectedDoctorAppointement?.id
@@ -142,8 +146,8 @@ const AppointmentModal = ({
       ); // Call the API service
       if (response.status == 201) {
         let responseData = await response.json();
-  
-        SetStripeLink(responseData?.data?.stripe_link)
+
+        SetStripeLink(responseData?.data?.stripe_link);
         setAppointmentId(responseData?.data?.appointment_id);
         setShowFirstModal(false);
         setShowSecondModal(true);
@@ -173,35 +177,6 @@ const AppointmentModal = ({
       setAppointmentSummary(responseData);
     } catch (error) {}
   };
-
-  // const payAppointmentStrip = async () => {
-  //   try {
-  //     const payload = {
-  //       appointment_id: appointmentId,
-  //       doctor_user_id: selectedDoctorAppointement?.id,
-  //       patient_user_id: isProfiledata?.id,
-  //     };
-
-  //     const response = await postData(
-  //       "doctors/appointment/create-checkout-session/",
-  //       payload
-  //     )
-  //     if (response.status === 200) {
-  //       let responseData = await response.json();
-
-  //       if (responseData?.session_url) {
-  //         setShowThirdModal(false);
-  //         window.location.href = responseData.session_url;
-  //       } else {
-  //         showToast("Failed to retrieve payment URL", "error");
-  //       }
-  //     } else {
-  //       showToast("Payment session creation failed", "error");
-  //     }
-  //   } catch (error) {
-  //     showToast(error.message, "error");
-  //   }
-  // };
 
   return (
     <>
@@ -237,7 +212,9 @@ const AppointmentModal = ({
                       checked={appointmentType === "Planned"}
                       onChange={handleRadioChange}
                     />
-                    <label className="mb-0">{t("appointment-manage.planned-consultation")}</label>
+                    <label className="mb-0">
+                      {t("appointment-manage.planned-consultation")}
+                    </label>
                   </div>
                   {/* <div className="radiotype d-flex align-items-center gap-2">
                     <InputField
@@ -318,15 +295,17 @@ const AppointmentModal = ({
           <div>
             <div class="modal-body pt-0">
               <div class="appointPopup pt-0">
-                <h4 class="text-center mb-3">{t("appointment-list.confirm-time")}</h4>
+                <h4 class="text-center mb-3">
+                  {t("appointment-list.confirm-time")}
+                </h4>
                 <div class="confirmTime">
                   <p class="para font-20 text-center">
-                     {t("appointment-list.reserve-appointment")}{" "}
+                    {t("appointment-list.reserve-appointment")}{" "}
                     <span class="text-mainblue">
-                       {t("support.dr")} {selectedDoctorAppointement?.first_name}{" "}
+                      {t("support.dr")} {selectedDoctorAppointement?.first_name}{" "}
                       {selectedDoctorAppointement?.last_name}
                     </span>{" "}
-                     {t("support.for")}
+                    {t("support.for")}
                   </p>
                   <div class="d-flex align-items-center justify-content-center gap-4 my-3">
                     <span>{selectedTimeSlot}</span>
@@ -339,7 +318,7 @@ const AppointmentModal = ({
                     class="blue_btn"
                     onClick={() => setShowThirdModal(true)}
                   >
-                     {t("singup.confirm_lable")}
+                    {t("singup.confirm_lable")}
                   </button>
                   <button
                     type="button"
@@ -349,7 +328,7 @@ const AppointmentModal = ({
                       setShowSecondModal(false);
                     }}
                   >
-                   {t("appointment-list.change")}
+                    {t("appointment-list.change")}
                   </button>
                 </div>
               </div>
@@ -389,7 +368,7 @@ const AppointmentModal = ({
                                 class="form-check-label radio-text"
                                 for="flexRadioDefault1"
                               >
-                                   {t("appointment-manage.pay-now")}
+                                {t("appointment-manage.pay-now")}
                               </label>
                             </div>
                           </div>
@@ -405,11 +384,10 @@ const AppointmentModal = ({
                         </div>
                         <div class="cardSecond-row">
                           <div class="pay-card-content">
-                           {t("appointment-manage.Secure-money")}
+                            {t("appointment-manage.Secure-money")}
                           </div>
                         </div>
                       </div>
-                        
                     </div>
                   </div>
                 </div>
@@ -434,23 +412,23 @@ const AppointmentModal = ({
                         <h6>{appointmentSummary?.time}</h6>
                       </div>
 
-                      <div class="dashDevider"></div>
+                      {/* <div class="dashDevider"></div> */}
 
-                      <div class="category">
+                      {/* <div class="category">
                         <h4>{t("wallet.sub-total")}:</h4>
                         <h6>{appointmentSummary?.subtotal}</h6>
-                      </div>
-                      <div class="category">
+                      </div> */}
+                      {/* <div class="category">
                         <h4>{t("wallet.discount")}:</h4>
                         <h6>{appointmentSummary?.discount}</h6>
-                      </div>
+                      </div> */}
 
-                      <hr />
+                      {/* <hr /> */}
 
-                      <div class="totalCost">
+                      {/* <div class="totalCost">
                         <span>{t("wallet.total")}:</span>
                         {appointmentSummary?.subtotal}
-                      </div>
+                      </div> */}
 
                       <a
                         type="button"
@@ -458,7 +436,8 @@ const AppointmentModal = ({
                         href={stripeLink}
                         target="blank"
                       >
-                        {t("wallet.confirm")}
+                        Pay Now
+                        {/* {t("wallet.confirm")} */}
                       </a>
                     </div>
                   </div>
@@ -492,7 +471,7 @@ const AppointmentModal = ({
                 <p class="fw-bold">{t("wallet.payment-succesfully")}</p>
                 <h4 class="main-blue-text"> {t("wallet.for-staying")}</h4>
                 <p class="para font-20 text-center mb-4">
-                {t("wallet.receive-notificatio")}
+                  {t("wallet.receive-notificatio")}
                 </p>
               </div>
               <div class="d-flex gap-2 justify-content-center">
@@ -528,7 +507,9 @@ const AppointmentModal = ({
             ></button>
           </div>
           <div class="confirmTime text-center w-100">
-            <p class="fw-medium fs-2 mb-2">{t("wallet.appointment-confirmed")}</p>
+            <p class="fw-medium fs-2 mb-2">
+              {t("wallet.appointment-confirmed")}
+            </p>
             <p class="para font-16 text-center mb-3">
               {t("wallet.virtual-office")}
             </p>
@@ -547,13 +528,15 @@ const AppointmentModal = ({
               <div class="remindcontentPart">
                 <div class="left">
                   <h5>
-                 {t("all-doctor-list.generalist")} {" "}
-                    <span class="main-blue-text">{t("all-doctor-list.years-practice")}</span>
+                    {t("all-doctor-list.generalist")}{" "}
+                    <span class="main-blue-text">
+                      {t("all-doctor-list.years-practice")}
+                    </span>
                   </h5>
                   <div class="verified">
                     <img src="../images/batch.svg" />
                     <span class="text-mainblue">
-                     {t("support.dr")} {selectedDoctorAppointement?.first_name}{" "}
+                      {t("support.dr")} {selectedDoctorAppointement?.first_name}{" "}
                       {selectedDoctorAppointement?.last_name}
                     </span>{" "}
                   </div>
@@ -577,16 +560,9 @@ const AppointmentModal = ({
 
             <div class="remindBlueBox">
               <ol>
-                <li>
-                  {t("wallet.your-appointment")}
-               
-                </li>
-                <li>
-                  {t("wallet.specialist-appointment")}
-                </li>
-                <li class="mb-0">
-                  {t("wallet.microphone-camera")}
-                </li>
+                <li>{t("wallet.your-appointment")}</li>
+                <li>{t("wallet.specialist-appointment")}</li>
+                <li class="mb-0">{t("wallet.microphone-camera")}</li>
               </ol>
             </div>
           </div>

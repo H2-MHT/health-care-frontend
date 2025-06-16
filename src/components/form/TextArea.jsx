@@ -1,21 +1,21 @@
 import React from "react";
 
-const TextArea = ({ rows = 3, error, label, placeholder = "", name, register, field }) => {
+const TextArea = React.forwardRef(({ rows = 3, error, label, placeholder = "", name, ...field }, ref) => {
   return (
     <div className="form-group">
       {label && <label htmlFor={name}>{label}</label>}
       <textarea
-        {...field} // Spread field props to correctly bind the value and onChange
-        {...(register ? register(name) : {})} // Ensure register is called correctly
+        {...field}              // Includes value, onChange, name
         id={name}
+        ref={ref}               // Must forward ref
         rows={rows}
-        name={name}
         className={`textarea ${error ? "error" : ""}`}
         placeholder={placeholder}
       />
       {error && <p style={{ color: "red", fontSize: "12px" }}>{error.message}</p>}
     </div>
   );
-};
+});
 
 export default TextArea;
+

@@ -43,7 +43,7 @@ const AllClinicPublic = () => {
       PaginatedClinicList(1, query);
     }
   };
-console.log(allClinicList,">>>>>allClinicList")
+  console.log(allClinicList, ">>>>>allClinicList");
   useEffect(() => {
     PaginatedClinicList(currentPage, query);
   }, [currentPage]);
@@ -69,85 +69,139 @@ console.log(allClinicList,">>>>>allClinicList")
           </div>
         </div>
 
-        <div className="sortSearchArea">
-          <div className="search">
-            <input
-              type="search"
-              placeholder="Search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={handleKeyPress}
-            />
-            <a href="#">
-              <img src="../images/search-dark.svg" alt="Search" />
-            </a>
-          </div>
-          <div className="sorting">
-            <select>
-              <option>Sort by</option>
-              <option>Sort by</option>
-            </select>
-          </div>
-        </div>
         <div className="favClinic">
           <div className="row g-4">
-            {allClinicList?.length > 0 ? (
-              allClinicList?.map((item, index) => (
-                <div className="col-lg-4 col-md-6" key={index}>
-                  <div className="favBox">
-                    <img
-                      src={item?.profile_picture || "../images/user-dashboard/favclinic.svg"}
-                      className="img-fluid w-100 clinicImg"
-                      alt="Clinic"
+            <div className="col-md-2 ">
+              <div class="filter-sidebar">
+                <div className="sortSearchArea">
+                  <div className="search">
+                    <input
+                      type="search"
+                      placeholder="Search"
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                      onKeyDown={handleKeyPress}
                     />
-                    <div className="favContent">
-                      <div className="bStar d-flex align-items-center gap-2 mb-3">
-                        <img
-                          src="../images/user-dashboard/black-star.svg"
-                          alt="Star"
-                        />
-                        <span className="text-black ">4.6</span>
-                      </div>
-                      <h4 className="main-blue-text">{item?.name}</h4>
-                      <div className="d-flex align-items-center justify-content-between mt-3">
-                        <div className="clinicLoca d-flex align-items-center gap-2">
-                          <img
-                            src="../images/user-dashboard/mappin.svg"
-                            alt="Map Pin"
-                          />
-                          <span className="text-green">{item?.address}</span>
-                        </div>
-                        {/* <img src="../images/user-dashboard/flag.svg" alt="Flag" /> */}
-                      </div>
-                      <p>{item?.public_name}</p>
-                      <div className="d-flex align-items-center justify-content-between">
-                        {/* <div className="blckLangs">
-                        En{" "}
-                        <img
-                          src="../images/user-dashboard/flag.svg"
-                          alt="Flag"
-                        />
-                      </div> */}
-                        <Link
-                          className="transparent_btn "
-                          to="/public-clinic-view"
-                          state={{ clinic: item }}
-                        >
-                          More Info
-                        </Link>
-                      </div>
+                    <a href="#">
+                      <img src="../images/search-dark.svg" alt="Search" />
+                    </a>
+                  </div>
+                </div>
+
+                <select class="filter-select">
+                  <option selected disabled>
+                    Type of specialist
+                  </option>
+                  <option>Generalist</option>
+                  <option>Cardiologist</option>
+                </select>
+
+                <div class="price-filter mb-3">
+                  <label>Price</label>
+                  <div class="price-range">
+                    <input type="range" min="0" max="100" />
+                    <div class="price-labels">
+                      <span>$0</span>
+                      <span>$100</span>
                     </div>
                   </div>
                 </div>
-              ))
-            ) : (
-              <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
-                <div className="recomend">
-                  <div>No Clinics found</div>
+
+                <select class="filter-select">
+                  <option selected disabled>
+                    Country
+                  </option>
+                </select>
+
+                <select class="filter-select">
+                  <option selected disabled>
+                    City
+                  </option>
+                </select>
+
+                <select class="filter-select">
+                  <option selected disabled>
+                    Raiting
+                  </option>
+                </select>
+
+                <div class="checkbox-group">
+                  <label>
+                    <input type="checkbox" checked /> Public
+                  </label>
+                  <label>
+                    <input type="checkbox" /> Privat
+                  </label>
                 </div>
               </div>
-            )}
+            </div>
+            <div className=" col-md-10">
+              <div className="row g-4">
+                {allClinicList?.length > 0 ? (
+                  allClinicList?.map((item, index) => (
+                    <div className="col-lg-4 col-md-6" key={index}>
+                      <div className="favBox">
+                        <img
+                          src={
+                            item?.profile_picture ||
+                            "../images/user-dashboard/favclinic.svg"
+                          }
+                          className="img-fluid w-100 clinicImg"
+                          alt="Clinic"
+                        />
+                        <div className="favContent">
+                          <div className="bStar d-flex align-items-center gap-2 mb-3">
+                            <img
+                              src="../images/user-dashboard/black-star.svg"
+                              alt="Star"
+                            />
+                            <span className="text-black ">4.6</span>
+                          </div>
+                          <h4 className="main-blue-text">{item?.name}</h4>
+                          <div className="d-flex align-items-center justify-content-between mt-3">
+                            <div className="clinicLoca d-flex align-items-center gap-2">
+                              <img
+                                src="../images/user-dashboard/mappin.svg"
+                                alt="Map Pin"
+                              />
+                              <span className="text-green">
+                                {item?.address}
+                              </span>
+                            </div>
+                            {/* <img src="../images/user-dashboard/flag.svg" alt="Flag" /> */}
+                          </div>
+                          <p>{item?.public_name}</p>
+                          <div className="d-flex align-items-center justify-content-between">
+                            {/* <div className="blckLangs">
+                            En{" "}
+                            <img
+                              src="../images/user-dashboard/flag.svg"
+                              alt="Flag"
+                            />
+                          </div> */}
+                            <Link
+                              className="transparent_btn "
+                              to="/public-clinic-view"
+                              state={{ clinic: item }}
+                            >
+                              More Info
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
+                    <div className="recomend">
+                      <div>No Clinics found</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
+
           {allClinicList.length > 0 && (
             <Pagination
               totalPages={totalPages}
