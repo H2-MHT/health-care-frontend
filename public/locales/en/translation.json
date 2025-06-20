@@ -176,7 +176,10 @@
     "logout": "Log Out",
     "health-data-center": "Health data center",
     "doctor": "Doctor",
-    "clinic": "Clinic"
+    "clinic": "Clinic",
+    "payment-history":"Payment History"
+
+
   },
   "footer": {
     "links": "Links",
@@ -287,7 +290,12 @@
     "leon-france":"Leon, France",
     "your-appointment":"The Join appointment button will be enabled 5 minutes before your appointment.",
     "specialist-appointment":" The specialist will be available at the time of your appointment.",
-    "microphone-camera":"Remember to enable your microphone and camera permissions from your browser."
+    "microphone-camera":"Remember to enable your microphone and camera permissions from your browser.",
+      "payment-method":"Payment Method",
+      "Currency":"Currency",
+      "payment-status":"Payment Status",
+      "appointment_date":"Appointment Date",
+      "payment-date":"Payment Date"
 
   },
   "membership": {

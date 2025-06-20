@@ -83,13 +83,13 @@ setViewItem(true)
         </div>
 
         <div className="adminDetails padding-20 bg-white border-radius-20">
-            <a href="#" className="doctorsupportadd">
+            <div className="doctorsupportadd">
                   <img
                   width="40px"
                     src="../images/folder.svg"
                     onClick={() => setAddDoctorModel(true)}
                   />
-                </a>
+                </div>
           <table className="doctoradmintable">
             <thead>
               <tr>
@@ -111,8 +111,7 @@ setViewItem(true)
                       <td>{items?.status}</td>
                       <td>
                         <div className="d-flex gap-2 align-items-center justify-content-center">
-                            <a
-                            href="#"
+                            <div
                             className="tooltip2"
                             onClick={() => {
                               handleViewItem(items);
@@ -120,19 +119,18 @@ setViewItem(true)
                             data-tooltip="View Document"
                           >
                              <img src="../images/eye.webp" width="30px"/>
-                          </a>
+                          </div>
 
                          
-                          <a
-                            href="#"
+                          <div
                             className="tooltip2"
                             onClick={() => deleteAdmin(items)}
                             data-tooltip="Delete "
                           >
                             <img src="/images/deleteBlack.webp" />
-                          </a>
-                          <a
-                            href="#"
+                          </div>
+                          <div
+                           
                             className="tooltip2"
                             onClick={() => handleModelOpen(items)}
                             data-tooltip="Edit"
@@ -145,7 +143,7 @@ setViewItem(true)
                             />
                             
 
-                          </a>
+                          </div>
                         </div>
                       </td>
                     </tr>
