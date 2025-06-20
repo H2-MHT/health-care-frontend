@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { deleteData, fetchDataAuth } from "../../../../hooks/services/services";
 import { showToast } from "../../../../utils/toast";
-import AddSupport from "./addSupport"
-import EditSupport from "./editSupport"
-import ViewDocumentSupport from "./ViewDocumentSupport"
+import AddSupport from "./addSupport";
+import EditSupport from "./editSupport";
+import ViewDocumentSupport from "./ViewDocumentSupport";
 
 const DoctorSupport = () => {
   const { t } = useTranslation();
   const [adminList, setAdminList] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [addDoctorModel,setAddDoctorModel]=useState(false)
-  const [editSupportData,setEditSupportData]=useState(null)
-  const [editDoctorModel,setEditDoctorModel]=useState(false)
-  const [viewItemData,setViewItemData]=useState()
-  const [viewItem,setViewItem]=useState(false)
+  const [addDoctorModel, setAddDoctorModel] = useState(false);
+  const [editSupportData, setEditSupportData] = useState(null);
+  const [editDoctorModel, setEditDoctorModel] = useState(false);
+  const [viewItemData, setViewItemData] = useState();
+  const [viewItem, setViewItem] = useState(false);
   const [adminDataList, setAdminDataList] = useState(null);
 
   const fetchadminList = async () => {
@@ -57,14 +57,14 @@ const DoctorSupport = () => {
     }
   };
 
-  const handleEditModel =(item)=>{
-     setEditSupportData(item)
-     setEditDoctorModel(true)
-  }
-const handleViewItem=(item)=>{
-  setViewItemData(item)
-setViewItem(true)
-}
+  const handleEditModel = (item) => {
+    setEditSupportData(item);
+    setEditDoctorModel(true);
+  };
+  const handleViewItem = (item) => {
+    setViewItemData(item);
+    setViewItem(true);
+  };
 
   const handleModelOpen = (items) => {
     setAdminDataList(items);
@@ -75,21 +75,21 @@ setViewItem(true)
       <div class="rightContent rightsidefull">
         <div class="sortSearchArea">
           <div class="search">
-            <input type="search" placeholder="Search"/>
-            <a href="#">
+            <input type="search" placeholder="Search" />
+            <a>
               <img src="../images/search-dark.svg" />
             </a>
           </div>
         </div>
 
         <div className="adminDetails padding-20 bg-white border-radius-20">
-            <a href="#" className="doctorsupportadd">
-                  <img
-                  width="40px"
-                    src="../images/folder.svg"
-                    onClick={() => setAddDoctorModel(true)}
-                  />
-                </a>
+          <div className="doctorsupportadd">
+            <img
+              width="40px"
+              src="../images/folder.svg"
+              onClick={() => setAddDoctorModel(true)}
+            />
+          </div>
           <table className="doctoradmintable">
             <thead>
               <tr>
@@ -104,35 +104,29 @@ setViewItem(true)
                 adminList.map((items) => {
                   return (
                     <tr key={items.id}>
-                     <td>{items.title}</td>
-                      <td>
-                        {items?.description}
-                      </td>
+                      <td>{items.title}</td>
+                      <td>{items?.description}</td>
                       <td>{items?.status}</td>
                       <td>
                         <div className="d-flex gap-2 align-items-center justify-content-center">
-                            <a
-                            href="#"
+                          <div
                             className="tooltip2"
                             onClick={() => {
                               handleViewItem(items);
                             }}
                             data-tooltip="View Document"
                           >
-                             <img src="../images/eye.webp" width="30px"/>
-                          </a>
+                            <img src="../images/eye.webp" width="30px" />
+                          </div>
 
-                         
-                          <a
-                            href="#"
+                          <div
                             className="tooltip2"
                             onClick={() => deleteAdmin(items)}
                             data-tooltip="Delete "
                           >
                             <img src="/images/deleteBlack.webp" />
-                          </a>
-                          <a
-                            href="#"
+                          </div>
+                          <div
                             className="tooltip2"
                             onClick={() => handleModelOpen(items)}
                             data-tooltip="edit"
@@ -141,11 +135,8 @@ setViewItem(true)
                               src="../../images/edit-dark.svg"
                               alt="Edit Profile"
                               onClick={() => handleEditModel(items)}
-
                             />
-                            
-
-                          </a>
+                          </div>
                         </div>
                       </td>
                     </tr>
@@ -162,9 +153,22 @@ setViewItem(true)
           </table>
         </div>
       </div>
-      <AddSupport addDoctorModel={addDoctorModel} setAddDoctorModel={setAddDoctorModel} fetchadminList={fetchadminList}/>
-      <EditSupport setEditDoctorModel={setEditDoctorModel} editDoctorModel={editDoctorModel} editSupportData={editSupportData} fetchadminList={fetchadminList}/>
-      <ViewDocumentSupport setViewItem={setViewItem} viewItem={viewItem} viewItemData={viewItemData}/>
+      <AddSupport
+        addDoctorModel={addDoctorModel}
+        setAddDoctorModel={setAddDoctorModel}
+        fetchadminList={fetchadminList}
+      />
+      <EditSupport
+        setEditDoctorModel={setEditDoctorModel}
+        editDoctorModel={editDoctorModel}
+        editSupportData={editSupportData}
+        fetchadminList={fetchadminList}
+      />
+      <ViewDocumentSupport
+        setViewItem={setViewItem}
+        viewItem={viewItem}
+        viewItemData={viewItemData}
+      />
     </>
   );
 };

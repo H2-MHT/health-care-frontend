@@ -36,14 +36,12 @@ const AllClinicPublic = () => {
       setLoading(false);
     }
   };
-
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       setCurrentPage(1);
       PaginatedClinicList(1, query);
     }
   };
-  console.log(allClinicList, ">>>>>allClinicList");
   useEffect(() => {
     PaginatedClinicList(currentPage, query);
   }, [currentPage]);
@@ -68,74 +66,27 @@ const AllClinicPublic = () => {
             />
           </div>
         </div>
+        <div className="sortSearchArea">
+          <div className="search">
+            <input
+              type="search"
+              placeholder="Search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyPress}
+            />
+            <a href="#">
+              <img src="../images/search-dark.svg" alt="Search" />
+            </a>
+          </div>
+        </div>
 
         <div className="favClinic">
           <div className="row g-4">
             <div className="col-md-2 ">
-              <div class="filter-sidebar">
-                <div className="sortSearchArea">
-                  <div className="search">
-                    <input
-                      type="search"
-                      placeholder="Search"
-                      value={query}
-                      onChange={(e) => setQuery(e.target.value)}
-                      onKeyDown={handleKeyPress}
-                    />
-                    <a href="#">
-                      <img src="../images/search-dark.svg" alt="Search" />
-                    </a>
-                  </div>
-                </div>
-
-                <select class="filter-select">
-                  <option selected disabled>
-                    Type of specialist
-                  </option>
-                  <option>Generalist</option>
-                  <option>Cardiologist</option>
-                </select>
-
-                <div class="price-filter mb-3">
-                  <label>Price</label>
-                  <div class="price-range">
-                    <input type="range" min="0" max="100" />
-                    <div class="price-labels">
-                      <span>$0</span>
-                      <span>$100</span>
-                    </div>
-                  </div>
-                </div>
-
-                <select class="filter-select">
-                  <option selected disabled>
-                    Country
-                  </option>
-                </select>
-
-                <select class="filter-select">
-                  <option selected disabled>
-                    City
-                  </option>
-                </select>
-
-                <select class="filter-select">
-                  <option selected disabled>
-                    Raiting
-                  </option>
-                </select>
-
-                <div class="checkbox-group">
-                  <label>
-                    <input type="checkbox" checked /> Public
-                  </label>
-                  <label>
-                    <input type="checkbox" /> Privat
-                  </label>
-                </div>
-              </div>
+              <div class="filter-sidebar"></div>
             </div>
-            <div className=" col-md-10">
+            <div className=" col-md-12">
               <div className="row g-4">
                 {allClinicList?.length > 0 ? (
                   allClinicList?.map((item, index) => (
