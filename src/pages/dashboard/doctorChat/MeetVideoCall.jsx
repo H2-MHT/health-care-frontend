@@ -24,7 +24,6 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
   const ws = useRef(null);
   const mediaRecorder = useRef(null);
   const isProfileData = useSelector((state) => state?.userProfile?.userProfile);
-
   const client = useRef(
     AgoraRTC.createClient({ mode: "rtc", codec: "vp8" })
   ).current;
@@ -57,7 +56,6 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
       showToast(error.message, "error");
     }
   };
-
     useEffect(() => {
       const handleUserPublished = async (user, mediaType) => {
         console.log("[Agora] Remote user published:", user.uid, mediaType);
@@ -107,7 +105,7 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
   const addConsultationReport = async () => {
     try {
       const payload = {
-        appointment_id: selectedAppointment?.appointment_id,
+        appointment_id: selectedAppointment?.id,
         translated_text: transcript,
       };
       const response = await postData(
@@ -223,7 +221,7 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
               aria-expanded="true"
               aria-controls="panelsStayOpen-collapseOne"
             >
-              <h3>Transcription</h3>
+              <h3>Transcription </h3>
             </button>
           </h2>
           <div
