@@ -47,6 +47,7 @@ import CreateAdmin from "../pages/dashboard/superAdmin/createAdmin/createAdmin"
 import PatientEditProfile from "../pages/patient/editProfile/editProfile";
 import { PatientDashboard } from "../pages/patient/dashboard/dashboard";
 import VideoCall2 from "../pages/dashboard/doctorChat/VideoCall2";
+import PaymentHistory from "../pages/dashboard/user-dashboard/paymentHistory"
 import SuperAdminLogin from "../pages/dashboard/superAdmin/superAdminLogin";
 import PatientPrescription from "../pages/patient/Prescription/prescription";
 import FindDoctor from "../pages/dashboard/doctor-dashboard/find-doctor";
@@ -248,6 +249,13 @@ const AppRoutes = () => {
     {
       path: "/patient/calender-view",
       element: <UserCalenderView />,
+      exact: true,
+      layout: true,
+      allowedRoles: ["Patient"],
+    },
+     {
+      path: "/patient/paymenthistory",
+      element: <PaymentHistory />,
       exact: true,
       layout: true,
       allowedRoles: ["Patient"],
