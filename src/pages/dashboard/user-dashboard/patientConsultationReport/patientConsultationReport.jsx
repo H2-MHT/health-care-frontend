@@ -88,7 +88,7 @@ const PatientConsultationReport = () => {
 
         <div class="drAppointmentReport">
           <div class="tabPrt">
-            <Link class="bg-darkgreen" to="/patient/consultationrrecordsList">
+            <Link class="bg-darkgreen" to="/patient/consultationrecordsList">
               Records
             </Link>
             <Link class="bg-blue">Reports</Link>

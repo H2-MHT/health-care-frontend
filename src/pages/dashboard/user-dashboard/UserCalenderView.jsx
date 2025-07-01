@@ -90,7 +90,6 @@ function UserCalendarView() {
       console.log("error", error?.message);
     }
   };
-
   const handleCopy = () => {
     navigator.clipboard.writeText(getMeetingUrl());
     setCopied(true);
@@ -179,7 +178,11 @@ function UserCalendarView() {
               gap: "8px",
             }}
           >
-            <span style={{ wordBreak: "break-all" }}>{getMeetingUrl()}</span>
+            <span style={{ wordBreak: "break-all" }}>
+              {selectedAppointment?.meeting_link === null
+                ? "Doctor is not available"
+                : getMeetingUrl()}
+            </span>
             <button
               onClick={handleCopy}
               style={{

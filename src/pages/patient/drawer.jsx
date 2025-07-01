@@ -218,14 +218,14 @@ export const PatientDrawer = () => {
             </li>
             <li>
               <Link
-                to="/patient/consultationrrecordsList"
+                to="/patient/consultationrecordsList"
                 className={
-                  selectedDrawerItem === "/patient/consultationrrecordsList"
+                  selectedDrawerItem === "/patient/consultationrecordsList"
                     ? "active"
                     : ""
                 }
                 onClick={() =>
-                  setSelectedDrawerItem("/patient/consultationrrecordsList")
+                  setSelectedDrawerItem("/patient/consultationrecordsList")
                 }
               >
                 <svg

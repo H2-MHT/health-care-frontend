@@ -11,8 +11,9 @@ const DoctorView = () => {
   const [totalReviewSum, setTotalReviewSum] = useState(0);
   const [reviewData, setReviewData] = useState([]);
   const { doctor } = location.state || {};
-   const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
-   console.log(isProfiledata,">>>>isProfiledata")
+  const [activeTab, setActiveTab] = useState("reviews");
+  const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
+
   return (
     <>
       <div class="rightContent p-5">
@@ -42,7 +43,8 @@ const DoctorView = () => {
                     <div class="Nm">
                       <img src="../images/user-dashboard/batch.svg" />
                       <span class="text-mainblue">
-                        Dr.{isProfiledata?.first_name} {isProfiledata?.last_name}
+                        Dr.{isProfiledata?.first_name}{" "}
+                        {isProfiledata?.last_name}
                       </span>
                     </div>
                     <div class="dcSpecialist">
@@ -92,9 +94,10 @@ const DoctorView = () => {
                       Urgent hourly rate : {doctor?.urgent_hourly_rate}
                     </span> */}
                     <span className="transparent_btn">
-                      Planned hourly rate : {isProfiledata?.planned_hourly_rate||0}
+                      Planned hourly rate :{" "}
+                      {isProfiledata?.planned_hourly_rate || 0}
                     </span>
-                  
+
                     <Link
                       to={"/login"}
                       className="blue_btn d-flex align-items-center gap-3"
@@ -117,78 +120,176 @@ const DoctorView = () => {
               </div>
               <div class="tabbing">
                 <ul>
-                  <li>
-                    <a href="#">Prof History</a>
+                  <li className={activeTab === "history" ? "active" : ""}>
+                    <div
+                      className="userInfo"
+                      onClick={() => setActiveTab("history")}
+                    >
+                      Prof History
+                    </div>
                   </li>
-                  <li>
-                    <a href="#">Licenses</a>
+                  <li className={activeTab === "licenses" ? "active" : ""}>
+                    <div
+                      className="userInfo"
+                      onClick={() => setActiveTab("licenses")}
+                    >
+                      Licenses
+                    </div>
                   </li>
-                  <li class="active">
-                    <a href="#">Reviews</a>
+                  <li className={activeTab === "reviews" ? "active" : ""}>
+                    <div
+                      className="userInfo"
+                      onClick={() => setActiveTab("reviews")}
+                    >
+                      Reviews
+                    </div>
                   </li>
-                  <li>
-                    <a href="#">Media digests</a>
+                  <li className={activeTab === "Media digests" ? "active" : ""}>
+                    <div
+                      className="userInfo"
+                      onClick={() => setActiveTab("Media digests")}
+                    >
+                      Media digests
+                    </div>
                   </li>
-                  <li>
-                    <a href="#">Info</a>
+                  <li className={activeTab === "Info" ? "active" : ""}>
+                    <div
+                      className="userInfo"
+                      onClick={() => setActiveTab("Info")}
+                    >
+                      Info
+                    </div>
                   </li>
-                  <li>
-                    <a href="#">Full Scedule</a>
+                  <li className={activeTab === "schedule" ? "active" : ""}>
+                    <div
+                      className="userInfo"
+                      onClick={() => setActiveTab("schedule")}
+                    >
+                      Full Schedule
+                    </div>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div class="reviews">
+          <div class="reviews reviewsInfo">
             <div class="tabbing">
               <ul>
-                <li>
-                  <a href="#">Prof History</a>
+                <li className={activeTab === "history" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("history")}
+                  >
+                    Prof History
+                  </div>
                 </li>
-                <li>
-                  <a href="#">Licenses</a>
+                <li className={activeTab === "licenses" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("licenses")}
+                  >
+                    Licenses
+                  </div>
                 </li>
-                <li class="active">
-                  <a href="#">Reviews</a>
+                <li className={activeTab === "reviews" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("reviews")}
+                  >
+                    Reviews
+                  </div>
                 </li>
-                <li>
-                  <a href="#">Media digests</a>
+                <li className={activeTab === "Media digests" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Media digests")}
+                  >
+                    Media digests
+                  </div>
                 </li>
-                <li>
-                  <a href="#">Info</a>
+                <li className={activeTab === "Info" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("Info")}
+                  >
+                    Info
+                  </div>
                 </li>
-                <li>
-                  <a href="#">Full Scedule</a>
+                <li className={activeTab === "schedule" ? "active" : ""}>
+                  <div
+                    className="userInfo"
+                    onClick={() => setActiveTab("schedule")}
+                  >
+                    Full Schedule
+                  </div>
                 </li>
               </ul>
             </div>
-            <h3>Latest reviews</h3>
-            <div class="reviewInner">
-              <div class="left">
-                <div class="trustRight">
-                  <div class="trustScore">
-                    <h5>My trust score</h5>
-                    <div class="score">
-                      <img
-                        src="../images/user-dashboard/star.png"
-                        class="img-fluid"
-                      />
-                      <div class="scoreData">
-                        {totalReviewSum > 0
-                          ? totalReviewSum / reviewData?.length
-                          : totalReviewSum}
+            {activeTab == "reviews" && (
+              <>
+                <h3>Latest reviews</h3>
+                <div class="reviewInner">
+                  <div class="left">
+                    <div class="trustRight">
+                      <div class="trustScore">
+                        <h5>My trust score</h5>
+                        <div class="score">
+                          <img
+                            src="../../images/user-dashboard/star.png"
+                            class="img-fluid"
+                          />
+                          <div class="scoreData">
+                            {totalReviewSum > 0
+                              ? totalReviewSum / reviewData?.length
+                              : totalReviewSum}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="trustRate">
+                        <div class="rate">{reviewData?.length}</div>
+                        reviews
                       </div>
                     </div>
                   </div>
-                  <div class="trustRate">
-                    <div class="rate">{reviewData?.length}</div>
-                    reviews
-                  </div>
+                </div>
+              </>
+            )}
+            {activeTab == "history" && (
+              <div>
+                <div class="reviewInner">
+                  <div class="left">coming soon...</div>
                 </div>
               </div>
-             
-            </div>
+            )}
+            {activeTab == "schedule" && (
+              <div>
+                <div class="reviewInner">
+                  <div class="left">coming soon...</div>
+                </div>
+              </div>
+            )}
+            {activeTab == "Media digests" && (
+              <div>
+                <div class="reviewInner">
+                  <div class="left">Media digests</div>
+                </div>
+              </div>
+            )}
+            {activeTab == "licenses" && (
+              <div>
+                <div class="reviewInner">
+                  <div class="left">licenses</div>
+                </div>
+              </div>
+            )}
+            {activeTab == "Info" && (
+              <div>
+                <div class="reviewInner">
+                  <div class="left">Info</div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

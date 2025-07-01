@@ -408,7 +408,7 @@ const EditProfile = () => {
                     <div class="row g-4">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label>{t("singup.first_name" )} </label>
+                          <label>{t("singup.first_name")} </label>
                           <Controller
                             name="first_name"
                             control={control}
@@ -563,8 +563,8 @@ const EditProfile = () => {
                 </div>
                 <div class="profileViewPrt">
                   <div class="profileViewTop">
-                    <a  onClick={()=>navigate("/doctor/public-view")}>
-                        {t("edit-profile.public-view")}
+                    <a onClick={() => navigate("/doctor/public-view")}>
+                      {t("edit-profile.public-view")}
                     </a>
                     <div
                       class={`profileviewImg grrenC ${getProfileClass(
@@ -593,7 +593,11 @@ const EditProfile = () => {
                             control={control}
                             defaultValue={isProfiledata?.bio || ""}
                             render={({ field, fieldState: { error } }) => (
-                              <TextArea field={field} rows="4" error={error} />
+                              <TextArea
+                                type="text"
+                                placeholder="Your text here..."
+                                {...field}
+                              />
                             )}
                           />
                         </div>
@@ -637,11 +641,12 @@ const EditProfile = () => {
                       <div class="row g-4">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label className="d-flex align-items-center gap-2">{t("edit-profile.place-of-work")}
-                                <i
-                              class="fa-solid fa-circle-info"
-                              title="If you want to add a new hospital than chose other option"
-                            ></i>
+                            <label className="d-flex align-items-center gap-2">
+                              {t("edit-profile.place-of-work")}
+                              <i
+                                class="fa-solid fa-circle-info"
+                                title="If you want to add a new hospital than chose other option"
+                              ></i>
                             </label>
                             <Controller
                               name="work_place"
@@ -649,10 +654,9 @@ const EditProfile = () => {
                               defaultValue={selectedWorkPlace}
                               render={({ field }) => (
                                 <AutoSelect
-                               
                                   options={placeData}
                                   placeholder="Select Hospital"
-                                  isSearchable={true} 
+                                  isSearchable={true}
                                   error={errors?.work_place?.message}
                                   onChange={(option) => {
                                     const selectedValue = option?.value || "";
@@ -736,10 +740,10 @@ const EditProfile = () => {
                           <div class="form-group">
                             <label className="d-flex align-items-center gap-2">
                               {t("edit-profile.professional-statistics")}
-                                <i
-                              class="fa-solid fa-circle-info"
-                              title="If you want to create new then Type text and click on create"
-                            ></i>
+                              <i
+                                class="fa-solid fa-circle-info"
+                                title="If you want to create new then Type text and click on create"
+                              ></i>
                             </label>
                             <Controller
                               name="professional_stat"
@@ -809,9 +813,9 @@ const EditProfile = () => {
                               defaultValue={isProfiledata?.expertise || ""}
                               render={({ field, fieldState: { error } }) => (
                                 <TextArea
-                                  field={field}
-                                  rows="4"
-                                  error={error}
+                                  type="text"
+                                  placeholder="Your text here..."
+                                  {...field}
                                 />
                               )}
                             />

@@ -303,7 +303,7 @@ console.log(doctorList,'>>>doctorList')
                   </div>
                 ))
               ) : (
-                <div>{t("all-doctor-list.no-doctors-found")}</div>
+                <div className="text-center">{t("all-doctor-list.no-doctors-found")}</div>
               )}
             </div>
           </div>

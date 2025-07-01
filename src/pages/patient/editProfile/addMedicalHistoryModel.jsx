@@ -16,13 +16,18 @@ function AddMedicalHistoryModel({
 
   const today = new Date().toISOString().split("T")[0];
   const { t } = useTranslation("edit-profile");
-  const schema = Yup.object().shape({
-    file_name: Yup.string().required("Name is required"),
-    url: Yup.string().required("Url is required"),
-    date: Yup.date()
-    .max(today, "Future dates are not allowed") // Prevents future dates
-    .required("Date is required"),
-  });
+  
+  const schema = Yup.object({
+  file_name: Yup.string().required('Name is required'),
+  url: Yup.string().required('Url is required'),
+  date: Yup.date()
+    .transform((value, originalValue) =>
+      originalValue === '' ? null : value          // ignore the empty string
+    )
+    .nullable()                                     // allows the null we just produced
+    .max(today, 'Future dates are not allowed')
+    .required('Date is required'),
+});
  
   const {
     register,

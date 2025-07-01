@@ -108,14 +108,6 @@ const FavClinicPublicView=()=> {
                     Doctors
                   </div>
                   </li>
-                  <li className={activeTab === "Reviews" ? "active" : ""}>
-                  <div
-                    className="userInfo"
-                    onClick={() => setActiveTab("Reviews")}
-                  >
-                    Reviews
-                  </div>
-                  </li>
                   <li className={activeTab === "Media digests" ? "active" : ""}>
                   <div
                     className="userInfo"
@@ -148,13 +140,6 @@ const FavClinicPublicView=()=> {
               </div>
             </div>
           )}
-              {activeTab == "Reviews" && (
-            <div>
-              <div class="reviewInner">
-                <div class="left">Reviews...</div>
-              </div>
-            </div>
-          )}
              {activeTab == "Media digests" && (
             <div>
               <div class="reviewInner">
@@ -170,23 +155,6 @@ const FavClinicPublicView=()=> {
             </div>
           )}
                   </div>
-
-            <div class="trustRight">
-              <div class="trustScore">
-                <h5>My trust score</h5>
-                <div class="score">
-                  <img
-                    src="../images/user-dashboard/star.png"
-                    class="img-fluid"
-                  />
-                  <div class="scoreData">4,69</div>
-                </div>
-              </div>
-              <div class="trustRate">
-                <div class="rate">1,206</div>
-                reviews
-              </div>
-            </div>
           </div>
 
           <div class="reviews">

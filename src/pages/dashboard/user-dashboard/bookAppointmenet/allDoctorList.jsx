@@ -6,7 +6,7 @@ import {
   fetchDataAuth,
   postData,
 } from "../../../../hooks/services/services";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { paymentSortBy } from "../../../../utils/constants";
 import Select from "../../../../components/form/Select";
 import Image from "../../../../components/form/Image";
@@ -29,12 +29,12 @@ const countryCodeMap = Object.fromEntries(
 
 const AllDoctorList = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [doctorList, setDoctorList] = useState([]);
   const [allDoctorList, setAllDoctorList] = useState([]);
   const [favDoctorList, setFavDoctorList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [languageOptions,setLanguageOptions]=useState([])
+  const [languageOptions, setLanguageOptions] = useState([]);
   const [favoriteDoctors, setFavoriteDoctors] = useState({}); // Track favorites per doctor
   const [showFirstModal, setShowFirstModal] = useState(false);
   const [selectedDoctorAppointement, setSelectedDoctorAppointement] =
@@ -152,38 +152,36 @@ const AllDoctorList = () => {
   };
 
   const getLanguageData = async () => {
-      try {
-        const response = await fetchDataAuth("clinics/languages", navigate);
-        if (!response.ok) {
-          throw new Error("Failed to fetch data from the server.");
-        }
-        const getData = await response.json();
-        const formattedData = getData?.map((item) => ({
-          name: item.title,
-          id: item.id,
-        }));
-        setLanguageOptions(formattedData);
-      } catch (error) {
-        console.log(error.message);
+    try {
+      const response = await fetchDataAuth("clinics/languages", navigate);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
       }
-    };
-  
-  const doctorsWithLanguageNames = doctorList.map(doctor => {
-  const languageNames = doctor.languages
-    ?.map(id => languageOptions?.find(lang => lang.id === id))
-    .filter(Boolean)
-    .map(lang => lang.name);
-
-  return {
-    ...doctor,
-    languages: languageNames // now it's an array of language names
+      const getData = await response.json();
+      const formattedData = getData?.map((item) => ({
+        name: item.title,
+        id: item.id,
+      }));
+      setLanguageOptions(formattedData);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
-});
 
+  const doctorsWithLanguageNames = doctorList.map((doctor) => {
+    const languageNames = doctor.languages
+      ?.map((id) => languageOptions?.find((lang) => lang.id === id))
+      .filter(Boolean)
+      .map((lang) => lang.name);
 
+    return {
+      ...doctor,
+      languages: languageNames, // now it's an array of language names
+    };
+  });
 
   useEffect(() => {
-     getLanguageData()
+    getLanguageData();
     getFavDoctorList();
   }, []);
 
@@ -228,6 +226,10 @@ const AllDoctorList = () => {
           </div>
           <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
             <div className="recomend">
+              {console.log(
+                doctorsWithLanguageNames,
+                ">>>>>>doctorsWithLanguageNames"
+              )}
               {doctorsWithLanguageNames.length > 0 ? (
                 doctorsWithLanguageNames.map((item) => {
                   const countryName = item?.country?.toLowerCase?.();
@@ -245,40 +247,46 @@ const AllDoctorList = () => {
                               }
                               alt="Favorite Toggle"
                               onClick={() => handleToggleFavorite(item.id)}
-                              style={{ cursor: "pointer", width: "22px", height: "22px" }}
+                              style={{
+                                cursor: "pointer",
+                                width: "22px",
+                                height: "22px",
+                              }}
                               className="heartImg img-fluid width-25"
-                              
                             />
                             <div className="docrecomdpart">
                               <div className="docImg">
                                 <Flag code={countryCode} className="docflag" />
-                                <Image src={item?.profile_picture} className="doctorListImg"/>
+                                <Image
+                                  src={item?.profile_picture}
+                                  className="doctorListImg"
+                                />
                               </div>
-                                {console.log(item,">>>>>>>>item")}
+                              {console.log(item, ">>>>>>>>item")}
                               <div className="drRdetail pt-2">
                                 {/* <div className="top">
                                   {item?.professional_stat}
                                      <span className="main-blue-text">
                                       {item?.expertise}
                                     </span> 
-                                </div> */}                                
-                                  
-                                 <div className="top">
-                                  <div className="verified font-20">
+                                </div> */}
 
-                                  
-                               {item?.professional_stat || "Generalist"}  &nbsp;<span className="main-blue-text "> {item?.experience_years || 0} years of experience </span>
-                                
+                                <div className="top">
+                                  <div className="verified font-20">
+                                    {item?.professional_stat || "Generalist"}{" "}
+                                    &nbsp;
+                                    <span className="main-blue-text ">
+                                      {" "}
+                                      {item?.experience_years || 0} years of
+                                      experience{" "}
+                                    </span>
                                   </div>
                                 </div>
-                                  <div className="recondName d-flex gap-3">
-                                  <img
-                                      src="../images/batch.svg"
-                                      alt="batch"
-                                    /> 
-                                    Dr. {item?.first_name} {item?.last_name}
+                                <div className="recondName d-flex gap-3">
+                                  <img src="../images/batch.svg" alt="batch" />
+                                  Dr. {item?.first_name} {item?.last_name}
                                 </div>
-                                
+
                                 <div className="clinicLoca d-flex align-items-center gap-2">
                                   <img
                                     src="../images/mappin.svg"
@@ -289,16 +297,18 @@ const AllDoctorList = () => {
                                   </span>
                                 </div>
                                 <div className="d-flex gap-2">
-                                  {
-                                    item?.languages?.map((lang, langIndex) => {
-                                      return(
+                                  {item?.languages?.map((lang, langIndex) => {
+                                    return (
                                       <div
                                         className="langSpeak"
                                         key={langIndex}
                                       >
-                                        <span className="languageSpeak">{lang}</span>
+                                        <span className="languageSpeak">
+                                          {lang}
+                                        </span>
                                       </div>
-                                    )})}
+                                    );
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -309,11 +319,13 @@ const AllDoctorList = () => {
                                 src="../images/general-medicine.svg"
                                 alt="medicine"
                               />
-                              <span>{item?.specialty || "General Medicine"}</span>
+                              <span>
+                                {item?.specialty || "General Medicine"}
+                              </span>
                             </div>
                             <div className="bStar d-flex align-items-center gap-2 font-20">
                               <img src="../images/black-star.svg" alt="star" />
-                              <span className="text-black">{item?.rating }</span>
+                              <span className="text-black">{item?.rating}</span>
                             </div>
                           </div>
                         </div>
@@ -327,9 +339,9 @@ const AllDoctorList = () => {
                             </span>
                           </span> */}
                           <span className="transparent_btn">
-                            Consultation fee  : &nbsp;{" "}
+                            Consultation fee : &nbsp;{" "}
                             <span className="fw-bold">
-                              {item?.planned_hourly_rate||"00"}
+                              {item?.planned_hourly_rate || "00"}
                             </span>
                           </span>
                           <Link
@@ -339,13 +351,15 @@ const AllDoctorList = () => {
                           >
                             {t("all-doctor-list.more-info")}
                           </Link>
-                          <span
-                            className="blue_btn"
+                          <button
+                            disabled={item.stripe_link === false}
+                            className={`blue_btn${item.stripe_link === false ? " tooltip2" : ""}`}
+                            {...(item.stripe_link === false && { "data-tooltip": "Doctor is not available" })}
                             onClick={() => makeAppointment(item)}
                           >
-                            {t("all-doctor-list.make-appointment")}{" "}
-                          </span>
-                        </div>
+                            {t("all-doctor-list.make-appointment")}
+                          </button>
+                        </div> 
                       </div>
                       <div className="viewFullSchdl">
                         {t("all-doctor-list.view-full-schedules")}

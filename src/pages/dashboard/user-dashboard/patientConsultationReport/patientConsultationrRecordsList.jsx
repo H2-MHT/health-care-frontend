@@ -52,8 +52,8 @@ const PatientConsultationRecordsList = () => {
             <div class="left bg-white">
               <div class="lastReport bg-none shadow-none border-radius-none">
                 <div class="lastReportFix h-100">
-                  {patientList?.map((item) => {
-                    return (
+                  {patientList?.length > 0 ? (
+                    patientList?.map((item) => (
                       <div className="reportDetail" key={item.id}>
                         <div className="img-prt">
                           <img
@@ -64,39 +64,53 @@ const PatientConsultationRecordsList = () => {
                           <Link
                             to={`/patient/consultationreport/${item?.appointment_id}`}
                           >
-                            Dr. {item?.doctor?.name}
+                            Dr.&nbsp;{item?.doctor?.name}
                           </Link>
                         </div>
+
                         <div className="red-green">
-                          {item.status === "Completed" ? (
+                          {item?.status === "Completed" ? (
                             <img
                               src="../images/greencircle.png"
                               className="img-fluid"
-                              alt="Status"
+                              alt="Completed"
                             />
                           ) : (
                             <img
                               src="../images/redcircle.png"
                               className="img-fluid"
-                              alt="Status"
+                              alt="Pending"
                             />
                           )}
                         </div>
-                        <div class="third">
-                          <div class="clockCalenderPrt dark-text w-100">
-                            <img src="/images/doctor-dashboard/dark-calender.svg" />
+
+                        {/* ✅ 3. use className, not class */}
+                        <div className="third">
+                          <div className="clockCalenderPrt dark-text w-100">
+                            <img
+                              src="/images/doctor-dashboard/dark-calender.svg"
+                              alt="Calendar"
+                            />
                             <span>{getFormattedDate(item?.created_date)}</span>
                           </div>
                         </div>
-                        <div class="third">
-                          <div class="clockCalenderPrt dark-text w-100">
-                            <img src="/images/doctor-dashboard/dark-clock.svg" />
+
+                        <div className="third">
+                          <div className="clockCalenderPrt dark-text w-100">
+                            <img
+                              src="/images/doctor-dashboard/dark-clock.svg"
+                              alt="Clock"
+                            />
                             <span>{item?.slot}</span>
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
+                    ))
+                  ) : (
+                    <div className="text-center py-4">
+                      No consultation Reports available
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

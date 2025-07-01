@@ -32,6 +32,16 @@ const InvitationCode = () => {
     }
   };
 
+  const goToDashboard=()=>{
+      if(user == "Doctor"){
+          navigate("/dashboard")
+        }else if(user == "Patient"){
+          navigate("/patient/dashboard");
+        }else{
+          navigate("/clinic-dashboard/dashboard");
+        }
+  }
+
   return (
     <>
     <section class="form_part space-cmn">
@@ -72,9 +82,9 @@ const InvitationCode = () => {
                   </div>
 
                   <div className="co-md-12">
-                    <Link  className="forgot text_decor" to="/dashboard">
+                    <div  className="forgot text_decor" onClick={goToDashboard}>
                       Skip and go to Dashboard
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </form>

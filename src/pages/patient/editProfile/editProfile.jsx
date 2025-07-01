@@ -232,8 +232,8 @@ const PatientEditProfile = () => {
       last_name: updatedFields?.last_name,
       phone_number: updatedFields?.phone_number,
       profile_picture: updatedFields?.uploadPhoto,
-      show_phone: data?.show_phone,
-      show_email: data?.show_email,
+      show_phone: updatedFields?.show_phone ? "true" :"false",
+      show_email: updatedFields?.show_email ? "true": "false",
     };
 
     try {
@@ -345,7 +345,6 @@ const PatientEditProfile = () => {
                             <label className="mb-0">
                               {t("edit-profile.show-profile")}
                             </label>
-
                             <Controller
                               name="show_email"
                               control={control}
@@ -494,9 +493,13 @@ const PatientEditProfile = () => {
                           <Controller
                             name="bio"
                             control={control}
-                            defaultValue={isProfiledata?.bio || ""} // Ensuring bio is always initialized
+                            defaultValue={isProfiledata?.bio} // Ensuring bio is always initialized
                             render={({ field, fieldState: { error } }) => (
-                              <TextArea field={field} rows="4" error={error} />
+                               <TextArea
+                              type="text"
+                              placeholder="Your text here..."
+                              {...field}
+                            />
                             )}
                           />
                         </div>
@@ -555,7 +558,7 @@ const PatientEditProfile = () => {
                         key={item.id}
                       >
                         <div className="form-group w-50 d-flex">
-                          <p className="mb-0"> {t("edit-profile.allergies-name")}</p> {item?.name}
+                         {item?.name}
                         </div>
                         <div className="d-flex gap-3 w-50 d-flex">
                           <p className="mb-0">{t("edit-profile.document-link")}</p>{" "}
@@ -626,7 +629,6 @@ const PatientEditProfile = () => {
                         key={item.id}
                       >
                         <div className="form-group w-50 d-flex">
-                          <p className="mb-0">{t("edit-profile.history-name")}  </p>{" "}
                           {item?.name}
                         </div>
                         <div className="d-flex gap-3 w-50 d-flex">

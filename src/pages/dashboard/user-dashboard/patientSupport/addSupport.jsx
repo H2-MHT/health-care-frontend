@@ -81,7 +81,7 @@ const AddSupport = ({ addDoctorModel, setAddDoctorModel,fetchadminList }) => {
                       </p>
                     </div>
                       <div className="form-group">
-                      <label>t{t("support.your-document")}</label>
+                      <label>{t("support.your-document")}</label>
                       <InputField type="file" {...register("attachment_file")} onChange={(e) => {
                           const file = e.target.files[0];
                           if (file) {
