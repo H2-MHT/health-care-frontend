@@ -18,7 +18,7 @@ const allSkills = [
   "Django",
 ];
 
-export default function SkillsInput({ setSkills, skills }) {
+export default function SkillsInput({ setSkills, skills=null }) {
   const [input, setInput] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
@@ -26,18 +26,22 @@ export default function SkillsInput({ setSkills, skills }) {
     const value = e.target.value;
     setInput(value);
 
-    const suggestions = allSkills.filter(
+    const suggestions = allSkills?.filter(
       (skill) =>
-        skill.toLowerCase().startsWith(value.toLowerCase()) &&
-        !skills.includes(skill)
+        skill?.toLowerCase().startsWith(value?.toLowerCase()) &&
+        !skills?.includes(skill)
     );
     setFilteredSuggestions(suggestions);
   };
 
   const addSkill = (skill) => {
     const trimmed = skill.trim();
-    if (trimmed && !skills.includes(trimmed)) {
+    if (trimmed && !skills?.includes(trimmed)) {
+      console.log(">>>>>>>>>>>>skills", skills, trimmed)
+      if(skills)
       setSkills([...skills, trimmed]);
+    else
+    setSkills([trimmed]);
     }
     setInput("");
     setFilteredSuggestions([]);
