@@ -2,11 +2,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import InputField from "../../components/form/InputField";
 import { showToast } from "../../utils/toast";
 import { AddFormData, postData } from "../../hooks/services/services";
-import FileUpload from "../../components/form/FileUpload";
+import { useTranslation } from "react-i18next";
 import TextArea from "../../components/form/TextArea";
 
 function ShowModelLicenses({
@@ -19,13 +19,16 @@ function ShowModelLicenses({
     date: Yup.string().required("date is required"),
     name: Yup.string().required("name is required"),
     description: Yup.string().required("Description is required"),
+    attachment_file: Yup.mixed().required("Document is required"),
   });
-
+  const [previewImage, setPreviewImage] = useState(null);
+  const { t } = useTranslation();
   // React Hook Form setup
   const {
     register,
     handleSubmit,
     setValue,
+    reset,
     control,
     formState: { errors },
   } = useForm({
@@ -33,14 +36,14 @@ function ShowModelLicenses({
   });
 
   const onSubmit = async (data) => {
-    console.log(data, ">>>>>>> Submitted Data");
-
     try {
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("date", data.date);
       formData.append("description", data.description);
-      formData.append("attachment", data.attachment_file); // Append file correctly
+      if (data.attachment_file?.length > 0) {
+        formData.append("attachment_file", data.attachment_file[0]);
+      }
 
       const response = await AddFormData(
         "doctors/licence-certificate/",
@@ -79,15 +82,15 @@ function ShowModelLicenses({
                   >
                     {/* File Input */}
 
-                    <div className="addFamilyProfile">
+                    {/* <div className="addFamilyProfile">
                       <FileUpload
                         name="attachment_file"
                         label="Upload Profile Picture"
                         control={control}
                       />
-                    </div>
+                    </div> */}
                     <div className="form-group">
-                      <label>Name</label>
+                      <label>Name </label>
                       <InputField type="text" {...register("name")} />
                       <p className="text-danger">{errors.name?.message}</p>
                     </div>
@@ -110,6 +113,47 @@ function ShowModelLicenses({
                         {errors.description?.message}
                       </p>
                     </div>
+
+                    <div className="form-group">
+                      <label>{t("support.your-document")}</label>
+                      <Controller
+                        name="attachment_file"
+                        control={control}
+                        render={({ field }) => (
+                          <input
+                            type="file"
+                            accept="image/*,application/pdf"
+                            onChange={(e) => {
+                              const fileList = e.target.files;
+                              field.onChange(fileList);
+                              const file = fileList?.[0];
+                              if (file) {
+                                setPreviewImage(URL.createObjectURL(file));
+                              }
+                            }}
+                          />
+                        )}
+                      />
+                      <p className="text-danger">
+                        {errors.attachment_file?.message}
+                      </p>
+                    </div>
+
+                    {previewImage && (
+                      <div className="form-group mt-3">
+                        <img
+                          src={previewImage}
+                          alt="Preview"
+                          style={{
+                            maxWidth: "200px",
+                            maxHeight: "200px",
+                            borderRadius: "10px",
+                            border: "1px solid #ccc",
+                            padding: "5px",
+                          }}
+                        />
+                      </div>
+                    )}
 
                     {/* Submit Buttons */}
                     <div className="d-flex gap-2 justify-content-center mt-5 mb-5">

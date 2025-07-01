@@ -97,9 +97,9 @@ const PaymentHistory = () => {
                             <th scope="col">{t("wallet.appointment_date")}</th>
                           </tr>
                         </thead>
-                        {withdrawalRequestList?.map((account, index) => (
-                          <>
-                            <tbody class="tableData-color">
+                        {withdrawalRequestList?.length > 0 ? (
+                          <tbody className="tableData-color">
+                            {withdrawalRequestList?.map((account, index) => (
                               <tr
                                 key={index}
                                 onClick={() => handleRowClick(account, index)}
@@ -112,9 +112,15 @@ const PaymentHistory = () => {
                                 <td>{account?.payment_status}</td>
                                 <td>{account?.appointment_date}</td>
                               </tr>
-                            </tbody>
-                          </>
-                        ))}
+                            ))}
+                          </tbody>
+                        ) : (
+                          <tr>
+                            <td colSpan="7" className="text-center">
+                              No Withdrawal Requests available
+                            </td>
+                          </tr>
+                        )}
                       </table>
                     </div>
                   </div>

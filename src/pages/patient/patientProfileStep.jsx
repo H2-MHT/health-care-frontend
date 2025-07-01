@@ -4,15 +4,19 @@ import {  updateData } from "../../hooks/services/services";
 import { showToast } from "../../utils/toast";
 import Select from "../../components/form/Select";
 import { InputField } from "../../components/form/InputField";
-import { Country, countryCityData } from "../../utils/constants";
+// import { Country, countryCityData } from "../../utils/constants";
+import { Country, City } from "country-state-city";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
 const PatientProfile = ({ setStateCount }) => {
+   const [cities, setCities] = useState([]);
   const { t } = useTranslation("edit-profile");
   const {
     control,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -24,8 +28,26 @@ const PatientProfile = ({ setStateCount }) => {
   });
 
   const selectedCountry = watch("country");
-  const cities = selectedCountry ? countryCityData[selectedCountry] || [] : [];
 
+    useEffect(() => {
+      if (selectedCountry) {
+        const cityOptions =
+          City.getCitiesOfCountry(selectedCountry)?.map((city) => ({
+            value: city.name,
+            label: city.name,
+          })) || [];
+        setCities(cityOptions);
+        setValue("city", ""); // Reset city when country changes
+      } else {
+        setCities([]);
+      }
+    }, [selectedCountry, setValue]);
+
+      const countryOptions = Country?.getAllCountries().map((c) => ({
+        value: c.isoCode,
+        label: c.name,
+      }));
+    
 
   const onSubmit = async (data) => {
     try {
@@ -68,7 +90,7 @@ const PatientProfile = ({ setStateCount }) => {
                             render={({ field }) => (
                               <Select
                                 label="Country"
-                                options={Country}
+                                options={countryOptions}
                                 placeholder="Select country"
                                 error={errors.country?.message}
                                 {...field}

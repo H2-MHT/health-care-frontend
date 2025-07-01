@@ -228,7 +228,7 @@
     "name": "Name"
   },
   "wallet": {
-    "transaction-history": "Withdrawal Requests",
+    "transaction-history": "Payment History Requests",
     "sender": "Sender",
     "type": "Type",
     "date": "Date",

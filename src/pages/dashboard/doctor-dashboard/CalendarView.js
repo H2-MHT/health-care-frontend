@@ -133,7 +133,7 @@ function CalendarView() {
         }}
       >
         <h3 style={{ marginBottom: "10px", color: "#333" }}>
-          You're invited to a video consultation
+          You're invited to a video consultation  
         </h3>
 
         <p style={{ fontSize: "16px", color: "#666" }}>
@@ -179,8 +179,10 @@ function CalendarView() {
               gap: "8px",
             }}
           >
-            <span style={{ wordBreak: "break-all", color: "#007bff" }}>
-              {getMeetingUrl()}
+            <span style={{ wordBreak: "break-all" }}>
+              {selectedAppointment?.meeting_link === null
+                ? "Doctor is not available"
+                : getMeetingUrl()}
             </span>
             <button
               onClick={handleCopy}

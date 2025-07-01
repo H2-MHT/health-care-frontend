@@ -216,16 +216,6 @@ const AppointmentModal = ({
                       {t("appointment-manage.planned-consultation")}
                     </label>
                   </div>
-                  {/* <div className="radiotype d-flex align-items-center gap-2">
-                    <InputField
-                      type="radio"
-                      name="appointmentType"
-                      value="Urgent"
-                      checked={appointmentType === "Urgent"}
-                      onChange={handleRadioChange}
-                    />
-                    <label className="mb-0">Urgent call</label>
-                  </div> */}
                 </div>
                 <div className="timeScroll">
                   {availableSlots?.length > 0 ? (
@@ -411,34 +401,21 @@ const AppointmentModal = ({
                         <h4>{t("wallet.hour")}:</h4>
                         <h6>{appointmentSummary?.time}</h6>
                       </div>
-
-                      {/* <div class="dashDevider"></div> */}
-
-                      {/* <div class="category">
-                        <h4>{t("wallet.sub-total")}:</h4>
-                        <h6>{appointmentSummary?.subtotal}</h6>
-                      </div> */}
-                      {/* <div class="category">
-                        <h4>{t("wallet.discount")}:</h4>
-                        <h6>{appointmentSummary?.discount}</h6>
-                      </div> */}
-
-                      {/* <hr /> */}
-
-                      {/* <div class="totalCost">
-                        <span>{t("wallet.total")}:</span>
-                        {appointmentSummary?.subtotal}
-                      </div> */}
-
-                      <a
-                        type="button"
-                        class="blue_btn"
-                        href={stripeLink}
-                        target="blank"
-                      >
-                        Pay Now
-                        {/* {t("wallet.confirm")} */}
-                      </a>
+                      {/* <span
+                        onClick={() => {
+                          setShowThirdModal(false);
+                          setShowSecondModal(false);
+                        }}
+                      > */}
+                        <a
+                          type="button"
+                          class="blue_btn"
+                          href={stripeLink}
+                          target="blank"
+                        >
+                          Pay Now
+                        </a>
+                      {/* </span> */}
                     </div>
                   </div>
                 </div>
