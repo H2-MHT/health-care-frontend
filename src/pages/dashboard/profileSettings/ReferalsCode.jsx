@@ -120,6 +120,7 @@ const ReferalsCode = () => {
 
         <div class="mainRefferal mt-3 mb-5">
           <div class="refferalCode">
+           <p>{t("referrals.redeem-bonuses")}</p>  
             <div class="pointsNumber">
               {referalsCodeDetails?.referral_points}
             </div>{" "}
@@ -131,9 +132,6 @@ const ReferalsCode = () => {
             </div>{" "}
             <p>{t("referrals.users-invited")}</p>{" "}
           </div>
-          <a href="#" class="transparent_btn">
-            {t("referrals.redeem-bonuses")}
-          </a>
         </div>
 
         <h3 class="text-darkgreen">{t("referrals.was-invited")}</h3>

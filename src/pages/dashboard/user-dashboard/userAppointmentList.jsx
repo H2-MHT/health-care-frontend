@@ -421,7 +421,7 @@ const UserAppointmentList = () => {
                           </a>
                         </div>
                         <div class="second">
-                          <button type="button" class="transparent_blue_lg" onClick={() => navigate("/patient/consultationrrecordsList")}>
+                          <button type="button" class="transparent_blue_lg" onClick={() => navigate("/patient/consultationrecordsList")}>
                             {t("appointment-list.records")}
                           </button>
                           <button type="button" class="blue_lg" onClick={()=> navigate(`/patient/consultationreport/${appointment?.id}`)}>
