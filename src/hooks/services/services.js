@@ -73,7 +73,7 @@ export const fetchFitbitDataAuth = async (endpoint, navigate, token) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `${token}`
       },
     });
 
