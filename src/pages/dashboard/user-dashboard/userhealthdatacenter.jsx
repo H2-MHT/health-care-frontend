@@ -5,7 +5,7 @@ import { redirectToFitbitAuth } from "../../../fitbit/fitbitAuth";
 import SmallLoader from "../../../components/ui/loader/SmallLoader";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { fetchData } from "../../../hooks/services/services";
+import { fetchData, fetchFitbitDataAuth } from "../../../hooks/services/services";
 import { useNavigate } from "react-router-dom";
 import Accordion from "../../../components/form/Accordion";
 import InputField from "../../../components/form/InputField";
@@ -55,7 +55,7 @@ const UserHealthDataCenter = () => {
   };
   const fetchStepCount = async (date) => {
     try {
-      const data = await getFitbitData(`activities/date/${date}.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=activities/date/${date}.json`);
       if (data?.summary) {
         setSteps(data.summary.steps);
         setCalories(data.summary.caloriesOut);
@@ -74,7 +74,7 @@ const UserHealthDataCenter = () => {
   };
   const fetchWaterQuantity = async (date) => {
     try {
-      const data = await getFitbitData(`foods/log/water/date/${date}/1d.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=foods/log/water/date/${date}/1d.json`);
       if (data?.["foods-log-water"]?.length > 0) {
         setWater(data["foods-log-water"][0].value);
       } else {
@@ -86,7 +86,7 @@ const UserHealthDataCenter = () => {
   };
   const fetchRestingHeartRate = async (date) => {
     try {
-      const data = await getFitbitData(`activities/heart/date/${date}/1d.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=activities/heart/date/${date}/1d.json`);
       if (data?.["activities-heart"]?.length > 0) {
         setHeartRate(
           data["activities-heart"][0]?.value?.restingHeartRate || "N/A"
@@ -98,7 +98,7 @@ const UserHealthDataCenter = () => {
   };
   const fetchSleepData = async (date) => {
     try {
-      const data = await getFitbitData(`sleep/date/${date}.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=sleep/date/${date}.json`);
       if (data?.sleep && data.sleep.length > 0) {
         const totalMinutes = data.summary.totalMinutesAsleep || 0;
         const hours = Math.floor(totalMinutes / 60);
@@ -116,7 +116,7 @@ const UserHealthDataCenter = () => {
 
   const fetchWeightAndBMI = async (date) => {
     try {
-      const data = await getFitbitData(`body/log/weight/date/${date}.json`);
+      const data = await fetchFitbitDataAuth(`fitbit-data/?endpoint=body/log/weight/date/${date}.json`);
       //console.log("Weight & BMI Data:", data);
       if (data?.weight?.length > 0) {
         const latestEntry = data.weight[0]; 
