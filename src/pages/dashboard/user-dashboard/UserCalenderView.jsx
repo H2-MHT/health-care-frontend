@@ -132,7 +132,7 @@ function UserCalendarView() {
         }}
       >
         <h3 style={{ marginBottom: "10px", color: "#333" }}>
-          You're invited to a video consultation
+          You're invited to a video consultation 
         </h3>
 
         <p style={{ fontSize: "16px", color: "#666" }}>
@@ -197,7 +197,7 @@ function UserCalendarView() {
               <FontAwesomeIcon icon={faCopy} />
             </button>
           </div>{" "}
-          <button
+            <button
             onClick={() => {
               setShowModal(true);
               setVideoModal(false);
@@ -212,9 +212,11 @@ function UserCalendarView() {
               fontSize: "16px",
               cursor: "pointer",
             }}
+            disabled={selectedAppointment?.meeting_link ===null}
           >
             Join Video Call
           </button>
+        
         </div>
       </div>
     );
