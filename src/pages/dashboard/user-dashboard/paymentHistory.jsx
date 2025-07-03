@@ -10,6 +10,7 @@ const PaymentHistory = () => {
   const [doctorTotalAmount, setDoctorTotalAmount] = useState();
   const [withdrawalRequestList, setWithdrawalRequestList] = useState([]);
   const [details, setShowDetails] = useState(false);
+  const [tab,setTab]=useState(false)
 
   const navigate = useNavigate();
 
@@ -80,7 +81,7 @@ const PaymentHistory = () => {
 
               <div class="row">
                 <div class="col-md-12">
-                  <h3 class="transactionHeading blue_txt">
+                  <h3 class="transactionHeading blue_txt" onClick={setTab(true)}>
                     {t("wallet.transaction-history")}
                   </h3>
                   <div class="pateintData">
@@ -117,7 +118,7 @@ const PaymentHistory = () => {
                         ) : (
                           <tr>
                             <td colSpan="7" className="text-center">
-                              No Withdrawal Requests available
+                              No Payment History available
                             </td>
                           </tr>
                         )}

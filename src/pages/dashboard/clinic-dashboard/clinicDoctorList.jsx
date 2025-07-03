@@ -10,6 +10,8 @@ import Image from "../../../components/form/Image";
 import { Link, useNavigate } from "react-router-dom";
 import Pagination from "../../../components/pagination/pagination";
 import { useTranslation } from "react-i18next";
+import Flag from "react-world-flags";
+import { Country } from "country-state-city";
 
 const ClinicDoctorList = () => {
   const { t } = useTranslation();
@@ -86,6 +88,13 @@ const ClinicDoctorList = () => {
     setOpenModal(false);
   };
 
+const countryCodeMap = Object.fromEntries(
+  Country.getAllCountries().map((country) => [
+    country.name.toLowerCase(),
+    country.isoCode,
+  ])
+);
+
   const handleConfirm = () => {
     deleteDoctorProfile();
   };
@@ -130,34 +139,35 @@ const ClinicDoctorList = () => {
                 <img src="../images/search-dark.svg" />
               </a>
             </div>
-            {/* <div class="sorting">
-              <Select options={paymentSortBy} />
-            </div> */}
           </div>
           <div class="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
             <div class="recomend">
               {doctorList?.map((item) => {
+                 const countryName = item?.country?.toLowerCase?.();
+                 const countryCode = countryCodeMap[countryName] || "FR";
                 return (
                   <div class="Docbox">
                     <div class="recomendBox">
                       <div class="clinicDocMain d-flex gap-3">
-                        <div class="left">
+                        <div class="left allDoctor">
                           <div class="docrecomdpart">
                             <div class="docImg">
-                              <img src="images/flag.svg" class="docflag" />
-                              <Image src={item?.profile_picture} />
+                               <Flag code={countryCode} className="docflag" />
+                              <Image src={item?.profile_picture} className="doctorListImg"/>
                             </div>
                             <div class="drRdetail">
-                              <div class="top">
-                                <div class="verified">
-                                  <img src="images/batch.svg" />
-                                  {t("all-doctor-list.generalist")}
-                                  <span class="main-blue-text">
-                                    {item?.expertise}
-                                  </span>
+                              <div className="top">
+                                  <div className="verified font-20">
+                                    {item?.professional_stat || "Generalist"}{" "}
+                                    &nbsp;
+                                    <span className="main-blue-text ">
+                                      {" "}
+                                      {item?.experience_years || 0} years of
+                                      experience{" "}
+                                    </span>
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="recondName">
+                              <div class="recondName d-flex gap-3">
                                 Dr. {item?.first_name} {item?.last_name}
                               </div>
                               <div class="clinicLoca d-flex align-items-center gap-2">
@@ -177,9 +187,9 @@ const ClinicDoctorList = () => {
                           </div>
                         </div>
                         <div class="right">
-                          <div class="greenimg">
+                          <div class="greenimg font-20">
                             <img src="images/general-medicine.svg" />
-                            <span>{item?.specialty}</span>
+                            <span>{item?.specialty || "General Medicine"}</span>
                           </div>
 
                           <div class="bStar d-flex align-items-center gap-2">
@@ -188,7 +198,7 @@ const ClinicDoctorList = () => {
                           </div>
                         </div>
                       </div>
-                      <p>{item?.bio}</p>
+                      <p className="pl-5">{item?.bio}</p>
                       <div class="doclistBtn2 d-flex justify-content-end gap-3">
                         <Link
                           to={"/doctorPublicView"}
