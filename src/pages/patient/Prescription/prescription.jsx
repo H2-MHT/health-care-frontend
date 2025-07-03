@@ -6,10 +6,11 @@ import { Loader } from "../../../components/ui/loader/loader";
 import { useSelector } from "react-redux";
 import { showToast } from "../../../utils/toast";
 import { useTranslation } from "react-i18next";
+import dayjs from "dayjs";
 
 const PatientPrescription = () => {
   const navigate = useNavigate();
-   const { t } = useTranslation("edit-profile");
+  const { t } = useTranslation("edit-profile");
   const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
   const [loading, setLoading] = useState(false);
   const [prescriptions, setPrescriptions] = useState([]);
@@ -21,13 +22,10 @@ const PatientPrescription = () => {
   const fetchPrescriptions = async () => {
     try {
       // setLoading(true);
-      const response = await fetchData(
-        "consultation/prescription-list/",
-        navigate
-      );
+      const response = await fetchData("doctors/appointment-list/", navigate);
       const data = await response.json();
       if (response.ok) {
-        setPrescriptions(data.prescriptions);
+        setPrescriptions(data?.data);
       }
     } catch (error) {
       showToast(error.message, "error");
@@ -82,7 +80,7 @@ const PatientPrescription = () => {
             <div class="pateintData">
               <div class="tabPrt">
                 <a href="#" class="bg-darkgreen">
-                   {t("edit-profile.prescriptions")}
+                  {t("edit-profile.prescriptions")}
                 </a>
               </div>
               <div class="preinscriptionsOuter">
@@ -94,19 +92,23 @@ const PatientPrescription = () => {
                         key={prescription?.appointment_id}
                       >
                         <div className="treatmentDeatil col-12">
-                          <div className="flex-profile col-3">
+                          <div className="flex-profile col-4">
                             <img
-                              src="../images/profile-sample.png"
+                              src={
+                                prescription?.Doctor?.profile_picture ||
+                                "../images/profile-sample.png"
+                              }
                               className="img-fluid"
-                              alt="Patient profile"
-                            />
-                            {prescription?.patient.name}
+                              alt="Patient"
+                            /><b>Dr.{""}</b>
+                            {prescription?.Doctor.first_name}{" "}
+                            {prescription?.Doctor.last_name}
                           </div>
-                          <div className="main-blue-text col-3">
+                          {/* <div className="main-blue-text col-3">
                             {`Dr. ${prescription?.doctor?.name}`} <br />
                             {prescription?.doctor?.email}
-                          </div>
-                          <div className="file col-3">
+                          </div> */}
+                          <div className="file col-4">
                             <a
                               href="#"
                               data-tooltip="Download Prescription"
@@ -122,9 +124,11 @@ const PatientPrescription = () => {
                               />
                             </a>
                           </div>
-                          <div className="doubleLine col-3">
-                            <span> {t("edit-profile.created-date")}</span>{" "}
-                            {prescription?.created_date}
+                          <div className="doubleLine col-4">
+                            {dayjs(prescription?.date).format(
+                              "ddd, MMM D, YYYY"
+                            )}{" "}
+                            <span>{prescription?.slot}</span>
                           </div>
                         </div>
                       </div>
@@ -132,7 +136,7 @@ const PatientPrescription = () => {
                   ) : (
                     <div className="treatmentContainer">
                       <div className="no-appointments">
-                         {t("edit-profile.prescription-found")}
+                        {t("edit-profile.prescription-found")}
                       </div>
                     </div>
                   )}

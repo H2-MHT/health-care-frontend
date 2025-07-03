@@ -62,15 +62,15 @@ function ConsultationRecordsList() {
                         <div className="col-md-12 d-flex">
                         <div className="img-prt col-md-3 d-flex align-items-center">
                           <img
-                            src={item?.patient?.profile_picture}
+                            src={item?.Patient?.profile_picture}
                             className="img-fluid"
                             alt="Patient"
                           />
                           <Link
                             to={`/doctor/consultation-report/${item?.appointment_id}`}
                           >
-                            {item?.patient?.first_name}{" "}
-                            {item?.patient?.last_name}
+                            {item?.Patient?.first_name}{" "}
+                            {item?.Patient?.last_name}
                           </Link>
                         </div>
                        

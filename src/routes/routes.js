@@ -555,7 +555,7 @@ const AppRoutes = () => {
       element: <DoctorPrescription />,
       exact: true,
       layout: true,
-      allowedRoles: ["Clinic"],
+      allowedRoles: ["Doctor"],
     },
     {
       path: "/clinic/calendar-view",

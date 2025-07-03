@@ -5,7 +5,15 @@ import { fetchData, postData } from "../../../hooks/services/services";
 import { showToast } from "../../../utils/toast";
 import { useNavigate } from "react-router-dom";
 import { WEB_SOCKET_URL } from "../../../hooks/services/apiUrl";
-import { MdMic, MdMicOff, MdVideocam, MdVideocamOff, MdCallEnd, MdOutlineMessage, MdIosShare } from "react-icons/md";
+import {
+  MdMic,
+  MdMicOff,
+  MdVideocam,
+  MdVideocamOff,
+  MdCallEnd,
+  MdOutlineMessage,
+  MdIosShare,
+} from "react-icons/md";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 
@@ -29,8 +37,23 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
   ).current;
 
   const handleClose = () => {
-    window.location.reload();
+    meetingJoinTime();
+    // window.location.reload();
     setShowModal(false);
+  };
+
+  const meetingJoinTime = async () => {
+    try {
+      const response = await fetchData(
+        `video-call/time_tracker/?appointment_id=${selectedAppointment?.id}&action=end`,
+        navigate
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
+    } catch (error) {
+      console.log("error", error?.message);
+    }
   };
 
   const getCallDetails = async () => {
@@ -56,37 +79,38 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
       showToast(error.message, "error");
     }
   };
-    useEffect(() => {
-      const handleUserPublished = async (user, mediaType) => {
-        console.log("[Agora] Remote user published:", user.uid, mediaType);
-        await client.subscribe(user, mediaType);
-        if (mediaType === "video" && remoteVideoRef.current) {
-          user.videoTrack?.play(remoteVideoRef.current);
-        }
-    
-        if (mediaType === "audio") {
-          user.audioTrack?.play();
-        }
-      };
-    
-      const handleUserLeft = (user) => {
-        console.log("[Agora] User left:", user.uid);
-      };
-    
-      client.on("user-published", handleUserPublished);
-      client.on("user-unpublished", handleUserLeft);
-      client.on("user-left", handleUserLeft);
-    
-      return () => {
-        client.off("user-published", handleUserPublished);
-        client.off("user-unpublished", handleUserLeft);
-        client.off("user-left", handleUserLeft);
-      };
-    }, []);
+  useEffect(() => {
+    const handleUserPublished = async (user, mediaType) => {
+      console.log("[Agora] Remote user published:", user.uid, mediaType);
+      await client.subscribe(user, mediaType);
+      if (mediaType === "video" && remoteVideoRef.current) {
+        user.videoTrack?.play(remoteVideoRef.current);
+      }
+
+      if (mediaType === "audio") {
+        user.audioTrack?.play();
+      }
+    };
+
+    const handleUserLeft = (user) => {
+      console.log("[Agora] User left:", user.uid);
+    };
+
+    client.on("user-published", handleUserPublished);
+    client.on("user-unpublished", handleUserLeft);
+    client.on("user-left", handleUserLeft);
+
+    return () => {
+      client.off("user-published", handleUserPublished);
+      client.off("user-unpublished", handleUserLeft);
+      client.off("user-left", handleUserLeft);
+    };
+  }, []);
 
   const joinChannel = async (data) => {
     try {
-      const [micTrack, camTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();
+      const [micTrack, camTrack] =
+        await AgoraRTC.createMicrophoneAndCameraTracks();
       setLocalTracks([micTrack, camTrack]);
       const callerUid = data.current_user_id; // Your unique Agora UID
       const token = data?.token;

@@ -92,18 +92,20 @@ function CalendarView() {
       }
       const responseData = await response.json();
       setAppointmentList(responseData?.data);
-      const events = responseData?.data?.map((item) => {
-        let a = `${item?.date}T${item?.slot?.split("-")[0]?.trim()}:00.000Z`;
-        return {
-          title: item?.patient?.name,
-          date: a,
-          appointment_id: item?.id,
-          extendedProps: {
-            meetingLink: item?.meeting_link,
-            data: item,
-          },
-        };
-      });
+      const events = responseData?.data
+        ?.filter((item) => item?.status !== "pending")
+        ?.map((item) => {
+          let a = `${item?.date}T${item?.slot?.split("-")[0]?.trim()}:00.000`;
+          return {
+            title: item?.patient?.name,
+            date: a,
+            appointment_id: item?.id,
+            extendedProps: {
+              meetingLink: item?.meeting_link,
+              data: item,
+            },
+          };
+        });
       setScheduledEvents(events);
     } catch (error) {
       console.log("error", error?.message);
@@ -117,6 +119,20 @@ function CalendarView() {
       setVideoModal(true);
     }
   };
+
+  const meetingJoinTime = async () => {
+      try {
+        const response = await fetchData(
+          `video-call/time_tracker/?appointment_id=${selectedAppointment?.id}&action=start`,
+          navigate
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data from the server.");
+        }
+      } catch (error) {
+        console.log("error", error?.message);
+      }
+    };
 
   const handleDateClick = (date) => {
     setClickedDate(date); // Update the clicked date in the parent
@@ -202,6 +218,7 @@ function CalendarView() {
             onClick={() => {
               setShowModal(true);
               setVideoModal(false);
+              meetingJoinTime();
             }}
             style={{
               marginTop: "15px",

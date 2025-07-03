@@ -19,7 +19,7 @@ const PatientConsultationReport = () => {
   }, [id]);
 
   useEffect(() => {
-    setConsultation(consultationData?.translated_text);
+    setConsultation(consultationData?.patient_translated_text);
   }, [consultationData]);
 
   const fetchConsulationData = async () => {
@@ -41,7 +41,7 @@ const PatientConsultationReport = () => {
   const getForm = () => {
     return (
       <div>
-        <label>Consultation Report</label>
+        <label>Patient Consultation Report</label>
         <input
           type="text"
           value={consultation}
@@ -55,7 +55,7 @@ const PatientConsultationReport = () => {
   const handleSubmit = async () => {
     try {
       const payload = {
-        translated_text: consultation,
+        patient_translated_text: consultation,
       };
       const response = await updateData(
         `consultation/update-consultation-report/?consultation_id=${consultationData?.id}`,
@@ -105,11 +105,22 @@ const PatientConsultationReport = () => {
                     <img src="/images/edit-dark.svg" />
                   </span>
                 </h6>
-                <p>{consultationData?.translated_text}</p>
+                {consultationData?.patient_translated_text && (
+                  <>
+                    <b>Patient (me):</b>
+                    <p>{consultationData?.patient_translated_text}</p>
+                  </>
+                )}
+                {consultationData?.doctor_translated_text && (
+                  <>
+                    <b>Doctor:</b>
+                    <p>{consultationData?.doctor_translated_text}</p>
+                  </>
+                )}
               </div>
 
               <div class="treatmentPlan border-radius-20 border-gray padding-20">
-                <h6>Preinscriptions & treatment plan</h6>
+                <h6>Prescriptions & treatment plan</h6>
                 {consultationData?.prescription ? (
                   <div class="treatmentPlanDeatil border-radius-20 border-gray">
                     <div>
