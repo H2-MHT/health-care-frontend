@@ -64,7 +64,7 @@ export const fetchDataAuth = async (endpoint, navigate) => {
 
 export const fetchFitbitDataAuth = async (endpoint, navigate, token) => {
   try {
-    let token = localStorage.getItem('user_token')
+    let token = localStorage.getItem('access_token1')
     if (!token) {
       navigate("/login"); // Redirect user when API error occurs
       return
@@ -73,7 +73,7 @@ export const fetchFitbitDataAuth = async (endpoint, navigate, token) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `${token}`
       },
     });
 

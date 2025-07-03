@@ -965,8 +965,8 @@ const EditProfile = () => {
                         {education?.skills?.length > 0 ? (
                           <p>
                             {education.skills
-                              .map((skill) => skill.name)
-                              .join(", ")}
+                              ?.map((skill) => skill)
+                              ?.join(", ")}
                           </p>
                         ) : (
                           <p>No skills available</p>
