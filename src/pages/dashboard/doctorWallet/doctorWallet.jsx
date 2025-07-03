@@ -5,8 +5,6 @@ import AppointementDetailsPop from "./appointementDetailsPop";
 import { fetchDataAuth } from "../../../hooks/services/services";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import Select from "../../../components/form/Select";
-import { paymentSortBy } from "../../../utils/constants";
 import { useTranslation } from "react-i18next";
 import InputField from "../../../components/form/InputField";
 import { showToast } from "../../../utils/toast";
@@ -17,13 +15,14 @@ const DoctorWallet = () => {
   const [rowDetails, setRowDetails] = useState();
   const [modelOpen, setModelOpen] = useState(false);
   const [modelOpenPop, setModelOpenPop] = useState(false);
+  const [activeTab, setActiveTab] = useState("Withdrawal History Requests");
   const [copied, setCopied] = useState({ personal: false, registry: false });
   const [accountdetails, setAccountdetails] = useState();
   const [doctorTotalAmount, setDoctorTotalAmount] = useState();
+  const [transactionHistory, setTransactionHistory] = useState([]);
   const [withdrawalRequestList, setWithdrawalRequestList] = useState([]);
   const [details, setShowDetails] = useState(false);
   const [accountList, setAccountList] = useState([]);
-  const [referalsCodeDetails, setReferalsCodeDetails] = useState();
   const navigate = useNavigate();
 
   const paymentStatusColors = {
@@ -105,6 +104,24 @@ const DoctorWallet = () => {
       console.log(error.message);
     }
   };
+
+  const gettransactionList = async () => {
+    try {
+      const response = await fetchDataAuth(
+        `payment/transaction-history/`,
+        navigate
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
+
+      const getData = await response.json();
+      setTransactionHistory(getData.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const fetchAccountList = async () => {
     const userData = JSON.parse(localStorage.getItem("user_data"));
     try {
@@ -122,7 +139,7 @@ const DoctorWallet = () => {
     }
   };
 
- const copyToClipboard = async (text, type) => {
+  const copyToClipboard = async (text, type) => {
     if (!text) {
       showToast("No text to copy", "error");
       return;
@@ -137,6 +154,14 @@ const DoctorWallet = () => {
     }
   };
 
+  useEffect(() => {
+    if (activeTab == "Withdrawal History Requests") {
+      getWithdrawalRequestList();
+    } else if ("Payment History Requests ") {
+      gettransactionList();
+    
+    }
+  }, [activeTab]);
 
   const handleRowClick = (rowData) => {
     setShowDetails(true);
@@ -145,7 +170,6 @@ const DoctorWallet = () => {
 
   useEffect(() => {
     getDoctorWalletDetails();
-    getWithdrawalRequestList();
     getDoctorPaymentDetails();
   }, []);
 
@@ -168,7 +192,7 @@ const DoctorWallet = () => {
 
         <div class="viewMain">
           <div class="row">
-            <div class="col-md-7 bg-white left-col p-2">
+            <div class="col-md-8 bg-white left-col p-2">
               <div class="sortSearchArea search-margin">
                 <div class="search">
                   <input
@@ -180,74 +204,137 @@ const DoctorWallet = () => {
                     <img src="../images/search-dark.svg" />
                   </a>
                 </div>
-                <div class="sorting">
-                  {/* <div class="sorting">
-                    <Select options={paymentSortBy} />
-                  </div> */}
-                </div>
               </div>
 
               <div class="row">
                 <div class="col-md-12">
-                  <h3 class="transactionHeading blue_txt">
-                    {t("wallet.transaction-history")}
-                  </h3>
-                  <div class="pateintData">
-                    <div class="treatmentData tableTransactionData ">
-                      <table class="table table-hover table-borderless">
-                        <thead class="table-dark">
-                          <tr>
-                            <th scope="col">{t("wallet.sender")}</th>
-                            <th scope="col">{t("wallet.account")}</th>
-                            <th scope="col">{t("wallet.date")}</th>
-                            <th scope="col">{t("wallet.amount")}</th>
-                            <th scope="col">{t("wallet.transaction")}</th>
-                            <th scope="col">{t("wallet.status")}</th>
-                            <th scope="col">{t("wallet.reason")}</th>
-                          </tr>
-                        </thead>
-                        {withdrawalRequestList?.map((account, index) => (
-                          <>
-                            <tbody class="tableData-color">
-                              <tr
-                                key={index}
-                                onClick={() => handleRowClick(account, index)}
-                              >
-                                <td>{account?.Doctor_name}</td>
-                                <td class="text-center">{account?.account}</td>
-                                <td class="text-green">
-                                  {handleDate(account?.timestamp)}
-                                </td>
-                                <td>{account?.amount}</td>
-                                <td>{account?.transaction_type}</td>
-                                <td>
-                                  <span
-                                    className={`badge bg-${
-                                      paymentStatusColors[account.status] ||
-                                      "warning"
-                                    }`}
-                                  >
-                                    {account?.status}
-                                  </span>
-                                </td>
-                                <td>
-                                  <span>
-                                    {account.rejection_reason
-                                      ? account.rejection_reason
-                                      : "NA"}
-                                  </span>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </>
-                        ))}
-                      </table>
-                    </div>
+                  <div className="tabPrt-history">
+                    <a class="bg-darkgreen"
+                      onClick={() =>
+                        setActiveTab("Withdrawal History Requests")
+                      }
+                    >
+                   Withdrawal History Requests
+                    </a>
+
+                    <a class="bg-blue" onClick={() => setActiveTab("Payment History Requests")}>
+                    Payment History Requests
+                    </a>
                   </div>
+                  {activeTab === "Withdrawal History Requests" && (
+                    <div class="pateintData">
+                      <div class="treatmentData tableTransactionData ">
+                        <table class="table table-hover table-borderless">
+                          <thead class="table-dark">
+                            <tr>
+                              <th scope="col">{t("wallet.Doctor-Name")}</th>
+                              <th scope="col">{t("wallet.account")}</th>
+                              <th scope="col">{t("wallet.date")}</th>
+                              <th scope="col">{t("wallet.amount")}</th>
+                              <th scope="col">{t("wallet.transaction")}</th>
+                              <th scope="col">{t("wallet.status")}</th>
+                              <th scope="col">{t("wallet.reason")}</th>
+                            </tr>
+                          </thead>
+                          {withdrawalRequestList?.map((account, index) => (
+                            <>
+                              <tbody class="tableData-color">
+                                <tr
+                                  key={index}
+                                  onClick={() => handleRowClick(account, index)}
+                                >
+                                  <td>{account?.Doctor_name}</td>
+                                  <td class="text-center">
+                                    {account?.account}
+                                  </td>
+                                  <td class="text-green">
+                                    {handleDate(account?.timestamp)}
+                                  </td>
+                                  <td>{account?.amount}</td>
+                                  <td>{account?.transaction_type}</td>
+                                  <td>
+                                    <span
+                                      className={`badge bg-${
+                                        paymentStatusColors[account.status] ||
+                                        "warning"
+                                      }`}
+                                    >
+                                      {account?.status}
+                                    </span>
+                                  </td>
+                                  <td>
+                                    <span>
+                                      {account.rejection_reason
+                                        ? account.rejection_reason
+                                        : "NA"}
+                                    </span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </>
+                          ))}
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === "Payment History Requests" && (
+                    <div class="pateintData">
+                      <div class="treatmentData tableTransactionData ">
+                        <table class="table table-hover table-borderless">
+                          <thead class="table-dark">
+                            <tr>
+                              <th scope="col">{t("wallet.payment-from")}</th>
+                              <th scope="col">{t("wallet.appointment-Date")}</th>
+                              <th scope="col">{t("wallet.amount")}</th>
+                              <th scope="col">{t("wallet.payment_date")}</th>
+                              <th scope="col">{t("wallet.Currency")}</th>
+                              <th scope="col">{t("wallet.payment-status")}</th>
+                                <th scope="col">{t("wallet.appointment_time")}</th>
+                              <th scope="col">{t("wallet.reason")}</th>
+                            </tr>
+                          </thead>
+                          {transactionHistory?.map((account, index) => (
+                            <>
+                              <tbody class="tableData-color">
+                                <tr
+                                  key={index}
+                                  onClick={() => handleRowClick(account, index)}
+                                >
+                                  <td>{account?.patient?.name}</td>
+                                  <td class="text-green">
+                                    {handleDate(account?.appointment_date)}
+                                  </td>
+                                  <td>{account?.amount}</td>
+                                  <td class="text-green">{account?.payment_date}</td>
+                                  <td>{account?.currency}</td>
+                                  <td>
+                                      {account?.payment_status}
+                                  
+                                  </td>
+                                  <td>
+                                      {account?.appointment_time}
+                                  
+                                  </td>
+                                  <td>
+                                    <span>
+                                      {account.rejection_reason
+                                        ? account.rejection_reason
+                                        : "NA"}
+                                    </span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </>
+                          ))}
+                        </table>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            <div class="col-md-5 right-col p-4">
+            <div class="col-md-4 right-col p-4">
               <div class="card-alignment mt-4">
                 <div class="curr-bal-card bg-white">
                   <div class="curr-bal-text">
@@ -293,7 +380,7 @@ const DoctorWallet = () => {
                     <div class="get-payed-card bg-white">
                       <div class="row">
                         <div class="col-md-7">
-                          <p class="get-payed-text">{t("wallet.get-payed")}</p>
+                          <p class="get-payed-text" onClick={() => setModelOpenPop(true)} >{t("wallet.get-payed")}</p>
                         </div>
                         <div class="col-md-5">
                           <div class="d-flex align-items-center">
@@ -316,34 +403,33 @@ const DoctorWallet = () => {
                 </div>
               </div>
               <div class="refferalCode">
-                        <p>{t("support.stripe-link")}</p>{" "}
-                        <InputField
-                          type="text"
-                          placeholder="Stripe Link"
-                          className="w-50"
-                          disabled
-                          value={doctorTotalAmount?.stripe_link}
-                          name="Personal_code"
-                        />{" "}
-                        <a
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            copyToClipboard(
-                              doctorTotalAmount?.stripe_link || "",
-                              "personal"
-                            );
-                          }}
-                        >
-                          <img src="../images/doctor-dashboard/copy.webp" width="25" />
-                        </a>{" "}
-                        {copied.personal && (
-                          <span style={{ color: "green", marginLeft: "10px" }}>
-                           {t("support.copied")}
-                          </span>
-                        )}
-                      </div>
-
+                <p>{t("support.stripe-link")}</p>{" "}
+                <InputField
+                  type="text"
+                  placeholder="Stripe Link"
+                  className="w-50"
+                  disabled
+                  value={doctorTotalAmount?.stripe_link}
+                  name="Personal_code"
+                />{" "}
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    copyToClipboard(
+                      doctorTotalAmount?.stripe_link || "",
+                      "personal"
+                    );
+                  }}
+                >
+                  <img src="../images/doctor-dashboard/copy.webp" width="25" />
+                </a>{" "}
+                {copied.personal && (
+                  <span style={{ color: "green", marginLeft: "10px" }}>
+                    {t("support.copied")}
+                  </span>
+                )}
+              </div>
 
               <div class="payment-method-container">
                 <div class="payment-method-heading">
@@ -378,7 +464,7 @@ const DoctorWallet = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div class="cardSecond-row">
                     <div class="pay-card-content">
                       {t("wallet.payment-method-txt")}

@@ -230,6 +230,7 @@ function CalendarView() {
               fontSize: "16px",
               cursor: "pointer",
             }}
+            disabled={selectedAppointment?.meeting_link ===null}
           >
             Join Video Call
           </button>

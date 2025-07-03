@@ -15,7 +15,7 @@ import { getDoctorProfileSuccess } from "../../redux/actions/doctor/getDoctorPro
 import { useDispatch } from "react-redux";
 import LoadingButton from "../../components/ui/loader/LoadingButton";
 import { useTranslation } from "react-i18next";
-
+                              
 const ClinicEditProfile = () => {
   const { t } = useTranslation("edit-clinic-profile");
   const navigate = useNavigate();
@@ -174,7 +174,8 @@ const translatedDays = days.map((day) => ({
                       <div className="col-md-12">
                         <div className="form-group">
                           <label>
-                            {t("clinic-edit-profile.organisation-name")}
+                            {t("clinic-edit-profile.organisation-name")} 
+                            
                           </label>
                           <Controller
                             name="organisation_name"
@@ -353,7 +354,11 @@ const translatedDays = days.map((day) => ({
                             control={control}
                             defaultValue={isProfileData?.bio || ""} // Ensuring bio is always initialized
                             render={({ field, fieldState: { error } }) => (
-                              <TextArea field={field} rows="3" error={error} />
+                                  <TextArea
+                              type="text"
+                              placeholder="Your text here..."
+                              {...field}
+                              />
                             )}
                           />
                         </div>
@@ -366,40 +371,16 @@ const translatedDays = days.map((day) => ({
                             control={control}
                             defaultValue={isProfileData?.expertise || ""}
                             render={({ field, fieldState: { error } }) => (
-                              <TextArea field={field} rows="3" error={error} />
+                                 <TextArea
+                              type="text"
+                              placeholder="Your text here..."
+                              {...field}
+                              />
                             )}
                           />
                         </div>
                       </div>
-                      {/* <div class="col-md-12">
-                        <div class="form-group">
-                          <div class="d-flex gap-3">
-                            <label>
-                              {t("clinic-edit-profile.working-time")}
-                            </label>
-                            <Controller
-                              name="working_time"
-                              control={control}
-                              defaultValue={isProfileData?.working_time}
-                              render={({ field }) => (
-                                <Select
-                                  options={translatedDays}
-                                  {...field}
-                                  placeholder="Days"
-                                  width="150px"
-                                />
-                              )}
-                            />
-                            <Controller
-                              name="hours"
-                              control={control}
-                              render={({ field }) => (
-                                <InputField type="time" {...field} />
-                              )}
-                            />
-                          </div>
-                        </div>
-                      </div> */}
+  
                       <div class="col-md-12">
                         <div class="form-group">
                           <label>{t("edit-profile.languages")}</label>
