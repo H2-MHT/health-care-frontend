@@ -10,14 +10,14 @@ const PatientConsultationRecordsList = () => {
 
   const consultationList = async () => {
     const response = await fetchData(
-      "consultation/prescription-list/",
+      "doctors/appointment-list/",
       navigate
     );
     if (!response.ok) {
       throw new Error("Failed to fetch data from the server.");
     }
     const list = await response.json();
-    setPatientList(list?.prescriptions);
+    setPatientList(list?.data);
   };
 
   useEffect(() => {
@@ -57,14 +57,14 @@ const PatientConsultationRecordsList = () => {
                       <div className="reportDetail" key={item.id}>
                         <div className="img-prt">
                           <img
-                            src={item?.doctor?.profile_picture || sampleImage}
+                            src={item?.Doctor?.profile_picture || sampleImage}
                             className="img-fluid"
                             alt="Patient"
                           />
                           <Link
                             to={`/patient/consultationreport/${item?.appointment_id}`}
                           >
-                            Dr.&nbsp;{item?.doctor?.name}
+                            Dr.&nbsp;{item?.Doctor?.first_name}&nbsp;{item?.Doctor?.last_name}
                           </Link>
                         </div>
 
@@ -91,7 +91,7 @@ const PatientConsultationRecordsList = () => {
                               src="/images/doctor-dashboard/dark-calender.svg"
                               alt="Calendar"
                             />
-                            <span>{getFormattedDate(item?.created_date)}</span>
+                            <span>{getFormattedDate(item?.date)}</span>
                           </div>
                         </div>
 
