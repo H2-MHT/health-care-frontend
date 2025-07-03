@@ -38,7 +38,7 @@ function LoginWithGoogle({member}) {
   };
 
   return (
-    <GoogleOAuthProvider clientId="853181483027-b3pgc8d9m5vq2l83f4hu10mu5se690gi.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="421122253768-o2sfg2kh6mbp58duolaqvr9olobi9tkf.apps.googleusercontent.com">
       <GoogleLogin
         onSuccess={handleLoginSuccess}
         onError={handleLoginError}

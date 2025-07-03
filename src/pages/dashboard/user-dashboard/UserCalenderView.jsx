@@ -44,18 +44,20 @@ function UserCalendarView() {
       }
       const responseData = await response.json();
       setAppointmentList(responseData?.data);
-      const events = responseData?.data?.map((item) => {
-        let a = `${item?.date}T${item?.slot?.split("-")[0]?.trim()}:00.000`;
-        return {
-          title: item?.doctor?.name,
-          date: a,
-          appointment_id: item?.id,
-          extendedProps: {
-            meetingLink: item?.meeting_link,
-            data: item,
-          },
-        };
-      });
+      const events = responseData?.data
+        ?.filter((item) => item?.status !== "pending")
+        ?.map((item) => {
+          let a = `${item?.date}T${item?.slot?.split("-")[0]?.trim()}:00.000`;
+          return {
+            title: item?.doctor?.name,
+            date: a,
+            appointment_id: item?.id,
+            extendedProps: {
+              meetingLink: item?.meeting_link,
+              data: item,
+            },
+          };
+        });
 
       setScheduledEvents(events);
     } catch (error) {
@@ -83,6 +85,20 @@ function UserCalendarView() {
       if (!response.ok) {
         throw new Error("Failed to fetch data from the server.");
       }
+    } catch (error) {
+      console.log("error", error?.message);
+    }
+  };
+
+  const meetingJoinTime = async () => {
+    try {
+      const response = await fetchData(
+        `video-call/time_tracker/?appointment_id=${selectedAppointment?.id}&action=start`,
+        navigate
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
       const responseData = await response.json();
       setSelectedAppointment(responseData?.data[0]);
       setVideoModal(true);
@@ -90,6 +106,7 @@ function UserCalendarView() {
       console.log("error", error?.message);
     }
   };
+
   const handleCopy = () => {
     navigator.clipboard.writeText(getMeetingUrl());
     setCopied(true);
@@ -201,6 +218,7 @@ function UserCalendarView() {
             onClick={() => {
               setShowModal(true);
               setVideoModal(false);
+              meetingJoinTime();
             }}
             style={{
               marginTop: "15px",

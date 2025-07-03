@@ -47,10 +47,13 @@ const AppointmentModal = ({
   useEffect(() => {
     if (selectedDoctorAppointement) {
       getAppointmentBookedSlots();
-      getAppointmentPlannedSlots();
     }
   }, [appointmentType, clickedDate, selectedDoctorAppointement]);
-  console.log(selectedDoctorAppointement, ">>>>selectedDoctorAppointement");
+
+  useEffect(()=>{
+     getAppointmentPlannedSlots();
+  },[bookedSlots])
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const isSuccess = params.get("status") === "success";
@@ -79,7 +82,7 @@ const AppointmentModal = ({
       const allSlots = responseData?.slots;
       const updatedSlots = allSlots?.map((slot) => {
         const slotStr = `${slot.start_time} - ${slot.end_time}`;
-        const matched = bookedSlots.find((b) => b.slot === slotStr);
+        const matched = bookedSlots?.find((b) => b.slot === slotStr);
         return {
           ...slot,
           slot: slotStr,
@@ -164,7 +167,6 @@ const AppointmentModal = ({
   }, [appointmentId]);
 
   const getPaymentDetails = async () => {
-    console.log(">>>>>>>>appointmentId", appointmentId);
     try {
       const response = await fetchData(
         `doctors/appointment-summary/${appointmentId}/`,

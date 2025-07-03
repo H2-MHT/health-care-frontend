@@ -37,14 +37,14 @@ const DoctorWallet = () => {
 
   const getDoctorWalletDetails = async () => {
     try {
-      const response = await fetchDataAuth("payment/transactions", navigate);
+      const response = await fetchDataAuth("payment/transaction-history", navigate);
       if (!response.ok) {
         throw new Error("Failed to fetch data from the server.");
       }
 
       const getData = await response.json();
-      setWalletDetails(getData);
-      setRowDetails(getData?.transactions[0]);
+      setWalletDetails(getData?.data);
+      setRowDetails(getData?.data?.transactions[0]);
     } catch (error) {
       console.log(error.message);
     }
@@ -62,6 +62,19 @@ const DoctorWallet = () => {
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+   const getSymbol = (currencyCode) => {
+    if(currencyCode){
+    return (0).toLocaleString('en', {
+      style: 'currency',
+      currency: currencyCode,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).replace(/\d/g, '').trim();
+  }else{
+    return '';  
+  }
   };
 
   const maskAccountNumber = (accountNumber) => {
@@ -242,7 +255,7 @@ const DoctorWallet = () => {
                   </div>
                   <div class="curr-bal-value">
                     <p>
-                      <span>$</span> {formattedCurrency}
+                      <span>{getSymbol(doctorTotalAmount?.currency)}</span> {formattedCurrency}
                     </p>
                   </div>
                 </div>
@@ -264,17 +277,12 @@ const DoctorWallet = () => {
                               transform: "rotate(90deg)",
                             }}
                           ></button>
-                          {/* <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                          </div> */}
                         </div>
                       </div>
                     </div>
 
                     <div class="total-amt">
-                      <span>$</span> {doctorTotalAmount?.balance}
+                      <span>{getSymbol(doctorTotalAmount?.currency)}</span> {doctorTotalAmount?.balance}
                     </div>
                   </div>
                   <button

@@ -21,7 +21,7 @@ function ConsultationReport() {
   }, [id]);
 
   useEffect(() => {
-    setConsultation(consultationData?.translated_text);
+    setConsultation(consultationData?.doctor_translated_text);
     setRecommendation(consultationData?.recommendation);
   }, [consultationData]);
 
@@ -70,7 +70,7 @@ function ConsultationReport() {
     try {
       
       const payload = {
-        translated_text: consultation,
+        doctor_translated_text: consultation,
         recommendation: recommendation,
       };
       const response = await updateData(
@@ -121,7 +121,10 @@ function ConsultationReport() {
                     <img src="/images/edit-dark.svg" />
                   </span>
                 </h6>
-                <p>{consultationData?.translated_text}</p>
+                <b>Doctor (me):</b>
+                <p>{consultationData?.doctor_translated_text}</p>
+                <b>Patient:</b>
+                <p>{consultationData?.patient_translated_text}</p>
               </div>
 
               <div class="treatmentPlan border-radius-20 border-gray padding-20">

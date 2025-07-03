@@ -124,18 +124,18 @@ const DoctorPrescription = () => {
                           <div className="flex-profile col-3">
                             <img
                               src={
-                                patientObject?.patient?.profile_picture ||
+                                patientObject?.Patient?.profile_picture ||
                                 "../images/profile-sample.png"
                               }
                               className="img-fluid"
                               alt="Patient"
-                            />
-                            {patientObject?.patient?.first_name}{" "}
-                            {patientObject?.patient?.last_name}
+                            /><b>Patient:{" "}</b>
+                            {patientObject?.Patient?.first_name}{" "}
+                            {patientObject?.Patient?.last_name}
                           </div>
-                          <div className="main-blue-text col-3">
+                          {/* <div className="main-blue-text col-3">
                             Amoxicilina
-                          </div>
+                          </div> */}
                           {/* <div className="file col-3">
                             <img
                               src="images/verification.svg"

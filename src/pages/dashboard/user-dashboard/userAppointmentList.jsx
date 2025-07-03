@@ -271,7 +271,7 @@ const UserAppointmentList = () => {
                   futureAppointments?.map((item) => {
                     return (
                       <>
-                        {(item?.status == "Confirmed" ||
+                        {(item?.status == "Confirmed" || item?.status === "Pending" ||
                           (item?.status == "Rescheduled" &&
                             item?.rescheduled_by == "Patient")) && (
                           <div
@@ -324,7 +324,7 @@ const UserAppointmentList = () => {
                             </div>
                           </div>
                         )}
-                        {(item?.status === "Pending" ||
+                        {(
                           (item?.status === "Rescheduled" &&
                             item?.rescheduled_by === "Doctor")) && (
                           <div class="appointmentBox reschedule" style={{ backgroundColor: "honeydew" }}>

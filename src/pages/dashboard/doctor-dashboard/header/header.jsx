@@ -8,6 +8,7 @@ import NotificationDropdown from "../../notification/NotificationPatient";
 import {
   deleteData,
   fetchData,
+  fetchDataAuth,
   postData,
   updateData,
 } from "../../../../hooks/services/services";
@@ -25,6 +26,7 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [doctorTotalAmount, setDoctorTotalAmount] = useState();
   const [profileStatus, setProfileStatus] = useState("Rejected");
   const [isDoctorFavorite, setIsDoctorFavorite] = useState(false);
   const [currentLang, setCurrentLang] = useState(i18n.language.toUpperCase());
@@ -91,6 +93,7 @@ export const Header = () => {
 
   useEffect(() => {
     fetchNotifications();
+    getDoctorPaymentDetails();
   }, []);
 
   const toggleNotification = () => {
@@ -205,6 +208,33 @@ export const Header = () => {
     setIsOpen(false);
   };
 
+  const getDoctorPaymentDetails = async () => {
+    try {
+      const response = await fetchDataAuth("doctors/get-wallet/", navigate);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
+
+      const getData = await response.json();
+      setDoctorTotalAmount(getData?.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const getSymbol = (currencyCode) => {
+    if(doctorTotalAmount){
+    return (0).toLocaleString('en', {
+      style: 'currency',
+      currency: currencyCode,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).replace(/\d/g, '').trim();
+  } else {
+    return '';
+  }
+  };
+
   const handleSubmit = async (lang) => {
     let LagResult = languages.filter(
       (item) => item.code.toUpperCase() === lang.toUpperCase()
@@ -238,14 +268,14 @@ export const Header = () => {
           </a>
         </a>
         <div className="dashRight">
-          <div className="startStop">
+          {/* <div className="startStop">
             <img
               src="/images/doctor-dashboard/watch.png"
               className="img-fluid"
               alt="Watch"
             />
             {t("header.appointment-started")}
-          </div>
+          </div> */}
 
           <div className="profileArea">
             {auth.user === "Doctor" && (
@@ -257,7 +287,7 @@ export const Header = () => {
                     alt="Wallet"
                   />
                 </div>
-                <div className="paid">0$</div>
+                <div className="paid">{doctorTotalAmount?.balance}{getSymbol(doctorTotalAmount?.currency)}</div>
               </div>
             )}
             {auth.user === "Patient" && (
