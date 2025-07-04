@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { reviewRating } from "../../../utils/constants";
 import { Loader } from "../../../components/ui/loader/loader";
 import Pagination from "../../../components/pagination/pagination";
+import { getAppointmentFormattedDate } from "../../../utils/common";
+import Image from "../../../components/form/Image";
 
 const Reviews = () => {
   const navigate = useNavigate();
@@ -22,19 +24,23 @@ const Reviews = () => {
   const [openReview, setOpenReview] = useState(null);
   const [replylistId, setReplylistId] = useState(null);
   const [replyData, setReplyData] = useState();
-   const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
-    const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    getPaginatedReviews(currentPage); // Fetch data on component mount
+  }, [currentPage]);
 
   const trustscore = reviewData?.length
-  ? (totalReviewSum / reviewData.length).toFixed(1)
-  : 0;
+    ? (totalReviewSum / reviewData.length).toFixed(1)
+    : 0;
   const toggleReply = (id) => {
-    setReplylistId(id); 
-    setOpenReview(openReview === id ? null : id); 
+    setReplylistId(id);
+    setOpenReview(openReview === id ? null : id);
   };
 
- useEffect(() => {
+  useEffect(() => {
     const totalSum = reviewData?.reduce((sum, item) => sum + item.rating, 0);
     const counts = {
       one: reviewData.filter((item) => item.rating === 1).length,
@@ -50,23 +56,21 @@ const Reviews = () => {
   const getPaginatedReviews = async (page = 1) => {
     setLoading(true);
     try {
-        const response = await fetchData(
-            `reviews/review/?page=${page}&limit=${itemsPerPage}`,
-            navigate
-        )
-        const totalPagesHeader = response.headers.get("Total-Pages");
-        const totalPages = totalPagesHeader ? parseInt(totalPagesHeader, 10) : 1;
-        const responseData = await response.json();
-        setReviewData(Array.isArray(responseData?.data) ? responseData.data : []);
-        setTotalPages(totalPages);
+      const response = await fetchData(
+        `reviews/review/?page=${page}&limit=${itemsPerPage}`,
+        navigate
+      );
+      const totalPagesHeader = response.headers.get("Total-Pages");
+      const totalPages = totalPagesHeader ? parseInt(totalPagesHeader, 10) : 1;
+      const responseData = await response.json();
+      setReviewData(Array.isArray(responseData?.data) ? responseData.data : []);
+      setTotalPages(totalPages);
     } catch (error) {
-        console.log(error.message);
+      console.log(error.message);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
-
-
+  };
 
   const getReviewsReplyData = async () => {
     // setLoading(true);
@@ -106,11 +110,8 @@ const Reviews = () => {
         payload
       );
       if (response.status === 201) {
-        let responseData = await response.json();
-        // getReviewsData();
         getPaginatedReviews();
         getReviewsReplyData();
-        // Clear the specific reply text after submitting
         setReplyTextMap((prevMap) => {
           const updatedMap = { ...prevMap };
           delete updatedMap[currentSelectedReviewId]; // Remove the reply text for the submitted review
@@ -121,15 +122,12 @@ const Reviews = () => {
       showToast(error.message, "error");
     }
   };
-  useEffect(() => {
-   getPaginatedReviews(currentPage) // Fetch data on component mount
-  }, [currentPage]);
 
- const handleReplydelete = async (id) => {
+  const handleReplydelete = async (id) => {
     try {
       const response = await deleteData(`reviews/delete-update-reply/${id}`);
       showToast("Notes deleted successfully", "success");
-      await getReviewsReplyData()
+      await getReviewsReplyData();
     } catch (error) {
       showToast(error.message, "error");
     }
@@ -138,13 +136,13 @@ const Reviews = () => {
   const handleReviewdelete = async (id) => {
     try {
       const payload = {
-        review_id: id
+        review_id: id,
       };
-      const response = await deleteData(`reviews/review/`,payload);
-      console.log(response,">>>>>>payload")
+      const response = await deleteData(`reviews/review/`, payload);
+      console.log(response, ">>>>>>payload");
       showToast("Notes deleted successfully", "success");
-      await getReviewsReplyData()
-      await getPaginatedReviews()
+      await getReviewsReplyData();
+      await getPaginatedReviews();
     } catch (error) {
       showToast(error.message, "error");
     }
@@ -234,18 +232,11 @@ const Reviews = () => {
                                 {replyData?.replies?.length > 0 &&
                                   replyData?.replies?.map((item, index) => (
                                     <div className="reviewName" key={index}>
-                                      <img
-                                        src="../images/doctor-dashboard/sample-doc.svg"
-                                        alt="Reviewer"
-                                      />
+                                      <Image src={item?.profile_picture} />
                                       <div className="reply-msg">
                                         <p>{item?.content}</p>
                                       </div>
                                       <div class="editdelete d-flex align-items-center gap-2">
-                                        {/* <img
-                                          src="../images/edit.svg"
-                                          width="25"
-                                        /> */}
                                         <img
                                           src="../images/delete.svg"
                                           width="25"
@@ -296,12 +287,12 @@ const Reviews = () => {
 
                             <div className="reviewName">
                               <img
-                                src={items?.reviewer_profile_picture}
+                                src={items?.doctor?.profile_picture}
                                 alt="Reviewer"
                               />
                               <div>
-                                <h4>{items?.reviewer_name}</h4>
-                                <p>Date</p>
+                                <h4>{items?.doctor?.name}</h4>
+                                <p>{getAppointmentFormattedDate(items?.created_at)}</p>
                               </div>
                             </div>
                           </div>

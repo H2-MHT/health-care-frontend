@@ -22,7 +22,7 @@ const schema = yup.object().shape({
     .max(5, "Rating must be at most 5"),
 });
 
-const ReviewModel = ({ setModelOpen, modelOpen, recentAppointmentId }) => {
+const ReviewModel = ({ setModelOpen, modelOpen, recentAppointmentId, currentSelectedAppointment }) => {
   const { t } = useTranslation();
  
   const {
@@ -44,6 +44,7 @@ const ReviewModel = ({ setModelOpen, modelOpen, recentAppointmentId }) => {
         title: data?.reviewTitle,
         content: data?.review,
         doctor_user_id: recentAppointmentId,
+        appointment_id: currentSelectedAppointment?.id
       };
       const response = await postData(`reviews/review/`, payload);
       if (response.status === 201) {

@@ -245,7 +245,7 @@ const Reviews = () => {
 
                           {items?.replies?.map((item, index) => (
                             <div className="reviewName" key={index}>
-                              <Image src={item?.reviewer_profile_picture} />
+                              <Image src={item?.replies?.profile_picture} />
                               <div className="reply-msg">
                                 <p>{item?.content}</p>
                               </div>
