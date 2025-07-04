@@ -31,6 +31,7 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
   const [transcript, setTranscript] = useState("");
   const ws = useRef(null);
   const mediaRecorder = useRef(null);
+  const auth = useSelector((state) => state.auth);
   const isProfileData = useSelector((state) => state?.userProfile?.userProfile);
   const client = useRef(
     AgoraRTC.createClient({ mode: "rtc", codec: "vp8" })
@@ -130,8 +131,16 @@ const MeetVideoCall = ({ selectedAppointment, showModal, setShowModal }) => {
     try {
       const payload = {
         appointment_id: selectedAppointment?.id,
-        translated_text: transcript,
+
+        [`${auth?.user?.toLowerCase()}_translated_text`]: transcript, // ← computed key
       };
+
+      if(auth?.user === "Patient"){
+        payload.doctor_translated_text = ""
+      }
+       if(auth?.user === "Doctor"){
+        payload.patient_translated_text = ""
+      }
       const response = await postData(
         "consultation/consultation-report/",
         payload
