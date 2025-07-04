@@ -106,13 +106,12 @@ const DoctorProfileStep1 = ({ setStateCount }) => {
         localStorage.setItem("user_data", JSON.stringify(responseData?.data));
         dispatch(loginSuccess(responseData?.data?.role, token));
         showToast(responseData?.message, "success");
-        // setStateCount(4);
+        setStateCount(4);
       }
     } catch (error) {
       showToast(error.message, "error");
     }
   };
-console.log(workPlaces.label,">>>workPlaces")
   const selectWorkplace = (e) => {
     setSelectedWorkPlace(e.target.value);
     setValue("hospital_name", "");
@@ -335,7 +334,7 @@ console.log(workPlaces.label,">>>workPlaces")
                       <a
                         href="#"
                         className="back justify-content-end"
-                        // onClick={() => setStateCount(4)}
+                        onClick={() => setStateCount(4)}
                       >
                         {t("singup.skip_lable")}{" "}
                         <img src="images/frontarrow.png" alt="arrow" />

@@ -10,24 +10,24 @@ const PaymentHistory = () => {
   const [doctorTotalAmount, setDoctorTotalAmount] = useState();
   const [withdrawalRequestList, setWithdrawalRequestList] = useState([]);
   const [details, setShowDetails] = useState(false);
-  const [tab,setTab]=useState(false)
+  const [tab, setTab] = useState(false);
 
   const navigate = useNavigate();
 
-  const getDoctorWalletDetails = async () => {
-    try {
-      const response = await fetchDataAuth("payment/transactions", navigate);
-      if (!response.ok) {
-        throw new Error("Failed to fetch data from the server.");
-      }
+  // const getDoctorWalletDetails = async () => {
+  //   try {
+  //     const response = await fetchDataAuth("payment/transactions", navigate);
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch data from the server.");
+  //     }
 
-      const getData = await response.json();
-      setWalletDetails(getData);
-      setRowDetails(getData?.transactions[0]);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  //     const getData = await response.json();
+  //     setWalletDetails(getData);
+  //     setRowDetails(getData?.transactions[0]);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   const getDoctorPaymentDetails = async () => {
     try {
@@ -66,7 +66,7 @@ const PaymentHistory = () => {
   };
 
   useEffect(() => {
-    getDoctorWalletDetails();
+    // getDoctorWalletDetails();
     getWithdrawalRequestList();
     getDoctorPaymentDetails();
   }, []);
@@ -81,9 +81,13 @@ const PaymentHistory = () => {
 
               <div class="row">
                 <div class="col-md-12">
-                  <h3 class="transactionHeading blue_txt" onClick={setTab(true)}>
+                  <h3
+                    className="transactionHeading blue_txt"
+                    onClick={() => setTab(true)} // ← now it runs only when clicked
+                  >
                     {t("wallet.transaction-history")}
                   </h3>
+
                   <div class="pateintData">
                     <div class="treatmentData tableTransactionData ">
                       <table class="table table-hover table-borderless">
