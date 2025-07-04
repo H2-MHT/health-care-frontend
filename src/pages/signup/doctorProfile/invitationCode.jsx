@@ -82,7 +82,7 @@ const InvitationCode = () => {
                   </div>
 
                   <div className="co-md-12">
-                    <div  className="forgot text_decor" onClick={goToDashboard}>
+                    <div  className="forgot text_decor cursor-pointer" onClick={goToDashboard}>
                       Skip and go to Dashboard
                     </div>
                   </div>

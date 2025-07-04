@@ -438,8 +438,8 @@ const Dashboard = () => {
                   </div>
                   <div className="notesFix">
                     {doctorDashboard?.dashboard?.doctor_notes &&
-                    doctorDashboard.dashboard.doctor_notes.length > 0 ? (
-                      doctorDashboard.dashboard.doctor_notes.map((item) => (
+                    doctorDashboard.dashboard?.doctor_notes.length > 0 ? (
+                      doctorDashboard.dashboard?.doctor_notes.length && doctorDashboard.dashboard?.doctor_notes.map((item) => (
                         <div className="notes" key={item?.id}>
                           <h5>{item?.title}</h5>
                           <div className="time">
