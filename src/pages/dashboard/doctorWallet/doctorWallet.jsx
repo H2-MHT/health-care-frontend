@@ -303,7 +303,7 @@ const DoctorWallet = () => {
                                 >
                                   <td>{account?.patient?.name}</td>
                                   <td class="text-green">
-                                    {handleDate(account?.appointment_date)}
+                                    {account?.appointment_date}
                                   </td>
                                   <td>{account?.amount}</td>
                                   <td class="text-green">{account?.payment_date}</td>

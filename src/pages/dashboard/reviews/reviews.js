@@ -23,19 +23,26 @@ const Reviews = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedReason, setSelectedReason] = useState("");
   const [otherReason, setOtherReason] = useState("");
-
+  const [replylistId, setReplylistId] = useState(null);
+  const [openReview, setOpenReview] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [replyData, setReplyData] = useState();
   const itemsPerPage = 5;
   const [totalPages, setTotalPages] = useState(1);
   const [query, setquery] = useState("");
+
+  const toggleReply = (id) => {
+    setReplylistId(id);
+    setOpenReview(openReview === id ? null : id);
+  };
 
   const getPaginatedData = async (page = 1, searchQuery = "") => {
     setLoading(true);
     try {
       const response = await fetchData(
         `reviews/doctor/?page=${page}&limit=${itemsPerPage}&search=${encodeURIComponent(
-      searchQuery
-    )}`,
+          searchQuery
+        )}`,
         navigate
       );
       const totalPagesHeader = response.headers.get("Total-Pages");
@@ -55,10 +62,35 @@ const Reviews = () => {
     }
   };
 
+  const getReviewsReplyData = async () => {
+    // setLoading(true);
+    try {
+      const response = await fetchData(
+        `reviews/replies/?review_id=${replylistId}`,
+        navigate
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from the server.");
+      }
+      const responseData = await response.json();
+      setReplyData(responseData?.data);
+      // setLoading(false);
+    } catch (error) {
+      // setLoading(false);
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    if (replylistId !== null) {
+      getReviewsReplyData(); // Fetch replies when replylistId changes
+    }
+  }, [replylistId]);
+
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      setCurrentPage(1); 
-      getPaginatedData(1, query); 
+      setCurrentPage(1);
+      getPaginatedData(1, query);
     }
   };
 
@@ -99,7 +131,7 @@ const Reviews = () => {
       showToast(error.message, "error");
     }
   };
-
+  console.log(replyData, ">>>>>>.replyData");
   const handleReportReview = async (reviewId) => {
     const reasonToSend =
       selectedReason === "Other" ? otherReason : selectedReason;
@@ -121,11 +153,9 @@ const Reviews = () => {
         const data = await response.json();
         showToast(data?.message || "Reported successfully", "success");
 
-        
         setReportedReviewIds((prev) => [...prev, reviewId]);
         getPaginatedData(currentPage);
 
-       
         setIsModalOpen(false);
         setSelectedReason("");
         setOtherReason("");
@@ -137,7 +167,7 @@ const Reviews = () => {
       showToast(error.message || "Something went wrong", "error");
     }
   };
-
+  console.log(replyData, ">>>>>>.reviewData");
   useEffect(() => {
     const totalSum = reviewData?.reduce((sum, item) => sum + item.rating, 0);
     const counts = {
@@ -150,7 +180,6 @@ const Reviews = () => {
     setRatingCounts(counts);
     setTotalReviewSum(totalSum);
   }, [reviewData]);
-
   return (
     <>
       {loading ? (
@@ -237,24 +266,35 @@ const Reviews = () => {
                           <h5>{items?.title}</h5>
                           <h6>{items?.content}</h6>
                           <div className="d-flex justify-content-between align-items-center mt-4">
-                            <div className="reply-text">
+                            <div
+                              className="reply-text"
+                              onClick={() => toggleReply(items.id)}
+                            >
                               {items?.replies?.length} Replies
                             </div>
-                            <div className="reply-text">Reply</div>
+                            <div className="reply-text ">Reply</div>
                           </div>
-
-                          {items?.replies?.map((item, index) => (
-                            <div className="reviewName" key={index}>
-                              <Image src={item?.reviewer_profile_picture} />
-                              <div className="reply-msg">
-                                <p>{item?.content}</p>
-                              </div>
-                              <div>
-                                <p>...</p>
-                              </div>
-                            </div>
-                          ))}
-
+                          {openReview === items?.id && (
+                            <>
+                              {replyData?.replies?.length > 0 &&
+                                replyData?.replies?.map((item, index) => (
+                                  <div className="reviewName" key={index}>
+                                    <Image
+                                      src={
+                                        item?.profile_picture ||
+                                        "../images/doctor-dashboard/sample-doc.svg"
+                                      }
+                                    />
+                                    <div className="reply-msg">
+                                      <p>{item?.content}</p>
+                                    </div>
+                                    <div>
+                                      <p>...</p>
+                                    </div>
+                                  </div>
+                                ))}
+                            </>
+                          )}
                           <div className="row p-2">
                             <div className="col-md-10">
                               <InputField
@@ -289,10 +329,13 @@ const Reviews = () => {
                               </button>
                             </div>
                           </div>
-
+                          {console.log(items, ">>>>>items")}
                           <div className="reviewName">
                             <img
-                              src="images/doctor-dashboard/sample-doc.svg"
+                              src={
+                                items?.reviewer_profile_picture ||
+                                "images/doctor-dashboard/sample-doc.svg"
+                              }
                               alt="Reviewer"
                             />
                             <div>

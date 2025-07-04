@@ -114,8 +114,8 @@ const UserAppointmentList = () => {
   };
 
   const getRecentDoctorlist = (item) => {
-    console.log(">>>>>>>>>>>>>hhh", item);
     setRecentAppointmentId(item?.doctor?.id);
+    setCurrentSelectedAppointment(item)
     setModelOpen(true);
   };
 
@@ -763,6 +763,7 @@ const UserAppointmentList = () => {
           modelOpen={modelOpen}
           setModelOpen={setModelOpen}
           recentAppointmentId={recentAppointmentId}
+          currentSelectedAppointment={currentSelectedAppointment}
         />
       </div>
     </>

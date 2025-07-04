@@ -97,15 +97,6 @@ const PatinentProfileSetting = () => {
                     </Link>
                   </div>
                 </div>
-
-                <div class="sortSearchArea mb-0">
-                  <div class="search">
-                    <input type="search" placeholder="search" />
-                    <a href="#">
-                      <img src="../images/search-dark.svg" />
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
             <MembershipPlan />

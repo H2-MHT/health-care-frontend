@@ -14,7 +14,6 @@ const FileUpload = ({ label = "Upload File", name, control, src }) => {
     <div className="file-upload-container">
       {!filePreview && (
         <label htmlFor={name} className="file-upload-label">
-          {console.log(">>>>>>>>>>>>>>>>", src)}
           <img src={src ? src : "../images/sample.png"} alt="upload" />
         </label>
       )}

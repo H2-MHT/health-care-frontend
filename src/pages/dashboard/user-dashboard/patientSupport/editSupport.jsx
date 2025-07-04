@@ -14,18 +14,18 @@ const EditSupport = ({
   editSupportData,
   fetchadminList,
 }) => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
+
   const schema = Yup.object().shape({
     title: Yup.string().required("title is required"),
     description: Yup.string().required("Description is required"),
   });
   const [previewImage, setPreviewImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const {
     register,
     handleSubmit,
-    setValue,
-    control,
     reset,
     formState: { errors },
   } = useForm({
@@ -39,8 +39,9 @@ const EditSupport = ({
         description: editSupportData?.description || "",
         attachment: editSupportData?.attachment || "",
       });
-        if (editSupportData.attachment) {
-        setPreviewImage(editSupportData.attachment); // must be a full URL
+      if (editSupportData?.attachment) {
+        setPreviewImage(editSupportData?.attachment); // must be a full URL
+        setSelectedImage(editSupportData?.attachment);
       }
     }
   }, [editSupportData, reset]);
@@ -50,12 +51,7 @@ const EditSupport = ({
       const formData = new FormData();
       formData.append("title", data.title);
       formData.append("description", data.description);
-      if (data.attachment?.[0] instanceof File) {
-        formData.append("attachment", data.attachment[0]);
-      } else {
-        console.warn("Invalid attachment:", data.attachment?.[0]);
-      }
-
+      formData.append("attachment", selectedImage);
       const response = await patchFormData(
         `user/support/?ticket_id=${editSupportData?.ticket_id}`,
         formData
@@ -91,15 +87,6 @@ const EditSupport = ({
                     onSubmit={handleSubmit(onSubmit)}
                     encType="multipart/form-data"
                   >
-                    {/* File Input */}
-
-                    {/* <div className="addFamilyProfile">
-                      <FileUpload
-                        name="attachment"
-                        label="Upload Profile Picture"
-                        control={control}
-                      />
-                    </div> */}
                     <div className="form-group">
                       <label>{t("support.support-title")}</label>
                       <InputField type="text" {...register("title")} />
@@ -117,15 +104,16 @@ const EditSupport = ({
                       <InputField
                         type="file"
                         {...register("attachment_file")}
-                         onChange={(e) => {
+                        onChange={(e) => {
                           const file = e.target.files[0];
                           if (file) {
+                            setSelectedImage(file);
                             setPreviewImage(URL.createObjectURL(file));
                           }
                         }}
                       />
                     </div>
-                     {previewImage && (
+                    {previewImage && (
                       <div className="form-group mt-3">
                         <img
                           src={previewImage}
@@ -142,14 +130,14 @@ const EditSupport = ({
                     )}
                     <div className="d-flex gap-2 justify-content-center mt-5 mb-5">
                       <button type="submit" className="blue_btn">
-                       {t("common.save-changes")}
+                        {t("common.save-changes")}
                       </button>
                       <button
                         type="button"
                         className="transparent_btn"
                         onClick={() => setEditDoctorModel(false)}
                       >
-                       {t("common.cancel")}
+                        {t("common.cancel")}
                       </button>
                     </div>
                   </form>

@@ -152,7 +152,7 @@ setViewItem(true)
               {adminList?.length === 0 && (
                 <tr>
                   <td colSpan="6" className="text-center text-muted py-4">
-                    <span>No adimn available</span>
+                    <span>No support available</span>
                   </td>
                 </tr>
               )}
