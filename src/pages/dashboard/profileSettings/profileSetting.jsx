@@ -108,7 +108,7 @@ const ProfileSetting = () => {
 
             <TimeLanguage />
             <ReschedulePolicy />
-            <CancellationPolicy />
+            {/* <CancellationPolicy /> */}
             <CommunicationNotifications />
 
             <div class="col-md-12">

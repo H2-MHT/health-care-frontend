@@ -10,6 +10,7 @@ import FileUpload from "../../../../components/form/FileUpload";
 function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData }) {
   // Validation Schema
    const [previewImage, setPreviewImage] = useState(null);
+   const [image,setImage]=useState()
   const schema = Yup.object().shape({
     date: Yup.string().required("date is required"),
     name: Yup.string().required("name is required"),
@@ -34,9 +35,8 @@ function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData }) {
       formData.append("name", data.name);
       formData.append("date", data.date);
       formData.append("description", data.description);
-  if (data.attachment_file && data.attachment_file[0]) {
-        formData.append("attachment", data.attachment_file[0]);
-      } // Append file correctly
+      formData.append("attachment",image)
+      
       const response = await AddFormData(
         "doctors/licence-certificate/",
         formData
@@ -111,6 +111,7 @@ function AddMyVerifcationModel({ setOpenModel, openModel, getLicensesData }) {
                         onChange={(e) => {
                           const file = e.target.files[0];
                           if (file) {
+                            setImage(file)
                             setPreviewImage(URL.createObjectURL(file));
                           }
                         }}
