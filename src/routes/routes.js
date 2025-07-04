@@ -45,7 +45,6 @@ import ManageReviewAdmin from "../pages/dashboard/superAdmin/manageReviewAdmin/m
 import MyDocumentVerification from "../pages/dashboard/superAdmin/myDocumentVerification"
 import CreateAdmin from "../pages/dashboard/superAdmin/createAdmin/createAdmin"
 import PatientEditProfile from "../pages/patient/editProfile/editProfile";
-import { PatientDashboard } from "../pages/patient/dashboard/dashboard";
 import VideoCall2 from "../pages/dashboard/doctorChat/VideoCall2";
 import PaymentHistory from "../pages/dashboard/user-dashboard/paymentHistory"
 import SuperAdminLogin from "../pages/dashboard/superAdmin/superAdminLogin";
