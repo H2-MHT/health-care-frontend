@@ -8,80 +8,44 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 function PatientPublicView() {
   const [loading, setLoading] = useState(false);
-   const { t } = useTranslation("edit-profile");
+  const { t } = useTranslation("edit-profile");
   const [patientDetails, setPatientDetails] = useState({});
   const [medicalDocumentDetails, setMedicalDocumentDetails] = useState([]);
+  const [languageOptions, setLanguageOptions] = useState([]);
   const [allergyDetails, setAllergyDetails] = useState([]);
   const [showAllergy, setShowAllergy] = useState(false);
-    const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
-    const [showAllMedicalHistory, setShowAllMedicalHistory] = useState(false);
+  const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
+  const [showAllMedicalHistory, setShowAllMedicalHistory] = useState(false);
   const navigate = useNavigate();
-  
- console.log(isProfiledata,">>>>isProfiledata")
 
+  const getLanguageData = async () => {
+      try {
+        const response = await fetchDataAuth("clinics/languages", navigate);
+        if (!response.ok) {
+          throw new Error("Failed to fetch data from the server.");
+        }
+        const getData = await response.json();
+        const formattedData = getData?.map((item) => ({
+          name: item.title,
+          id: item.id,
+        }));
+        setLanguageOptions(formattedData);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
 
-  const countries = [
-    {
-      name: "United States",
-      code: "US",
-      language: "English",
-      languageCode: "EN"
-    },
-    {
-      name: "India",
-      code: "IN",
-      language: "Hindi",
-      languageCode: "HI"
-    },
-    {
-      name: "Germany",
-      code: "DE",
-      language: "German",
-      languageCode: "DE"
-    },
-    {
-      name: "France",
-      code: "FR",
-      language: "French",
-      languageCode: "FR"
-    },
-    {
-      name: "Japan",
-      code: "JP",
-      language: "Japanese",
-      languageCode: "JA"
-    },
-    {
-      name: "Brazil",
-      code: "BR",
-      language: "Portuguese",
-      languageCode: "PT"
-    },
-    {
-      name: "China",
-      code: "CN",
-      language: "Mandarin",
-      languageCode: "ZH"
-    },
-    {
-      name: "Russia",
-      code: "RU",
-      language: "Russian",
-      languageCode: "RU"
-    },
-    {
-      name: "Mexico",
-      code: "MX",
-      language: "Spanish",
-      languageCode: "ES"
-    },
-    {
-      name: "South Korea",
-      code: "KR",
-      language: "Korean",
-      languageCode: "KO"
-    }
-  ];
+  // const doctorsWithLanguageNames = isProfiledata?.map((doctor) => {
+    const languageNames = isProfiledata?.languages
+      ?.map((id) => languageOptions?.find((lang) => lang.id === id))
+      .filter(Boolean)
+      .map((lang) => lang.name);
+
+  //   return {
+  //     ...doctor,
+  //     languages: languageNames, // now it's an array of language names
+  //   };
+  // });
 
   const getMedicalDocumentsData = async () => {
     try {
@@ -116,9 +80,9 @@ function PatientPublicView() {
   };
 
   useEffect(() => {
-    // fetchPatientDetails();
     getMedicalDocumentsData();
     getAllergiesData();
+    getLanguageData();
   },[]);
 
  
@@ -142,16 +106,11 @@ function PatientPublicView() {
                   <img src="../images/clinic-dashboard/gender.svg" />
                 </div>
                 <div class="dcDetails">
-                  <div class="langs">
-                    {patientDetails?.languages?.[0] || "En"}
-                    {/* <img src="../images/clinic-dashboard/flag.svg" /> */}
-                    <Flag code={countries[3].languageCode} />
-                  </div>
-                  <div class="langs">
-                    {patientDetails?.languages?.[0] || "Fr"}
-                    {/* <img src="../images/clinic-dashboard/flag.svg" /> */}
-                    <Flag code={countries[4].languageCode} />
-                  </div>
+                  {languageNames?.map(item=>{
+                    return <div class="langs">
+                    {item}
+                    {/* <Flag code={countries[3].languageCode} /> */}
+                  </div>})}
                 </div>
                 <div class="dcDetails">
                   <p>
