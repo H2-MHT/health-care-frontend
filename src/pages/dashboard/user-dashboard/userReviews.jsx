@@ -158,6 +158,8 @@ const Reviews = () => {
     setCurrentSelectedReviewId(reviewId);
   };
 
+
+
   return (
     <>
       {loading ? (
@@ -235,7 +237,7 @@ const Reviews = () => {
                                   replyData?.replies?.map((item, index) => (
                                     <div className="reviewName" key={index}>
                                       <img
-                                        src="../images/doctor-dashboard/sample-doc.svg"
+                                        src={item?.profile_picture||"../images/doctor-dashboard/sample-doc.svg"}
                                         alt="Reviewer"
                                       />
                                       <div className="reply-msg">
