@@ -14,7 +14,7 @@ function MyVerification() {
   const navigate = useNavigate();
  const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
   
-  console.log(isProfiledata,">>>>>>>>isProfiledata")
+  
   const getLicensesData = async () => {
     try {
       const response = await fetchDataAuth(

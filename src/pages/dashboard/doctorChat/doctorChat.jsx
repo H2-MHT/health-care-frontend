@@ -406,12 +406,12 @@ const DoctorChat = () => {
                       alt="Video Call Icon"
                     />
                   </Link>
-                  <a href="#">
+                  {/* <a href="#">
                     <img
                       src="/images/doctor-dashboard/3dots_blue.webp"
                       alt="Menu Icon"
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
 
@@ -441,13 +441,13 @@ const DoctorChat = () => {
 
               {/* Chat Input */}
               <div className="chattingSendArea">
-                <a href="#">
+                {/* <a href="#">
                   <img
                     src="/images/doctor-dashboard/attachment.webp"
                     width="30"
                     alt="Attachment"
                   />
-                </a>
+                </a> */}
                 <input
                   type="text"
                   placeholder="Type your text here..."
@@ -456,13 +456,13 @@ const DoctorChat = () => {
                   onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                 />
                 <div className="d-flex align-items-center gap-2">
-                  <a href="#">
+                  {/* <a href="#">
                     <img
                       src="/images/doctor-dashboard/micBlue.webp"
                       width="50"
                       alt="Mic"
                     />
-                  </a>
+                  </a> */}
                   <a onClick={handleSendMessage}>
                     <img
                       src="/images/doctor-dashboard/chatSend.webp"

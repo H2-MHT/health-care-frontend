@@ -549,7 +549,8 @@
     "administrator-name": "Administrator Name",
     "administrator-email": "Administrator E-mail",
     "submit-registration": "Submit Registration",
-    "back": "Back"
+    "back": "Back",
+    "website":"Website"
   },
   "clinic-see-user": {
     "contact-patient": "Contact with patient",

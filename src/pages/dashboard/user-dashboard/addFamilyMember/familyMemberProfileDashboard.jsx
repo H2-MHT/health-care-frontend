@@ -604,7 +604,7 @@ const FamilyMemberProfileDashboard = () => {
                             <div class="notes">
                               <h5>{item?.title}</h5>
                               <div class="time">
-                                {formatDate(item?.created_at)}
+                                {item?.created_at && formatDate(item?.created_at)}
                               </div>
                               <a href="#">
                                 <img
