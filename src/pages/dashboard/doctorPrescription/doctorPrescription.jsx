@@ -90,12 +90,6 @@ const DoctorPrescription = () => {
                 <img src="../images/search-dark.svg" />
               </a>
             </div>
-            <div class="sorting">
-              <select>
-                <option>Sort by</option>
-                <option>Sort by</option>
-              </select>
-            </div>
           </div>
 
           <div class="preinscriptions">
