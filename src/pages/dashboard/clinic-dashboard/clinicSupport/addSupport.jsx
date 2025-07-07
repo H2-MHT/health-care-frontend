@@ -11,6 +11,7 @@ import { useState } from "react";
 const AddSupport = ({ addDoctorModel, setAddDoctorModel, fetchadminList }) => {
   // Validation Schema
    const { t } = useTranslation();
+     const [image,setImage]=useState()
   const schema = Yup.object().shape({
     title: Yup.string().required("title is required"),
     description: Yup.string().required("Description is required"),
@@ -33,9 +34,8 @@ const AddSupport = ({ addDoctorModel, setAddDoctorModel, fetchadminList }) => {
       const formData = new FormData();
       formData.append("title", data.title);
       formData.append("description", data.description);
-      if (data.attachment_file && data.attachment_file[0]) {
-        formData.append("attachment", data.attachment_file[0]);
-      }
+        formData.append("attachment",image)
+    
       const response = await AddFormData("user/support/", formData);
       if (response?.status === 201) {
         let responseData = await response.json();
@@ -88,6 +88,7 @@ const AddSupport = ({ addDoctorModel, setAddDoctorModel, fetchadminList }) => {
                         onChange={(e) => {
                           const file = e.target.files[0];
                           if (file) {
+                              setImage(file)
                             setPreviewImage(URL.createObjectURL(file));
                           }
                         }}
