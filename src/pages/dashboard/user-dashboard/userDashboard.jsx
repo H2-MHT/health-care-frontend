@@ -35,13 +35,13 @@ const UserDashboard = () => {
   const dispatch = useDispatch();
   const isProfiledata = useSelector((state) => state?.userProfile?.userProfile);
   const [treatmentPlanData, setTreatmentPlanData] = useState();
-   const [appointmentList, setAppointmentList] = useState();
+  const [appointmentList, setAppointmentList] = useState();
   const [openNotesModal, setOpenNotesModal] = useState(false);
   const [openNotesEditModal, setOpenNotesEditModal] = useState(false);
   const [editNotesData, setEditNotesData] = useState();
   const [videoModal, setVideoModal] = useState(false);
   const [allNotesData, setAllNotesData] = useState();
-    const [selectedAppointment, setSelectedAppointment] = useState();
+  const [selectedAppointment, setSelectedAppointment] = useState();
   const [scheduledEvents, setScheduledEvents] = useState([]);
   const [notesData, setNotesData] = useState();
   const [activeTab, setActiveTab] = useState("treatment");
@@ -268,22 +268,8 @@ const handleEventClick = (clickInfo) => {
     }
   };
 
-  const getNotesData = async () => {
-    try {
-      const response = await fetchDataAuth("user/notes/", navigate);
-      if (!response.ok) {
-        throw new Error("Failed to fetch data from the server.");
-      }
-      const getData = await response.json();
-      setAllNotesData(getData);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   useEffect(() => {
     getTreatmentPlanData();
-    getNotesData();
   }, [currentView]);
 
   const editNotesModal = (item) => {
@@ -328,7 +314,7 @@ const handleEventClick = (clickInfo) => {
         showToast(responseData?.message, "success");
         setOpenNotesModal(false);
         setNotesData("");
-        getNotesData();
+        getTreatmentPlanData();
       }
     } catch (error) {
       showToast(error.message, "error");
@@ -338,10 +324,10 @@ const handleEventClick = (clickInfo) => {
   const deleteNotes = async (event) => {
     event.preventDefault();
     try {
-      const response = await deleteData(`user/notes/${editNotesData?.id}`);
+      const response = await deleteData(`user/notes/${editNotesData?.note_id}`);
       showToast("Notes deleted successfully", "success");
       setOpenNotesEditModal(false);
-      await getNotesData();
+      getTreatmentPlanData();
     } catch (error) {
       showToast(error.message, "error");
     }
@@ -355,14 +341,14 @@ const handleEventClick = (clickInfo) => {
         note: editNotesData?.note,
       };
       const response = await putData(
-        `user/notes/${editNotesData?.id}/`,
+        `user/notes/${editNotesData?.note_id}/`,
         JSON.stringify(payload)
       );
       if (response.status === 200) {
         let responseData = await response.json();
         showToast(responseData?.message, "success");
         setOpenNotesEditModal(false);
-        getNotesData();
+        getTreatmentPlanData();
         setEditNotesData();
       }
     } catch (error) {
@@ -767,9 +753,9 @@ const handleEventClick = (clickInfo) => {
                           </div>
                         </div>
                         <div className="notesFix">
-                          {allNotesData?.data.length > 0 ? (
-                            allNotesData?.data.map((item) => (
-                              <div className="notes" key={item.id}>
+                          {treatmentPlanData?.notes.length > 0 ? (
+                            treatmentPlanData?.notes?.map((item) => (
+                              <div className="notes" key={item.note_id}>
                                 <h5>{item?.title}</h5>
                                 <div className="time">
                                   {formatDate(item?.created_at)}

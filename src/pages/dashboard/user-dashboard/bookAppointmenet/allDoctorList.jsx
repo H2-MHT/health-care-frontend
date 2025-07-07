@@ -226,10 +226,6 @@ const AllDoctorList = () => {
           </div>
           <div className="clinic_doc_list bg-white-transparent border-radius-20 padding-20">
             <div className="recomend">
-              {console.log(
-                doctorsWithLanguageNames,
-                ">>>>>>doctorsWithLanguageNames"
-              )}
               {doctorsWithLanguageNames.length > 0 ? (
                 doctorsWithLanguageNames.map((item) => {
                   const countryName = item?.country?.toLowerCase?.();
