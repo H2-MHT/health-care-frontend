@@ -443,7 +443,7 @@ const Dashboard = () => {
                         <div className="notes" key={item?.id}>
                           <h5>{item?.title}</h5>
                           <div className="time">
-                            {formatDate(item?.created_at)}
+                            {item?.created_at && formatDate(item?.created_at)}
                           </div>
                           <div
                             className="edit-btn cursor-pointer"
