@@ -89,8 +89,8 @@ function PatientPublicView() {
   return loading ? (
     <Loader />
   ) : (
-    <div>
-      <div class="clinic_see_user bg-white border-radius-20 padding-20 pb-5">
+ 
+      <div class="clinic_see_user bg-white border-radius-20 padding-20 pb-5 w-100">
         <div class="clinicUser">
           <div class="left">
             {/* <a href="#" class="blue_btn d-flex align-items-center gap-3">
@@ -100,7 +100,7 @@ function PatientPublicView() {
           <div class="right">
             <div class="docNameImg">
               <div>
-                <h1>{isProfiledata?.first_name} {isProfiledata?.last_name} </h1>
+                <h1>{isProfiledata?.first_name} {isProfiledata?.last_name}</h1>
                 <div class="dcDetails">
                   <p>{isProfiledata?.dob || 0 } {t("clinic-see-user.years-old")}</p>
                   <img src="../images/clinic-dashboard/gender.svg" />
@@ -261,7 +261,7 @@ function PatientPublicView() {
           </div>
         </div>
       </div>
-    </div>
+   
   );
 }
 
