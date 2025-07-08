@@ -1,71 +1,77 @@
-import React, { useMemo } from "react";
 import { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { CalendarLayout } from "../pages/dashboard/doctor-dashboard/CalendarLayout";
 import ClinicSignUp from "../pages/clinicSignUp/clinicSignUp";
 import Unauthorized from "../pages/unauthorized/unauthorized";
 import { SocketProvider } from "../utils/socketContext";
-import Video from "../pages/dashboard/doctorChat/Video";
-import { VideoCallProvider } from "../context/Context";
 import ClinicEditProfile from "../pages/editProfile/clinicEditProfile";
 import ClinicDoctorList from "../pages/dashboard/clinic-dashboard/clinicDoctorList";
-import UserCalenderView from "../pages/dashboard/user-dashboard/UserCalenderView"
-import UserReviews from "../pages/dashboard/user-dashboard/userReviews"
-import UserAppointmentList from "../pages/dashboard/user-dashboard/userAppointmentList"
+import UserCalenderView from "../pages/dashboard/user-dashboard/UserCalenderView";
+import UserReviews from "../pages/dashboard/user-dashboard/userReviews";
+import UserAppointmentList from "../pages/dashboard/user-dashboard/userAppointmentList";
 import ClinicPublicView from "../pages/dashboard/clinic-dashboard/clinicpublicview";
 import { Loader, LoaderHome } from "../components/ui/loader/loader";
-import PatientProfileSetting from "../pages/dashboard/user-dashboard/patientSetting/patientProfileSetting"
+import PatientProfileSetting from "../pages/dashboard/user-dashboard/patientSetting/patientProfileSetting";
 import ClinicSeeUser from "../pages/dashboard/clinic-dashboard/clinicSeeUser";
 import DoctorPrescription from "../pages/dashboard/doctorPrescription/doctorPrescription";
 import ClinicCalendarView from "../pages/dashboard/clinic-dashboard/clinicCalendarView";
-import AllDoctorList from "../pages/dashboard/user-dashboard/bookAppointmenet/allDoctorList"
-import AllFavDoctor from "../pages/dashboard/user-dashboard/bookAppointmenet/allFavDoctor"
-import PatientSupport from "../pages/dashboard/user-dashboard/patientSupport/patientSupport"
-import FavClinicPublicView from "../pages/dashboard/user-dashboard/favClinicPublicView"
-import PrescriptionView from "../pages/patient/Prescription/prescriptionView"
-import ClinicProfileSetting from "../pages/dashboard/clinic-dashboard/clinicProfileSetting/profileSetting"
+import AllDoctorList from "../pages/dashboard/user-dashboard/bookAppointmenet/allDoctorList";
+import AllFavDoctor from "../pages/dashboard/user-dashboard/bookAppointmenet/allFavDoctor";
+import PatientSupport from "../pages/dashboard/user-dashboard/patientSupport/patientSupport";
+import FavClinicPublicView from "../pages/dashboard/user-dashboard/favClinicPublicView";
+import PrescriptionView from "../pages/patient/Prescription/prescriptionView";
+import ClinicProfileSetting from "../pages/dashboard/clinic-dashboard/clinicProfileSetting/profileSetting";
 import UserDashboard from "../pages/dashboard/user-dashboard/userDashboard";
 import AllClinic from "../pages/dashboard/user-dashboard/allClinic";
-import AllFavClinic from "../pages/dashboard/user-dashboard/allFavClinic"
-import MyVerification from "../pages/dashboard/doctor-dashboard/myVerification/myVerification"
-import DoctorSupport from "../pages/dashboard/doctor-dashboard/doctorSupport/doctorSupport"
-import ClinicSupport from "../pages/dashboard/clinic-dashboard/clinicSupport/clinicSupport"
+import AllFavClinic from "../pages/dashboard/user-dashboard/allFavClinic";
+import MyVerification from "../pages/dashboard/doctor-dashboard/myVerification/myVerification";
+import DoctorSupport from "../pages/dashboard/doctor-dashboard/doctorSupport/doctorSupport";
+import ClinicSupport from "../pages/dashboard/clinic-dashboard/clinicSupport/clinicSupport";
 import UserView from "../pages/dashboard/user-dashboard/userView";
-import FamilyMemberProfileDashboard from "../pages/dashboard/user-dashboard/addFamilyMember/familyMemberProfileDashboard"
+import FamilyMemberProfileDashboard from "../pages/dashboard/user-dashboard/addFamilyMember/familyMemberProfileDashboard";
 import UserHealthDataCenter from "../pages/dashboard/user-dashboard/userhealthdatacenter";
 import FitbitCallback from "../fitbit/FitbitCallback";
 import { useSelector } from "react-redux";
 import SuperAdminDashboard from "../pages/dashboard/superAdmin/superAdminDashboard";
 import ManagePatient from "../pages/dashboard/superAdmin/managePatient";
-import Specialization from "../pages/dashboard/superAdmin/specialization/specialization"
+import Specialization from "../pages/dashboard/superAdmin/specialization/specialization";
 import ManageDoctors from "../pages/dashboard/superAdmin/manageDoctors";
 import ManageClinic from "../pages/dashboard/superAdmin/manageClinic";
 import ManageReview from "../pages/dashboard/superAdmin/manageReview";
-import ManageReviewAdmin from "../pages/dashboard/superAdmin/manageReviewAdmin/manageReviewAdmin"
-import MyDocumentVerification from "../pages/dashboard/superAdmin/myDocumentVerification"
-import CreateAdmin from "../pages/dashboard/superAdmin/createAdmin/createAdmin"
+import ManageReviewAdmin from "../pages/dashboard/superAdmin/manageReviewAdmin/manageReviewAdmin";
+import MyDocumentVerification from "../pages/dashboard/superAdmin/myDocumentVerification";
+import CreateAdmin from "../pages/dashboard/superAdmin/createAdmin/createAdmin";
 import PatientEditProfile from "../pages/patient/editProfile/editProfile";
 import VideoCall2 from "../pages/dashboard/doctorChat/VideoCall2";
-import PaymentHistory from "../pages/dashboard/user-dashboard/paymentHistory"
+import PaymentHistory from "../pages/dashboard/user-dashboard/paymentHistory";
 import SuperAdminLogin from "../pages/dashboard/superAdmin/superAdminLogin";
 import PatientPrescription from "../pages/patient/Prescription/prescription";
 import FindDoctor from "../pages/dashboard/doctor-dashboard/find-doctor";
-import ConsultationrRecordsList from "../pages/dashboard/doctor-dashboard/consultationReport/consultationrRecordsList"
-import PatientConsultationReport from "../pages/dashboard/user-dashboard/patientConsultationReport/patientConsultationReport"
-import PatientConsultationrRecordsList from "../pages/dashboard/user-dashboard/patientConsultationReport/patientConsultationrRecordsList"
-import ConsultationReport from "../pages/dashboard/doctor-dashboard/consultationReport/consultationReport"
+import ConsultationrRecordsList from "../pages/dashboard/doctor-dashboard/consultationReport/consultationrRecordsList";
+import PatientConsultationReport from "../pages/dashboard/user-dashboard/patientConsultationReport/patientConsultationReport";
+import PatientConsultationrRecordsList from "../pages/dashboard/user-dashboard/patientConsultationReport/patientConsultationrRecordsList";
+import ConsultationReport from "../pages/dashboard/doctor-dashboard/consultationReport/consultationReport";
 import DoctorView from "../pages/editProfile/doctorView";
-const PatientInfo = lazy(() => import("../pages/dashboard/superAdmin/patientInfo"))
-const DoctorInfo = lazy(() => import("../pages/dashboard/superAdmin/doctorInfo"))
-const ClinicInfo = lazy(() => import("../pages/dashboard/superAdmin/clinicInfo"))
-const ManagePayment = lazy(() => import("../pages/dashboard/superAdmin/managePayment"))
-
+const PatientInfo = lazy(() =>
+  import("../pages/dashboard/superAdmin/patientInfo")
+);
+const DoctorInfo = lazy(() =>
+  import("../pages/dashboard/superAdmin/doctorInfo")
+);
+const ClinicInfo = lazy(() =>
+  import("../pages/dashboard/superAdmin/clinicInfo")
+);
+const ManagePayment = lazy(() =>
+  import("../pages/dashboard/superAdmin/managePayment")
+);
 
 const ClinicDashboard = lazy(() =>
   import("../pages/dashboard/clinic-dashboard/dashboard")
 );
 const DoctorPublicView = lazy(() =>
-  import("../pages/dashboard/clinic-dashboard/doctorPublicView/doctorPublicView")
+  import(
+    "../pages/dashboard/clinic-dashboard/doctorPublicView/doctorPublicView"
+  )
 );
 const ConfirmEmail = lazy(() => import("../pages/clinicSignUp/confirmEmail"));
 const ClinicSignUpStepTwo = lazy(() =>
@@ -116,7 +122,9 @@ const ForgotPassword = lazy(() =>
   import("../pages/forgotPassword/forgotPassword")
 );
 const EditProfile = lazy(() => import("../pages/editProfile/editProfile"));
-const PatientPublicView = lazy(() => import("../pages/patient/editProfile/patientPublicView"))
+const PatientPublicView = lazy(() =>
+  import("../pages/patient/editProfile/patientPublicView")
+);
 const Review = lazy(() => import("../pages/dashboard/reviews/reviews"));
 const DoctorWallet = lazy(() =>
   import("../pages/dashboard/doctorWallet/doctorWallet")
@@ -124,11 +132,11 @@ const DoctorWallet = lazy(() =>
 const Login = lazy(() => import("../pages/login/login"));
 const Dashboard = lazy(() =>
   import("../pages/dashboard/doctor-dashboard/dashboard")
-)
-const AllClinicPublic = lazy(() => import("../pages/home/allClinicPublic"))
-const AllDoctorPublic = lazy(() => import("../pages/home/allDoctorPublic"))
-const PublicClinicView = lazy(() => import("../pages/home/publicClinicView"))
-const PublicDoctorView = lazy(() => import("../pages/home/publicDoctorView"))
+);
+const AllClinicPublic = lazy(() => import("../pages/home/allClinicPublic"));
+const AllDoctorPublic = lazy(() => import("../pages/home/allDoctorPublic"));
+const PublicClinicView = lazy(() => import("../pages/home/publicClinicView"));
+const PublicDoctorView = lazy(() => import("../pages/home/publicDoctorView"));
 
 const AppRoutes = () => {
   let { user, token } = useSelector((state) => state.auth);
@@ -170,7 +178,7 @@ const AppRoutes = () => {
       layout: false,
       allowedRoles: ["Doctor"],
     },
-    
+
     {
       path: "/doctor/consultation-recordslist",
       element: <ConsultationrRecordsList />,
@@ -237,7 +245,7 @@ const AppRoutes = () => {
       layout: true,
       allowedRoles: ["Clinic"],
     },
-    
+
     {
       path: "/clinic/ProfileSetting",
       element: <ClinicProfileSetting />,
@@ -252,7 +260,7 @@ const AppRoutes = () => {
       layout: true,
       allowedRoles: ["Patient"],
     },
-     {
+    {
       path: "/patient/paymenthistory",
       element: <PaymentHistory />,
       exact: true,
@@ -266,12 +274,12 @@ const AppRoutes = () => {
       layout: false,
     },
     {
-        path: "/patient/appointment-list",
-        element: <UserAppointmentList/>,
-        exact: true,
-        layout: true,
-        allowedRoles: ["Patient"],
-      },
+      path: "/patient/appointment-list",
+      element: <UserAppointmentList />,
+      exact: true,
+      layout: true,
+      allowedRoles: ["Patient"],
+    },
     {
       path: "/doctorPublicView", // Accepts an ID in the URL
       element: <DoctorPublicView />,
@@ -286,23 +294,23 @@ const AppRoutes = () => {
       layout: false,
       allowedRoles: ["Doctor"],
     },
-      {
+    {
       path: "/doctor/public-view",
-      element: <DoctorView/>,
+      element: <DoctorView />,
       exact: true,
       layout: true,
       allowedRoles: ["Doctor"],
     },
     {
       path: "/doctor/myVerification",
-      element: <MyVerification/>,
+      element: <MyVerification />,
       exact: true,
       layout: true,
       allowedRoles: ["Doctor"],
     },
-     {
+    {
       path: "/doctor/support",
-      element: <DoctorSupport/>,
+      element: <DoctorSupport />,
       exact: true,
       layout: true,
       allowedRoles: ["Doctor"],
@@ -365,7 +373,7 @@ const AppRoutes = () => {
       layout: true,
       allowedRoles: ["Doctor"],
     },
-    
+
     {
       path: "/stripe",
       element: <Stripe />,
@@ -467,21 +475,21 @@ const AppRoutes = () => {
     },
     {
       path: "/patient/consultationreport/:id",
-      element: <PatientConsultationReport/>,
+      element: <PatientConsultationReport />,
       exact: true,
       layout: true,
       allowedRoles: ["Patient"],
     },
     {
       path: "/patient/support",
-      element: <PatientSupport/>,
+      element: <PatientSupport />,
       exact: true,
       layout: true,
       allowedRoles: ["Patient"],
     },
-     {
+    {
       path: "/patient/consultationrecordsList",
-      element: <PatientConsultationrRecordsList/>,
+      element: <PatientConsultationrRecordsList />,
       exact: true,
       layout: true,
       allowedRoles: ["Patient"],
@@ -629,19 +637,19 @@ const AppRoutes = () => {
     {
       path: "/superadmin/specialization",
 
-      element: <Specialization/>,
+      element: <Specialization />,
       exact: true,
       layout: true,
     },
-     {
+    {
       path: "/superadmin/manage/review",
-      element: <ManageReviewAdmin/>,
+      element: <ManageReviewAdmin />,
       exact: true,
       layout: true,
     },
     {
       path: "/superadmin/create/admin",
-      element: <CreateAdmin/>,
+      element: <CreateAdmin />,
       exact: true,
       layout: true,
     },
@@ -659,7 +667,7 @@ const AppRoutes = () => {
     },
     {
       path: "/superadmin/document/verification",
-      element: <MyDocumentVerification/>,
+      element: <MyDocumentVerification />,
       exact: true,
       layout: true,
     },
@@ -695,55 +703,43 @@ const AppRoutes = () => {
     },
     {
       path: "/prescription-list",
-      element : <PatientPrescription/>,
-      exact :true,
-      layout : true,
+      element: <PatientPrescription />,
+      exact: true,
+      layout: true,
     },
     {
       path: "/finddoctor",
-      element : <FindDoctor/>,
-      exact :true,
-      layout : true,
-    }
+      element: <FindDoctor />,
+      exact: true,
+      layout: true,
+    },
   ];
 
   return (
-    <Suspense
-      fallback={
-        <div>
-          <LoaderHome />
-        </div>
-      }
-    >
+    <Suspense fallback={<LoaderHome />}>
       <SocketProvider>
         <Router>
           <Routes>
-            {routeList?.map(
-              ({ path, element, layout, context, allowedRoles }) => {
-                // if (token && (!userType || !allowedRoles.includes(userType))) {
-                //   return (
-                //     <Route
-                //       key={path}
-                //       path={path}
-                //       element={<Navigate to="/unauthorized" />}
-                //     />
-                //   );
-                // }
-                return (
-                  <Route
-                    key={path}
-                    path={path}
-                    element={
-                      layout ? (
-                        <CalendarLayout>{element}</CalendarLayout>
-                      ) : (
-                        element
-                      )}
-                    
-                  />
-                );
-              }
-            )}
+            {routeList?.map(({ path, element, layout, allowedRoles }) => {
+              const isUnauthorized =
+                token && (!user || !allowedRoles?.includes(user));
+
+              return (
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    isUnauthorized ? (
+                      <Navigate to="/unauthorized" replace />
+                    ) : layout ? (
+                      <CalendarLayout>{element}</CalendarLayout>
+                    ) : (
+                      element
+                    )
+                  }
+                />
+              );
+            })}
           </Routes>
         </Router>
       </SocketProvider>
