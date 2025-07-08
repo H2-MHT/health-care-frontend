@@ -9,6 +9,7 @@ import storage from "redux-persist/lib/storage";
 import { persistor } from "../../../../redux/store";
 import { postData } from "../../../../hooks/services/services";
 import { showToast } from "../../../../utils/toast";
+import { logout } from "../../../../redux/actions/authActions";
 export const ClinicDrawer = () => {
    const{t} = useTranslation("drawer");
   const location = useLocation();
@@ -20,11 +21,11 @@ export const ClinicDrawer = () => {
   const [selectedDrawerItem, setSelectedDrawerItem] = useState("/clinic-dashboard/dashboard");
    const [insideDrawer, setInsideDrawer] = useState(false);
   const auth = useSelector((state) => state.auth);
-useEffect(() => {
+  useEffect(() => {
     setSelectedDrawerItem(location.pathname);
   }, [location]);
 
-   const logout = async () => {
+   const logoutUser = async () => {
      try {
        const payload = {
          refresh: auth?.refreshToken,
@@ -49,13 +50,6 @@ useEffect(() => {
       onMouseLeave={() => setInsideDrawer(false)}
       className={` ${insideDrawer ? "drawer" : "sidebarClose"}`}
     >
-      {/* <a ref={sidebarColRef} className="sidebarcol" href="#">
-        <img
-          src="/images/doctor-dashboard/arrowLeft.png"
-          className="opening"
-          alt="Toggle Sidebar"
-        />
-      </a> */}
       <nav>
         <ul>
           <li>
@@ -260,7 +254,7 @@ useEffect(() => {
       <nav class="mt-5">
         <ul>
           <li>
-            <a href="#" onClick={logout}>
+            <Link onClick={logoutUser}>
               <svg
                 width="21"
                 height="18"
@@ -274,7 +268,7 @@ useEffect(() => {
                 />
               </svg>
               <span> {t("drawer.logout")}</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

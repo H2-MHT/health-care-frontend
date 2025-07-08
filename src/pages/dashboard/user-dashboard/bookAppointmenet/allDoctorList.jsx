@@ -231,18 +231,18 @@ const AllDoctorList = () => {
                   const countryName = item?.country?.toLowerCase?.();
                   const countryCode = countryCodeMap[countryName] || "FR";
                   return (
-                    <div className="Docbox" key={item?.id}>
+                    <div className="Docbox" key={item?.doctor_id}>
                       <div className="recomendBox">
                         <div className="clinicDocMain d-flex gap-3">
                           <div className="left allDoctor">
                             <img
                               src={
-                                favoriteDoctors[item.id] || item.favourite
+                                favoriteDoctors[item?.doctor_id] || item.favourite
                                   ? "/images/purple.svg"
                                   : "/images/wishlist.svg"
                               }
                               alt="Favorite Toggle"
-                              onClick={() => handleToggleFavorite(item.id)}
+                              onClick={() => handleToggleFavorite(item?.doctor_id)}
                               style={{
                                 cursor: "pointer",
                                 width: "22px",
