@@ -123,7 +123,7 @@ function PatientPublicView() {
               </div>
               <div class="img-part">
                 <img
-                  src={isProfiledata?.profile_picture}
+                  src={isProfiledata?.profile_picture ||"../images/sample.png"}
                   class="img-fluid"
                 />
               </div>
