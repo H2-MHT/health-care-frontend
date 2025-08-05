@@ -21,7 +21,7 @@ const VerifyCode = ({ stateCount, setStateCount, email, type }) => {
   const schema = Yup.object().shape({
     verifyCode: Yup.string().required("Field is required"),
   });
-
+console.log(stateCount,">>>>>stateCount")
   const {
     register,
     handleSubmit,
@@ -49,7 +49,7 @@ const VerifyCode = ({ stateCount, setStateCount, email, type }) => {
       showToast(error.message, "error");
     }
   };
-
+console.log(type,">>>>>>>type")
   const onSubmit = async (data) => {
     // setLoading(true);
     try {
@@ -61,7 +61,7 @@ const VerifyCode = ({ stateCount, setStateCount, email, type }) => {
       if (response.status == 200) {
         let responseData = await response.json();
         localStorage.setItem("user_token", responseData?.tokens?.access);
-        dispatch(loginSuccess("", responseData?.tokens?.access));
+        // dispatch(loginSuccess("", responseData?.tokens?.access));
         showToast(responseData?.message, "success");
         if (!location?.pathname?.includes("/forgot-password")) {
           setStateCount(3);
