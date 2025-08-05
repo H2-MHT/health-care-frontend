@@ -230,7 +230,7 @@ const Dashboard = () => {
         note: editNotesData?.note,
       };
       const response = await putData(
-        `user/notes/${editNotesData?.id}/`,
+        `user/notes/${editNotesData?.note_id}/`,
         JSON.stringify(payload)
       );
       if (response.status === 200) {
