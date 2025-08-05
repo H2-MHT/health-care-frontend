@@ -18,9 +18,12 @@ import InvitationCode from "../../pages/signup/doctorProfile/invitationCode";
 import PatientProfile from "../patient/patientProfileStep";
 import LoadingButton from "../../components/ui/loader/LoadingButton";
 import LoginWithApple from "../../SSOLogin/loginWithApple";
+import { loginSuccess } from "../../redux/actions/authActions";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation("login");
   const [stateCount, setStateCount] = useState(1);
@@ -49,17 +52,17 @@ const Signup = () => {
       [true],
       "You must accept the terms and conditions"
     ),
-       acknowledge: Yup.boolean().oneOf(
+    acknowledge: Yup.boolean().oneOf(
       [true],
-     "You must acknowledge the Patient Bill of Rights and Responsibilities to continue."
+      "You must acknowledge the Patient Bill of Rights and Responsibilities to continue."
     ),
-     codeOfConduct: Yup.boolean().oneOf(
+    codeOfConduct: Yup.boolean().oneOf(
       [true],
-     "You must agree to respect the Doctor's Code of Conduct and Responsibilities to proceed."
+      "You must agree to respect the Doctor's Code of Conduct and Responsibilities to proceed."
     ),
     MedicalDisciaimer: Yup.boolean().oneOf(
       [true],
-     "By continuing, I agree that H2.doctor is a digital health platform..."
+      "By continuing, I agree that H2.doctor is a digital health platform..."
     ),
   });
 
@@ -88,7 +91,6 @@ const Signup = () => {
   const formValues = getValues();
   // Handle form submission
   const onSubmit = async (data) => {
-    console.log(data,">>>>>>>Data")
     setLoading(true);
     try {
       const payload = {
@@ -98,16 +100,23 @@ const Signup = () => {
         password: data.healthPassword,
         confirm_password: data.confirmPassword,
         role: data.member,
-        medical_disclaimer:data.MedicalDisciaimer,
-        acknowledge:data.acknowledge,
-        code_of_conduct:data.codeOfConduct,
-        terms_and_condition:data.acceptTerms
-    };
+        medical_disclaimer: data.MedicalDisciaimer,
+        acknowledge: data.acknowledge,
+        code_of_conduct: data.codeOfConduct,
+        terms_and_condition: data.acceptTerms,
+      };
 
       const response = await postRequest("auth/signup/", payload); // Call the API service
       if (response?.status === 201) {
         setLoading(false);
         let responseData = await response.json();
+        dispatch(
+          loginSuccess(
+            responseData?.user?.role,
+            responseData?.tokens?.access,
+            responseData?.tokens?.refresh
+          )
+        );
         showToast(responseData?.message, "success");
         setEmail(data.healthEmail);
         setStateCount(2);
@@ -318,7 +327,7 @@ const Signup = () => {
                                 </p>
                               )}
                             </div>
-                             <div className="col-md-12">
+                            <div className="col-md-12">
                               <div className="checkboxtype">
                                 <InputField
                                   type="checkbox"
@@ -326,16 +335,14 @@ const Signup = () => {
                                   name="acknowledge"
                                 />
                                 <label>
-                                   {t("singup.acknowledge")}{" "}
-                                   <a
+                                  {t("singup.acknowledge")}{" "}
+                                  <a
                                     target="_blank"
                                     href={t("singup.patient_rights")}
                                   >
-                                   {t("singup.patient_bill")} {" "}
-                                  
+                                    {t("singup.patient_bill")}{" "}
                                   </a>
-                                   {t("singup.responsitbilities")} 
-
+                                  {t("singup.responsitbilities")}
                                 </label>
                               </div>
                               {errors?.acknowledge && (
@@ -344,7 +351,7 @@ const Signup = () => {
                                 </p>
                               )}
                             </div>
-                              <div className="col-md-12">
+                            <div className="col-md-12">
                               <div className="checkboxtype">
                                 <InputField
                                   type="checkbox"
@@ -352,15 +359,14 @@ const Signup = () => {
                                   name="codeOfConduct"
                                 />
                                 <label>
-                                   {t("singup.code_Conduct")}{" "}
-                                    <a
+                                  {t("singup.code_Conduct")}{" "}
+                                  <a
                                     target="_blank"
                                     href={t("singup.doctor_Link")}
                                   >
-                                   {t("singup.doctor_code")} {" "}
-                                  
+                                    {t("singup.doctor_code")}{" "}
                                   </a>
-                                 {t("singup.Conduct_and")} {" "}
+                                  {t("singup.Conduct_and")}{" "}
                                 </label>
                               </div>
                               {errors?.codeOfConduct && (
@@ -369,8 +375,8 @@ const Signup = () => {
                                 </p>
                               )}
                             </div>
-                              <div className="col-md-12">
-                                  <h5>{t("singup.medical_disclaimer")}</h5>
+                            <div className="col-md-12">
+                              <h5>{t("singup.medical_disclaimer")}</h5>
 
                               <div className="checkboxtype">
                                 <InputField
