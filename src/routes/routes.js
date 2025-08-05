@@ -741,17 +741,22 @@ const AppRoutes = () => {
         <Router>
           <Routes>
             {routeList?.map(({ path, element, layout, allowedRoles }) => {
-              const isUnauthorized =
-                token && (!user || !allowedRoles?.includes(user));
+              // const isUnauthorized =
+              //   token && (!user || !allowedRoles?.includes(user));
 
               return (
                 <Route
                   key={path}
                   path={path}
                   element={
-                    isUnauthorized ? (
-                      <Navigate to="/unauthorized" replace />
-                    ) : layout ? (
+                    // isUnauthorized ? (
+                    //   <Navigate to="/unauthorized" replace />
+                    // ) : layout ? (
+                    //   <CalendarLayout>{element}</CalendarLayout>
+                    // ) : (
+                    //   element
+                    // )
+                    layout ? (
                       <CalendarLayout>{element}</CalendarLayout>
                     ) : (
                       element
