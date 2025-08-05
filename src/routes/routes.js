@@ -292,7 +292,7 @@ const AppRoutes = () => {
       element: <ResetPassword />,
       exact: true,
       layout: false,
-      allowedRoles: ["Doctor"],
+      allowedRoles: ["Doctor", "Patient", "Clinic"],
     },
     {
       path: "/doctor/public-view",
