@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import { postData, postRequest } from "../../../../hooks/services/services";
 import { jwtDecode } from "jwt-decode";
 import { loginSuccess } from "../../../../redux/actions/authActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 const ConfirmPaymentPop = ({
@@ -24,6 +24,7 @@ const ConfirmPaymentPop = ({
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+     const profileData = useSelector((state) => state?.userProfile?.userProfile);
   // Get query parameters from the URL using URLSearchParams
   const schema = Yup.object().shape({
     verifyCode: Yup.string().required("Field is required"),
@@ -62,7 +63,7 @@ const ConfirmPaymentPop = ({
       showToast(error.message, "error");
     }
   };
-
+console.log(email,">>>>>>>>email")
   const onSubmit = async (data) => {
     // setLoading(true);
     try {
@@ -100,7 +101,7 @@ const ConfirmPaymentPop = ({
     >
       <Modal.Header closeButton>
         <div class="modal-heading-alignment">
-          <img src="images/doctor-dashboard/Info.svg" />
+          <img src="../images/doctor-dashboard/Info.svg" />
           <h5 class="modal-title text-left" id="exampleModalLabel">
             {t("reset-password-pop.verification")}
           </h5>
@@ -118,7 +119,7 @@ const ConfirmPaymentPop = ({
               </h5>
               <p class="text-center mb-4">
                 {t("reset-password-pop.sent-code")}
-                {/* <span class="blue_txt">{email}</span> */}
+                <span class="blue_txt">  {profileData?.email}</span>
               </p>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div class="row g-4">

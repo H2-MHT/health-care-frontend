@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 const ResetPassword = () => {
    const{t} = useTranslation();
   const auth = useSelector((state) => state.auth);
+
   const [modelOpen, setModelOpen] = useState(false);
   // State for form values and errors
   const [formData, setFormData] = useState({
@@ -58,11 +59,11 @@ const ResetPassword = () => {
 
       // If validation passes, submit the data
       const payload = {
-        current_password: formData.currentPassword,
+        old_password: formData.currentPassword,
         new_password: formData.newPassword,
       };
       const response = await postData(
-        "doctors/request-password-change/",
+        "auth/change-password/",
         payload
       );
 
@@ -128,6 +129,7 @@ const ResetPassword = () => {
         modelOpen={modelOpen}
         setModelOpen={setModelOpen}
         Modal={Modal}
+  
       />
     </div>
   );
