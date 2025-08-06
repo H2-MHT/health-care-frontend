@@ -42,7 +42,7 @@ function ShowModelLicenses({
       formData.append("date", data.date);
       formData.append("description", data.description);
       if (data.attachment_file?.length > 0) {
-        formData.append("attachment_file", data.attachment_file[0]);
+        formData.append("attachment", data.attachment_file[0]);
       }
 
       const response = await AddFormData(
