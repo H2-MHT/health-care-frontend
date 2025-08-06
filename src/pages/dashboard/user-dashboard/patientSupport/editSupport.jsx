@@ -48,10 +48,14 @@ const EditSupport = ({
 
   const onSubmit = async (data) => {
     try {
-      const formData = new FormData();
+         const formData = new FormData();
       formData.append("title", data.title);
       formData.append("description", data.description);
-      formData.append("attachment", selectedImage);
+      if (data.attachment?.[0] instanceof File) {
+        formData.append("attachment", data.attachment[0]);
+      } else {
+        console.warn("Invalid attachment:", data.attachment?.[0]);
+      }
       const response = await patchFormData(
         `user/support/?ticket_id=${editSupportData?.ticket_id}`,
         formData
