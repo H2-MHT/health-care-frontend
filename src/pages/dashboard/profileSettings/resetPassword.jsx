@@ -58,11 +58,11 @@ const ResetPassword = () => {
 
       // If validation passes, submit the data
       const payload = {
-        current_password: formData.currentPassword,
+        old_password: formData.currentPassword,
         new_password: formData.newPassword,
       };
       const response = await postData(
-        "doctors/request-password-change/",
+        "auth/change-password/",
         payload
       );
 
