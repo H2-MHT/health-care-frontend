@@ -37,7 +37,7 @@ const ConfirmPaymentPop = ({
   } = useForm({
     resolver: yupResolver(schema),
   });
-
+     
   const handleBack = (event) => {
     event.preventDefault();
     if (location?.pathname?.includes("/forgot-password")) {
@@ -46,6 +46,7 @@ const ConfirmPaymentPop = ({
       navigate("/signup");
     }
   };
+
   const resendOTP = async () => {
     try {
       const payload = {
@@ -63,7 +64,7 @@ const ConfirmPaymentPop = ({
       showToast(error.message, "error");
     }
   };
-
+ 
   const onSubmit = async (data) => {
     // setLoading(true);
     try {

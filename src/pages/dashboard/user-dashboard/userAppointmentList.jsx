@@ -266,138 +266,136 @@ const UserAppointmentList = () => {
           <div class="appointmentList bg-white-transparent h-100">
             <div class="appointmentListAll">
               <h5 class="smallhead">Upcoming</h5>
-              <div className="futureApp">
-                {futureAppointments?.length > 0 ? (
-                  futureAppointments?.map((item) => {
-                    return (
-                      <>
-                        {(item?.status == "Confirmed" || item?.status === "Pending" ||
-                          (item?.status == "Rescheduled" &&
-                            item?.rescheduled_by == "Patient")) && (
-                          <div
-                            class="appointmentBox reschedule_pendding"
-                            style={{ backgroundColor: "honeydew" }}
-                          >
-                            <div class="first">
-                              <div class="imgPrts">
-                                <img
-                                  src={
-                                    item?.doctor?.profile_picture
-                                      ? item?.doctor?.profile_picture
-                                      : sampleImage
-                                  }
-                                  class="img-fluid"
-                                />
-                                <p>{item?.doctor?.name}</p>
-                              </div>
-                              {/* <a onClick={() => getRecentDoctorlist(item)}>
-                                {t("calendar-view.review-medical-history")}
-                              </a> */}
-                            </div>
-                            <div className="second">
-                              <button
-                                type="button"
-                                className="transparent_blue_lg"
-                                onClick={() =>
-                                  confirmAppointment(item, "Cancelled")
-                                }
-                              >
-                                Cancel
-                              </button>
-                              <button
-                                type="button"
-                                className="blue_lg"
-                                onClick={() => selectedAppointment(item)}
-                              >
-                                RESCHEDULE
-                              </button>
-                            </div>
-                            <div class="third">
-                              <div class="clockCalenderPrts w-100">
-                                <img src="/images/doctor-dashboard/dark-clock.svg" />
-                                <span>{item.slot}</span>
-                              </div>
-                              <div class="clockCalenderPrts w-100">
-                                <img src="/images/doctor-dashboard/dark-calender.svg" />
-                                <span>{getFormattedDate(item.date)}</span>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                        {(
-                          (item?.status === "Rescheduled" &&
-                            item?.rescheduled_by === "Doctor")) && (
-                          <div class="appointmentBox reschedule" style={{ backgroundColor: "honeydew" }}>
-                            <div class="first">
-                              <div class="imgPrts">
-                                <img
-                                  src={
-                                    item?.doctor?.profile_picture
-                                      ? item?.doctor?.profile_picture
-                                      : sampleImage
-                                  }
-                                  class="img-fluid"
-                                />
-                                <p>{item?.doctor?.name}</p>
-                              </div>
-                              {/* <a href="#" onClick={() => setModelOpen(true)}>
-                                Review medical history
-                              </a> */}
-                            </div>
-                            <div class="fourth">
-                              <div class="d-flex gap-2 justify-content-center">
-                                <button
-                                  type="button"
-                                  class="blue_btn"
-                                  onClick={() =>
-                                    confirmAppointment(item, "Confirmed")
-                                  }
-                                >
-                                  Confirm
-                                </button>
-                                <button
-                                  type="button"
-                                  class="transparent_btn"
-                                  onClick={() =>
-                                    confirmAppointment(item, "Cancelled")
-                                  }
-                                >
-                                  Decline
-                                </button>
-                              </div>
-                              <button
-                                type="button"
-                                class="blue_lg"
-                                onClick={() => selectedAppointment(item)}
-                              >
-                                RESCHEDULE
-                              </button>
-                            </div>
-                            <div class="third">
-                              <div class="clockCalenderPrts dark-text w-100">
-                                <img src="/images/doctor-dashboard/dark-clock.svg" />
-                                <span>{item.slot}</span>
-                              </div>
-                              <div class="clockCalenderPrts dark-text w-100">
-                                <img src="/images/doctor-dashboard/dark-calender.svg" />
-                                <span>{getFormattedDate(item.date)}</span>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </>
-                    );
-                  })
-                ) : (
-                  <div className="futureApp">
-                    <div className="treatmentContainer">
-                      <div className="no-appointments">
-                        No Appointments available
-                      </div>
-                    </div>
-                  </div>
-                )}
+             
+            <div className="futureApp">
+  {futureAppointments?.length > 0 ? (
+    (() => {
+      // Filter appointments based on status
+      const filteredAppointments = futureAppointments.filter(
+        (item) =>
+          item?.status === "Confirmed" ||
+          item?.status === "Pending" ||
+          (item?.status === "Rescheduled" && item?.rescheduled_by === "Patient") ||
+          (item?.status === "Rescheduled" && item?.rescheduled_by === "Doctor")
+      );
+      if (filteredAppointments.length === 0) {
+        return (
+          <div className="treatmentContainer">
+            <div className="no-appointments">No Appointments available</div>
+          </div>
+        );
+      }
+       {console.log(filteredAppointments,">>>>filteredAppointments")}
+      return filteredAppointments.map((item) => (
+        <React.Fragment key={item.id || item._id || Math.random()}>
+          {(item.status === "Confirmed" ||
+            item.status === "Pending" ||
+            (item.status === "Rescheduled" && item.rescheduled_by === "Patient")) && (
+            <div
+              className="appointmentBox reschedule_pendding"
+              style={{ backgroundColor: "honeydew" }}
+            >
+              <div className="first">
+                <div className="imgPrts">
+                  <img
+                    src={item?.doctor?.profile_picture || sampleImage}
+                    alt="doctor"
+                    className="img-fluid"
+                  />
+                  <p>{item?.doctor?.name}</p>
+                </div>
               </div>
+              <div className="second">
+                <button
+                  type="button"
+                  className="transparent_blue_lg"
+                  onClick={() => confirmAppointment(item, "Cancelled")}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="blue_lg"
+                  onClick={() => selectedAppointment(item)}
+                >
+                  RESCHEDULE
+                </button>
+              </div>
+              <div className="third">
+                <div className="clockCalenderPrts w-100">
+                  <img src="/images/doctor-dashboard/dark-clock.svg" alt="clock" />
+                  <span>{item.slot}</span>
+                </div>
+                <div className="clockCalenderPrts w-100">
+                  <img src="/images/doctor-dashboard/dark-calender.svg" alt="calendar" />
+                  <span>{getFormattedDate(item.date)}</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {(item.status === "Rescheduled" && item.rescheduled_by === "Doctor") && (
+            <div
+              className="appointmentBox reschedule"
+              style={{ backgroundColor: "honeydew" }}
+            >
+              <div className="first">
+                <div className="imgPrts">
+                  <img
+                    src={item?.doctor?.profile_picture || sampleImage}
+                    alt="doctor"
+                    className="img-fluid"
+                  />
+                  <p>{item?.doctor?.name}</p>
+                </div>
+              </div>
+              <div className="fourth">
+                <div className="d-flex gap-2 justify-content-center">
+                  <button
+                    type="button"
+                    className="blue_btn"
+                    onClick={() => confirmAppointment(item, "Confirmed")}
+                  >
+                    Confirm
+                  </button>
+                  <button
+                    type="button"
+                    className="transparent_btn"
+                    onClick={() => confirmAppointment(item, "Cancelled")}
+                  >
+                    Decline
+                  </button>
+                </div>
+                <button
+                  type="button"
+                  className="blue_lg"
+                  onClick={() => selectedAppointment(item)}
+                >
+                  RESCHEDULE
+                </button>
+              </div>
+              <div className="third">
+                <div className="clockCalenderPrts dark-text w-100">
+                  <img src="/images/doctor-dashboard/dark-clock.svg" alt="clock" />
+                  <span>{item.slot}</span>
+                </div>
+                <div className="clockCalenderPrts dark-text w-100">
+                  <img src="/images/doctor-dashboard/dark-calender.svg" alt="calendar" />
+                  <span>{getFormattedDate(item.date)}</span>
+                </div>
+              </div>
+            </div>
+          )}
+        </React.Fragment>
+      ));
+    })()
+  ) : (
+    <div className="treatmentContainer">
+      <div className="no-appointments">No Appointments available</div>
+    </div>
+  )}
+</div>
+
               <h5 class="smallhead mt-5">{t("appointment-list.recent")}</h5>
               <div className="futureApp">
                 {pastAppointments?.length > 0 ? (
