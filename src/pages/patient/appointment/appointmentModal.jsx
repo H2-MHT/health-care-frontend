@@ -406,11 +406,6 @@ const AppointmentModal = ({
                         <h4>{t("wallet.hour")}:</h4>
                         <h6>{appointmentSummary?.time}</h6>
                       </div>
-                      {/* <span
-                        onClick={() => {
-                          setShowThirdModal(false);
-                        }}
-                      /> */}
                         <a
                           type="button"
                           class="blue_btn"
