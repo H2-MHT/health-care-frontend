@@ -590,30 +590,35 @@ const AppRoutes = () => {
       element: <AllClinic />,
       exact: true,
       layout: true,
+      allowedRoles: ["Patient"],
     },
     {
       path: "/patient/FavClinic",
       element: <AllFavClinic />,
       exact: true,
       layout: true,
+      allowedRoles: ["Patient"],
     },
     {
       path: "/patient/userview/:id",
       element: <UserView />,
       exact: true,
       layout: true,
+      allowedRoles: ["Patient"],
     },
     {
       path: "/patient/healthdatacenter",
       element: <UserHealthDataCenter />,
       exact: true,
       layout: true,
+      allowedRoles: ["Patient"],
     },
     {
       path: "/callback",
       element: <FitbitCallback />,
       exact: true,
       layout: false,
+      allowedRoles: ["Patient", "Doctor", "Clinic"],
     },
     {
       path: "/superadmin/login",
@@ -627,12 +632,14 @@ const AppRoutes = () => {
       element: <SuperAdminDashboard />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/managepatient",
       element: <ManagePatient />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/specialization",
@@ -640,78 +647,91 @@ const AppRoutes = () => {
       element: <Specialization />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/manage/review",
       element: <ManageReviewAdmin />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/create/admin",
       element: <CreateAdmin />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/managedoctor",
       element: <ManageDoctors />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/manageclinic",
       element: <ManageClinic />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/document/verification",
       element: <MyDocumentVerification />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/patient-info/:id",
       element: <PatientInfo />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/doctor-info/:id",
       element: <DoctorInfo />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/clinic-info/:id",
       element: <ClinicInfo />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/managepayment",
       element: <ManagePayment />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/superadmin/managereview",
       element: <ManageReview />,
       exact: true,
       layout: true,
+      allowedRoles: ["SuperAdmin"],
     },
     {
       path: "/prescription-list",
       element: <PatientPrescription />,
       exact: true,
       layout: true,
+      allowedRoles: ["Patient"],
     },
     {
       path: "/finddoctor",
       element: <FindDoctor />,
       exact: true,
       layout: true,
+      allowedRoles: ["Patient", "Doctor", "Clinic"],
     },
   ];
 
@@ -721,17 +741,22 @@ const AppRoutes = () => {
         <Router>
           <Routes>
             {routeList?.map(({ path, element, layout, allowedRoles }) => {
-              const isUnauthorized =
-                token && (!user || !allowedRoles?.includes(user));
+              // const isUnauthorized =
+              //   token && (!user || !allowedRoles?.includes(user));
 
               return (
                 <Route
                   key={path}
                   path={path}
                   element={
-                    isUnauthorized ? (
-                      <Navigate to="/unauthorized" replace />
-                    ) : layout ? (
+                    // isUnauthorized ? (
+                    //   <Navigate to="/unauthorized" replace />
+                    // ) : layout ? (
+                    //   <CalendarLayout>{element}</CalendarLayout>
+                    // ) : (
+                    //   element
+                    // )
+                    layout ? (
                       <CalendarLayout>{element}</CalendarLayout>
                     ) : (
                       element
