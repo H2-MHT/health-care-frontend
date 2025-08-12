@@ -91,9 +91,9 @@ function CalendarView() {
         throw new Error("Failed to fetch data from the server.");
       }
       const responseData = await response.json();
-      setAppointmentList(responseData?.data);
+      setAppointmentList(responseData?.data?.filter((item) => item?.status !== "In Progress"))
       const events = responseData?.data
-        ?.filter((item) => item?.status !== "pending")
+        ?.filter((item) => item?.status !== "In Progress")
         ?.map((item) => {
           let a = `${item?.date}T${item?.slot?.split("-")[0]?.trim()}:00.000`;
           return {

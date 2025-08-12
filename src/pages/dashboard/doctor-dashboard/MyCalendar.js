@@ -23,7 +23,12 @@ const MyCalendar = ({
       date: item?.date_time,
     };
   });
-
+  const filteredAppointments = eventList?.filter(
+  (item) => item.extendedProps.data.status !== "In Progress"
+);
+console.log(">>>>>>>>>>>>>>> filteredAppointments", filteredAppointments)
+console.log(resp,">>>>>>>>>resp")
+console.log(eventList,">>>>>>>>>eventList")
   const handleEventClick = (clickInfo) => {
     onEventClick(clickInfo);
   };
@@ -61,7 +66,7 @@ const MyCalendar = ({
           start: minDate ? minDate : "", // Restrict to select dates from today onwards
         }}
         weekends={true}
-        events={eventList ? eventList : events ? resp : []}
+        events={eventList ? filteredAppointments : events ? resp : []}
         locales="allLocales"
         eventTimeFormat={{
           hour: "2-digit",
