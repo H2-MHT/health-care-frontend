@@ -308,7 +308,10 @@ const AppointmentModal = ({
                   <button
                     type="button"
                     class="blue_btn"
-                    onClick={() => setShowThirdModal(true)}
+                    onClick={() =>{
+                      setShowSecondModal(false)
+                      setShowThirdModal(true)
+                    }}
                   >
                     {t("singup.confirm_lable")}
                   </button>
@@ -406,14 +409,16 @@ const AppointmentModal = ({
                       {/* <span
                         onClick={() => {
                           setShowThirdModal(false);
-                          setShowSecondModal(false);
                         }}
-                      > */}
+                      /> */}
                         <a
                           type="button"
                           class="blue_btn"
                           href={stripeLink}
                           target="blank"
+                               onClick={() => {
+                          setShowThirdModal(false);
+                        }}
                         >
                           Pay Now
                         </a>
