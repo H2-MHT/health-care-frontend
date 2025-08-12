@@ -57,7 +57,6 @@ const AllDoctorPublic = () => {
       country.isoCode,
     ])
   );
-
   const { control, watch, setValue } = useForm({});
 
   const selectedCountry = watch("country");
@@ -223,10 +222,10 @@ const AllDoctorPublic = () => {
                         placeholder="Select Country"
                         value={field.value}
                         onChange={(option) => {
-                          field.onChange(option?.value); // ✅ update form
+                          field.onChange(option?.label); // ✅ update form
                           setFilterData((prev) => ({
                             ...prev,
-                            country: option?.label, // ✅ update local state
+                            country: option?.value, // ✅ update local state
                           }));
                         }}
                         isSearchable={true}
