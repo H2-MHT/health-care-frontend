@@ -102,7 +102,24 @@
 "medical-history": "Historial médico",
 "show-profile": "mostrar en el perfil",
 "select_country": "Seleccionar país",
-"select_city": "Seleccionar ciudad"
+"select_city": "Seleccionar ciudad",
+"file_name": "Nombre del archivo",
+"url": "URL",
+"document-link": "Enlace del documento",
+"allergies-name": "Nombre de alergia",
+"upload-file": "Subir un archivo",
+"drag-drop": "Arrastra y suelta o busca para elegir un archivo",
+"pdf-jpg": "solo pdf, jpg o png",
+"click-here": "Haz clic aquí",
+"no-alergies": "Sin alergias",
+"history-name": "Nombre del historial médico:",
+"no-medical": "Sin historial médico",
+"prescriptions": "Recetas",
+"created-date": "Fecha de creación:",
+"prescription-found": "No se encontraron recetas",
+"maternal-medicine": "Medicina materno-fetal",
+"years-practice": "años de práctica"
+
 },
 "add-education": {
 "school": "Escuela",
@@ -161,7 +178,9 @@
 "logout": "Cerrar sesión",
 "health-data-center": "Centro de datos de salud",
 "doctor": "Doctor",
-"clinic": "Clínica"
+"clinic": "Clínica",
+"payment-history": "Historial de pagos"
+
 },
 "footer": {
 "links": "Enlaces",
@@ -239,11 +258,55 @@
 "category": "Categoría",
 "hour": "Hora",
 "sub-total": "Subtotal",
-"discount": "Descuento"
+"discount": "Descuento",
+"amt-number": "El valor de la cantidad debe ser numérico",
+"add-account": "Agregar detalles de la cuenta",
+"secure-money": "Transferencia de dinero segura usando su cuenta bancaria.",
+"add_account": "Agregar cuenta",
+"select-account": "Seleccionar cuenta para retirar",
+"select": "Seleccionar",
+"account-holder": "Titular de la cuenta",
+"ifsc-code": "Código IFSC",
+"withdraw-money": "Retirar dinero",
+"account-number": "Número de cuenta",
+"confirm-account": "Confirmar número de cuenta",
+"full-name": "Nombre completo",
+"submit-details": "Enviar detalles",
+"account": "Cuenta",
+"amount": "Cantidad",
+"transaction": "Transacción",
+"reason": "Motivo",
+"name": "Nombre",
+"delete": "Eliminar",
+"all-notifications": "Todas las notificaciones",
+"Online-consultation": "Consulta en línea",
+"confirm": "Confirmar",
+"payment-succesfully": "El pago se realizó correctamente",
+"for-staying": "Gracias por quedarse con H-2",
+"receive-notificatio": "Recibirá una notificación tan pronto como el especialista confirme la reserva",
+"ok": "Ok",
+"appointment-confirmed": "Cita confirmada",
+"virtual-office": "Recuerde ingresar a su oficina virtual 5 minutos antes de su consulta.",
+"add-reminder": "¿Agregar el recordatorio?",
+"years-practice": "6 años de práctica",
+"leon-france": "León, Francia",
+"your-appointment": "El botón de unirse a la cita se habilitará 5 minutos antes de su cita.",
+"specialist-appointment": "El especialista estará disponible a la hora de su cita.",
+"microphone-camera": "Recuerde habilitar los permisos de micrófono y cámara desde su navegador.",
+"payment-method": "Método de pago",
+"Currency": "Moneda",
+"payment-from": "Pago de",
+"payment-status": "Estado del pago",
+"appointment_date": "Fecha de la cita",
+"payment-date": "Fecha de pago"
+
 },
 "membership": {
 "basic-membership-plan": "Plan de membresía básico",
-"premium-member": "Miembro premium"
+"premium-member": "Miembro premium",
+"membership-plan": "Tu plan de membresía",
+"are-you-sure": "¿Estás seguro?"
+
 },
 "referrals": {
 "your-referrals": "Tus referidos",
@@ -275,7 +338,10 @@
 "Sun": "Domingo"
 },
 "no-available-slots": "No hay horarios disponibles",
-"confirm-payment": "Confirmar pago"
+"confirm-payment": "Confirmar pago",
+"pay-now": "Pagar ahora",
+"Secure-money": "Transferencia de dinero segura usando tu cuenta bancaria. Visa, MasterCard, Discover, American Express"
+
 },
 "session": {
 "session-lengths": "Duraciones de sesión",
@@ -285,7 +351,6 @@
 },
 "time-language": {
 "time-language": "Hora e idioma",
-
 "system-timezone": "Usar la zona horaria del sistema",
 "language-system": "Usar el idioma del sistema",
 "preferred-language": "Idioma preferido",
@@ -332,7 +397,10 @@
 "device-tracker": {
 "access-history": "Historial de acceso",
 "current": "Sesión actual",
-"recent": "Actividad reciente"
+"recent": "Actividad reciente",
+"no-active-session": "No se encontraron sesiones activas.",
+"no-activity-found": "No se encontró actividad."
+
 },
 "log-out": {
 
@@ -368,7 +436,7 @@
 },
 "appointment-list": {
 "coming-soon": "Próximamente",
-"no-upcoming-appointments": "No hay próximas citas",
+"no-upcoming-appointments": "No hay citas próximas",
 "upcoming": "Próximas",
 "reschedule": "Reprogramar",
 "reschedule-to": "Reprogramado para",
@@ -380,15 +448,20 @@
 "consultation-report": "INFORME DE CONSULTA",
 "appointment-details": "Detalles de la cita",
 "time": "Hora",
-"virtual-office-rem": "Recuerda ingresar a tu oficina virtual 5 minutos antes de tu consulta.",
+"virtual-office-rem": "Recuerde entrar a su oficina virtual 5 minutos antes de su consulta.",
 "add-reminder": "¿Agregar recordatorio?",
-"set-the-time": "establecer hora",
-"confirm-time": "Confirmar hora",
-"reschedule-appointment-with": "Deseas reprogramar la cita con",
+"set-the-time": "Establecer la hora",
+"confirm-time": "Confirmar la hora",
+"reschedule-appointment-with": "Desea reprogramar la cita con",
 "for": "para",
 "change": "Cambiar",
-"receive-notification": "Recibirás una notificación tan pronto como el paciente confirme la reprogramación",
-"ok": "OK"
+"receive-notification": "Recibirá una notificación tan pronto como el paciente confirme la reprogramación",
+"ok": "OK",
+"leave-message": "Deje un mensaje y el equipo de soporte se pondrá en contacto con usted",
+"send-email": "Enviar correo electrónico",
+"go-to-chat": "Ir al chat",
+"reserve-appointment": "Desea reservar la cita con"
+
 },
 "clinic-dashboard": {
 "appointments": "Citas",
@@ -475,7 +548,9 @@
 "clinic-address": "Dirección de la clínica",
 "optional": "opcional",
 "contact-email": "Correo de contacto",
-"back": "Volver"
+"back": "Volver",
+"website": "Official Website"
+
 },
   "clinic-see-user": {
 "contact-patient": "Contactar con el paciente",

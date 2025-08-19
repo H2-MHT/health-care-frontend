@@ -66,7 +66,6 @@
 },
 "common": {
 "save": "Enregistrer",
-
 "add-media": "+ Ajouter un média",
 "save-changes": "Enregistrer les modifications",
 "cancel": "Annuler",
@@ -102,7 +101,24 @@
 "medical-history": "Historique médical",
 "show-profile": "afficher dans le profil",
 "select_country": "Sélectionner un pays",
-"select_city": "Sélectionner une ville"
+"select_city": "Sélectionner une ville",
+"file_name": "Nom du fichier",
+"url": "URL",
+"document-link": "Lien du document",
+"allergies-name": "Nom des allergies",
+"upload-file": "Télécharger un fichier",
+"drag-drop": "Glissez-déposez ou parcourez pour choisir un fichier",
+"pdf-jpg": "pdf, jpg ou png uniquement",
+"click-here": "Cliquez ici",
+"no-alergies": "Aucune allergie",
+"history-name": "Nom de l'antécédent médical :",
+"no-medical": "Aucun antécédent médical",
+"prescriptions": "Ordonnances",
+"created-date": "Date de création :",
+"prescription-found": "Aucune ordonnance trouvée",
+"maternal-medicine": "Médecine materno-fœtale",
+"years-practice": "années de pratique"
+
 },
 "add-education": {
 "school": "École",
@@ -161,7 +177,9 @@
 "logout": "Déconnexion",
 "health-data-center": "Centre de données de santé",
 "doctor": "Médecin",
-"clinic": "Clinique"
+"clinic": "Clinique",
+"payment-history": "Historique des paiements"
+
 },
 "footer": {
 "links": "Liens",
@@ -212,40 +230,88 @@
 },
 
 "wallet": {
-"transaction-history": "Demandes de retrait",
-"sender": "Expéditeur",
-"type": "Type",
-"date": "Date",
-"total": "Total",
-"fee": "Frais",
-"current-balance": "Solde actuel",
-"last-week": "la semaine dernière",
-"get-payed": "Recevoir le paiement",
-"payment-methods": "Méthodes de paiement",
-"add-payment-method": "Ajouter une méthode de paiement",
-"payment-method-txt": "Transfert d'argent sécurisé via votre compte bancaire. Visa, MasterCard, Discover, American Express",
-"details": "Détails",
-"payment-from": "Paiement de :",
-"service": "Service :",
-"transaction-time": "Heure de la transaction :",
-"payment": "Paiement :",
-"clinic-earning": "Revenus de la clinique",
-"total-incomes": "Revenus totaux",
-"status": "Statut",
-"invoice": "Facture",
-"support": "Assistance",
-"payment-card-content": "Transfert d'argent sécurisé via votre compte bancaire. Visa, MasterCard, Discover, American Express",
-"card-second": "cardSecond-row",
-"resume": "Reprendre",
-"category": "Catégorie",
-"hour": "Heure",
-"sub-total": "Sous-total",
-"discount": "Remise"
+  "transaction-history": "Demandes d’historique des paiements",
+  "withdrawal-history": "Demandes d’historique des retraits",
+  "Doctor-Name": "Nom du médecin",
+  "sender": "Paiement à",
+  "type": "Type",
+  "date": "Date",
+  "appointment-Date": "Date du rendez-vous",
+  "total": "Total",
+  "fee": "Frais",
+  "current-balance": "Solde actuel",
+  "last-week": "La semaine dernière",
+  "get-payed": "Recevoir un paiement",
+  "payment-methods": "Moyens de paiement",
+  "add-payment-method": "Ajouter un moyen de paiement",
+  "payment-method-txt": "Transfert d’argent sécurisé avec votre compte bancaire. Visa, MasterCard, Discover, American Express",
+  "details": "Détails",
+  "payment_date": "Date de paiement",
+  "appointment_time": "Heure du rendez-vous",
+  "payment-from": "Paiement de :",
+  "service": "Service :",
+  "transaction-time": "Heure de la transaction :",
+  "payment": "Paiement :",
+  "clinic-earning": "Gains de la clinique",
+  "total-incomes": "Revenus totaux",
+  "status": "Statut",
+  "invoice": "Facture",
+  "support": "Support",
+  "payment-card-content": "Transfert d’argent sécurisé avec votre compte bancaire. Visa, MasterCard, Discover, American Express",
+  "card-second": "Deuxième carte",
+  "resume": "Résumé",
+  "category": "Catégorie",
+  "hour": "Heure",
+  "sub-total": "Sous-total",
+  "discount": "Remise",
+  "amt-number": "La valeur du montant doit être un nombre",
+  "add-account": "Ajouter les coordonnées bancaires",
+  "secure-money": "Transfert d’argent sécurisé avec votre compte bancaire.",
+  "add_account": "Ajouter un compte",
+  "select-account": "Sélectionner un compte pour le retrait",
+  "select": "Sélectionner",
+  "account-holder": "Titulaire du compte",
+  "ifsc-code": "Code IFSC",
+  "withdraw-money": "Retirer de l’argent",
+  "account-number": "Numéro de compte",
+  "confirm-account": "Confirmer le numéro de compte",
+  "full-name": "Nom complet",
+  "submit-details": "Soumettre les détails",
+  "account": "Compte",
+  "amount": "Montant",
+  "transaction": "Transaction",
+  "reason": "Raison",
+  "name": "Nom",
+  "delete": "Supprimer",
+  "all-notifications": "Toutes les notifications",
+  "Online-consultation": "Consultation en ligne",
+  "confirm": "Confirmer",
+  "payment-succesfully": "Paiement effectué avec succès",
+  "for-staying": "Merci de rester avec H-2",
+  "receive-notificatio": "Vous recevrez une notification dès que le spécialiste confirmera la réservation",
+  "ok": "Ok",
+  "appointment-confirmed": "Rendez-vous confirmé",
+  "virtual-office": "N’oubliez pas d’entrer dans votre bureau virtuel 5 minutes avant votre consultation.",
+  "add-reminder": "Ajouter un rappel ?",
+  "years-practice": "6 ans de pratique",
+  "leon-france": "Lyon, France",
+  "your-appointment": "Le bouton Rejoindre le rendez-vous sera activé 5 minutes avant votre rendez-vous.",
+  "specialist-appointment": "Le spécialiste sera disponible à l’heure de votre rendez-vous.",
+  "microphone-camera": "N’oubliez pas d’activer les autorisations du microphone et de la caméra dans votre navigateur.",
+  "payment-method": "Moyen de paiement",
+  "Currency": "Devise",
+  "payment-from": "Paiement de",
+  "payment-status": "Statut du paiement",
+  "appointment_date": "Date du rendez-vous",
+  "payment-date": "Date de paiement"
 },
-"membership": {
-"basic-membership-plan": "Formule d'adhésion de base",
-"premium-member": "Membre Premium"
-},
+  "membership": {
+"basic-membership-plan": "Plan d'adhésion de base",
+"premium-member": "Membre Premium",
+"membership-plan": "Votre plan d'adhésion",
+"are-you-sure": "Êtes-vous sûr"
+
+  },
 
 "referrals": {
 "your-referrals": "Vos parrainages",
@@ -278,11 +344,13 @@
 "Sun": "Dimanche"
 },
 "no-available-slots": "Aucun créneau disponible",
-"confirm-payment": "Confirmer le paiement"
+"confirm-payment": "Confirmer le paiement",
+"pay-now": "Payer maintenant",
+"Secure-money": "Transfert d'argent sécurisé depuis votre compte bancaire. Visa, MasterCard, Discover, American Express"
+
 },
 
 "session": {
-
 "session-lengths": "Durée des séances",
 "planned": "Planifié",
 "buffer-time": "Temps tampon",
@@ -334,7 +402,6 @@
 "reset-password": "Réinitialiser le mot de passe",
 "current-password": "Mot de passe actuel",
 "new-password": "Nouveau mot de passe",
-
 "confirm-password": "Confirmer votre mot de passe",
 "password-requirements": "Utilisez 8 caractères ou plus avec un mélange de lettres, de chiffres et de symboles",
 "change-password-btn": "Changer le mot de passe"
@@ -343,7 +410,10 @@
 "device-tracker": {
 "access-history": "Historique des accès",
 "current": "Session en cours",
-"recent": "Activité récente"
+"recent": "Activité récente",
+"no-active-session": "Aucune session active trouvée.",
+"no-activity-found": "Aucune activité trouvée"
+
 },
 
 "log-out": {
@@ -383,7 +453,7 @@
 },
 
 "appointment-list": {
-"coming-soon": "À venir bientôt",
+"coming-soon": "Bientôt disponible",
 "no-upcoming-appointments": "Aucun rendez-vous à venir",
 "upcoming": "À venir",
 "reschedule": "Reprogrammer",
@@ -396,15 +466,20 @@
 "consultation-report": "RAPPORT DE CONSULTATION",
 "appointment-details": "Détails du rendez-vous",
 "time": "Heure",
-"virtual-office-rem": "N'oubliez pas d'entrer dans votre cabinet virtuel 5 minutes avant votre consultation.",
+"virtual-office-rem": "N'oubliez pas d'entrer dans votre bureau virtuel 5 minutes avant votre consultation.",
 "add-reminder": "Ajouter un rappel ?",
-"set-the-time": "définir l'heure",
+"set-the-time": "Définir l'heure",
 "confirm-time": "Confirmer l'heure",
 "reschedule-appointment-with": "Vous souhaitez reprogrammer le rendez-vous avec",
 "for": "pour",
 "change": "Modifier",
 "receive-notification": "Vous recevrez une notification dès que le patient confirmera la reprogrammation",
-"ok": "OK"
+"ok": "OK",
+"leave-message": "Laissez un message et l'équipe d'assistance vous contactera",
+"send-email": "Envoyer un e-mail",
+"go-to-chat": "Aller au chat",
+"reserve-appointment": "Vous souhaitez réserver le rendez-vous avec"
+
 },
 
 "clinic-dashboard": {
@@ -433,7 +508,6 @@
 "add": "+ Ajouter",
 "you": "vous",
 "steps": "Pas",
-
 "not-authenticated": "Non authentifié",
 "of-goal": "de l'objectif",
 "water": "Eau",
@@ -487,19 +561,25 @@
 "clinic-registration": "Enregistrement de la clinique",
 "clinic-name": "Nom de la clinique",
 "registration-confirmation": "Confirmation d'enregistrement",
-
-"registration-notice": "Merci d’avoir enregistré votre clinique. Notre équipe examinera vos informations et vous informera une fois votre profil vérifié.",
+"registration-notice": "Merci d'avoir enregistré votre clinique. Notre équipe examinera vos informations et vous informera une fois que votre profil sera vérifié.",
 "return-homepage": "Retour à la page d'accueil",
-"clinic-verified": "Votre profil de clinique a été vérifié et est maintenant actif. Bienvenue !",
+"clinic-verified": "Le profil de votre clinique a été vérifié et est maintenant actif. Bienvenue !",
 "continue": "Continuer",
-"almost-there": "Presque terminé !",
-"one-step-away": "Vous êtes à une étape de compléter votre profil. Remplissez les informations restantes ou allez sur votre tableau de bord pour commencer à utiliser votre compte.",
-"continue-profile": "Continuer la complétion du profil",
+"almost-there": "Vous y êtes presque !",
+"one-step-away": "Vous n'êtes plus qu'à une étape de compléter votre profil. Remplissez les informations restantes ou allez sur votre tableau de bord pour commencer à utiliser votre compte.",
+"continue-profile": "Continuer à compléter le profil",
 "go-to-dashboard": "Aller au tableau de bord",
 "clinic-address": "Adresse de la clinique",
 "optional": "optionnel",
 "contact-email": "E-mail de contact",
-"back": "Retour"
+"contact-phone": "Téléphone de contact",
+"service-provider": "Service fourni",
+"administrator-name": "Nom de l'administrateur",
+"administrator-email": "E-mail de l'administrateur",
+"submit-registration": "Soumettre l'enregistrement",
+"back": "Retour",
+"website": "Site web"
+
 },
  "clinic-see-user": {
 "contact-patient": "Contact avec le patient",
