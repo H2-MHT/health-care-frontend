@@ -67,7 +67,6 @@
 "common": {
 "save": "Сохранить",
 "add-media": "+ Добавить медиа",
-
 "save-changes": "Сохранить изменения",
 "cancel": "Отмена",
 "submit": "Отправить",
@@ -102,7 +101,24 @@
 "medical-history": "Медицинская история",
 "show-profile": "Показать в профиле",
 "select_country": "Выбрать страну",
-"select_city": "Выбрать город"
+"select_city": "Выбрать город",
+"file_name": "Имя файла",
+"url": "URL",
+"document-link": "Ссылка на документ",
+"allergies-name": "Название аллергии",
+"upload-file": "Загрузить файл",
+"drag-drop": "Перетащите или выберите файл для загрузки",
+"pdf-jpg": "только pdf, jpg или png",
+"click-here": "Нажмите здесь",
+"no-alergies": "Нет аллергий",
+"history-name": "Название медицинской истории:",
+"no-medical": "Нет медицинской истории",
+"prescriptions": "Рецепты",
+"created-date": "Дата создания:",
+"prescription-found": "Рецептов не найдено",
+"maternal-medicine": "Медицина матери и плода",
+"years-practice": "годы практики"
+
 },
 
 "add-education":{
@@ -163,7 +179,9 @@
 "logout": "Выйти",
 "health-data-center": "Центр медицинских данных",
 "doctor": "Врач",
-"clinic": "Клиника"
+"clinic": "Клиника",
+"payment-history": "История платежей"
+
 },
 
 "footer": {
@@ -215,19 +233,24 @@
 },
 
 "wallet": {
-"transaction-history": "Запросы на вывод",
-"sender": "Отправитель",
+"transaction-history": "История транзакций",
+"withdrawal-history": "История выводов",
+"Doctor-Name": "Имя врача",
+"sender": "Платёж получателю",
 "type": "Тип",
 "date": "Дата",
-"total": "Сумма",
+"appointment-Date": "Дата приёма",
+"total": "Итого",
 "fee": "Комиссия",
 "current-balance": "Текущий баланс",
-"last-week": "на прошлой неделе",
+"last-week": "На прошлой неделе",
 "get-payed": "Получить выплату",
 "payment-methods": "Способы оплаты",
 "add-payment-method": "Добавить способ оплаты",
-"payment-method-txt": "Безопасный перевод денег с использованием банковского счёта. Visa, MasterCard, Discover, American Express",
+"payment-method-txt": "Безопасный перевод через банковский счёт или карту (Visa, MasterCard, Discover, American Express).",
 "details": "Детали",
+"payment_date": "Дата платежа",
+"appointment_time": "Время приёма",
 "payment-from": "Платёж от:",
 "service": "Услуга:",
 "transaction-time": "Время транзакции:",
@@ -237,18 +260,62 @@
 "status": "Статус",
 "invoice": "Счёт",
 "support": "Поддержка",
-"payment-card-content": "Безопасный перевод денег с использованием банковского счёта. Visa, MasterCard, Discover, American Express",
-"card-second": "cardSecond-row",
-"resume": "Резюме",
+"payment-card-content": "Безопасный перевод через банковский счёт или карту (Visa, MasterCard, Discover, American Express).",
+"card-second": "Вторая строка карты",
+"resume": "Сводка",
 "category": "Категория",
 "hour": "Час",
 "sub-total": "Промежуточный итог",
-"discount": "Скидка"
+"discount": "Скидка",
+"amt-number": "Сумма должна быть числом",
+"add-account": "Добавить реквизиты счёта",
+"secure-money": "Безопасный перевод через банковский счёт.",
+"add_account": "Добавить счёт",
+"select-account": "Выберите счёт для вывода",
+"select": "Выбрать",
+"account-holder": "Владелец счёта",
+"ifsc-code": "Код IFSC",
+"withdraw-money": "Вывести деньги",
+"account-number": "Номер счёта",
+"confirm-account": "Подтвердите номер счёта",
+"full-name": "Полное имя",
+"submit-details": "Отправить данные",
+"account": "Счёт",
+"amount": "Сумма",
+"transaction": "Транзакция",
+"reason": "Причина",
+"name": "Имя",
+"delete": "Удалить",
+"all-notifications": "Все уведомления",
+"Online-consultation": "Онлайн-консультация",
+"confirm": "Подтвердить",
+"payment-succesfully": "Платёж успешно выполнен",
+"for-staying": "Спасибо, что остаетесь с H-2",
+"receive-notificatio": "Вы получите уведомление, как только специалист подтвердит бронирование",
+"ok": "ОК",
+"appointment-confirmed": "Приём подтверждён",
+"virtual-office": "Войдите в виртуальный кабинет за 5 минут до консультации.",
+"add-reminder": "Добавить напоминание?",
+"years-practice": "6 лет практики",
+"leon-france": "Лион, Франция",
+"your-appointment": "Кнопка «Присоединиться к приёму» станет доступна за 5 минут до приёма.",
+"specialist-appointment": "Специалист будет доступен во время вашего приёма.",
+"microphone-camera": "Разрешите использование микрофона и камеры в браузере.",
+"payment-method": "Способ оплаты",
+"Currency": "Валюта",
+"payment-from": "Платёж от",
+"payment-status": "Статус платежа",
+"appointment_date": "Дата приёма",
+"payment-date": "Дата платежа"
+
 },
 
 "membership": {
 "basic-membership-plan": "Базовый тарифный план",
-"premium-member": "Премиум-участник"
+"premium-member": "Премиум-участник",
+"membership-plan": "Ваш тарифный план",
+"are-you-sure": "Вы уверены?"
+
 },
 
 "referrals": {
@@ -282,7 +349,10 @@
 "Sun": "Воскресенье"
 },
 "no-available-slots": "Нет доступных временных интервалов",
-"confirm-payment": "Подтвердить оплату"
+"confirm-payment": "Подтвердить оплату",
+"pay-now": "Оплатить сейчас",
+"Secure-money": "Безопасный перевод через банковский счёт или карту (Visa, MasterCard, Discover, American Express)."
+
 },
 
 "session": {
@@ -341,7 +411,10 @@
 "device-tracker": {
 "access-history": "История входов",
 "current": "Текущая сессия",
-"recent": "Недавняя активность"
+"recent": "Недавняя активность",
+"no-active-session": "Активных сессий не найдено",
+"no-activity-found": "Активность не найдена"
+
 },
 "log-out": {
 "title": "Выход или удаление аккаунта",
@@ -397,7 +470,12 @@
 "for": "на",
 "change": "Изменить",
 "receive-notification": "Вы получите уведомление, как только пациент подтвердит перенос",
-"ok": "ОК"
+"ok": "ОК",
+"leave-message": "Оставьте сообщение, и служба поддержки свяжется с вами",
+"send-email": "Отправить e-mail",
+"go-to-chat": "Перейти в чат",
+"reserve-appointment": "Вы хотите забронировать приём у"
+
 },
 "clinic-dashboard": {
 "appointments": "Записи",
@@ -484,7 +562,9 @@
 "clinic-address": "Адрес клиники",
 "optional": "необязательно",
 "contact-email": "Контактный E-mail",
-"back": "Назад"
+"back": "Назад",
+"website": "Веб-сайт"
+
 },
   "clinic-see-user": {
    "contact-patient": "Связаться с пациентом",

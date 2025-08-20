@@ -40,19 +40,18 @@
     "about_yourself": "Papasakokite apie save",
     "languages_lable": "Kalbos",
     "working_time": "Darbo laikas",
-    "term_link":"https://data.my-health.today/website/lt/terms.pdf",
-    "policy_link":"https://data.my-health.today/website/lt/privacy-policy.pdf",
-    "acknowledge":"Pripažįstu",
-    "patient_bill":" Paciento teisių įstatymas",
-    "responsitbilities":"ir pareigos",
-    "patient_rights":"https://data.my-health.today/website/lt/patient-rights.pdf",
-    "code_Conduct":"Sutinku gerbti",
-    "doctor_code":"Gydytojo kodas",
-    "doctor_Link":"https://data.my-health.today/website/lt/doctor-code.pdf",
-    "Conduct_and":"elgesio ir pareigų",
-    "medical_disclaimer":"Medicinos atsisakymas:",
-    "continuing_professionals":"Tęsdamas sutinku, kad H2.doctor yra skaitmeninė sveikatos platforma, jungianti vartotoją su nepriklausomais sveikatos priežiūros specialistais, kad gautų saugias nuotolines konsultacijas ir papildomas paslaugas. platforma nepakeičia greitosios medicinos pagalbos. Už visus klinikinius sprendimus atsako konsultuojantis profesionalas, o platforma neatsako už jokias medicinines konsultacijos pasekmes."
-    
+    "term_link": "https://data.my-health.today/website/lt/terms.pdf",
+    "policy_link": "https://data.my-health.today/website/lt/privacy-policy.pdf",
+    "acknowledge": "Pripažįstu",
+    "patient_bill": " Paciento teisių įstatymas",
+    "responsitbilities": "ir pareigos",
+    "patient_rights": "https://data.my-health.today/website/lt/patient-rights.pdf",
+    "code_Conduct": "Sutinku gerbti",
+    "doctor_code": "Gydytojo kodas",
+    "doctor_Link": "https://data.my-health.today/website/lt/doctor-code.pdf",
+    "Conduct_and": "elgesio ir pareigų",
+    "medical_disclaimer": "Medicinos atsisakymas:",
+    "continuing_professionals": "Tęsdamas sutinku, kad H2.doctor yra skaitmeninė sveikatos platforma, jungianti vartotoją su nepriklausomais sveikatos priežiūros specialistais, kad gautų saugias nuotolines konsultacijas ir papildomas paslaugas. platforma nepakeičia greitosios medicinos pagalbos. Už visus klinikinius sprendimus atsako konsultuojantis profesionalas, o platforma neatsako už jokias medicinines konsultacijos pasekmes."
   },
   "ui_header": {
     "register_now": "Registruokitės dabar",
@@ -73,7 +72,6 @@
     "subscribe-now": "Prenumeruoti dabar",
     "add": "Pridėti"
   },
-
   "edit-profile": {
     "Male": "Vyras",
     "Female": "Moteris",
@@ -102,9 +100,24 @@
     "medical-history": "Medicininė istorija",
     "show-profile": "rodyti profilyje",
     "select_country": "Pasirinkite šalį",
-    "select_city": "Pasirinkite miestą"
+    "select_city": "Pasirinkite miestą",
+    "file_name": "Failo pavadinimas",
+    "url": "URL",
+    "document-link": "Dokumento nuoroda",
+    "allergies-name": "Alergijų pavadinimas",
+    "upload-file": "Įkelti failą",
+    "drag-drop": "Vilkite ir numeskite arba naršykite, kad pasirinktumėte failą",
+    "pdf-jpg": "tik pdf, jpg arba png",
+    "click-here": "Spauskite čia",
+    "no-alergies": "Nėra alergijų",
+    "history-name": "Medicininės istorijos pavadinimas:",
+    "no-medical": "Nėra medicininės istorijos",
+    "prescriptions": "Receptai",
+    "created-date": "Sukūrimo data:",
+    "prescription-found": "Receptų nerasta",
+    "maternal-medicine": "Motinos ir vaisiaus medicina",
+    "years-practice": "metai praktikos"
   },
-
   "add-education": {
     "school": "Mokymo įstaiga",
     "degree": "Laipsnis",
@@ -121,7 +134,6 @@
     "media": "Medija",
     "media-text": "Pridėkite medijos failus, pvz., nuotraukas, dokumentus, svetaines ar pristatymus."
   },
-
   "clinic-edit-profile": {
     "organisation-name": "Oficialus organizacijos pavadinimas",
     "license-number": "Licencijos numeris",
@@ -145,7 +157,6 @@
       "7": "Sekmadienis"
     }
   },
-
   "drawer": {
     "dashboard": "Prietaisų skydelis",
     "calendar": "Kalendorius",
@@ -163,9 +174,9 @@
     "logout": "Atsijungti",
     "health-data-center": "Sveikatos duomenų centras",
     "doctor": "Gydytojas",
-    "clinic": "Klinika"
+    "clinic": "Klinika",
+    "payment-history": "Mokėjimų istorija"
   },
-
   "footer": {
     "links": "Nuorodos",
     "add-head": "H2 Sveikatos Pagalba",
@@ -179,16 +190,14 @@
     "terms-of-service": "Paslaugų teikimo sąlygos",
     "cookie-policy": "Slapukų politika",
     "footer-bottom-text": "© My Health Today LTD. Visos teisės saugomos",
-     "footer-text":"H2.doctor yra skaitmeninė sveikatos platforma, jungianti vartotojus su nepriklausomais sveikatos priežiūros specialistais, kad gautų saugias nuotolines konsultacijas ir konsultavimo paslaugas. Platforma neteikia medicininės diagnozės ar gydymo ir nėra atsakinga už jokius medicininius rezultatus, atsiradusius po konsultacijos.",
-    "terms-conditions":"Taisyklės ir sąlygos",
-    "privacy-policy":"Privatumo politika",
-    "security-governance":"Saugumas ir valdymas"
+    "footer-text": "H2.doctor yra skaitmeninė sveikatos platforma, jungianti vartotojus su nepriklausomais sveikatos priežiūros specialistais, kad gautų saugias nuotolines konsultacijas ir konsultavimo paslaugas. Platforma neteikia medicininės diagnozės ar gydymo ir nėra atsakinga už jokius medicininius rezultatus, atsiradusius po konsultacijos.",
+    "terms-conditions": "Taisyklės ir sąlygos",
+    "privacy-policy": "Privatumo politika",
+    "security-governance": "Saugumas ir valdymas"
   },
-
   "dashboard": {
     "list": "Sąrašas",
     "treatment-plan": "Gydymo planas",
-
     "requests": "Užklausos",
     "archives": "Archyvai",
     "my-trust-score": "Pasitikėjimo balas",
@@ -214,41 +223,87 @@
     "additional-instruction": "Papildomos instrukcijos",
     "name": "Pavadinimas"
   },
-
   "wallet": {
-    "transaction-history": "Prašymai dėl išmokėjimo",
-    "sender": "Siuntėjas",
+    "transaction-history": "Mokėjimų istorijos užklausos",
+    "withdrawal-history": "Išėmimų istorijos užklausos",
+    "Doctor-Name": "Gydytojo vardas",
+    "sender": "Mokėjimas gavėjui",
     "type": "Tipas",
     "date": "Data",
-    "total": "Suma",
+    "appointment-Date": "Vizito data",
+    "total": "Iš viso",
     "fee": "Mokestis",
     "current-balance": "Dabartinis balansas",
-    "last-week": "praėjusią savaitę",
+    "last-week": "Praėjusią savaitę",
     "get-payed": "Gauti mokėjimą",
-    "payment-methods": "Apmokėjimo būdai",
-    "add-payment-method": "Pridėti apmokėjimo būdą",
-    "payment-method-txt": "Saugus pinigų pervedimas per jūsų banko sąskaitą. Palaikomi: Visa, MasterCard, Discover, American Express",
-    "details": "Informacija",
-    "payment-from": "Mokėtojas:",
+    "payment-methods": "Mokėjimo būdai",
+    "add-payment-method": "Pridėti mokėjimo būdą",
+    "payment-method-txt": "Saugus pinigų pervedimas naudojant jūsų banko sąskaitą. Visa, MasterCard, Discover, American Express",
+    "details": "Išsami informacija",
+    "payment_date": "Mokėjimo data",
+    "appointment_time": "Vizito laikas",
+    "payment-from": "Mokėjimas nuo:",
     "service": "Paslauga:",
-    "transaction-time": "Operacijos laikas:",
+    "transaction-time": "Sandorio laikas:",
     "payment": "Mokėjimas:",
-    "clinic-earning": "Klinikos pajamos",
+    "clinic-earning": "Klinikos uždarbis",
     "total-incomes": "Bendros pajamos",
-    "status": "Statusas",
+    "status": "Būsena",
     "invoice": "Sąskaita",
     "support": "Pagalba",
-    "payment-card-content": "Saugus pinigų pervedimas per jūsų banko sąskaitą. Palaikomi: Visa, MasterCard, Discover, American Express",
-    "card-second": "kortelė-antra-eilė",
+    "payment-card-content": "Saugus pinigų pervedimas naudojant jūsų banko sąskaitą. Visa, MasterCard, Discover, American Express",
+    "card-second": "kortelės antra eilutė",
     "resume": "Santrauka",
     "category": "Kategorija",
     "hour": "Valanda",
     "sub-total": "Tarpinė suma",
-    "discount": "Nuolaida"
+    "discount": "Nuolaida",
+    "amt-number": "Suma turi būti skaičius",
+    "add-account": "Pridėti sąskaitos informaciją",
+    "secure-money": "Saugus pinigų pervedimas naudojant jūsų banko sąskaitą.",
+    "add_account": "Pridėti sąskaitą",
+    "select-account": "Pasirinkite sąskaitą pinigų išėmimui",
+    "select": "Pasirinkti",
+    "account-holder": "Sąskaitos savininkas",
+    "ifsc-code": "IFSC kodas",
+    "withdraw-money": "Išimti pinigus",
+    "account-number": "Sąskaitos numeris",
+    "confirm-account": "Patvirtinti sąskaitos numerį",
+    "full-name": "Pilnas vardas",
+    "submit-details": "Pateikti informaciją",
+    "account": "Sąskaita",
+    "amount": "Suma",
+    "transaction": "Sandoris",
+    "reason": "Priežastis",
+    "name": "Vardas",
+    "delete": "Ištrinti",
+    "all-notifications": "Visi pranešimai",
+    "Online-consultation": "Internetinė konsultacija",
+    "confirm": "Patvirtinti",
+    "payment-succesfully": "Mokėjimas atliktas sėkmingai",
+    "for-staying": "Ačiū, kad likote su H-2",
+    "receive-notificatio": "Gaunate pranešimą, kai specialistas patvirtins rezervaciją",
+    "ok": "Gerai",
+    "appointment-confirmed": "Vizitas patvirtintas",
+    "virtual-office": "Įeikite į virtualų kabinetą 5 minutes prieš konsultaciją.",
+    "add-reminder": "Pridėti priminimą?",
+    "years-practice": "6 metų praktika",
+    "leon-france": "Leon, Prancūzija",
+    "your-appointment": "Prisijungimo prie vizito mygtukas bus aktyvus 5 minutes prieš vizitą.",
+    "specialist-appointment": "Specialistas bus pasiekiamas jūsų vizito metu.",
+    "microphone-camera": "Įjunkite mikrofono ir kameros leidimus naršyklėje.",
+    "payment-method": "Mokėjimo būdas",
+    "Currency": "Valiuta",
+    "payment-from": "Mokėjimas nuo",
+    "payment-status": "Mokėjimo būsena",
+    "appointment_date": "Vizito data",
+    "payment-date": "Mokėjimo data"
   },
   "membership": {
     "basic-membership-plan": "Pagrindinis narystės planas",
-    "premium-member": "Premium narys"
+    "premium-member": "Premium narys",
+    "membership-plan": "Jūsų narystės planas",
+    "are-you-sure": "Ar esate tikri dėl"
   },
   "referrals": {
     "your-referrals": "Jūsų pakvietimai",
@@ -280,16 +335,17 @@
       "Sun": "Sekmadienis"
     },
     "no-available-slots": "Nėra laisvų laikų",
-    "confirm-payment": "Patvirtinti mokėjimą"
-  },
+    "confirm-payment": "Patvirtinti mokėjimą",
+    "pay-now": "Mokėti dabar",
+    "Secure-money": "Saugus pinigų pervedimas naudojant jūsų banko sąskaitą. „Visa“, „MasterCard“, „Discover“, „American Express“"
 
+  },
   "session": {
     "session-lengths": "Sesijos trukmė",
     "planned": "Suplanuota",
     "buffer-time": "Laiko buferis",
     "consultation-fees": "Konsultacijos mokestis"
   },
-
   "time-language": {
     "time-language": "Laikas ir kalba",
     "system-timezone": "Naudoti sistemos laiko juostą",
@@ -298,7 +354,6 @@
     "select-timezone": "Pasirinkti laiko juostą",
     "select-option": "Pasirinkti parinktį"
   },
-
   "reschedule": {
     "reschedule-policy": "Perplanavimo politika",
     "possibility-of-reschedule": "Galimybė perplanuoti",
@@ -311,7 +366,6 @@
     "notice": "jei atšaukta likus mažiau nei",
     "time-before": "iki konsultacijos pradžios"
   },
-
   "communication": {
     "comms": "Komunikacija ir pranešimai",
     "notif-pref": "Pranešimų nustatymai",
@@ -328,7 +382,6 @@
     "preferred": "Pageidaujamas metodas",
     "verification": "patvirtinimas"
   },
-
   "reset-password": {
     "reset-password": "Atkurti slaptažodį",
     "current-password": "Dabartinis slaptažodis",
@@ -337,13 +390,13 @@
     "password-requirements": "Naudokite bent 8 simbolius – raidžių, skaičių ir simbolių derinį",
     "change-password-btn": "Pakeisti slaptažodį"
   },
-
   "device-tracker": {
     "access-history": "Prisijungimų istorija",
     "current": "Dabartinė sesija",
-    "recent": "Paskutinė veikla"
+    "recent": "Paskutinė veikla",
+    "no-active-session": "Aktyvių sesijų nerasta.",
+    "no-activity-found": "Veiklos nerasta"
   },
-
   "log-out": {
     "title": "Atsijungti arba ištrinti paskyrą",
     "logout": "Atsijungti",
@@ -356,7 +409,6 @@
     "deactivation-consequences3": "Išsaugoti pacientų įrašai ir konsultacijų istorija liks sistemoje pagal mūsų privatumo politikos duomenų saugojimo laikotarpį.",
     "restore-access-instructions": "Norėdami atkurti prieigą, tiesiog prisijunkite su savo vartotojo vardu ir slaptažodžiu."
   },
-
   "reset-password-pop": {
     "verification": "Patvirtinimo kodas",
     "confirm-email": "Patvirtinkite savo el. paštą",
@@ -364,219 +416,220 @@
     "send-again": "Siųsti dar kartą"
   },
   "profile-setting": {
-"personal-profile-settings": "Asmeninio profilio nustatymai",
-"appointment-management": "Konsultacijų valdymas",
-"privacy-security": "Duomenų privatumas ir saugumas"
-},
-
-"calendar-view": {
-"review-medical-history": " Peržiūrėti medicininę istoriją ",
-"no-appointments-found": "Konsultacijų nerasta"
-},
-
-"header": {
-"appointment-started": "Konsultacija ką tik prasidėjo",
-"urgent": "Skubu"
-},
-
-"appointment-list": {
-"coming-soon": "Netrukus pasirodys",
-"no-upcoming-appointments": "Nėra artėjančių vizitų",
-"upcoming": "Artėjantys",
-"reschedule": "Perplanuoti",
-"reschedule-to": "Perplanuota į",
-"decline": "Atmesti",
-
-"no-appointments-available": "Nėra galimų vizitų",
-"view-profile": "Peržiūrėti profilį",
-"recent": "Naujausi",
-"records": "ĮRAŠAI",
-"consultation-report": "KONSULTACIJOS ATASKAITA",
-"appointment-details": "Vizito informacija",
-"time": "Laikas",
-"virtual-office-rem": "Primename prisijungti prie virtualaus kabineto likus 5 minutėms iki konsultacijos.",
-"add-reminder": "Pridėti priminimą?",
-"set-the-time": "nustatyti laiką",
-"confirm-time": "Patvirtinti laiką",
-"reschedule-appointment-with": "Norite perplanuoti vizitą su",
-"for": "dėl",
-"change": "Keisti",
-"receive-notification": "Gausite pranešimą, kai pacientas patvirtins perplanavimą",
-"ok": "GERAI"
-},
-"clinic-dashboard": {
-"appointments": "Vizitai",
-"today": "Šiandien",
-"week": "Savaitė",
-"month": "Mėnuo",
-"booked": "Užsakyta",
-"declined": "Atmesta",
-"completed": "Įvykdyta",
-"active-now": "Aktyvūs dabar",
-"no-doctors-active": "Nėra aktyvių gydytojų",
-"activity": "Aktyvumas",
-"day": "Diena"
-},
-"clinic-reviews": {
-"reply": "Atsakyti",
-"replies": "Atsakymai",
-"review-title": "Atsiliepimo pavadinimas"
-},
-"user-dashboard": {
-"allergy": "Alergija",
-"reccomendations": "Rekomendacijos",
-"add": "+ Pridėti",
-"you": "jūs",
-"steps": "Žingsniai",
-"not-authenticated": "Neautentifikuota",
-"of-goal": "iš tikslo",
-"water": "Vanduo",
-"calories": "Kalorijos",
-"heart-rate": "Širdies ritmas"
-},
-"health-data-center": {
-"blood": "Kraujas",
-"height": "Ūgis",
-"weight": "Svoris",
-"pulse": "Pulsas",
-"steps-taken": "Nueiti žingsniai",
-"burned": "Sudeginta",
-"distance-covered": "Nueitas atstumas",
-"fitness-activity": "Fizinė veikla",
-"monthly": "Mėnesinis",
-"days": "Dienos",
-"hours-of-sleep": "Miego valandos",
-"health-reports": "Sveikatos ataskaitos",
-"weight-change": "Svorio pokytis",
-"general-health": "Bendra sveikata",
-"increase": "Padidėjimas",
-"water-taken": "Išgertas vanduo",
-"health": "Sveikata",
-"quest": "Užklausa"
-},
-"all-doctor-list": {
-"generalist": "Bendrosios praktikos gydytojas",
-"more-info": "Daugiau informacijos",
-"make-appointment": "Registruotis vizitui",
-"view-full-schedules": "Peržiūrėti visą grafiką",
-"no-doctors-found": "Gydytojų nerasta",
-"no-clinics-found": "Klinikų nerasta"
-},
-"fav-clinic": {
-"specialisties": "Specializacijos",
-"media-digests": "Medijos santraukos",
-"info": "Informacija",
-"prof-history": "Profesinė istorija",
-"licenses": "Licencijos",
-"full-schedule": "Visas tvarkaraštis",
-"years-practice": "metai praktikos",
-"general-medicine": "Bendroji medicina",
-"meet-our-doctors": "Susipažinkite su mūsų gydytojais"
-},
-"clinic-signup": {
-"clinic-registration": "Klinikos registracija",
-"clinic-name": "Klinikos pavadinimas",
-"registration-confirmation": "Registracijos patvirtinimas",
-"registration-notice": "Ačiū, kad užregistravote savo kliniką. Mūsų komanda peržiūrės jūsų informaciją ir praneš, kai profilis bus patvirtintas.",
-"return-homepage": "Grįžti į pagrindinį puslapį",
-"clinic-verified": "Jūsų klinikos profilis patvirtintas ir dabar aktyvus. Sveiki atvykę!",
-"continue": "Tęsti",
-"almost-there": "Jau beveik baigta!",
-"one-step-away": "Jums liko tik vienas žingsnis iki profilio užbaigimo. Užpildykite trūkstamą informaciją arba eikite į savo paskyrą ir pradėkite naudotis sistema.",
-"continue-profile": "Tęsti profilio pildymą",
-"go-to-dashboard": "Eiti į paskyrą",
-"clinic-address": "Klinikos adresas",
-"optional": "pasirinktinai",
-"contact-email": "Kontaktinis el. paštas",
-"back": "Atgal"
-},
-  "clinic-see-user": {
-  "contact-patient": "Susisiekite su pacientu",
-  "years-old": "metų",
-  "no-access": "Jūs neturite prieigos prie šių failų",
-  "request-access": "Prašyti prieigos",
-  "incoming-call": "Gaunamas skambutis"
+    "personal-profile-settings": "Asmeninio profilio nustatymai",
+    "appointment-management": "Konsultacijų valdymas",
+    "privacy-security": "Duomenų privatumas ir saugumas"
   },
-   "video-call": {
+  "calendar-view": {
+    "review-medical-history": " Peržiūrėti medicininę istoriją ",
+    "no-appointments-found": "Konsultacijų nerasta"
+  },
+  "header": {
+    "appointment-started": "Konsultacija ką tik prasidėjo",
+    "urgent": "Skubu"
+  },
+  "appointment-list": {
+    "coming-soon": "Netrukus",
+    "no-upcoming-appointments": "Artėjančių susitikimų nėra",
+    "upcoming": "Artėjantys",
+    "reschedule": "Perplanuoti",
+    "reschedule-to": "Perplanuota į",
+    "decline": "Atmesti",
+    "no-appointments-available": "Nėra galimų susitikimų",
+    "view-profile": "Peržiūrėti profilį",
+    "recent": "Naujausi",
+    "records": "ĮRAŠAI",
+    "consultation-report": "KONSULTACIJOS ATASKAITA",
+    "appointment-details": "Susitikimo detalės",
+    "time": "Laikas",
+    "virtual-office-rem": "Prisiminkite prisijungti prie virtualaus kabineto 5 minutėmis anksčiau prieš konsultaciją.",
+    "add-reminder": "Pridėti priminimą?",
+    "set-the-time": "Nustatyti laiką",
+    "confirm-time": "Patvirtinti laiką",
+    "reschedule-appointment-with": "Norite perplanuoti susitikimą su",
+    "for": "už",
+    "change": "Keisti",
+    "receive-notification": "Gausite pranešimą, kai pacientas patvirtins perplanavimą",
+    "ok": "Gerai",
+    "leave-message": "Palikite žinutę ir palaikymo komanda su jumis susisieks",
+    "send-email": "Siųsti el. laišką",
+    "go-to-chat": "Eiti į pokalbį",
+    "reserve-appointment": "Norite rezervuoti susitikimą su"
+  },
+  "clinic-dashboard": {
+    "appointments": "Vizitai",
+    "today": "Šiandien",
+    "week": "Savaitė",
+    "month": "Mėnuo",
+    "booked": "Užsakyta",
+    "declined": "Atmesta",
+    "completed": "Įvykdyta",
+    "active-now": "Aktyvūs dabar",
+    "no-doctors-active": "Nėra aktyvių gydytojų",
+    "activity": "Aktyvumas",
+    "day": "Diena"
+  },
+  "clinic-reviews": {
+    "reply": "Atsakyti",
+    "replies": "Atsakymai",
+    "review-title": "Atsiliepimo pavadinimas"
+  },
+  "user-dashboard": {
+    "allergy": "Alergija",
+    "reccomendations": "Rekomendacijos",
+    "add": "+ Pridėti",
+    "you": "jūs",
+    "steps": "Žingsniai",
+    "not-authenticated": "Neautentifikuota",
+    "of-goal": "iš tikslo",
+    "water": "Vanduo",
+    "calories": "Kalorijos",
+    "heart-rate": "Širdies ritmas"
+  },
+  "health-data-center": {
+    "blood": "Kraujas",
+    "height": "Ūgis",
+    "weight": "Svoris",
+    "pulse": "Pulsas",
+    "steps-taken": "Nueiti žingsniai",
+    "burned": "Sudeginta",
+    "distance-covered": "Nueitas atstumas",
+    "fitness-activity": "Fizinė veikla",
+    "monthly": "Mėnesinis",
+    "days": "Dienos",
+    "hours-of-sleep": "Miego valandos",
+    "health-reports": "Sveikatos ataskaitos",
+    "weight-change": "Svorio pokytis",
+    "general-health": "Bendra sveikata",
+    "increase": "Padidėjimas",
+    "water-taken": "Išgertas vanduo",
+    "health": "Sveikata",
+    "quest": "Užklausa"
+  },
+  "all-doctor-list": {
+    "generalist": "Bendrosios praktikos gydytojas",
+    "more-info": "Daugiau informacijos",
+    "make-appointment": "Registruotis vizitui",
+    "view-full-schedules": "Peržiūrėti visą grafiką",
+    "no-doctors-found": "Gydytojų nerasta",
+    "no-clinics-found": "Klinikų nerasta"
+  },
+  "fav-clinic": {
+    "specialisties": "Specializacijos",
+    "media-digests": "Medijos santraukos",
+    "info": "Informacija",
+    "prof-history": "Profesinė istorija",
+    "licenses": "Licencijos",
+    "full-schedule": "Visas tvarkaraštis",
+    "years-practice": "metai praktikos",
+    "general-medicine": "Bendroji medicina",
+    "meet-our-doctors": "Susipažinkite su mūsų gydytojais"
+  },
+  "clinic-signup": {
+    "clinic-registration": "Klinikos registracija",
+    "clinic-name": "Klinikos pavadinimas",
+    "registration-confirmation": "Registracijos patvirtinimas",
+    "registration-notice": "Ačiū, kad užregistravote savo kliniką. Mūsų komanda peržiūrės jūsų informaciją ir praneš, kai profilis bus patvirtintas.",
+    "return-homepage": "Grįžti į pagrindinį puslapį",
+    "clinic-verified": "Jūsų klinikos profilis patvirtintas ir dabar aktyvus. Sveiki atvykę!",
+    "continue": "Tęsti",
+    "almost-there": "Jau beveik baigta!",
+    "one-step-away": "Jums liko tik vienas žingsnis iki profilio užbaigimo. Užpildykite trūkstamą informaciją arba eikite į savo paskyrą ir pradėkite naudotis sistema.",
+    "continue-profile": "Tęsti profilio pildymą",
+    "go-to-dashboard": "Eiti į paskyrą",
+    "clinic-address": "Klinikos adresas",
+    "optional": "pasirinktinai",
+    "contact-email": "Kontaktinis el. paštas",
+    "back": "Atgal",
+    "website": "Svetainė"
+
+  },
+  "clinic-see-user": {
+    "contact-patient": "Susisiekite su pacientu",
+    "years-old": "metų",
+    "no-access": "Jūs neturite prieigos prie šių failų",
+    "request-access": "Prašyti prieigos",
+    "incoming-call": "Gaunamas skambutis"
+  },
+  "video-call": {
     "video-call": "Vaizdo skambutis",
     "your-video": "Jūsų vaizdas",
     "remote-video": "Nuotolinis vaizdas",
     "start-call": "Pradėti skambutį"
   },
-   "doctor-chat": {
-  "no-active-chats": "Nėra aktyvių pokalbių",
-  "meeting-ready": "Jūsų susitikimas paruoštas",
-  "add-patient": "paspauskite mygtuką, kad pridėtumėte pacientą prie skambučio",
-  "share-link": "Pasidalinkite nuoroda",
-  "no-messages": "Čia nėra pranešimų",
-  "incoming-call": "Gaunamas skambutis iš"
+  "doctor-chat": {
+    "no-active-chats": "Nėra aktyvių pokalbių",
+    "meeting-ready": "Jūsų susitikimas paruoštas",
+    "add-patient": "paspauskite mygtuką, kad pridėtumėte pacientą prie skambučio",
+    "share-link": "Pasidalinkite nuoroda",
+    "no-messages": "Čia nėra pranešimų",
+    "incoming-call": "Gaunamas skambutis iš"
   },
-    "superadmin": {
-   "submit-patient-details": "Pateikti paciento duomenis",
-  "phone": "Telefonas",
-  "profession": "Profesija",
-  "expertise": "Ekspertizė",
-  "works-in": "Dirba",
-  "biography": "Biografija",
-  "sort-by": "Rūšiuoti pagal",
-  "clinic-logo": "Klinikos logotipas",
-  "website-link": "Interneto svetainės nuoroda",
-  "action": "Veiksmas",
-  "profile-photo": "Profilio nuotrauka",
-  "doctor-name": "Gydytojo vardas",
-  "speciality": "Specializacija",
-  "patient-name": "Paciento vardas",
-  "manage-payment": "Tvarkyti mokėjimų užklausas",
-  "request-date": "Užklausos data",
-  "request-amount": "Užklausos suma",
-  "are-you-sure": "Ar tikrai norite ",
-  "payment-of": "mokėjimą, kurio suma",
-  "manage-patient": "Tvarkyti pacientą",
-  "manage-doctor": "Tvarkyti gydytoją",
-  "manage-clinic": "Tvarkyti kliniką",
-  "specialization": "Specializacija",
-  "manage-paymentt": "Tvarkyti mokėjimus",
-  "reported-reviews": "Pranešti atsiliepimai",
-  "reported-date": "Pranešimo data",
-  "reported-by": "Pranešėjas",
-  "review-content": "Atsiliepimo turinys",
-  "reported-reason": "Pranešimo priežastis",
-  "no-reviews": "Atsiliepimų nerasta.",
-  "yes": "Taip",
-  "no": "Ne",
-  "existing-specialization": "Esama specializacija",
-  "all-pending-specialization": "Visos laukiančios specializacijos",
-  "no-pending-specialization": "Laukiančių specializacijų nerasta",
-  "approved": "Patvirtinta",
-  "merge": "Sujungti",
-  "approve-new-specialization": "Patvirtinti naują specializaciją",
-  "new-specialization": "Gydytojas pateikė naują specializaciją",
-  "specialization-name": "Specializacijos pavadinimas",
-  "interventional-name": "Intervencinės pulmonologijos gydytojo vardas",
-  "merge-new-specialization": "Sujungti naują specializaciją",
-  "source-specialization": "Šaltinio specializacija",
-  "select-specialization": "Pasirinkite specializaciją",
-  "created-date": "Sukūrimo data"
-
+  "superadmin": {
+    "submit-patient-details": "Pateikti paciento duomenis",
+    "phone": "Telefonas",
+    "profession": "Profesija",
+    "expertise": "Ekspertizė",
+    "works-in": "Dirba",
+    "biography": "Biografija",
+    "sort-by": "Rūšiuoti pagal",
+    "clinic-logo": "Klinikos logotipas",
+    "website-link": "Interneto svetainės nuoroda",
+    "action": "Veiksmas",
+    "profile-photo": "Profilio nuotrauka",
+    "doctor-name": "Gydytojo vardas",
+    "speciality": "Specializacija",
+    "patient-name": "Paciento vardas",
+    "manage-payment": "Tvarkyti mokėjimų užklausas",
+    "request-date": "Užklausos data",
+    "request-amount": "Užklausos suma",
+    "are-you-sure": "Ar tikrai norite ",
+    "payment-of": "mokėjimą, kurio suma",
+    "manage-patient": "Tvarkyti pacientą",
+    "manage-doctor": "Tvarkyti gydytoją",
+    "manage-clinic": "Tvarkyti kliniką",
+    "specialization": "Specializacija",
+    "manage-paymentt": "Tvarkyti mokėjimus",
+    "reported-reviews": "Pranešti atsiliepimai",
+    "reported-date": "Pranešimo data",
+    "reported-by": "Pranešėjas",
+    "review-content": "Atsiliepimo turinys",
+    "reported-reason": "Pranešimo priežastis",
+    "no-reviews": "Atsiliepimų nerasta.",
+    "yes": "Taip",
+    "no": "Ne",
+    "existing-specialization": "Esama specializacija",
+    "all-pending-specialization": "Visos laukiančios specializacijos",
+    "no-pending-specialization": "Laukiančių specializacijų nerasta",
+    "approved": "Patvirtinta",
+    "merge": "Sujungti",
+    "approve-new-specialization": "Patvirtinti naują specializaciją",
+    "new-specialization": "Gydytojas pateikė naują specializaciją",
+    "specialization-name": "Specializacijos pavadinimas",
+    "interventional-name": "Intervencinės pulmonologijos gydytojo vardas",
+    "merge-new-specialization": "Sujungti naują specializaciją",
+    "source-specialization": "Šaltinio specializacija",
+    "select-specialization": "Pasirinkite specializaciją",
+    "created-date": "Sukūrimo data"
   },
-     "support":{
-"support-title": "Pavadinimas",
-  "action": "Veiksmas",
-  "admin-support": "Administratoriaus pagalba nėra",
-  "your-document": "Įkelkite savo dokumentą",
-  "support": "Pagalba",
-  "profile-changeVerified": "Ar tikrai norite tapti gydytoju?",
-  "document-verification": "Mano dokumentų patvirtinimas",
-  "view": "Peržiūrėti",
-  "pending": "Laukia",
-  "verified": "Patvirtinta",
-  "rejected": "Atmesta",
-  "stripe-link": "Jūsų Stripe nuoroda",
-  "copied": "Nukopijuota!",
-  "reports": "Ataskaitos",
-  "recommendation": "Rekomendacija",
-  "treatment-plan": "Išankstiniai receptai ir gydymo planas",
-  "dr": "Dr.",
-  "for": " skirta: "
+  "support": {
+    "support-title": "Pavadinimas",
+    "action": "Veiksmas",
+    "admin-support": "Administratoriaus pagalba nėra",
+    "your-document": "Įkelkite savo dokumentą",
+    "support": "Pagalba",
+    "profile-changeVerified": "Ar tikrai norite tapti gydytoju?",
+    "document-verification": "Mano dokumentų patvirtinimas",
+    "view": "Peržiūrėti",
+    "pending": "Laukia",
+    "verified": "Patvirtinta",
+    "rejected": "Atmesta",
+    "stripe-link": "Jūsų Stripe nuoroda",
+    "copied": "Nukopijuota!",
+    "reports": "Ataskaitos",
+    "recommendation": "Rekomendacija",
+    "treatment-plan": "Išankstiniai receptai ir gydymo planas",
+    "dr": "Dr.",
+    "for": " skirta: "
   }
 }

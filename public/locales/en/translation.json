@@ -117,8 +117,6 @@
     "prescription-found":" No Prescription found",
     "maternal-medicine":"Maternal-Fetal Medicine",
     "years-practice":"years of practice"
-    
-
   },
   "add-education": {
     "school": "School",
@@ -179,8 +177,7 @@
     "clinic": "Clinic",
     "payment-history":"Payment History"
 
-
-  },
+},
   "footer": {
     "links": "Links",
     "add-head": "H2 Health Help",
@@ -397,7 +394,7 @@
   "device-tracker": {
     "access-history": "Access History",
     "current": "Current session",
-    "recent": "Recent activity",
+     "recent": "Recent activity",
     "no-active-session": "No active sessions found.",
     "no-activity-found": "No Activity Found"
   },
@@ -448,7 +445,7 @@
     "time": "Time",
     "virtual-office-rem": "Remember to enter your virtual office 5 minutes before your consultation.",
     "add-reminder": "Add the reminder?",
-    "set-the-time": "set the time",
+    "set-the-time": "Set the time",
     "confirm-time": "Confirm the time",
     "reschedule-appointment-with": "You want to reschedule the appointment with",
     "for": "for",
