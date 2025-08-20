@@ -24,11 +24,14 @@ const AllDoctorPublic = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [query, setQuery] = useState("");
   const itemsPerPage = 6;
-  const [filterData, setFilterData] = useState({
+
+  const initialFilters = {
     gender: "",
     speciality: "",
     country: "",
-  });
+  };
+
+  const [filterData, setFilterData] = useState(initialFilters);
   const PaginatedDoctorList = async (page = 1, searchQuery = "") => {
     setLoading(true);
     try {
@@ -51,6 +54,7 @@ const AllDoctorPublic = () => {
       setLoading(false);
     }
   };
+
   const countryCodeMap = Object.fromEntries(
     Country.getAllCountries().map((country) => [
       country.name.toLowerCase(),
@@ -85,6 +89,24 @@ const AllDoctorPublic = () => {
       setCurrentPage(1);
       PaginatedDoctorList(1, query);
     }
+  };
+
+  const removeAllFilter = () => {
+    // Reset form values
+    setValue("speciality", null);
+    setValue("country", null);
+    setValue("Gender", null);
+
+    // Reset filter state
+    setFilterData({
+      gender: "",
+      speciality: "",
+      country: "",
+    });
+
+    // Reset pagination + reload doctors
+    setCurrentPage(1);
+    PaginatedDoctorList(1, "");
   };
 
   const getSpecialization = async () => {
@@ -255,6 +277,9 @@ const AllDoctorPublic = () => {
                       />
                     )}
                   />
+                  <button className="filter-select" onClick={removeAllFilter}>
+                    Clear Filter
+                  </button>
                 </div>
               </div>
               <div className="col-md-10">

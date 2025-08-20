@@ -66,7 +66,6 @@
 },
 "common": {
 "save": "Salvar",
-
 "add-media": "+ Adicionar Mídia",
 "save-changes": "Salvar alterações",
 "cancel": "Cancelar",
@@ -102,7 +101,24 @@
 "medical-history": "Histórico médico",
 "show-profile": "mostrar no perfil",
 "select_country": "Selecionar país",
-"select_city": "Selecionar cidade"
+"select_city": "Selecionar cidade",
+"file_name": "Nome do arquivo",
+"url": "URL",
+"document-link": "Link do documento",
+"allergies-name": "Nome das alergias",
+"upload-file": "Enviar um arquivo",
+"drag-drop": "Arraste e solte ou procure para escolher um arquivo",
+"pdf-jpg": "apenas pdf, jpg ou png",
+"click-here": "Clique aqui",
+"no-alergies": "Sem alergias",
+"history-name": "Nome do histórico médico:",
+"no-medical": "Sem histórico médico",
+"prescriptions": "Prescrições",
+"created-date": "Data de criação:",
+"prescription-found": "Nenhuma prescrição encontrada",
+"maternal-medicine": "Medicina materno-fetal",
+"years-practice": "anos de prática"
+
 },
 "add-education": {
 "school": "Escola",
@@ -161,7 +177,9 @@
 "logout": "Sair",
 "health-data-center": "Centro de Dados de Saúde",
 "doctor": "Médico",
-"clinic": "Clínica"
+"clinic": "Clínica",
+"payment-history": "Histórico de pagamentos"
+
 },
 "footer": {
 "links": "Links",
@@ -211,40 +229,88 @@
 },
 
 "wallet": {
-"transaction-history": "Solicitações de Saque",
-"sender": "Remetente",
+"transaction-history": "Solicitações de histórico de pagamentos",
+"withdrawal-history": "Solicitações de histórico de saques",
+"Doctor-Name": "Nome do médico",
+"sender": "Pagamento para",
 "type": "Tipo",
 "date": "Data",
+"appointment-Date": "Data da consulta",
 "total": "Total",
 "fee": "Taxa",
-"current-balance": "Saldo Atual",
+"current-balance": "Saldo atual",
 "last-week": "semana passada",
-"get-payed": "Receber Pagamento",
-"payment-methods": "Métodos de Pagamento",
-"add-payment-method": "Adicionar Método de Pagamento",
-"payment-method-txt": "Transferência segura usando sua conta bancária. Visa, MasterCard, Discover, American Express",
+"get-payed": "Receber pagamento",
+"payment-methods": "Métodos de pagamento",
+"add-payment-method": "Adicionar método de pagamento",
+"payment-method-txt": "Transferência de dinheiro segura usando sua conta bancária. Visa, MasterCard, Discover, American Express",
 "details": "Detalhes",
+"payment_date": "Data do pagamento",
+"appointment_time": "Hora da consulta",
 "payment-from": "Pagamento de:",
 "service": "Serviço:",
 "transaction-time": "Hora da transação:",
 "payment": "Pagamento:",
-"clinic-earning": "Ganhos da Clínica",
-"total-incomes": "Receita Total",
+"clinic-earning": "Lucro da clínica",
+"total-incomes": "Receitas totais",
 "status": "Status",
-
 "invoice": "Fatura",
 "support": "Suporte",
-"payment-card-content": "Transferência segura usando sua conta bancária. Visa, MasterCard, Discover, American Express",
-"card-second": "cartaoLinhaDois",
+"payment-card-content": "Transferência de dinheiro segura usando sua conta bancária. Visa, MasterCard, Discover, American Express",
+"card-second": "linhaSegundo-cartão",
 "resume": "Resumo",
 "category": "Categoria",
 "hour": "Hora",
 "sub-total": "Subtotal",
-"discount": "Desconto"
+"discount": "Desconto",
+"amt-number": "O valor deve ser numérico",
+"add-account": "Adicionar detalhes da conta",
+"secure-money": "Transferência de dinheiro segura usando sua conta bancária.",
+"add_account": "Adicionar conta",
+"select-account": "Selecionar conta para saque",
+"select": "Selecionar",
+"account-holder": "Titular da conta",
+"ifsc-code": "Código IFSC",
+"withdraw-money": "Sacar dinheiro",
+"account-number": "Número da conta",
+"confirm-account": "Confirmar número da conta",
+"full-name": "Nome completo",
+"submit-details": "Enviar detalhes",
+"account": "Conta",
+"amount": "Valor",
+"transaction": "Transação",
+"reason": "Motivo",
+"name": "Nome",
+"delete": "Excluir",
+"all-notifications": "Todas as notificações",
+"Online-consultation": "Consulta online",
+"confirm": "Confirmar",
+"payment-succesfully": "Pagamento realizado com sucesso",
+"for-staying": "Obrigado por permanecer com o H-2",
+"receive-notificatio": "Você receberá uma notificação assim que o especialista confirmar a reserva",
+"ok": "OK",
+"appointment-confirmed": "Consulta confirmada",
+"virtual-office": "Lembre-se de entrar no seu consultório virtual 5 minutos antes da consulta.",
+"add-reminder": "Adicionar lembrete?",
+"years-practice": "6 anos de prática",
+"leon-france": "Leão, França",
+"your-appointment": "O botão para entrar na consulta será habilitado 5 minutos antes do horário marcado.",
+"specialist-appointment": "O especialista estará disponível no horário da sua consulta.",
+"microphone-camera": "Lembre-se de ativar as permissões de microfone e câmera no seu navegador.",
+"payment-method": "Método de pagamento",
+"Currency": "Moeda",
+"payment-from": "Pagamento de",
+"payment-status": "Status do pagamento",
+"appointment_date": "Data da consulta",
+"payment-date": "Data do pagamento"
+
 },
 "membership": {
 "basic-membership-plan": "Plano de Associação Básico",
-"premium-member": "Membro Premium"
+"premium-member": "Membro Premium",
+"membership-plan": "Seu plano de associação",
+"are-you-sure": "Você tem certeza sobre"
+
 },
 "referrals": {
 "your-referrals": "Suas Indicações",
@@ -276,12 +342,14 @@
 "Sun": "Domingo"
 },
 "no-available-slots": "Sem horários disponíveis",
-"confirm-payment": "Confirmar pagamento"
+"confirm-payment": "Confirmar pagamento",
+"pay-now": "Pagar agora",
+"Secure-money": "Transferência de dinheiro segura usando sua conta bancária. Visa, MasterCard, Discover, American Express"
+
 },
 "session": {
 "session-lengths": "Duração das Sessões",
 "planned": "Planejada",
-
 "buffer-time": "Tempo de Intervalo",
 "consultation-fees": "Taxas de Consulta"
 },
@@ -330,10 +398,12 @@
 "change-password-btn": "Alterar senha"
 },
 "device-tracker": {
-
 "access-history": "Histórico de acessos",
 "current": "Sessão atual",
-"recent": "Atividade recente"
+"recent": "Atividade recente",
+"no-active-session": "Nenhuma sessão ativa encontrada.",
+"no-activity-found": "Nenhuma atividade encontrada"
+
 },
 "log-out": {
 "title": "Sair ou excluir conta",
@@ -390,7 +460,12 @@
 "for": "para",
 "change": "Alterar",
 "receive-notification": "Você receberá uma notificação assim que o paciente confirmar o reagendamento",
-"ok": "OK"
+"ok": "OK",
+"leave-message": "Deixe uma mensagem e a equipe de suporte entrará em contato com você",
+"send-email": "Enviar e-mail",
+"go-to-chat": "Ir para o chat",
+"reserve-appointment": "Você deseja reservar a consulta com"
+
 },
 "clinic-dashboard": {
 "appointments": "Consultas",
@@ -431,7 +506,6 @@
 "burned": "Queimadas",
 "distance-covered": "Distância percorrida",
 "fitness-activity": "Atividade física",
-
 "monthly": "Mensal",
 "days": "Dias",
 "hours-of-sleep": "Horas de sono",
@@ -477,7 +551,9 @@
 "clinic-address": "Endereço da clínica",
 "optional": "opcional",
 "contact-email": "E-mail de contato",
-"back": "Voltar"
+"back": "Voltar",
+"website": "Site"
+
 },
   "clinic-see-user": {
      "contact-patient": "Contato com o paciente",

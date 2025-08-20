@@ -40,19 +40,18 @@
     "about_yourself": "Разкажете повече за себе си",
     "languages_lable": "Езици",
     "working_time": "Работно време",
-     "term_link":"https://data.my-health.today/website/bg/terms.pdf",
-    "policy_link":"https://data.my-health.today/website/bg/privacy-policy.pdf",
-    "acknowledge":"Признавам",
-    "patient_bill":" Законът за правата на пациента",
-    "responsitbilities":"и Отговорности",
-    "patient_rights":"https://data.my-health.today/website/bg/patient-rights.pdf",
-    "code_Conduct":"Съгласен съм да уважавам",
-    "doctor_code":"Код на лекаря",
-    "doctor_Link":"https://data.my-health.today/website/bg/doctor-code.pdf",
-    "Conduct_and":"на поведение и отговорности",
-    "medical_disclaimer":"Медицински отказ от отговорност:",
-    "continuing_professionals":"Продължавайки, приемам, че H2.doctor е цифрова здравна платформа, която свързва потребителя с независими професионалисти в областта на здравеопазването за сигурни дистанционни консултации и помощни услуги. платформата не замества спешната медицинска помощ. Всички клинични решения са отговорност на консултанта и платформата не носи отговорност за никакви медицински резултати в резултат на консултацията"
-    
+    "term_link": "https://data.my-health.today/website/bg/terms.pdf",
+    "policy_link": "https://data.my-health.today/website/bg/privacy-policy.pdf",
+    "acknowledge": "Признавам",
+    "patient_bill": " Законът за правата на пациента",
+    "responsitbilities": "и Отговорности",
+    "patient_rights": "https://data.my-health.today/website/bg/patient-rights.pdf",
+    "code_Conduct": "Съгласен съм да уважавам",
+    "doctor_code": "Код на лекаря",
+    "doctor_Link": "https://data.my-health.today/website/bg/doctor-code.pdf",
+    "Conduct_and": "на поведение и отговорности",
+    "medical_disclaimer": "Медицински отказ от отговорност:",
+    "continuing_professionals": "Продължавайки, приемам, че H2.doctor е цифрова здравна платформа, която свързва потребителя с независими професионалисти в областта на здравеопазването за сигурни дистанционни консултации и помощни услуги. платформата не замества спешната медицинска помощ. Всички клинични решения са отговорност на консултанта и платформата не носи отговорност за никакви медицински резултати в резултат на консултацията"
   },
   "ui_header": {
     "register_now": "Регистрирай се сега",
@@ -101,7 +100,23 @@
     "medical-history": "Медицинска история",
     "show-profile": "Показвай в профила",
     "select_country": "Избери държава",
-    "select_city": "Избери град"
+    "select_city": "Избери град",
+    "file_name": "Име на файла",
+    "url": "URL",
+    "document-link": "Връзка към документа",
+    "allergies-name": "Име на алергията",
+    "upload-file": "Качване на файл",
+    "drag-drop": "Плъзнете и пуснете или прегледайте, за да изберете файл",
+    "pdf-jpg": "само pdf, jpg или png",
+    "click-here": "Кликнете тук",
+    "no-alergies": "Няма алергии",
+    "history-name": "Име на медицинската история:",
+    "no-medical": "Няма медицинска история",
+    "prescriptions": "Предписания",
+    "created-date": "Дата на създаване:",
+    "prescription-found": "Не са намерени предписания",
+    "maternal-medicine": "Медицинa на майката и плода",
+    "years-practice": "години практика"
   },
   "add-education": {
     "school": "Учебно заведение",
@@ -159,9 +174,9 @@
     "logout": "Изход",
     "health-data-center": "Център за здравни данни",
     "doctor": "Лекар",
-    "clinic": "Клиника"
+    "clinic": "Клиника",
+    "payment-history": "История на плащанията"
   },
-
   "footer": {
     "links": "Връзки",
     "add-head": "H2 Health Help",
@@ -175,11 +190,10 @@
     "terms-of-service": "Условия за ползване",
     "cookie-policy": "Политика за бисквитки",
     "footer-bottom-text": "My Health Today LTD. Всички права запазени.",
-    "footer-text":"H2.doctor е дигитална здравна платформа, която свързва потребителите с независими здравни специалисти за сигурни дистанционни консултации и съвети. Платформата не предоставя медицинска диагноза или лечение и не носи отговорност за каквито и да е медицински последствия, произтичащи от консултациите.",
-    "terms-conditions":"Правила и условия",
-    "privacy-policy":"Политика за поверителност",
-    "security-governance":"Сигурност и управление"
-
+    "footer-text": "H2.doctor е дигитална здравна платформа, която свързва потребителите с независими здравни специалисти за сигурни дистанционни консултации и съвети. Платформата не предоставя медицинска диагноза или лечение и не носи отговорност за каквито и да е медицински последствия, произтичащи от консултациите.",
+    "terms-conditions": "Правила и условия",
+    "privacy-policy": "Политика за поверителност",
+    "security-governance": "Сигурност и управление"
   },
   "dashboard": {
     "list": "Списък",
@@ -209,7 +223,6 @@
     "additional-instruction": "Допълнителни инструкции",
     "name": "Име"
   },
-
   "wallet": {
     "transaction-history": "Заявки за теглене",
     "sender": "Изпращач",
@@ -239,12 +252,53 @@
     "category": "Категория",
     "hour": "Час",
     "sub-total": "Междинна сума",
-    "discount": "Отстъпка"
+    "discount": "Отстъпка",
+    "amt-number": "Стойността на сумата трябва да бъде число",
+    "add-account": "Добавяне на данни за сметка",
+    "secure-money": "Сигурен паричен превод чрез вашата банкова сметка.",
+    "add_account": "Добавяне на сметка",
+    "select-account": "Изберете сметка за теглене",
+    "select": "Избор",
+    "account-holder": "Титуляр на сметката",
+    "ifsc-code": "IFSC код",
+    "withdraw-money": "Теглене на пари",
+    "account-number": "Номер на сметката",
+    "confirm-account": "Потвърдете номера на сметката",
+    "full-name": "Пълно име",
+    "submit-details": "Изпращане на данни",
+    "account": "Сметка",
+    "amount": "Сума",
+    "transaction": "Транзакция",
+    "reason": "Причина",
+    "name": "Име",
+    "delete": "Изтриване",
+    "all-notifications": "Всички известия",
+    "Online-consultation": "Онлайн консултация",
+    "confirm": "Потвърди",
+    "payment-succesfully": "Плащането беше успешно извършено",
+    "for-staying": "Благодарим ви, че останахте с H-2",
+    "receive-notificatio": "Ще получите известие веднага след като специалистът потвърди резервацията",
+    "ok": "Добре",
+    "appointment-confirmed": "Часът е потвърден",
+    "virtual-office": "Не забравяйте да влезете във виртуалния офис 5 минути преди консултацията.",
+    "add-reminder": "Да добавя ли напомняне?",
+    "years-practice": "6 години практика",
+    "leon-france": "Лион, Франция",
+    "your-appointment": "Бутонът „Присъединяване“ ще бъде активен 5 минути преди часа на вашата среща.",
+    "specialist-appointment": "Специалистът ще бъде на разположение по време на вашата среща.",
+    "microphone-camera": "Не забравяйте да разрешите достъпа до микрофона и камерата от браузъра си.",
+    "payment-method": "Метод на плащане",
+    "Currency": "Валута",
+    "payment-from": "Плащане от",
+    "payment-status": "Статус на плащането",
+    "appointment_date": "Дата на срещата",
+    "payment-date": "Дата на плащане"
   },
-
   "membership": {
     "basic-membership-plan": "Основен членски план",
-    "premium-member": "Премиум член"
+    "premium-member": "Премиум член",
+    "membership-plan": "Вашият абонаментен план",
+    "are-you-sure": "Сигурни ли сте за"
   },
   "referrals": {
     "your-referrals": "Вашите препоръки",
@@ -304,7 +358,6 @@
     "notice": "за анулирания, направени по-малко от",
     "time-before": "преди консултацията"
   },
-
   "communication": {
     "comms": "Комуникация и известия",
     "notif-pref": "Предпочитания за известия",
@@ -316,13 +369,11 @@
     "whatsapp": "WhatsApp",
     "platform-messenger": "Съобщения в платформата"
   },
-
   "data-privacy": {
     "two-factor": "Двуфакторна автентикация",
     "preferred": "Предпочитан метод",
     "verification": "потвърждение"
   },
-
   "reset-password": {
     "reset-password": "Нулирай паролата",
     "current-password": "Текуща парола",
@@ -331,13 +382,13 @@
     "password-requirements": "Използвайте поне 8 знака, включващи букви, цифри и символи",
     "change-password-btn": "Промени паролата"
   },
-
   "device-tracker": {
     "access-history": "История на достъпа",
     "current": "Текуща сесия",
-    "recent": "Скорошна активност"
+    "recent": "Скорошна активност",
+    "no-active-session": "Няма намерени активни сесии.",
+    "no-activity-found": "Няма намерена активност"
   },
-
   "log-out": {
     "title": "Изход или изтриване на акаунта",
     "logout": "Изход",
@@ -350,30 +401,25 @@
     "deactivation-consequences3": "Записите за пациенти и историята на консултациите ще останат в системата за срока, указан в политиката ни за поверителност.",
     "restore-access-instructions": "За да възстановите достъпа, просто влезте с потребителското си име и парола."
   },
-
   "reset-password-pop": {
     "verification": "Код за потвърждение",
     "confirm-email": "Потвърдете вашия имейл",
     "sent-code": "Изпратихме код на",
     "send-again": "Изпрати отново"
   },
-
   "profile-setting": {
     "personal-profile-settings": "Настройки на личния профил",
     "appointment-management": "Управление на консултациите",
     "privacy-security": "Поверителност и сигурност"
   },
-
   "calendar-view": {
     "review-medical-history": "Прегледай медицинската история",
     "no-appointments-found": "Няма намерени консултации"
   },
-
   "header": {
     "appointment-started": "Консултацията току-що започна",
     "urgent": "Спешно"
   },
-
   "appointment-list": {
     "coming-soon": "Очаквайте скоро",
     "no-upcoming-appointments": "Няма предстоящи прегледи",
@@ -396,9 +442,12 @@
     "for": "за",
     "change": "Промяна",
     "receive-notification": " Ще получите известие веднага щом пациентът потвърди пренасрочването",
-    "ok": "ОК"
+    "ok": "ОК",
+    "leave-message": "Оставете съобщение и екипът за поддръжка ще се свърже с вас",
+    "send-email": "Изпрати имейл",
+    "go-to-chat": "Отиди в чата",
+    "reserve-appointment": "Искате да запазите час с"
   },
-
   "clinic-dashboard": {
     "appointments": "Прегледи",
     "today": "Днес",
@@ -412,13 +461,11 @@
     "activity": "Активност",
     "day": "Ден"
   },
-
   "clinic-reviews": {
     "reply": "Отговор",
     "replies": "Отговори",
     "review-title": "Заглавие на отзива"
   },
-
   "user-dashboard": {
     "allergy": "Алергия",
     "reccomendations": "Препоръки",
@@ -431,7 +478,6 @@
     "calories": "Калории",
     "heart-rate": "Пулс"
   },
-
   "health-data-center": {
     "blood": "Кръв",
     "height": "Височина",
@@ -452,7 +498,6 @@
     "health": "Здраве",
     "quest": "Задача"
   },
-
   "all-doctor-list": {
     "generalist": "Общопрактикуващ лекар",
     "more-info": "Повече информация",
@@ -461,7 +506,6 @@
     "no-doctors-found": "Няма открити лекари",
     "no-clinics-found": "Няма открити клиники"
   },
-
   "fav-clinic": {
     "specialisties": "Специалности",
     "media-digests": "Медийни публикации",
@@ -473,111 +517,111 @@
     "general-medicine": "Обща медицина",
     "meet-our-doctors": "Запознайте се с нашите лекари"
   },
-
   "clinic-signup": {
-"clinic-registration": "Регистрация на клиника",
-"clinic-name": "Име на клиниката",
-"registration-confirmation": "Потвърждение на регистрацията",
-"registration-notice": "Благодарим ви за регистрацията на вашата клиника. Нашият екип ще прегледа информацията и ще ви уведоми, след като профилът бъде потвърден.",
-"return-homepage": "Върни се на началната страница",
-"clinic-verified": "Профилът на вашата клиника беше потвърден и вече е активен в системата!",
-"continue": "Продължи",
-"almost-there": "Почти готово!",
-"one-step-away": "Остава само една стъпка, за да завършите профила си. Попълнете останалата информация или отидете в таблото си, за да започнете.",
-"continue-profile": "Продължи попълването на профила",
-"go-to-dashboard": "Към таблото",
-"clinic-address": "Адрес на клиниката",
-"optional": "по избор",
-"contact-email": "Имейл за контакт",
-"back": "Назад"
-},
- "clinic-see-user": {
-    "contact-patient": "Свържи се с пациента",
-  "years-old": "години",
-  "no-access": "Нямате достъп до тези файлове",
-  "request-access": "Заявка за достъп",
-  "incoming-call": "Входящо обаждане"
-  },
-    "video-call": {
-     "video-call": "Видео разговор",
-  "your-video": "Вашето видео",
-  "remote-video": "Отдалечено видео",
-  "start-call": "Започни разговора"
-  },
-    "doctor-chat": {
-    "no-active-chats": "Няма активни чатове",
-  "meeting-ready": "Вашата среща е готова",
-  "add-patient": "Натиснете бутона, за да добавите пациент към разговора",
-  "share-link": "Споделете линка",
-  "no-messages": "Няма съобщения тук",
-  "incoming-call": "Входящо обаждане от"
-  },
-    "superadmin": {
-    "submit-patient-details": "Изпрати данни за пациента",
-  "phone": "Телефон",
-  "profession": "Професия",
-  "expertise": "Експертиза",
-  "works-in": "Работи в",
-  "biography": "Биография",
-  "sort-by": "Сортирай по",
-  "clinic-logo": "Лого на клиниката",
-  "website-link": "Уебсайт линк",
-  "action": "Действие",
-  "profile-photo": "Снимка на профила",
-  "doctor-name": "Име на лекаря",
-  "speciality": "Специалност",
-  "patient-name": "Име на пациента",
-  "manage-payment": "Управление на заявки за плащане",
-  "request-date": "Дата на заявка",
-  "request-amount": "Сума на заявката",
-  "are-you-sure": "Сигурни ли сте, че искате да",
-  "payment-of": "плащане от",
-  "manage-patient": "Управление на пациенти",
-  "manage-doctor": "Управление на лекари",
-  "manage-clinic": "Управление на клиника",
-  "specialization": "Специализация",
-  "manage-paymentt": "Управление на плащания",
-  "reported-reviews": "Докладвани отзиви",
-  "reported-date": "Дата на докладване",
-  "reported-by": "Докладвано от",
-  "review-content": "Съдържание на отзива",
-  "reported-reason": "Причина за докладване",
-  "no-reviews": "Няма намерени отзиви.",
-  "yes": "Да",
-  "no": "Не",
-  "existing-specialization": "Съществуваща специализация",
-  "all-pending-specialization": "Всички чакащи специализации",
-  "no-pending-specialization": "Няма намерени чакащи специализации",
-  "approved": "Одобрено",
-  "merge": "Сливане",
-  "approve-new-specialization": "Одобряване на нова специализация",
-  "new-specialization": "Лекар е подал нова специализация",
-  "specialization-name": "Име на специализацията",
-  "interventional-name": "Име на лекар по интервенционална пулмология",
-  "merge-new-specialization": "Сливане на нова специализация",
-  "source-specialization": "Изходна специализация",
-  "select-specialization": "Изберете специализация",
-  "created-date": "Дата на създаване"
+    "clinic-registration": "Регистрация на клиника",
+    "clinic-name": "Име на клиниката",
+    "registration-confirmation": "Потвърждение на регистрацията",
+    "registration-notice": "Благодарим ви за регистрацията на вашата клиника. Нашият екип ще прегледа информацията и ще ви уведоми, след като профилът бъде потвърден.",
+    "return-homepage": "Върни се на началната страница",
+    "clinic-verified": "Профилът на вашата клиника беше потвърден и вече е активен в системата!",
+    "continue": "Продължи",
+    "almost-there": "Почти готово!",
+    "one-step-away": "Остава само една стъпка, за да завършите профила си. Попълнете останалата информация или отидете в таблото си, за да започнете.",
+    "continue-profile": "Продължи попълването на профила",
+    "go-to-dashboard": "Към таблото",
+    "clinic-address": "Адрес на клиниката",
+    "optional": "по избор",
+    "contact-email": "Имейл за контакт",
+    "back": "Назад",
+    "website": "Уебсайт"
 
   },
-     "support":{
- "support-title": "Заглавие",
-  "action": "Действие",
-  "admin-support": "Няма налична администраторска поддръжка",
-  "your-document": "Качете вашия документ",
-  "support": "Поддръжка",
-  "profile-changeVerified": "Сигурни ли сте, че искате да станете лекар?",
-  "document-verification": "Моята проверка на документи",
-  "view": "Преглед",
-  "pending": "В изчакване",
-  "verified": "Потвърдено",
-  "rejected": "Отхвърлено",
-  "stripe-link": "Вашият Stripe линк",
-  "copied": "Копирано!",
-  "reports": "Доклади",
-  "recommendation": "Препоръка",
-  "treatment-plan": "Предварителни назначения и план за лечение",
-  "dr": "Д-р",
-  "for": " за: "
+  "clinic-see-user": {
+    "contact-patient": "Свържи се с пациента",
+    "years-old": "години",
+    "no-access": "Нямате достъп до тези файлове",
+    "request-access": "Заявка за достъп",
+    "incoming-call": "Входящо обаждане"
+  },
+  "video-call": {
+    "video-call": "Видео разговор",
+    "your-video": "Вашето видео",
+    "remote-video": "Отдалечено видео",
+    "start-call": "Започни разговора"
+  },
+  "doctor-chat": {
+    "no-active-chats": "Няма активни чатове",
+    "meeting-ready": "Вашата среща е готова",
+    "add-patient": "Натиснете бутона, за да добавите пациент към разговора",
+    "share-link": "Споделете линка",
+    "no-messages": "Няма съобщения тук",
+    "incoming-call": "Входящо обаждане от"
+  },
+  "superadmin": {
+    "submit-patient-details": "Изпрати данни за пациента",
+    "phone": "Телефон",
+    "profession": "Професия",
+    "expertise": "Експертиза",
+    "works-in": "Работи в",
+    "biography": "Биография",
+    "sort-by": "Сортирай по",
+    "clinic-logo": "Лого на клиниката",
+    "website-link": "Уебсайт линк",
+    "action": "Действие",
+    "profile-photo": "Снимка на профила",
+    "doctor-name": "Име на лекаря",
+    "speciality": "Специалност",
+    "patient-name": "Име на пациента",
+    "manage-payment": "Управление на заявки за плащане",
+    "request-date": "Дата на заявка",
+    "request-amount": "Сума на заявката",
+    "are-you-sure": "Сигурни ли сте, че искате да",
+    "payment-of": "плащане от",
+    "manage-patient": "Управление на пациенти",
+    "manage-doctor": "Управление на лекари",
+    "manage-clinic": "Управление на клиника",
+    "specialization": "Специализация",
+    "manage-paymentt": "Управление на плащания",
+    "reported-reviews": "Докладвани отзиви",
+    "reported-date": "Дата на докладване",
+    "reported-by": "Докладвано от",
+    "review-content": "Съдържание на отзива",
+    "reported-reason": "Причина за докладване",
+    "no-reviews": "Няма намерени отзиви.",
+    "yes": "Да",
+    "no": "Не",
+    "existing-specialization": "Съществуваща специализация",
+    "all-pending-specialization": "Всички чакащи специализации",
+    "no-pending-specialization": "Няма намерени чакащи специализации",
+    "approved": "Одобрено",
+    "merge": "Сливане",
+    "approve-new-specialization": "Одобряване на нова специализация",
+    "new-specialization": "Лекар е подал нова специализация",
+    "specialization-name": "Име на специализацията",
+    "interventional-name": "Име на лекар по интервенционална пулмология",
+    "merge-new-specialization": "Сливане на нова специализация",
+    "source-specialization": "Изходна специализация",
+    "select-specialization": "Изберете специализация",
+    "created-date": "Дата на създаване"
+  },
+  "support": {
+    "support-title": "Заглавие",
+    "action": "Действие",
+    "admin-support": "Няма налична администраторска поддръжка",
+    "your-document": "Качете вашия документ",
+    "support": "Поддръжка",
+    "profile-changeVerified": "Сигурни ли сте, че искате да станете лекар?",
+    "document-verification": "Моята проверка на документи",
+    "view": "Преглед",
+    "pending": "В изчакване",
+    "verified": "Потвърдено",
+    "rejected": "Отхвърлено",
+    "stripe-link": "Вашият Stripe линк",
+    "copied": "Копирано!",
+    "reports": "Доклади",
+    "recommendation": "Препоръка",
+    "treatment-plan": "Предварителни назначения и план за лечение",
+    "dr": "Д-р",
+    "for": " за: "
   }
 }
