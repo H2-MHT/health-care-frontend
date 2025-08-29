@@ -17,7 +17,7 @@ function LoginWithGoogle({member}) {
       const apiResponse = await postRequest("auth/login/google/", payload);
       if (apiResponse?.status === 200) {
         let responseData = await apiResponse.json();
-        console.log(responseData);
+        // console.log(responseData);
         localStorage.setItem("user_token", responseData?.token?.access);
         dispatch(loginSuccess(member, responseData?.token?.access, responseData?.token?.refresh))
         showToast(responseData?.message, "success");
