@@ -17,7 +17,7 @@ function LoginWithGoogle({member}) {
       const apiResponse = await postRequest("auth/login/google/", payload);
       if (apiResponse?.status === 200) {
         let responseData = await apiResponse.json();
-        console.log(responseData);
+        // console.log(responseData);
         localStorage.setItem("user_token", responseData?.token?.access);
         dispatch(loginSuccess(member, responseData?.token?.access, responseData?.token?.refresh))
         showToast(responseData?.message, "success");
@@ -38,7 +38,7 @@ function LoginWithGoogle({member}) {
   };
 
   return (
-    <GoogleOAuthProvider clientId="421122253768-o2sfg2kh6mbp58duolaqvr9olobi9tkf.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="853181483027-b3pgc8d9m5vq2l83f4hu10mu5se690gi.apps.googleusercontent.com">
       <GoogleLogin
         onSuccess={handleLoginSuccess}
         onError={handleLoginError}
