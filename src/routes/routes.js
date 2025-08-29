@@ -144,7 +144,7 @@ const AppRoutes = () => {
   const routeList = [
     {
       path: "/",
-      element: <Signup />,
+      element: <Login/>,
       exact: true,
       layout: false,
       allowedRoles: ["Doctor", "Patient", "Clinic"],
