@@ -21,7 +21,6 @@ function LoginWithGoogle({member}) {
         localStorage.setItem("user_token", responseData?.token?.access);
         dispatch(loginSuccess(member, responseData?.token?.access, responseData?.token?.refresh))
         showToast(responseData?.message, "success");
-        navigate(`/dashboard`);
         if (member === "Doctor") {
           navigate("/dashboard");
         } else {
