@@ -13,6 +13,7 @@ function LoginWithGoogle({member}) {
     try {
       const payload = {
         token: response?.credential,
+        role:member
       };
       const apiResponse = await postRequest("auth/login/google/", payload);
       if (apiResponse?.status === 200) {
