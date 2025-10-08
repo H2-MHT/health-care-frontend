@@ -132,6 +132,7 @@ const Login = () => {
                   <form onSubmit={handleSubmit(onSubmit)}>
                   
                     <div className="row g-3 loginChangeColor">
+                      <div className="col-md-12">
                       <div
                         className="image-container"
                         style={{ textAlign: "center", marginBottom: "20px" }}
@@ -147,9 +148,10 @@ const Login = () => {
                           }}
                         />
                       </div>
-                      <div className="role-selector">
+                      </div>
+                      {/* <div className="role-selector"> */}
                         
-                        <div className="col-md-4 col-6">
+                        <div className="col-md-4 col-6 role-selector">
                           <div
                             className={`role-option toggle-radio ${
                               role === "Patient" ? "selected" : ""
@@ -177,7 +179,7 @@ const Login = () => {
                             </label>
                           </div>
                         </div>
-                        <div className="col-md-4 col-6">
+                        <div className="col-md-4 col-6 role-selector">
                           <div
                             className={`role-option toggle-radio ${
                               role === "Doctor" ? "selected" : ""
@@ -204,7 +206,7 @@ const Login = () => {
                             </label>
                           </div>
                         </div>
-                        <div className="col-md-4 col-6">
+                        <div className="col-md-4 col-6 role-selector">
                           <div
                             className={`role-option toggle-radio ${
                               role === "Clinic" ? "selected" : ""
@@ -231,7 +233,7 @@ const Login = () => {
                             </label>
                           </div>
                         </div>
-                      </div>
+                      {/* </div> */}
                       <div className="col-md-12">
                         <div className="form-group">
                           <label htmlFor="email">

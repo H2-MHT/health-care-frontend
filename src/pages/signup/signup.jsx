@@ -163,6 +163,7 @@ const Signup = () => {
                       <div className="formArea signupmain">
                         <form onSubmit={handleSubmit(onSubmit)}>
                           <div className="row g-3">
+                            <div className="col-md-12">
                             <div
                               className="image-container"
                               style={{
@@ -183,9 +184,9 @@ const Signup = () => {
                                 />
                               )}
                             </div>
-
-                            <div className="toggle-switch-container">
-                              <div className="col-md-6 col-6">
+                             </div>
+                          
+                              <div className="col-md-6 col-6 toggle-switch-container">
                                 <div
                                   className={`switch-option radio-btn ${
                                     role === "Patient" ? "active" : ""
@@ -213,7 +214,7 @@ const Signup = () => {
                                   </label>
                                 </div>
                               </div>
-                              <div className="col-md-6 col-6">
+                              <div className="col-md-6 col-6 toggle-switch-container">
                                 <div
                                   className={`switch-option radio-btn ${
                                     role === "Doctor" ? "active" : ""
@@ -240,7 +241,7 @@ const Signup = () => {
                                   </label>
                                 </div>
                               </div>
-                            </div>
+                            
 
                             <div className="col-md-6">
                               <div className="form-group">
