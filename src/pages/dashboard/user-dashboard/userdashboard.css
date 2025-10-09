@@ -1126,6 +1126,11 @@
 
 .filter-sidebar .sortSearchArea .search input{
    height: 40px;
+   width: 100%;
+}
+
+.sortSearchArea .search{
+   width: 100%;
 }
  
 .filter-sidebar .filter-select{

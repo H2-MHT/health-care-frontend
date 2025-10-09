@@ -140,7 +140,7 @@ const ReschedulePolicy = () => {
                 <p className="mb-0">{t("reschedule.reschedule-period")} :</p>
                 <div className="form-group d-flex gap-2">
                   <select
-                    class=""
+                    class="rescheduleDays"
                     name="reschedule_days"
                     onChange={handleInputChange}
                     value={formData.reschedule_days}
@@ -158,7 +158,7 @@ const ReschedulePolicy = () => {
                   <InputField
                     type="time"
                     placeholder="hh - hh"
-                    class=""
+                    className="rescheduleTimes"
                     name="reschedule_time_range"
                     onChange={handleInputChange}
                     value={formData.reschedule_time_range}
