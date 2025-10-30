@@ -929,6 +929,14 @@ main{
     border: 2px solid green !important;
 }
 
+.rescheduleDays{
+    min-width: 200px;
+}
+
+.rescheduleTimes input{
+    min-width: 200px;
+}
+
 .red-text{
     color: red !important;
 }
